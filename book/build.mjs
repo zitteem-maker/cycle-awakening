@@ -3,7 +3,7 @@
 //   npm run build:book:brouillon  → version de travail, filigrane « brouillon », n'écrit pas book-meta.json
 // Sorties : book/dist/cycle-awakening-guide.pdf (version écran, outils en annexe)
 //           book/dist/cycle-awakening-outils-imprimables.pdf (outils seuls, pour l'impression)
-import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { marked } from 'marked';
 import { chromium } from 'playwright-core';
@@ -41,6 +41,28 @@ const chapitres = readdirSync(`${book}src/chapitres`).filter((f) => f.endsWith('
   const { data, body } = frontmatter(readFileSync(`${book}src/chapitres/${f}`, 'utf8'));
   return { fichier: f, ordre: Number(data.ordre), titre: typo(data.titre), accroche: typo(data.accroche), statut: data.statut, body: typo(body) };
 });
+const recettes = readdirSync(`${book}src/recettes`).filter((f) => f.endsWith('.md')).sort().map((f) => {
+  const { data, body } = frontmatter(readFileSync(`${book}src/recettes/${f}`, 'utf8'));
+  // Sections « ## Ingrédients », « ## Préparation », puis une section libre (astuce, variante…).
+  const sections = typo(body).split(/^## /m).filter((x) => x.trim()).map((bloc) => {
+    const [titre, ...reste] = bloc.split('\n');
+    return { titre: titre.trim(), html: marked.parse(reste.join('\n')) };
+  });
+  const photoPath = `${book}src/images/recettes/${data.photo}`;
+  return {
+    id: f.replace(/^\d+-|\.md$/g, ''),
+    ordre: Number(data.ordre),
+    titre: typo(data.titre),
+    categorie: data.categorie,
+    temps: data.temps,
+    portions: data.portions,
+    intro: typo(data.intro),
+    statut: data.statut,
+    photo: existsSync(photoPath) ? pathToFileURL(photoPath).href : null,
+    photoNom: data.photo,
+    sections,
+  };
+});
 const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8')).map((o) => ({
   ...o,
   titre: typo(o.titre),
@@ -50,6 +72,8 @@ const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8'))
 // --- Contrôles de la version finale ---------------------------------------------------------
 const problemes = [
   ...chapitres.filter((c) => c.statut !== 'valide').map((c) => `chapitre ${c.ordre} « ${c.titre} » : statut ${c.statut}`),
+  ...recettes.filter((r) => r.statut !== 'valide').map((r) => `recette « ${r.titre} » : statut ${r.statut}`),
+  ...recettes.filter((r) => !r.photo).map((r) => `recette « ${r.titre} » : photo manquante (book/src/images/recettes/${r.photoNom})`),
   ...outils.filter((o) => o.statut !== 'valide').map((o) => `outil « ${o.titre} » : statut ${o.statut}`),
   ...chapitres.filter((c) => /TODO_SOURCE/.test(c.body)).map((c) => `chapitre ${c.ordre} : sources non vérifiées (TODO_SOURCE)`),
 ];
@@ -110,6 +134,25 @@ function chapitreHtml(c) {
 </section>`;
 }
 
+function recetteHtml(r) {
+  const [ingredients, preparation, ...autres] = r.sections;
+  const photo = r.photo
+    ? `<img src="${r.photo}" alt="">`
+    : `<div class="photo-attente"><span>Photo à venir</span><small>${r.photoNom}</small></div>`;
+  return `<section class="recette" id="recette-${r.id}">
+  <figure class="recette-photo">${photo}</figure>
+  <p class="recette-meta">${r.categorie}<span>${r.temps}</span><span>${r.portions}</span>${r.statut === 'valide' ? '' : '<span class="statut">brouillon</span>'}</p>
+  <h2 class="recette-titre">${r.titre}</h2>
+  <p class="recette-intro">${r.intro}</p>
+  <div class="recette-grille">
+    <div class="recette-ingredients"><h3>${ingredients.titre}</h3>${ingredients.html}</div>
+    <div class="recette-etapes"><h3>${preparation.titre}</h3>${preparation.html}
+      ${autres.map((a) => `<div class="recette-astuce"><p class="recette-astuce-titre">${a.titre}</p>${a.html}</div>`).join('')}
+    </div>
+  </div>
+</section>`;
+}
+
 function outilHtml(o, i) {
   return `<section class="outil" id="outil-${o.id}">
   <p class="outil-etiquette">Outil ${i + 1} / ${outils.length} · à imprimer${o.statut === 'valide' ? '' : ' · brouillon'}</p>
@@ -149,12 +192,15 @@ function document({ impression }) {
   <h2>Sommaire</h2>
   <ol class="sommaire">
     ${chapitres.map((c) => `<li><a href="#chapitre-${c.ordre}"><span class="num">${num(c.ordre)}</span><span class="t">${c.titre}</span><span class="sous">${c.accroche}</span></a></li>`).join('\n    ')}
+    <li class="partie">Les recettes</li>
+    <li><ul class="sommaire-recettes">${recettes.map((r) => `<li><a href="#recette-${r.id}">${r.titre}</a></li>`).join('')}</ul></li>
     <li class="partie">Outils à imprimer</li>
     ${outils.map((o, i) => `<li><a href="#outil-${o.id}"><span class="num">${i + 1}</span><span class="t">${o.titre}</span></a></li>`).join('\n    ')}
   </ol>
 </section>
 
 ${chapitres.map(chapitreHtml).join('\n')}
+${recettes.map(recetteHtml).join('\n')}
 ${outils.map(outilHtml).join('\n')}
 
 <section class="fin">

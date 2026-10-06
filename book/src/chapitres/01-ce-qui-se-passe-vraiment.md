@@ -25,6 +25,22 @@ On peut le découper en quatre temps :
 <p>Dans ce guide, on parle de J17–J28 pour un cycle de 28 jours : c'est la seconde moitié de la phase lutéale, celle où les symptômes se font le plus sentir. Si ton cycle dure 25 ou 32 jours, décale : compte plutôt les <strong>10 à 12 jours qui précèdent tes règles</strong>. C'est la durée qui compte, pas le numéro du jour.</p>
 </aside>
 
+## Ce que tu peux ressentir, phase par phase
+
+Chaque femme vit son cycle à sa façon. Mais certaines tendances reviennent souvent. Les connaître, c'est arrêter d'être surprise.
+
+<table class="tableau">
+<thead><tr><th>Phase</th><th>Ce qui se passe</th><th>Ce que beaucoup ressentent</th><th>Ce qui aide souvent</th></tr></thead>
+<tbody>
+<tr><th>Règles</th><td>Hormones au plus bas, la muqueuse s'élimine.</td><td>Fatigue, besoin de chaleur, douleurs possibles, envie de rester au calme.</td><td>Repos, chaleur, repas chauds et simples, mouvement très doux.</td></tr>
+<tr><th>Folliculaire</th><td>Les œstrogènes remontent.</td><td>Énergie qui revient, envie de faire, de voir du monde.</td><td>Lancer les projets, bouger plus, cuisiner d'avance.</td></tr>
+<tr><th>Ovulation</th><td>Pic hormonal, l'ovule est libéré.</td><td>Élan, confiance, parfois une petite douleur d'un côté.</td><td>Profiter de l'élan, sans surcharger l'agenda.</td></tr>
+<tr><th>Lutéale</th><td>La progestérone domine, puis tout redescend avant les règles.</td><td>Ralentissement, sensibilité, ballonnements, envies, sommeil plus léger.</td><td>Repas réguliers, mouvement modéré, agenda allégé, anticipation.</td></tr>
+</tbody>
+</table>
+
+Ce tableau n'est pas une règle. C'est une carte. Ton journal de cycle te dira où tu te situes, toi.
+
 ## La phase lutéale, ce qui change dans ton corps
 
 Après l'ovulation, le follicule qui a libéré l'ovule se transforme en **corps jaune**. Il produit de la **progestérone**, l'hormone qui prépare l'utérus à une éventuelle grossesse. Les œstrogènes, eux, remontent un peu puis redescendent.
@@ -46,6 +62,12 @@ Ce qui diffère, c'est la **sensibilité** du cerveau et du corps à ces variati
 
 Autrement dit : **tu n'es pas déréglée. Tu es sensible à une variation normale.** Et la bonne nouvelle, c'est qu'une sensibilité, ça s'accompagne. On ne peut pas supprimer le cycle, mais on peut changer la façon dont on le traverse : ce que tu manges, comment tu bouges, comment tu organises tes journées et comment tu lis tes signaux. C'est tout l'objet de ce guide.
 
+## À quoi ça ressemble, concrètement
+
+Imaginons un cycle de 28 jours. Vers J17, tout va bien. Vers J21, tu remarques que tu as besoin de plus de sommeil et que tu grignotes davantage l'après-midi. Vers J24, une réunion qui t'aurait laissée indifférente te met à cran ; le soir, tu n'as plus envie de parler. Vers J26, ton ventre gonfle et ton jean serre. Puis les règles arrivent, et en deux ou trois jours, l'air redevient respirable.
+
+Si tu te reconnais, ce n'est pas un hasard. Et c'est précisément parce que c'est **prévisible** que c'est **préparable**.
+
 ## SPM : de quoi parle-t-on ?
 
 On parle de **syndrome prémenstruel (SPM)** quand des symptômes physiques ou émotionnels :
@@ -59,6 +81,16 @@ Les symptômes les plus fréquents : fatigue, irritabilité, tristesse ou larmes
 <aside class="encadre">
 <p class="encadre-titre">Un bon réflexe : noter</p>
 <p>Le meilleur moyen de savoir si tes symptômes suivent ton cycle, c'est de les noter pendant deux ou trois cycles. Le journal de cycle à la fin de ce guide est fait pour ça. Il t'aidera aussi si tu en parles à un·e professionnel·le de santé : tu arriveras avec des observations, pas seulement des impressions.</p>
+</aside>
+
+<aside class="encadre">
+<p class="encadre-titre">À retenir</p>
+<ul>
+<li>La phase lutéale va de l'ovulation aux règles. Sa fin, quand les hormones redescendent, est souvent la plus difficile.</li>
+<li>Ce que tu ressens a une logique : ce n'est ni de la faiblesse, ni un caprice.</li>
+<li>Le plus souvent, ce n'est pas un dérèglement hormonal, mais une sensibilité aux variations. Elle s'accompagne.</li>
+<li>Ce qui est prévisible se prépare : c'est tout l'objet des chapitres suivants.</li>
+</ul>
 </aside>
 
 ## Ce que ce guide fait, et ce qu'il ne fait pas

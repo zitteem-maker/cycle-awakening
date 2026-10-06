@@ -3,12 +3,12 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { font-size: 10.5pt; }
+html { font-size: 12pt; }
 body {
   margin: 0;
   font-family: var(--font-family-body);
   color: var(--semantic-text);
-  line-height: 1.6;
+  line-height: 1.62;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   hyphens: auto;
@@ -21,8 +21,8 @@ h1, h2, h3 {
   break-after: avoid;
   text-wrap: balance;
 }
-h2 { font-size: 20pt; margin: 1.6em 0 0.5em; }
-h3 { font-size: 14pt; margin: 1.3em 0 0.4em; }
+h2 { font-size: 24pt; margin: 1.5em 0 0.5em; }
+h3 { font-size: 16.5pt; margin: 1.3em 0 0.4em; }
 p { margin: 0 0 0.75em; orphans: 3; widows: 3; }
 ul, ol { padding-left: 1.2em; margin: 0 0 0.9em; }
 li { margin-bottom: 0.35em; }
@@ -59,22 +59,22 @@ a { color: var(--semantic-link); }
   margin: 8mm 0;
 }
 .avertissement p:last-child { margin: 0; }
-.petit { font-size: 8.5pt; color: var(--semantic-text-muted); }
+.petit { font-size: 9.5pt; color: var(--semantic-text-muted); }
 
-.sommaire { list-style: none; padding: 0; margin: 10mm 0 0; }
+.sommaire { list-style: none; padding: 0; margin: 6mm 0 0; }
 .sommaire li { margin: 0 0 5mm; }
 .sommaire a { text-decoration: none; color: var(--semantic-text); display: grid; grid-template-columns: 14mm 1fr; align-items: baseline; }
-.sommaire .num { font-family: var(--font-family-display); font-style: italic; font-size: 16pt; color: var(--semantic-accent); }
+.sommaire .num { font-family: var(--font-family-display); font-style: italic; font-size: 14pt; color: var(--semantic-accent); }
 .sommaire .t { font-family: var(--font-family-display); font-size: 15pt; }
 .sommaire .sous { grid-column: 2; font-size: 9pt; color: var(--semantic-text-muted); }
-.sommaire .partie { margin-top: 9mm; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); }
+.sommaire .partie { margin-top: 4mm; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); }
 
 /* --- Chapitres ----------------------------------------------------------- */
 .chapitre { break-before: page; }
 .chapitre-entete { margin: 0 0 12mm; padding-bottom: 8mm; border-bottom: 0.6pt solid var(--semantic-line); }
-.chapitre-num { font-family: var(--font-family-display); font-style: italic; font-size: 40pt; line-height: 1; color: var(--semantic-accent); margin: 0 0 3mm; }
-.chapitre-entete h1 { font-size: 30pt; margin: 0 0 4mm; }
-.chapitre-accroche { font-family: var(--font-family-display); font-style: italic; font-size: 14pt; color: var(--semantic-text-muted); margin: 0; }
+.chapitre-num { font-family: var(--font-family-display); font-style: italic; font-size: 52pt; line-height: 1; color: var(--semantic-accent); margin: 0 0 3mm; }
+.chapitre-entete h1 { font-size: 36pt; margin: 0 0 4mm; }
+.chapitre-accroche { font-family: var(--font-family-display); font-style: italic; font-size: 17pt; color: var(--semantic-text-muted); margin: 0; }
 .chapitre-statut {
   display: inline-block;
   font-size: 8pt;
@@ -93,38 +93,38 @@ a { color: var(--semantic-link); }
   margin: 6mm 0;
   break-inside: avoid;
 }
-.encadre-titre { font-family: var(--font-family-display); font-size: 13pt; font-weight: 600; margin-bottom: 2mm; }
+.encadre-titre { font-family: var(--font-family-display); font-size: 15.5pt; font-weight: 600; margin-bottom: 2mm; }
 .encadre p:last-child, .encadre ul:last-child { margin-bottom: 0; }
 .encadre-alerte { background: transparent; border: 0.8pt solid var(--semantic-accent-text); }
 .encadre-alerte .encadre-titre { color: var(--semantic-accent-text); }
 
-.sources { margin-top: 10mm; padding-top: 4mm; border-top: 0.6pt solid var(--semantic-line); font-size: 8.5pt; color: var(--semantic-text-muted); }
+.sources { margin-top: 10mm; padding-top: 4mm; border-top: 0.6pt solid var(--semantic-line); font-size: 9.5pt; color: var(--semantic-text-muted); }
 .sources-titre { font-weight: 600; color: var(--semantic-text); }
 
 /* --- Outils imprimables --------------------------------------------------- */
 .outil { break-before: page; }
 .outil h1 { font-size: 24pt; margin: 0 0 3mm; }
 .outil-etiquette { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); margin-bottom: 2mm; }
-.outil-intro { font-size: 9.5pt; color: var(--semantic-text-muted); max-width: 150mm; }
-.outil-champ { font-size: 9pt; margin: 4mm 0; }
+.outil-intro { font-size: 10.5pt; color: var(--semantic-text-muted); max-width: 150mm; }
+.outil-champ { font-size: 10pt; margin: 4mm 0; }
 .outil-note { font-size: 8.5pt; color: var(--semantic-text-muted); margin-top: 5mm; }
 
-.grille { width: 100%; border-collapse: collapse; font-size: 8.5pt; table-layout: fixed; }
+.grille { width: 100%; border-collapse: collapse; font-size: 9pt; table-layout: fixed; }
 .grille th, .grille td { border: 0.6pt solid var(--semantic-text-muted); padding: 1.5mm; vertical-align: top; }
 .grille thead th { background: var(--semantic-bg-alt); font-weight: 600; text-align: left; }
 .grille small { font-weight: 400; color: var(--semantic-text-muted); }
-.journal tbody tr { height: 19.5mm; }
+.journal tbody tr { height: 17mm; }
 .journal col.c-jour { width: 13mm; }
 .journal col.c-energie { width: 21mm; }
 .journal .echelle { font-size: 8.5pt; white-space: nowrap; color: var(--semantic-text-muted); text-align: center; }
-.planner tbody tr { height: 21mm; }
+.planner tbody tr { height: 19mm; }
 .planner th[scope='row'] { width: 30mm; text-align: left; font-weight: 600; background: var(--semantic-bg-alt); }
 
 .outil-bas { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 6mm; }
 .outil-bas.trois { grid-template-columns: 1fr 1fr 1fr; }
 .colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin: 5mm 0; }
 .colonnes.trois { grid-template-columns: 1fr 1fr 1fr; }
-.cadre { border: 0.6pt solid var(--semantic-text-muted); border-radius: 2.5mm; padding: 4mm; break-inside: avoid; font-size: 9pt; }
+.cadre { border: 0.6pt solid var(--semantic-text-muted); border-radius: 2.5mm; padding: 4mm; break-inside: avoid; font-size: 9.5pt; }
 .cadre-titre { font-family: var(--font-family-display); font-size: 12pt; font-weight: 600; margin-bottom: 2mm; }
 .cadre.alerte { border-color: var(--semantic-accent-text); margin-top: 5mm; }
 .cadre.alerte .cadre-titre { color: var(--semantic-accent-text); }
@@ -137,3 +137,47 @@ a { color: var(--semantic-link); }
 .fin { break-before: page; }
 .fin .logo svg { width: 70mm; height: auto; margin-bottom: 10mm; }
 .fin-titre { font-size: 26pt; margin: 0 0 6mm; }
+
+/* --- Tableau du chapitre 1 --------------------------------------------- */
+.tableau { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 4mm 0 6mm; break-inside: avoid; }
+.tableau th, .tableau td { text-align: left; vertical-align: top; padding: 2.4mm 2.6mm; border-bottom: 0.6pt solid var(--semantic-line); }
+.tableau thead th { font-size: 8.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--semantic-text-muted); font-weight: 500; }
+.tableau tbody th { font-family: var(--font-family-display); font-size: 13pt; font-weight: 600; width: 26mm; }
+
+/* --- Recettes : une page par recette, esprit livre de cuisine ------------ */
+.recette { break-before: page; break-inside: avoid; }
+.recette-photo {
+  margin: 0 0 5mm;
+  height: 86mm;
+  border-radius: 2mm;
+  overflow: hidden;
+  background: var(--semantic-bg-alt);
+}
+.recette-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-attente {
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2mm;
+  border: 0.8pt dashed var(--semantic-text-muted); border-radius: 2mm;
+  font-family: var(--font-family-display); font-style: italic; font-size: 16pt; color: var(--semantic-text-muted);
+}
+.photo-attente small { font-family: var(--font-family-body); font-style: normal; font-size: 8.5pt; }
+.recette-meta { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); margin-bottom: 2.5mm; }
+.recette-meta span::before { content: '·'; margin: 0 2.5mm; }
+.recette-meta .statut { color: var(--semantic-accent-text); }
+h2.recette-titre { font-size: 23pt; margin: 0 0 2mm; }
+.recette-intro { font-family: var(--font-family-display); font-style: italic; font-size: 13pt; line-height: 1.3; color: var(--semantic-text-muted); margin-bottom: 4.5mm; max-width: 150mm; }
+.recette-grille { display: grid; grid-template-columns: 60mm 1fr; gap: 7mm; font-size: 9.5pt; line-height: 1.42; }
+.recette-grille h3 { font-family: var(--font-family-body); font-size: 8pt; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin: 0 0 3mm; }
+.recette-ingredients { background: var(--semantic-bg-alt); border-radius: 2mm; padding: 4mm 4.5mm; align-self: start; }
+.recette-ingredients ul { list-style: none; padding: 0; margin: 0; }
+.recette-ingredients li { padding: 0.7mm 0; border-bottom: 0.5pt solid var(--semantic-line); margin: 0; }
+.recette-ingredients li:last-child { border-bottom: none; }
+.recette-etapes ol { padding-left: 5mm; margin: 0; }
+.recette-etapes li { margin-bottom: 1.4mm; padding-left: 1mm; }
+.recette-etapes li::marker { font-family: var(--font-family-display); font-style: italic; color: var(--semantic-accent-text); font-size: 12pt; }
+.recette-astuce { margin-top: 3.5mm; padding-top: 2.5mm; border-top: 0.6pt solid var(--semantic-line); font-size: 9.5pt; }
+.recette-astuce-titre { font-family: var(--font-family-display); font-style: italic; font-size: 13pt; color: var(--semantic-accent-text); margin-bottom: 1mm; }
+.sommaire-recettes { columns: 2; column-gap: 8mm; list-style: none; padding: 0 0 0 14mm; margin: 2mm 0 0; }
+.sommaire-recettes li { margin: 0 0 1.8mm; break-inside: avoid; }
+.sommaire-recettes a { display: block; font-family: var(--font-family-display); font-size: 11pt; line-height: 1.25; }
+.sommaire li { margin-bottom: 2.2mm; }

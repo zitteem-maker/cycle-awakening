@@ -65,3 +65,11 @@ Les règles font foi. Le prompt devra intégrer ce qui lui manque :
 ## Mode pré-lancement (en place depuis le 6 octobre 2026)
 
 Tant que `missingForSales()` n'est pas vide : mentions légales de site non professionnel, CGV retirées du pied de page (page conservée avec un avertissement), paiement réel impossible (liens Stripe de test autorisés).
+
+## Livre (étape 2) — points ouverts
+
+- **Prana Chai** est cité dans la recette du chai latte : préciser la relation (aucune / affiliée / partenariat / produit offert). S'il y a une relation commerciale, la mentionner dans le livre.
+- **Infusion** : la demande « infusion pour soutenir la phase lutéale » est devenue « Infusion du soir » sans effet santé annoncé (règle : pas d'allégation santé pour les plantes).
+- **Purée de haricots / tofu** : végane seulement avec le sirop d'érable (le miel n'est pas végan) ; le texte le précise.
+- **Cookies** : l'« option courageuse » utilise des pois chiches secs **trempés puis cuits** (jamais crus).
+- **Photos** : 10 photos de recettes à fournir (voir `docs/PHOTOS-UNSPLASH.md`) ; la version finale du livre refuse de se fabriquer tant qu'une photo manque.
