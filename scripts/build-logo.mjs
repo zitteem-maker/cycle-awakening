@@ -1,6 +1,6 @@
 // Génère le logo de Cycle Awakening en SVG vectorisé (texte converti en tracés, aucune police requise).
-// Marque : un cercle (le cycle) qui s'ouvre, et un point or doux qui s'en dégage (l'éveil).
-// Sorties dans public/brand/ ; le favicon (public/favicon.svg) est aussi régénéré.
+// Composition validée : « cycle » manuscrit fuchsia (Sacramento) posé en travers de « AWAKENING » Art déco (Limelight).
+// Sorties : public/brand/*.svg, public/favicon.svg, src/components/Logo.astro.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import opentype from 'opentype.js';
@@ -8,27 +8,15 @@ import { loadTokens, flatten } from './tokens-lib.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const t = flatten(loadTokens());
-const NUIT = t['color-nuit-bleu-nuit'];
-const CREME = t['color-base-creme-sable'];
-const OR = t['color-accent-or-doux'];
+const VERT = t['color-profondeur-vert-bouteille'];
+const CREME = t['color-base-creme'];
+const FUCHSIA = t['color-accent-fuchsia'];
 
-const font = opentype.parse(readFileSync(`${root}node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff`).buffer);
+const load = (pkg, file) => opentype.parse(readFileSync(`${root}node_modules/@fontsource/${pkg}/files/${file}`).buffer);
+const deco = load('limelight', 'limelight-latin-400-normal.woff');
+const script = load('sacramento', 'sacramento-latin-400-normal.woff');
 
-// --- Marque (repère 64×64) ---------------------------------------------------
-const C = 32, R = 18, GAP_CENTER = -45, GAP_HALF = 32; // degrés
-const pt = (deg, r = R) => [C + r * Math.cos((deg * Math.PI) / 180), C + r * Math.sin((deg * Math.PI) / 180)];
-const [sx, sy] = pt(GAP_CENTER + GAP_HALF);
-const [ex, ey] = pt(GAP_CENTER - GAP_HALF);
-const [dx, dy] = pt(GAP_CENTER, R + 3); // le point sort légèrement du cercle : l'éveil
 const f = (n) => n.toFixed(2);
-const ring = `M${f(sx)} ${f(sy)}A${R} ${R} 0 1 1 ${f(ex)} ${f(ey)}`;
-
-function mark(ringColor, { stroke = 2.6, dot = 5.2 } = {}) {
-  return `<path d="${ring}" fill="none" stroke="${ringColor}" stroke-width="${stroke}" stroke-linecap="round"/>` +
-    `<circle cx="${f(dx)}" cy="${f(dy)}" r="${dot}" fill="${OR}"/>`;
-}
-
-// --- Nom (tracés) --------------------------------------------------------------
 // Sérialisation maison : toPathData() d'opentype.js produit parfois « NaN » à l'arrondi.
 function pathData(path) {
   return path.commands.map((c) => {
@@ -38,63 +26,78 @@ function pathData(path) {
     return `${c.type}${f(c.x)} ${f(c.y)}`;
   }).join('');
 }
-function word(text, size, tracking) {
-  // Lettres capitales espacées : élégant et lisible en petit.
-  let x = 0;
+
+// Texte posé sur une ligne de base, avec approche (tracking) en unités.
+function setText(font, text, size, x0, baseline, tracking = 0) {
+  let x = x0;
   const parts = [];
+  const starts = [];
   for (const ch of text) {
-    const glyph = font.charToGlyph(ch);
-    const p = glyph.getPath(x, 0, size);
-    parts.push(pathData(p));
-    x += (glyph.advanceWidth / font.unitsPerEm) * size + (ch === ' ' ? tracking * 1.6 : tracking);
+    const g = font.charToGlyph(ch);
+    starts.push(x);
+    parts.push(pathData(g.getPath(x, baseline, size)));
+    x += (g.advanceWidth / font.unitsPerEm) * size + tracking;
   }
-  const bb = font.getPath(text, 0, 0, size).getBoundingBox();
-  return { d: parts.join(''), width: x - tracking, ascent: -bb.y1, descent: bb.y2 };
+  return { d: parts.join(''), end: x - tracking, starts };
 }
 
-const NAME = 'CYCLE AWAKENING';
-const svg = (w, h, body, title = 'Cycle Awakening') =>
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${f(w)} ${f(h)}" role="img" aria-label="${title}"><title>${title}</title>${body}</svg>\n`;
+// --- Composition (repère arbitraire, recadré ensuite sur la boîte englobante) ----------------
+const CAP = 100; // corps de AWAKENING
+const capHeight = ((deco.tables.os2.sCapHeight || deco.unitsPerEm * 0.7) / deco.unitsPerEm) * CAP;
+const word = setText(deco, 'AWAKENING', CAP, 0, 0, CAP * 0.04);
+// « cycle » démarre au-dessus du second A, sa ligne de base coupe le haut des capitales (comme les références).
+const SCRIPT = CAP * 1.42;
+const cycleX = word.starts[2] + CAP * 0.02;
+const cycleBaseline = -capHeight * 0.88;
+const cycle = setText(script, 'cycle', SCRIPT, cycleX, cycleBaseline);
 
-function horizontal(textColor, ringColor) {
-  const size = 30, tracking = 5.4;
-  const w = word(NAME, size, tracking);
-  const markSize = 64, gap = 18;
-  const textY = markSize / 2 + w.ascent / 2;
-  const width = markSize + gap + w.width;
-  return svg(width, markSize,
-    `<g>${mark(ringColor)}</g><path transform="translate(${markSize + gap} ${f(textY)})" d="${w.d}" fill="${textColor}"/>`);
+// Boîte englobante approchée à partir des points des tracés (paires x y).
+function bbox(...ds) {
+  let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+  for (const d of ds) {
+    const n = d.match(/-?\d+(\.\d+)?/g).map(Number);
+    for (let i = 0; i + 1 < n.length; i += 2) {
+      x1 = Math.min(x1, n[i]); x2 = Math.max(x2, n[i]);
+      y1 = Math.min(y1, n[i + 1]); y2 = Math.max(y2, n[i + 1]);
+    }
+  }
+  return { x1, y1, x2, y2 };
 }
 
-function stacked(textColor, ringColor) {
-  const size = 26, tracking = 4.6;
-  const w = word(NAME, size, tracking);
-  const width = Math.max(w.width, 96) + 8;
-  const scale = 1.5;
-  const markW = 64 * scale;
-  const textTop = markW + 14;
-  const height = textTop + w.ascent + 6;
-  return svg(width, height,
-    `<g transform="translate(${f((width - markW) / 2)} 0) scale(${scale})">${mark(ringColor)}</g>` +
-    `<path transform="translate(${f((width - w.width) / 2)} ${f(textTop + w.ascent)})" d="${w.d}" fill="${textColor}"/>`);
-}
+const PAD = 6;
+const bb = bbox(word.d, cycle.d);
+const vb = `${f(bb.x1 - PAD)} ${f(bb.y1 - PAD)} ${f(bb.x2 - bb.x1 + 2 * PAD)} ${f(bb.y2 - bb.y1 + 2 * PAD)}`;
+
+const svg = (wordColor, cycleColor, extra = '') =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}" role="img" aria-label="Cycle Awakening"${extra}><title>Cycle Awakening</title>` +
+  `<path d="${word.d}" fill="${wordColor}"/><path d="${cycle.d}" fill="${cycleColor}"/></svg>\n`;
 
 const out = `${root}public/brand/`;
 mkdirSync(out, { recursive: true });
-writeFileSync(`${out}logo-horizontal.svg`, horizontal(NUIT, NUIT));
-writeFileSync(`${out}logo-horizontal-clair.svg`, horizontal(CREME, CREME));
-writeFileSync(`${out}logo-vertical.svg`, stacked(NUIT, NUIT));
-writeFileSync(`${out}logo-vertical-clair.svg`, stacked(CREME, CREME));
-writeFileSync(`${out}marque.svg`, svg(64, 64, mark(NUIT)));
-writeFileSync(`${out}marque-clair.svg`, svg(64, 64, mark(CREME)));
+writeFileSync(`${out}logo.svg`, svg(VERT, FUCHSIA)); // sur fond clair
+writeFileSync(`${out}logo-clair.svg`, svg(CREME, FUCHSIA)); // sur fond vert bouteille
+writeFileSync(`${out}logo-monochrome-vert.svg`, svg(VERT, VERT));
+writeFileSync(`${out}logo-monochrome-creme.svg`, svg(CREME, CREME));
 
-// Favicon : marque claire sur pastille bleu nuit, trait épaissi pour rester lisible à 16 px.
-writeFileSync(`${root}public/favicon.svg`,
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${NUIT}"/>` +
-  `${mark(CREME, { stroke: 4, dot: 6.5 })}</svg>\n`);
+// --- Monogramme (favicon, avatar réseaux) : « A » Art déco + « c » manuscrit -----------------
+const A = setText(deco, 'A', 50, 0, 0);
+const aBox = bbox(A.d);
+const ax = 32 - (aBox.x1 + aBox.x2) / 2;
+const ay = 32 - (aBox.y1 + aBox.y2) / 2 + 3;
+const c = setText(script, 'c', 64, 0, 0);
+const cBox = bbox(c.d);
+const cx = 25 - (cBox.x1 + cBox.x2) / 2;
+const cy = 27 - (cBox.y1 + cBox.y2) / 2;
+const mono = (bg, fg, radius) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cycle Awakening"><title>Cycle Awakening</title>` +
+  `<rect width="64" height="64" rx="${radius}" fill="${bg}"/>` +
+  `<path transform="translate(${f(ax)} ${f(ay)})" d="${A.d}" fill="${fg}"/>` +
+  `<path transform="translate(${f(cx)} ${f(cy)})" d="${c.d}" fill="${FUCHSIA}" stroke="${FUCHSIA}" stroke-width="1.2"/></svg>\n`;
+writeFileSync(`${out}monogramme.svg`, mono(VERT, CREME, 0));
+writeFileSync(`${root}public/favicon.svg`, mono(VERT, CREME, 14));
 
-// Composant Astro du logo (inline, hérite de currentColor pour le texte et l'anneau).
-const inline = horizontal('currentColor', 'currentColor').replace('<svg ', '<svg class={className} ');
+// --- Composant Astro inline : le mot hérite de currentColor, « cycle » reste fuchsia --------
+const inline = svg('currentColor', 'var(--semantic-accent)').replace('<svg ', '<svg class={className} ');
 writeFileSync(`${root}src/components/Logo.astro`,
   `---\n// Généré par \`npm run logo\` — ne pas modifier à la main.\ninterface Props { class?: string }\nconst { class: className } = Astro.props;\n---\n${inline}`);
 

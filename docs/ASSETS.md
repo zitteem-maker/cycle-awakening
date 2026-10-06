@@ -4,9 +4,12 @@
 
 | Asset | État | Fichier |
 |---|---|---|
-| Logo (horizontal, vertical, clair/foncé, marque seule) | ✅ créé, vectorisé | `public/brand/*.svg` (source : `npm run logo`) |
+| Logo « cycle » manuscrit + « AWAKENING » Art déco (clair, foncé, monochromes, monogramme) | ✅ créé d'après tes références, vectorisé | `public/brand/*.svg` (source : `npm run logo`) |
 | Favicon, icônes, image de partage 1200×630 | ✅ créés | `public/favicon.*`, `public/icon-*.png`, `public/images/share/og-default.png` |
-| Illustration « horizon » (hero en attendant la vidéo, 404) | ✅ créée | `src/components/art/Horizon.astro` |
+| Illustration « horizon » (hero en attendant la vidéo, 404) | ✅ recolorée vert bouteille / crème | `src/components/art/Horizon.astro` |
+| Pages de l'ancien site (contenu à reprendre) | ✅ reçues | `legacy/index.html`, `legacy/recommandations.html` |
+| Pages du blog | ⏳ à demander à l'ancien propriétaire | — |
+| Photos produits (recommandations) | ⏳ kits presse des marques ou photos perso | — |
 | Vidéo hero | ⏳ à choisir (toi) | `public/videos/` via `npm run hero-video` |
 | Photos de marque | ⏳ à choisir ou tourner (toi) | `public/images/` |
 | Texte du livre | ⏳ étape 2 : je propose une rédaction chapitre par chapitre, tu valides | `book/` |

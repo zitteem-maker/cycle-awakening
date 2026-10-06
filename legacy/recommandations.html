@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://cycleawakening.pages.dev/recommandations -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes recommandations — Cycle Awakening</title>
+<link href="./Mes recommandations — Cycle Awakening_files/css2" rel="stylesheet">
+<style>
+
+.gnav{display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:56px;background:#F7F4EF;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(26,48,40,.1)}
+.gnav-brand{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.18em;color:#1A3028;text-transform:uppercase;font-weight:300;text-decoration:none;white-space:nowrap}
+.gnav-center{display:flex;align-items:center;gap:0}
+.gnav-center a{font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:#5C5C5C;text-decoration:none;padding:0 18px;height:56px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.gnav-center a:hover{color:#1A3028}
+.gnav-center a.active{color:#1A3028;border-bottom-color:#E0257A;font-weight:500}
+.gnav-right{display:flex;align-items:center;gap:12px}
+.gnav-btn{font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#E0257A;padding:9px 20px;border-radius:100px;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .2s;white-space:nowrap;text-decoration:none}
+.gnav-btn:hover{background:#C4206A}
+.gburger{background:none;border:none;cursor:pointer;padding:6px;display:flex;flex-direction:column;gap:5.5px}
+.gburger span{display:block;width:20px;height:1.5px;background:#1A3028;transition:all .3s;transform-origin:center}
+.gburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.gburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.gburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.gbmenu{position:fixed;inset:0;background:rgba(10,21,16,.97);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.gbmenu.open{opacity:1;pointer-events:all}
+.gbmenu-close{position:absolute;top:20px;right:22px;background:none;border:none;color:rgba(247,244,239,.4);font-size:16px;cursor:pointer;padding:8px;line-height:1;transition:color .2s}
+.gbmenu-close:hover{color:#fff}
+.gbmenu-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(247,244,239,.3);letter-spacing:.14em;margin-bottom:44px}
+.gbmenu a{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.1;color:rgba(247,244,239,.75);text-decoration:none;padding:13px 0;width:220px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s}
+.gbmenu a:last-of-type{border-bottom:none}
+.gbmenu a:hover,.gbmenu a.active{color:#E0257A}
+.gbmenu-cta{margin-top:36px;background:#E0257A;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:12px 28px;border-radius:100px;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-block}
+.gbmenu-cta:hover{background:#C4206A}
+.gbmenu-tag{position:absolute;bottom:26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(159,192,176,.3)}
+.gbmenu a.gbmenu-cta{border-bottom:none;padding:12px 28px}
+@media(max-width:680px){.gnav-center{display:none}.gnav{padding:0 1.5rem}}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --vb:#1A3028; --vm:#2D4A3E; --fu:#E0257A; --bl:#F7F4EF;
+  --be:#EDE8E0; --be2:#E3DDD4; --gr:#5C5C5C; --sa:#9FC0B0;
+  --vbl:#EAF0EC; --be3:#F0EDE8;
+}
+body { font-family:'Poppins',sans-serif; background:var(--bl); color:var(--vb); }
+
+/* HERO */
+.hero { background:var(--vb); padding:72px 40px 56px; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:#243D31; }
+.hero::after  { content:''; position:absolute; bottom:-60px; left:-40px; width:200px; height:200px; border-radius:50%; background:rgba(224,37,122,.08); }
+.hero-inner { max-width:960px; margin:0 auto; position:relative; z-index:2; }
+.ew { font-family:'Poppins',sans-serif; font-weight:500; font-size:9px; letter-spacing:.25em; color:var(--fu); text-transform:uppercase; margin-bottom:14px; }
+.hero h1 { font-family:'Lora',serif; font-size:clamp(38px,5vw,58px); line-height:1.08; color:#fff; }
+.hero h1 em { color:var(--fu); font-style:italic; }
+.hero-line { width:56px; height:2px; background:var(--fu); margin:20px 0; }
+.hero-sub { font-weight:300; font-size:14px; line-height:1.75; color:var(--sa); max-width:520px; }
+.hero-mention { font-size:10.5px; font-weight:300; color:rgba(159,192,176,.5); margin-top:14px; max-width:480px; line-height:1.6; }
+
+/* PHASE FILTER */
+.phase-bar { background:#fff; border-bottom:1px solid var(--be2); position:sticky; top:0; z-index:100; }
+.phase-bar-inner { max-width:960px; margin:0 auto; display:flex; gap:0; overflow-x:auto; scrollbar-width:none; }
+.phase-bar-inner::-webkit-scrollbar { display:none; }
+.phase-btn { font-family:'Poppins',sans-serif; font-weight:400; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--gr); padding:14px 20px; border:none; background:none; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; transition:all .2s; }
+.phase-btn:hover, .phase-btn.active { color:var(--vb); border-bottom-color:var(--fu); }
+.phase-btn .phase-icon { margin-right:5px; }
+
+/* CAT NAV */
+.cat-nav { background:var(--bl); border-bottom:1px solid var(--be2); }
+.cat-nav-inner { max-width:960px; margin:0 auto; display:flex; gap:0; overflow-x:auto; scrollbar-width:none; }
+.cat-nav-inner::-webkit-scrollbar { display:none; }
+.cat-link { font-family:'Poppins',sans-serif; font-weight:400; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--gr); text-decoration:none; padding:12px 18px; white-space:nowrap; border-bottom:1.5px solid transparent; transition:all .2s; }
+.cat-link:hover, .cat-link.active { color:var(--vb); border-bottom-color:var(--vb); }
+
+/* CONTAINER */
+.container { max-width:960px; margin:0 auto; padding:0 40px 80px; }
+
+/* POV BLOC */
+.pov-bloc { background:var(--vb); padding:22px 28px; margin-bottom:28px; border-left:3px solid var(--fu); }
+.pov-label { font-family:'Poppins',sans-serif; font-weight:500; font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:var(--fu); margin-bottom:8px; }
+.pov-text { font-family:'Lora',serif; font-style:italic; font-size:13.5px; line-height:1.65; color:rgba(255,255,255,.85); }
+
+/* SECTION */
+.cat-section { margin-top:60px; }
+.cat-header { display:flex; align-items:baseline; gap:14px; margin-bottom:6px; }
+.cat-num { font-family:'Lora',serif; font-style:italic; font-size:34px; color:var(--fu); line-height:1; }
+.cat-title { font-family:'Lora',serif; font-size:24px; color:var(--vb); }
+.cat-desc { font-weight:300; font-size:13px; line-height:1.7; color:var(--gr); max-width:620px; margin:6px 0 20px; }
+.cat-line { height:1px; background:var(--be2); margin:0 0 24px; }
+
+/* SOUS-SECTION */
+.sub-title { font-family:'Poppins',sans-serif; font-weight:500; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--vm); margin:28px 0 14px; display:flex; align-items:center; gap:8px; }
+.sub-title::after { content:''; flex:1; height:1px; background:var(--be2); }
+
+/* GRILLE */
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.grid-2 { grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); }
+
+/* CARTE PRODUIT */
+.card { background:#fff; border:1px solid var(--be2); display:flex; flex-direction:column; transition:box-shadow .2s,transform .2s; text-decoration:none; color:inherit; position:relative; }
+.card:hover { box-shadow:0 6px 28px rgba(26,48,40,.1); transform:translateY(-2px); }
+.card.soon { opacity:.55; pointer-events:none; }
+
+.card-img { width:100%; aspect-ratio:4/3; background:var(--be); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:5px; position:relative; }
+.card.soon .card-img { background:var(--be2); }
+.card-img-label { font-weight:500; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--gr); }
+.card-img-sub { font-weight:300; font-size:8.5px; color:#aaa; text-align:center; padding:0 10px; line-height:1.5; }
+
+/* BADGES */
+.badge { position:absolute; top:10px; left:10px; font-family:'Poppins',sans-serif; font-weight:500; font-size:8px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; }
+.badge-fu   { background:var(--fu); color:#fff; }
+.badge-vb   { background:var(--vb); color:#fff; }
+.badge-sa   { background:var(--sa); color:var(--vb); }
+.badge-be   { background:var(--be2); color:var(--vb); }
+
+.card-body { padding:14px 14px 18px; flex:1; display:flex; flex-direction:column; }
+.card-brand { font-weight:500; font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:var(--fu); margin-bottom:3px; }
+.card-name { font-family:'Lora',serif; font-size:14px; color:var(--vb); margin-bottom:7px; line-height:1.3; }
+.card-desc { font-weight:300; font-size:11px; line-height:1.65; color:var(--gr); flex:1; margin-bottom:10px; }
+
+.phase-tag { display:inline-flex; align-items:center; gap:4px; font-weight:400; font-size:9px; letter-spacing:.06em; color:var(--vm); background:var(--vbl); padding:3px 8px; margin-bottom:12px; }
+.phase-tag.fu { background:rgba(224,37,122,.08); color:var(--fu); }
+
+.card-cta { display:block; text-align:center; font-weight:500; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--vb); border:1px solid var(--vb); padding:9px 14px; text-decoration:none; transition:all .2s; margin-top:auto; }
+.card-cta:hover { background:var(--vb); color:#fff; }
+.card-cta.fu { background:var(--fu); border-color:var(--fu); color:#fff; }
+.card-cta.fu:hover { background:#C4206A; border-color:#C4206A; }
+.card-cta.disabled { background:var(--be2); border-color:var(--be2); color:var(--gr); cursor:default; }
+
+/* PARTENARIAT */
+.partner { background:var(--vb); padding:28px 32px; display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; margin:20px 0; }
+.partner-ew { font-weight:500; font-size:8.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--fu); margin-bottom:8px; }
+.partner-title { font-family:'Lora',serif; font-size:20px; color:#fff; margin-bottom:7px; }
+.partner-desc { font-weight:300; font-size:12.5px; line-height:1.7; color:var(--sa); }
+.partner-tag { display:inline-block; border:1px solid var(--fu); color:var(--fu); font-weight:500; font-size:8px; letter-spacing:.12em; text-transform:uppercase; padding:4px 10px; margin-top:10px; }
+.partner-badge { background:rgba(255,255,255,.07); border:1px solid rgba(159,192,176,.25); padding:16px 22px; text-align:center; }
+.partner-badge-label { font-weight:300; font-size:8.5px; color:var(--sa); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px; }
+.partner-badge-val { font-family:'Lora',serif; font-style:italic; font-size:28px; color:var(--fu); line-height:1; }
+.partner-badge-unit { font-weight:300; font-size:8.5px; color:var(--sa); margin-top:2px; }
+
+/* BUNDLES */
+.bundles { margin-top:64px; }
+.bundles-title { font-family:'Lora',serif; font-size:26px; color:var(--vb); margin-bottom:6px; }
+.bundles-sub { font-weight:300; font-size:13px; color:var(--gr); margin-bottom:28px; }
+.bundle-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+.bundle-card { background:#fff; border:1px solid var(--be2); padding:22px; }
+.bundle-icon { font-size:22px; margin-bottom:10px; }
+.bundle-name { font-family:'Lora',serif; font-size:16px; color:var(--vb); margin-bottom:6px; }
+.bundle-desc { font-weight:300; font-size:11px; color:var(--gr); line-height:1.6; margin-bottom:14px; }
+.bundle-items { list-style:none; padding:0; }
+.bundle-items li { font-weight:300; font-size:11px; color:var(--vb); line-height:1.6; padding:4px 0; border-bottom:1px solid var(--be2); display:flex; align-items:center; gap:6px; }
+.bundle-items li::before { content:'—'; color:var(--fu); flex-shrink:0; }
+.bundle-cta { display:block; text-align:center; font-weight:500; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--fu); border:1px solid var(--fu); padding:10px 14px; text-decoration:none; transition:all .2s; margin-top:16px; }
+.bundle-cta:hover { background:#C4206A; border-color:#C4206A; }
+
+/* MENTION */
+.mention { background:var(--be); padding:22px 28px; margin-top:60px; border-left:3px solid var(--fu); }
+.mention p { font-weight:300; font-size:11px; line-height:1.7; color:var(--gr); }
+.mention strong { font-weight:500; color:var(--vb); }
+
+/* FOOTER */
+footer { background:var(--vb); padding:32px 40px; text-align:center; }
+.footer-logo { font-family:'Lora',serif; font-style:italic; font-size:20px; color:#fff; margin-bottom:8px; }
+footer p { font-weight:300; font-size:11px; color:var(--sa); }
+</style>
+</head>
+<body>
+<nav class="gnav" id="mainnav">
+  <a href="https://cycleawakening.pages.dev/index.html" class="gnav-brand">Cycle Awakening</a>
+  <div class="gnav-center">
+    <a href="https://cycleawakening.pages.dev/index.html">Cycle Awakening</a>
+    <a href="https://cycleawakening.pages.dev/blog/index.html">Blog</a>
+    <a href="https://cycleawakening.pages.dev/recommandations.html" class="active">Recommandations</a>
+  </div>
+  <div class="gnav-right">
+    <a href="https://cycleawakening.pages.dev/recommandations#livre" class="gnav-btn">Livre digital — 27€</a>
+    <button class="gburger" id="gburger" onclick="toggleBurger()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="gbmenu" id="gbmenu">
+  <button class="gbmenu-close" onclick="toggleBurger()">✕</button>
+  <div class="gbmenu-logo">Cycle Awakening</div>
+  <a href="https://cycleawakening.pages.dev/index.html" onclick="toggleBurger()">Cycle Awakening</a>
+  <a href="https://cycleawakening.pages.dev/blog/index.html" onclick="toggleBurger()">Blog</a>
+  <a href="https://cycleawakening.pages.dev/recommandations.html" class="active" onclick="toggleBurger()">Recommandations</a>
+  <a href="https://cycleawakening.pages.dev/recommandations#livre" class="gbmenu-cta" onclick="toggleBurger()">Livre digital — 27€</a>
+  <div class="gbmenu-tag">Redevenir toi. Chaque mois.</div>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="ew">Cycle Awakening &nbsp;·&nbsp; Mes recommandations</div>
+    <h1>Ce que j'utilise vraiment<br><em>— et ce que je ne recommande pas.</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Pas un catalogue. Une sélection éditoriale construite autour de mon protocole hormonal. Chaque produit ici a une raison d'être — et une phase du cycle à laquelle il appartient.</p>
+    <p class="hero-mention">* Certains liens sont affiliés — je perçois une commission si tu achètes via ce lien, sans surcoût pour toi. Je ne recommande que ce que j'utilise personnellement.</p>
+  </div>
+</section>
+
+<!-- FILTRE PAR PHASE -->
+<div class="phase-bar">
+  <div class="phase-bar-inner">
+    <button class="phase-btn active" onclick="filterPhase('all')">Tout voir</button>
+    <button class="phase-btn" onclick="filterPhase('folliculaire')"><span class="phase-icon">🌱</span>Phase folliculaire</button>
+    <button class="phase-btn" onclick="filterPhase('ovulation')"><span class="phase-icon">🔥</span>Ovulation</button>
+    <button class="phase-btn" onclick="filterPhase('luteale')"><span class="phase-icon">🌙</span>Phase lutéale</button>
+    <button class="phase-btn" onclick="filterPhase('menstruation')"><span class="phase-icon">🩸</span>Menstruation</button>
+  </div>
+</div>
+
+<!-- NAV CATÉGORIES -->
+<nav class="cat-nav">
+  <div class="cat-nav-inner">
+    <a href="https://cycleawakening.pages.dev/recommandations#nutrition" class="cat-link active">Nutrition &amp; compléments</a>
+    <a href="https://cycleawakening.pages.dev/recommandations#lifestyle" class="cat-link">Lifestyle &amp; vêtements</a>
+    <a href="https://cycleawakening.pages.dev/recommandations#barefoot" class="cat-link">Barefoot</a>
+    <a href="https://cycleawakening.pages.dev/recommandations#sport" class="cat-link">Sport &amp; mouvement</a>
+    <a href="https://cycleawakening.pages.dev/recommandations#rituels" class="cat-link">Maison &amp; rituels</a>
+    <a href="https://cycleawakening.pages.dev/recommandations#bundles" class="cat-link">Kits complets</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════
+     01 — NUTRITION & COMPLÉMENTS
+═══════════════════════════════════ -->
+<section class="cat-section" id="nutrition">
+  <div class="cat-header">
+    <span class="cat-num">01</span>
+    <h2 class="cat-title">Nutrition &amp; compléments</h2>
+  </div>
+  <p class="cat-desc">Ce que tu mets dans ton corps entre J17 et J28 change tout. Mon filtre : formes biodisponibles, formules sans bullshit marketing, sourcing transparent.</p>
+  <div class="cat-line"></div>
+
+  <div class="pov-bloc">
+    <div class="pov-label">Mon point de vue</div>
+    <p class="pov-text">En phase lutéale, le système nerveux devient plus sensible et la sérotonine chute. Mon focus sur les compléments : magnésium hautement assimilable pour le cortisol, tryptophane pour la sérotonine, et oméga-3 pour réduire l'inflammation. Je recommande deux niveaux — une entrée accessible (Nutri&amp;Co) et une référence performance (Dynveo). Pas les deux à la fois.</p>
+  </div>
+
+  <div class="sub-title">Compléments cycle féminin</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Aime</span>
+        <span class="card-img-sub">[ Photo magnésium Aime ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Aime</div>
+        <div class="card-name">Magnésium &amp; compléments cycle</div>
+        <div class="card-desc">La référence émotionnelle — formules spécifiques femme, branding clean, efficacité prouvée. Mon compagnon de J20 à J28.</div>
+        <div class="phase-tag fu">🌙 J20–J28</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-vb">🔬 Le plus efficace</div>
+        <span class="card-img-label">Dynveo</span>
+        <span class="card-img-sub">[ Photo magnésium Dynveo ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Dynveo</div>
+        <div class="card-name">Magnésium bisglycinate TRAACS</div>
+        <div class="card-desc">La pépite française. Formes ultra biodisponibles (glycinate, malate, bisglycinate TRAACS) — zéro marketing, 100% performance. Le plus sérieux du marché.</div>
+        <div class="phase-tag fu">🌙 J20–J28</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-sa">💸 Meilleur rapport qualité/prix</div>
+        <span class="card-img-label">Nutri&amp;Co</span>
+        <span class="card-img-sub">[ Photo Nutri&amp;Co ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Nutri&amp;Co</div>
+        <div class="card-name">Compléments transparents</div>
+        <div class="card-desc">Branding clean, formules bien sourcées, parfait pour démarrer. Le bon équilibre science/accessibilité pour une audience qui découvre les compléments.</div>
+        <div class="phase-tag fu">🌙 J17–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <div class="badge badge-vb">🌿 Le plus naturel</div>
+        <span class="card-img-label">Amoseeds</span>
+        <span class="card-img-sub">[ Photo graines cacao Amoseeds ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Amoseeds</div>
+        <div class="card-name">Graines, cacao cru &amp; adaptogènes</div>
+        <div class="card-desc">Parfait pour l'angle "cycle + nutrition réelle" — graines de courge, cacao cru, spiruline, adaptogènes. Tout ce qu'on met dans l'assiette.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+
+  <div class="sub-title">Protéines &amp; épicerie santé</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="folliculaire">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Protéalpes</span>
+        <span class="card-img-sub">[ Photo protéines Protéalpes ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="folliculaire">
+        <div class="card-brand">Protéalpes</div>
+        <div class="card-name">Protéines sans additifs</div>
+        <div class="card-desc">Sourcing clean, zéro additif, storytelling montagne aligné avec mon univers. Idéal en phase folliculaire pour la récupération musculaire.</div>
+        <div class="phase-tag">🌱 Phase folliculaire &amp; récupération</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Kazidomi</span>
+        <span class="card-img-sub">[ Photo épicerie Kazidomi ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Kazidomi</div>
+        <div class="card-name">Épicerie santé &amp; produits naturels</div>
+        <div class="card-desc">Tout ce qu'on met dans l'assiette pour ses hormones — cacao cru, graines, tisanes, huiles. Livraison rapide, sélection curatée.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     02 — LIFESTYLE & VÊTEMENTS
+═══════════════════════════════════ -->
+<section class="cat-section" id="lifestyle">
+  <div class="cat-header">
+    <span class="cat-num">02</span>
+    <h2 class="cat-title">Lifestyle &amp; vêtements</h2>
+  </div>
+  <p class="cat-desc">Le confort n'est pas une option en phase lutéale. Ces marques font des pièces qui s'adaptent à ton corps — matières douces, coupes respectueuses, sourcing conscient.</p>
+  <div class="cat-line"></div>
+
+  <div class="pov-bloc">
+    <div class="pov-label">Mon point de vue</div>
+    <p class="pov-text">En J24–J28, le corps gonfle, la peau est plus sensible, et les élastiques serrés deviennent insupportables. Je ne recommande que des marques dont j'ai testé le confort dans ces moments-là — pas dans une boutique, dans ma vraie vie.</p>
+  </div>
+
+  <div class="sub-title">Lingerie &amp; homewear</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Ysé</span>
+        <span class="card-img-sub">[ Photo lingerie Ysé ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Ysé</div>
+        <div class="card-name">Lingerie, homewear &amp; maillots</div>
+        <div class="card-desc">La lingerie qui ne serre pas en J24. Matières douces, coupes qui respectent le corps qui change. Leur homewear est mon uniforme de fin de cycle.</div>
+        <div class="phase-tag fu">🌙 J20–J28 particulièrement</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Nénés Paris</span>
+        <span class="card-img-sub">[ Photo Nénés Paris ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Nénés Paris</div>
+        <div class="card-name">Lingerie corps réel</div>
+        <div class="card-desc">Très cohérent avec l'angle cycle féminin — le corps tel qu'il est, sans filtre. Inclusif, confortable, engagé.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-vb">🌿 Le plus naturel</div>
+        <span class="card-img-label">Widding</span>
+        <span class="card-img-sub">[ Photo Widding laine mérinos ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Widding</div>
+        <div class="card-name">Laine mérinos &amp; homewear</div>
+        <div class="card-desc">Mérinos ultra doux, thermorégulant — idéal quand la progestérone fait monter la température corporelle en fin de cycle.</div>
+        <div class="phase-tag fu">🌙 J20–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+
+  <div class="sub-title">Mode lifestyle</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Sézane</span>
+        <span class="card-img-sub">[ Photo Sézane ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Sézane</div>
+        <div class="card-name">Basiques lifestyle</div>
+        <div class="card-desc">Des pièces intemporelles dans des matières naturelles. Mes basiques pour les jours où le corps a besoin de douceur sans sacrifier le style.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Balzac Paris</span>
+        <span class="card-img-sub">[ Photo Balzac Paris ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Balzac Paris</div>
+        <div class="card-name">Mode éco-responsable française</div>
+        <div class="card-desc">Basiques conscients, made in Europe. Pour habiller tous les jours du cycle avec intention.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Chlore</span>
+        <span class="card-img-sub">[ Photo Chlore maillots ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Chlore</div>
+        <div class="card-name">Maillots de bain</div>
+        <div class="card-desc">Pour la natation douce — ma pratique préférée en phase lutéale. Des maillots qui tiennent et qui durent.</div>
+        <div class="phase-tag fu">🌙 Natation douce J17–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     03 — BAREFOOT
+═══════════════════════════════════ -->
+<section class="cat-section" id="barefoot">
+  <div class="cat-header">
+    <span class="cat-num">03</span>
+    <h2 class="cat-title">Chaussures barefoot</h2>
+  </div>
+  <p class="cat-desc">Marcher sans contraindre son corps — c'est aussi ça, écouter ses signaux. La marche barefoot a changé ma posture, mon ancrage et ma relation au mouvement en phase lutéale.</p>
+  <div class="cat-line"></div>
+
+  <div class="pov-bloc">
+    <div class="pov-label">Mon point de vue</div>
+    <p class="pov-text">La marche de 30–40 min est la pratique sportive que je recommande le plus en J20–J28. Pour qu'elle soit réellement bénéfique, le pied doit être libre — semelle fine, bout large, drop zéro. Ces marques sont les seules que je recommande parce qu'elles respectent vraiment cette définition.</p>
+  </div>
+
+  <div class="grid grid-2">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré sport</div>
+        <span class="card-img-label">Vivobarefoot</span>
+        <span class="card-img-sub">[ Photo Vivobarefoot ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Vivobarefoot</div>
+        <div class="card-name">Running &amp; lifestyle barefoot</div>
+        <div class="card-desc">La référence. Semelle ultra fine, pied libre, connexion au sol maximale. Parfait pour la marche et le yoga en extérieur en phase lutéale. Durable et réparable.</div>
+        <div class="phase-tag fu">🌙 Marche J20–J28</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon coup de cœur everyday</div>
+        <span class="card-img-label">Lejean</span>
+        <span class="card-img-sub">[ Photo Lejean ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Lejean</div>
+        <div class="card-name">Barefoot quotidien</div>
+        <div class="card-desc">Mon coup de cœur pour tous les jours. Design élégant, vraiment barefoot, fabriqué en Europe. La paire que je mets le plus souvent.</div>
+        <div class="phase-tag">🌿 Quotidien</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Koops</span>
+        <span class="card-img-sub">[ Photo Koops ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Koops</div>
+        <div class="card-name">Barefoot casual élégant</div>
+        <div class="card-desc">Minimaliste et élégant. Pour les occasions où on veut du style sans compromettre la liberté du pied.</div>
+        <div class="phase-tag">🌿 Quotidien</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <div class="badge badge-vb">🌿 Le plus naturel</div>
+        <span class="card-img-label">Wildling Shoes</span>
+        <span class="card-img-sub">[ Photo Wildling ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Wildling Shoes</div>
+        <div class="card-name">Barefoot nature &amp; artisanal</div>
+        <div class="card-desc">Esthétique naturelle et artisanale, matières organiques. Très aligné avec l'univers Cycle Awakening — pour les sorties en nature en phase lutéale.</div>
+        <div class="phase-tag fu">🌙 Marche nature</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Muris Brand</span>
+        <span class="card-img-sub">[ Photo Muris ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Muris Brand</div>
+        <div class="card-name">Barefoot design contemporain</div>
+        <div class="card-desc">Design contemporain, vraiment barefoot. Une belle alternative pour celles qui cherchent quelque chose de plus urbain.</div>
+        <div class="phase-tag">🌿 Quotidien</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     04 — SPORT & MOUVEMENT
+═══════════════════════════════════ -->
+<section class="cat-section" id="sport">
+  <div class="cat-header">
+    <span class="cat-num">04</span>
+    <h2 class="cat-title">Sport &amp; mouvement</h2>
+  </div>
+  <p class="cat-desc">Bouger juste — pas plus, pas moins. Ces équipements et ces pratiques sont alignés avec ce que je défends dans le livre digital sur le mouvement en phase lutéale.</p>
+  <div class="cat-line"></div>
+
+  <div class="pov-bloc">
+    <div class="pov-label">Mon point de vue</div>
+    <p class="pov-text">En phase lutéale, je recommande le yoga, le Pilates, la marche et la natation douce. L'équipement compte : un bon tapis change la pratique, un bolster en laine rempli de graines rend le Yin yoga vraiment régénérant. Je ne recommande que ce que j'utilise dans ma propre pratique.</p>
+  </div>
+
+  <!-- Partenariat Aurélie Pole -->
+  <div class="partner" data-phase="luteale">
+    <div>
+      <div class="partner-ew">Partenariat &nbsp;·&nbsp; En cours de finalisation</div>
+      <div class="partner-title">Aurélie Pole — Cours en ligne</div>
+      <p class="partner-desc">La pole dance est une pratique de force, de grâce et d'écoute du corps — exactement ce que je défends. Aurélie enseigne en ligne et adapte sa pratique aux besoins de chacune. Je travaille avec elle sur un programme dédié à la phase lutéale : 4 séances adaptées à chaque sous-phase.</p>
+      <span class="partner-tag">🌙 Programme "Pole &amp; cycle féminin" — bientôt disponible</span>
+    </div>
+    <div>
+      <div class="partner-badge">
+        <div class="partner-badge-label">Réduction communauté</div>
+        <div class="partner-badge-val">-15%</div>
+        <div class="partner-badge-unit">avec le code CYCLE</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title">Tapis de yoga éco-responsable</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Chin Mudra</span>
+        <span class="card-img-sub">[ Photo tapis Chin Mudra ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Chin Mudra</div>
+        <div class="card-name">Tapis yoga éco &amp; slow</div>
+        <div class="card-desc">Hyper aligné spirituel et slow — l'éco-responsabilité poussée à son maximum. Mon tapis pour le Yin yoga en J24–J28.</div>
+        <div class="phase-tag fu">🌙 Yin yoga J24–J28</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <div class="badge badge-vb">🔬 Le plus efficace</div>
+        <span class="card-img-label">B Yoga</span>
+        <span class="card-img-sub">[ Photo tapis B Yoga ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">B Yoga</div>
+        <div class="card-name">Tapis premium grip exceptionnel</div>
+        <div class="card-desc">Qualité premium, grip incroyable même en sueur. Pour le Pilates et le yoga dynamique en début de phase lutéale.</div>
+        <div class="phase-tag">🌱 Yoga dynamique J17–J20</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+
+  <div class="sub-title">Bolster &amp; accessoires naturels</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Bolster laine &amp; graines</span>
+        <span class="card-img-sub">[ Photo bolster laine épeautre ]</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">À confirmer</div>
+        <div class="card-name">Bolster laine rempli de graines bio</div>
+        <div class="card-desc">Le bolster est incontournable pour le Yin yoga en J24–J28. Laine naturelle, rempli de graines d'épeautre — épouse parfaitement le corps. Je retrouve la référence exacte.</div>
+        <div class="phase-tag fu">🌙 Yin yoga J24–J28</div>
+        <span class="card-cta disabled">Référence en cours</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <span class="card-img-label">Oko Living</span>
+        <span class="card-img-sub">[ Photo Oko Living ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Oko Living</div>
+        <div class="card-name">Accessoires yoga naturels</div>
+        <div class="card-desc">Bolsters, blocs et accessoires en matières naturelles. Pour une pratique de Yin yoga régénérante en fin de cycle.</div>
+        <div class="phase-tag fu">🌙 Yin yoga J24–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+
+  <div class="sub-title">Vêtements sport éco-conçus</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <div class="badge badge-sa">💸 Meilleur rapport qualité/prix</div>
+        <span class="card-img-label">Circle Sportswear</span>
+        <span class="card-img-sub">[ Photo Circle Sportswear ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Circle Sportswear</div>
+        <div class="card-name">Vêtements sport recyclés</div>
+        <div class="card-desc">Éco-conçu, recyclable en fin de vie, design épuré. Mon choix pour le yoga et le Pilates — confort et conscience.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">Les Actives Paris</span>
+        <span class="card-img-sub">[ Photo Les Actives ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">Les Actives Paris</div>
+        <div class="card-name">Sport éco français</div>
+        <div class="card-desc">Marque française engagée, matières bio et recyclées. Pour bouger juste sans compromettre ses valeurs.</div>
+        <div class="phase-tag">🌿 Toute l'année</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     05 — MAISON & RITUELS
+═══════════════════════════════════ -->
+<section class="cat-section" id="rituels">
+  <div class="cat-header">
+    <span class="cat-num">05</span>
+    <h2 class="cat-title">Maison &amp; rituels</h2>
+  </div>
+  <p class="cat-desc">C'est ici que ma sélection est la plus personnelle. Ces objets font partie de ma routine J20–J28 depuis que j'ai compris leur impact réel sur le système nerveux et les hormones.</p>
+  <div class="cat-line"></div>
+
+  <div class="pov-bloc">
+    <div class="pov-label">Mon point de vue</div>
+    <p class="pov-text">Un bon rituel du soir en J24–J28 agit directement sur la mélatonine, le cortisol et la qualité du sommeil. Ce n'est pas de l'esthétique — c'est de la biologie. La bouilloire, la bouillotte, les infusions et la lumière que tu utilises le soir ont un impact hormonal mesurable.</p>
+  </div>
+
+  <div class="sub-title">Infusions &amp; thés</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Yoshien</span>
+        <span class="card-img-sub">[ Photo thé Yoshien ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Yoshien</div>
+        <div class="card-name">Thé sencha &amp; infusions japonaises</div>
+        <div class="card-desc">Qualité exceptionnelle, sourcing direct Japon. Le thé sencha le soir — L-théanine pour l'alerte calme sans cortisol. Mon rituel du matin en J17–J19.</div>
+        <div class="phase-tag fu">🌙 Rituel matin J17–J19</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-vb">🌿 Le plus naturel</div>
+        <span class="card-img-label">Les Jardins de Gaïa</span>
+        <span class="card-img-sub">[ Photo Les Jardins de Gaïa ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Les Jardins de Gaïa</div>
+        <div class="card-name">Infusions plantes médicinales</div>
+        <div class="card-desc">La référence plantes médicinales en France. Framboisier, camomille, mélisse, lavande — tout ce qu'on met dans les tisanes du soir en J20–J28.</div>
+        <div class="phase-tag fu">🌙 Tisanes J20–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+
+  <div class="sub-title">Rituels corps &amp; bien-être</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Sentara Holistic</span>
+        <span class="card-img-sub">[ Photo Sentara gua sha brosse ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Sentara Holistic</div>
+        <div class="card-name">Gua sha, brosse &amp; rituels corps</div>
+        <div class="card-desc">Parfaitement aligné avec mon protocole. Le gua sha facial le soir réduit la rétention d'eau et active le système lymphatique. La brosse à sec le matin stimule la circulation.</div>
+        <div class="phase-tag fu">🌙 Rituels J20–J28</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-vb">🌿 Le plus naturel</div>
+        <span class="card-img-label">Suzanne Kaufmann</span>
+        <span class="card-img-sub">[ Photo huile de bain Suzanne Kaufmann ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Suzanne Kaufmann</div>
+        <div class="card-name">Huile de bain naturelle</div>
+        <div class="card-desc">Mon luxe slow en J20–J28. Quelques gouttes dans le bain au sel d'Epsom — l'association parfaite pour activer le système parasympathique.</div>
+        <div class="phase-tag fu">🌙 Bain J20–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <span class="card-img-label">Cosmic Dealer</span>
+        <span class="card-img-sub">[ Photo encens Cosmic Dealer ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Cosmic Dealer</div>
+        <div class="card-name">Encens &amp; rituels sensoriels</div>
+        <div class="card-desc">Le signal olfactif fait partie du rituel du soir — une odeur associée au repos entraîne le système nerveux à basculer. L'encens de Cosmic Dealer est mon déclencheur.</div>
+        <div class="phase-tag fu">🌙 Rituel soir J20–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <span class="card-img-label">Bouillotte graines de lin</span>
+        <span class="card-img-sub">[ Photo bouillotte graines ]</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Artisan FR (référence à venir)</div>
+        <div class="card-name">Bouillotte graines de lin bio</div>
+        <div class="card-desc">La bouillotte de graines réduit les crampes, stimule le nerf vague et active la réponse parasympathique. Je retrouve la référence exacte — j'ai les miennes depuis longtemps.</div>
+        <div class="phase-tag fu">🌙 J24–J28 indispensable</div>
+        <span class="card-cta disabled">Référence en cours</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="sub-title">Objets signature</div>
+  <div class="grid">
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-fu">⭐ Mon préféré</div>
+        <span class="card-img-label">Fellow</span>
+        <span class="card-img-sub">[ Photo bouilloire Fellow ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Fellow</div>
+        <div class="card-name">Bouilloire design</div>
+        <div class="card-desc">Le rituel tisane commence avec une bouilloire qui donne envie. Température précise, design premium — Fellow transforme une habitude en plaisir quotidien.</div>
+        <div class="phase-tag fu">🌙 Rituel tisane soir</div>
+        </a><a class="card-cta fu" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+      <div class="card-img">
+        <div class="badge badge-vb">🔬 Le plus efficace</div>
+        <span class="card-img-label">Loftie</span>
+        <span class="card-img-sub">[ Photo réveil Loftie ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="luteale">
+        <div class="card-brand">Loftie</div>
+        <div class="card-name">Réveil lumière progressive</div>
+        <div class="card-desc">En J24–J28, le sommeil est plus fragile. Loftie simule le lever du soleil — un réveil doux qui respecte les cycles naturels. Aucun écran dans la chambre.</div>
+        <div class="phase-tag fu">🌙 Sommeil J20–J28</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+    <a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+      <div class="card-img">
+        <span class="card-img-label">La Bruket</span>
+        <span class="card-img-sub">[ Photo rondins cèdre La Bruket ]</span>
+      </div>
+      </a><div class="card-body"><a class="card" href="https://cycleawakening.pages.dev/recommandations#" target="_blank" rel="nofollow" data-phase="all">
+        <div class="card-brand">La Bruket</div>
+        <div class="card-name">Rondins de cèdre naturels</div>
+        <div class="card-desc">Dans les placards et les tiroirs — une odeur naturelle, saine, qui remplace les parfums chimiques. Petit détail, grand impact sur l'environnement intérieur.</div>
+        <div class="phase-tag">🌿 Maison saine</div>
+        </a><a class="card-cta" href="https://cycleawakening.pages.dev/recommandations#" rel="nofollow">Découvrir →</a>
+      </div>
+    
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     BUNDLES
+═══════════════════════════════════ -->
+<section class="bundles" id="bundles">
+  <h2 class="bundles-title">Kits complets</h2>
+  <p class="bundles-sub">Mes sélections par intention — pour ne pas avoir à tout choisir.</p>
+
+  <div class="bundle-grid">
+
+    <div class="bundle-card">
+      <div class="bundle-icon">🌙</div>
+      <div class="bundle-name">Kit phase lutéale</div>
+      <div class="bundle-desc">Tout ce dont tu as besoin pour traverser J20–J28 avec douceur.</div>
+      <ul class="bundle-items">
+        <li>Magnésium bisglycinate Dynveo</li>
+        <li>Infusion camomille-framboisier Jardins de Gaïa</li>
+        <li>Bouillotte graines de lin</li>
+        <li>Huile essentielle lavande Herbarom</li>
+        <li>Huile de bain Suzanne Kaufmann</li>
+      </ul>
+      <a class="bundle-cta" href="https://cycleawakening.pages.dev/recommandations#nutrition">Voir les produits →</a>
+    </div>
+
+    <div class="bundle-card">
+      <div class="bundle-icon">🍵</div>
+      <div class="bundle-name">Kit rituel du soir</div>
+      <div class="bundle-desc">Le signal au système nerveux : la journée est terminée.</div>
+      <ul class="bundle-items">
+        <li>Bouilloire Fellow</li>
+        <li>Thé sencha Yoshien</li>
+        <li>Encens Cosmic Dealer</li>
+        <li>Gua sha Sentara</li>
+        <li>Réveil Loftie (sans écran dans la chambre)</li>
+      </ul>
+      <a class="bundle-cta" href="https://cycleawakening.pages.dev/recommandations#rituels">Voir les produits →</a>
+    </div>
+
+    <div class="bundle-card">
+      <div class="bundle-icon">🧘</div>
+      <div class="bundle-name">Kit mouvement doux</div>
+      <div class="bundle-desc">Pour bouger juste en phase lutéale — ni trop, ni pas assez.</div>
+      <ul class="bundle-items">
+        <li>Tapis yoga Chin Mudra</li>
+        <li>Bolster graines bio Oko Living</li>
+        <li>Vivobarefoot (marche extérieure)</li>
+        <li>Vêtements Circle Sportswear</li>
+      </ul>
+      <a class="bundle-cta" href="https://cycleawakening.pages.dev/recommandations#sport">Voir les produits →</a>
+    </div>
+
+    <div class="bundle-card">
+      <div class="bundle-icon">🌱</div>
+      <div class="bundle-name">Kit démarrage cycle</div>
+      <div class="bundle-desc">Pour commencer sans se noyer. L'essentiel, rien de plus.</div>
+      <ul class="bundle-items">
+        <li>Magnésium Nutri&amp;Co (accessible)</li>
+        <li>Infusion framboisier Jardins de Gaïa</li>
+        <li>Carnet journal de cycle</li>
+        <li>Livre digital Cycle Awakening</li>
+      </ul>
+      <a class="bundle-cta" href="https://cycleawakening.pages.dev/recommandations#" style="background:var(--vb);border-color:var(--vb);">Obtenir le livre →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- MENTION LÉGALE -->
+<div class="mention">
+  <p><strong>Transparence affiliation :</strong> certains liens sur cette page sont des liens affiliés. Si tu achètes un produit via l'un de ces liens, je touche une petite commission — sans aucun coût supplémentaire pour toi. Je ne recommande que des produits que j'utilise personnellement et qui sont cohérents avec ce que je défends dans le livre digital Cycle Awakening et mes contenus Instagram. <strong>Je refuse tout partenariat avec des marques dont les formules ou les valeurs contrediraient mes recommandations de santé hormonale.</strong></p>
+</div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-logo">Cycle Awakening</div>
+  <p>cycleawakening.com &nbsp;·&nbsp; hello@cycleawakening.com &nbsp;·&nbsp; @cycleawakening</p>
+</footer>
+
+<script>
+// Navigation active
+const sections = document.querySelectorAll('.cat-section, .bundles');
+const catLinks = document.querySelectorAll('.cat-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  catLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+});
+
+// Filtre par phase
+function filterPhase(phase) {
+  document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.card[data-phase], .partner[data-phase]').forEach(c => {
+    if (phase === 'all' || c.dataset.phase === phase || c.dataset.phase === 'all') {
+      c.style.display = '';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+</script>
+<script>
+function toggleBurger(){
+  const m=document.getElementById('gbmenu');
+  const b=document.getElementById('gburger');
+  const open=m.classList.contains('open');
+  m.classList.toggle('open');
+  b.classList.toggle('open');
+  document.body.style.overflow=open?'':'hidden';
+}
+</script>
+
+
+</body></html>

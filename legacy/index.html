@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://cycleawakening.pages.dev/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cycle Awakening — Redevenir toi. Chaque mois.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Cycle Awakening — Redevenir toi. Chaque mois._files/css2" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bl:#F7F4EF;--be:#EDE8E0;--be2:#E3DDD4;--vb:#1A3028;--vm:#2D4A3E;--fu:#E0257A;--fu2:#C4206A;--ma:#8B7BA8;--no:#0A1510;--gr:#5C5C5C;--sa:#9FC0B0}
+body{font-family:'Inter',sans-serif;background:var(--bl);overflow-x:hidden}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rev.on{opacity:1;transform:translateY(0)}
+.rev-l{opacity:0;transform:translateX(-20px);transition:opacity .8s ease,transform .8s ease}
+.rev-l.on{opacity:1;transform:translateX(0)}
+.rev-r{opacity:0;transform:translateX(20px);transition:opacity .8s ease,transform .8s ease}
+.rev-r.on{opacity:1;transform:translateX(0)}
+.ws span{display:inline-block;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.ws.on span{opacity:1;transform:translateY(0)}
+
+.hero{position:relative;width:100%;height:100vh;min-height:580px;background:var(--no);overflow:hidden;display:flex;flex-direction:column}
+#hcv{position:absolute;inset:0;width:100%;height:100%}
+.h-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,21,16,.65) 0%,rgba(10,21,16,.1) 40%,rgba(10,21,16,.88) 100%)}
+.h-vig{position:absolute;inset:0;z-index:2;box-shadow:inset 0 0 120px rgba(10,21,16,.65)}
+.h-bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--fu);transform:scaleX(0);transform-origin:left;animation:barIn 1.2s ease .3s forwards;z-index:20}
+@keyframes barIn{to{transform:scaleX(1)}}
+.h-content{position:relative;z-index:20;flex:1;display:flex;flex-direction:column;justify-content:center;padding:1rem 2.5rem 1.5rem;max-width:680px}
+.h-ey{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--fu);font-family:'Inter',sans-serif;display:flex;align-items:center;gap:12px;margin-bottom:1.75rem;opacity:0;animation:fup .7s ease .8s forwards}
+.el{height:1px;width:32px;background:var(--fu);flex-shrink:0}
+.htitle{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.96;margin-bottom:1.75rem}
+.wr{overflow:hidden;display:block}
+.wi{display:block;transform:translateY(110%);opacity:0;animation:win 1.2s cubic-bezier(.16,1,.3,1) forwards;white-space:nowrap}
+.l1{font-size:clamp(44px,8vw,80px);color:var(--bl);animation-delay:.9s}
+.l2{font-size:clamp(52px,10.5vw,100px);font-style:italic;color:var(--fu);animation-delay:1.08s;display:inline-block;position:relative}
+.l2::after{content:'';position:absolute;left:0;bottom:4px;width:100%;height:2px;background:var(--fu);transform:scaleX(0);transform-origin:left;animation:lgrow 1s ease 2.2s forwards}
+.l3{font-size:clamp(34px,6.5vw,62px);color:rgba(247,244,239,.32);animation-delay:1.26s}
+.l4{font-size:clamp(44px,8vw,80px);color:var(--bl);animation-delay:1.44s}
+.h-sub{font-size:14px;font-weight:300;color:rgba(247,244,239,.68);line-height:1.85;max-width:460px;opacity:0;animation:fup .9s ease 1.8s forwards;margin-bottom:1.75rem;font-family:'Inter',sans-serif}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fup .9s ease 2s forwards}
+.h-foot{position:absolute;bottom:0;left:0;right:0;z-index:20;display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;align-items:center;padding:.85rem 2.5rem;border-top:1px solid rgba(224,37,122,.15);background:rgba(10,21,16,.45);opacity:0;animation:fin 1s ease 2.2s forwards}
+.st{text-align:center}.sn{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--bl);font-weight:300}
+.sl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--sa);margin-top:2px;font-family:'Inter',sans-serif}
+.sdv{width:1px;height:24px;background:rgba(224,37,122,.2);justify-self:center}
+.bp{display:inline-block;background:var(--fu);color:var(--bl);font-size:11px;font-weight:500;padding:14px 32px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .25s,transform .3s,box-shadow .3s;position:relative;overflow:hidden;text-decoration:none}
+.bp::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-100%);transition:transform .45s}
+.bp:hover{background:var(--fu2);transform:translateY(-4px);box-shadow:0 12px 28px rgba(224,37,122,.35)}
+.bp:hover::after{transform:translateX(100%)}
+.bg{display:inline-block;background:transparent;color:rgba(247,244,239,.5);font-size:11px;font-weight:300;padding:14px 22px;border-radius:100px;cursor:pointer;border:1px solid rgba(247,244,239,.18);font-family:'Inter',sans-serif;transition:all .3s;text-decoration:none}
+.bg:hover{border-color:rgba(247,244,239,.45);color:var(--bl);transform:translateY(-2px)}
+.btn-txt{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:300;color:var(--fu);font-family:'Inter',sans-serif;cursor:pointer;border:none;background:none;transition:gap .3s}
+.btn-txt:hover{gap:14px}
+.btn-txt em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px}
+.cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem;padding-top:2rem}
+.tx{position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");background-size:280px;z-index:0}
+.ew{font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:10px;margin-bottom:1.1rem;color:var(--fu)}
+.ew .dl{height:1px;width:24px;background:var(--fu);flex-shrink:0}
+.ew-vb{color:var(--vb)}.ew-vb .dl{background:var(--vb)}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,48px);font-weight:300;line-height:1.1;margin-bottom:.75rem}
+.s-do{background:var(--bl);padding:5rem 2.5rem;position:relative;overflow:hidden}
+.do-bg{position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:200px;font-weight:300;color:rgba(224,37,122,.04);line-height:1;pointer-events:none;user-select:none}
+.pain-item{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:1.1rem 0;border-bottom:1px solid rgba(26,48,40,.08);align-items:center;transition:all .4s;cursor:default;position:relative;z-index:1}
+.pain-item:last-child{border-bottom:none}
+.pain-item:hover{padding-left:10px;background:rgba(224,37,122,.03);border-radius:10px;border-color:transparent;margin:0 -10px;padding-right:10px}
+.pain-item:hover .pn{color:var(--fu);transform:scale(1.15)}
+.pn{font-family:'Cormorant Garamond',serif;font-size:32px;font-style:italic;color:rgba(224,37,122,.18);transition:all .4s;font-weight:300}
+.pt{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2.5vw,18px);font-style:italic;color:var(--vm);line-height:1.6}
+.do-cta{border-top:1px solid rgba(224,37,122,.12);margin-top:2.5rem;padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
+.s-ci{background:var(--vb);padding:5rem 2.5rem;position:relative;overflow:hidden}
+.ci-bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--fu)}
+.ci-bg{position:absolute;bottom:-20px;left:0;font-family:'Cormorant Garamond',serif;font-size:140px;font-weight:300;font-style:italic;color:rgba(224,37,122,.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+.ci-beam{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.ci-beam::before{content:'';position:absolute;top:0;left:-100%;width:200%;height:100%;background:linear-gradient(110deg,transparent 35%,rgba(224,37,122,.05) 50%,transparent 65%);animation:cibeam 7s ease-in-out infinite}
+@keyframes cibeam{0%,100%{transform:translateX(-25%)}50%{transform:translateX(25%)}}
+.ci-inner{position:relative;z-index:1;max-width:560px}
+.ci-q{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.5vw,32px);font-style:italic;color:var(--bl);line-height:1.45;font-weight:300;margin-bottom:1.5rem}
+.ci-q strong{font-style:normal;font-weight:300;color:var(--fu)}
+.ci-div{width:40px;height:2px;background:var(--fu);margin:1.5rem 0}
+.ci-story{font-size:13px;font-weight:300;color:rgba(159,192,176,.85);line-height:1.9;font-family:'Inter',sans-serif}
+.s-co{background:var(--bl);padding:5rem 2.5rem;position:relative;overflow:hidden;border-top:1px solid rgba(26,48,40,.06)}
+.co-circle{position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;border:1px solid rgba(26,48,40,.06);pointer-events:none}
+.co-item{display:grid;grid-template-columns:52px 1fr;border-bottom:1px solid rgba(26,48,40,.08);transition:all .45s;cursor:default;position:relative;overflow:hidden;z-index:1}
+.co-item:last-child{border-bottom:none}
+.co-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(224,37,122,.04);transition:width .5s;z-index:0}
+.co-item:hover::before{width:100%}
+.co-item:hover{padding-left:8px}
+.co-item:hover .co-num{color:var(--fu);transform:scale(1.1)}
+.co-item:hover .co-arr{opacity:1;transform:translateX(0)}
+.co-nw{padding:1.5rem 0;display:flex;align-items:flex-start;position:relative;z-index:1}
+.co-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-style:italic;color:rgba(26,48,40,.12);font-weight:300;line-height:1;transition:all .5s}
+.co-bd{padding:1.5rem 0 1.5rem .75rem;border-left:1px solid rgba(26,48,40,.08);position:relative;z-index:1}
+.co-tl{font-size:14px;font-weight:500;color:var(--vb);margin-bottom:.35rem;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:space-between}
+.co-arr{font-size:17px;color:var(--fu);opacity:0;transform:translateX(-10px);transition:all .4s}
+.co-desc{font-size:12px;font-weight:300;color:var(--gr);line-height:1.65;font-family:'Inter',sans-serif}
+.co-dark{background:var(--vb);border-radius:12px;padding:1.25rem;margin-top:10px;display:grid;grid-template-columns:52px 1fr;border:1px solid rgba(224,37,122,.2);transition:transform .3s,border-color .3s}
+.co-dark:hover{transform:translateY(-4px);border-color:var(--fu)}
+.s-pq{background:var(--bl);padding:5rem 2.5rem;position:relative;overflow:hidden;border-top:1px solid rgba(26,48,40,.06)}
+.pq-bg{position:absolute;bottom:-30px;right:-10px;font-family:'Cormorant Garamond',serif;font-size:150px;font-weight:300;font-style:italic;color:rgba(26,48,40,.04);line-height:1;pointer-events:none;white-space:nowrap}
+.pq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:1}
+@media(max-width:600px){.pq-grid{grid-template-columns:1fr}}
+.pq-yes{background:var(--bl);border:1.5px solid rgba(224,37,122,.3);border-radius:16px;padding:1.75rem;transition:all .4s;box-shadow:0 4px 20px rgba(224,37,122,.06)}
+.pq-yes:hover{border-color:var(--fu);transform:translateY(-5px);box-shadow:0 8px 32px rgba(224,37,122,.14)}
+.pq-no{background:var(--be2);border:1px solid rgba(26,48,40,.08);border-radius:16px;padding:1.75rem;transition:all .4s}
+.pq-no:hover{transform:translateY(-3px)}
+.pq-lbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:8px}
+.pqi{font-size:13px;font-weight:300;line-height:1.7;padding:.5rem 0;border-bottom:1px solid rgba(224,37,122,.08);display:flex;gap:10px;color:var(--vb);transition:padding-left .3s}
+.pqi:hover{padding-left:6px}
+.pqi:last-child{border-bottom:none}
+.pqni{font-size:13px;font-weight:300;line-height:1.7;padding:.5rem 0;border-bottom:1px solid rgba(26,48,40,.06);display:flex;gap:10px;color:rgba(92,92,92,.4)}
+.pqni:last-child{border-bottom:none}
+.mk{flex-shrink:0;font-size:14px;margin-top:3px}
+.s-cm{background:var(--no);padding:5rem 2.5rem;position:relative;overflow:hidden}
+.s-cm::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--fu)}
+.cm-inner{position:relative;z-index:1;max-width:520px}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:1.5rem 0}
+@media(max-width:480px){.pillars{grid-template-columns:1fr}}
+.pillar{background:rgba(26,48,40,.6);border:1px solid rgba(45,74,62,.5);border-radius:10px;padding:.9rem 1rem;transition:border-color .3s}
+.pillar:hover{border-color:var(--fu)}
+.pdot{width:5px;height:5px;background:var(--fu);border-radius:50%;margin-bottom:.5rem}
+.ptxt{font-size:12px;font-weight:300;color:rgba(247,244,239,.65);line-height:1.6;font-family:'Inter',sans-serif}
+.ptxt strong{color:var(--bl);font-weight:400;display:block;margin-bottom:.2rem}
+.cinput{background:rgba(26,48,40,.7);border:1px solid rgba(45,74,62,.6);border-radius:100px;padding:13px 20px;font-size:13px;font-family:'Inter',sans-serif;color:var(--bl);outline:none;transition:border-color .25s;width:100%}
+.cinput:focus{border-color:var(--fu)}
+.cinput::placeholder{color:rgba(159,192,176,.35)}
+.cform{display:flex;flex-direction:column;gap:10px}
+.cbtn{background:var(--bl);color:var(--vb);font-size:11px;font-weight:500;padding:14px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .2s,transform .2s;width:100%}
+.cbtn:hover{background:var(--be);transform:translateY(-1px)}
+.clegal{font-size:10px;color:rgba(45,74,62,.7);text-align:center;margin-top:.5rem;font-family:'Inter',sans-serif}
+.cproof{display:flex;align-items:center;gap:10px;margin-top:1.25rem}
+.avatars{display:flex}
+.av{width:26px;height:26px;border-radius:50%;background:rgba(26,48,40,.8);border:2px solid var(--no);margin-left:-7px;font-size:9px;color:var(--sa);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+.av:first-child{margin-left:0}
+.cproof-txt{font-size:12px;font-weight:300;color:var(--sa);line-height:1.5;font-family:'Inter',sans-serif}
+.cproof-txt strong{color:var(--bl);font-weight:400}
+.csuccess{display:none;padding:.5rem 0}
+.csuccess-icon{width:42px;height:42px;border-radius:50%;background:var(--fu);display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
+.csuccess-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--bl);margin-bottom:.4rem}
+.csuccess-sub{font-size:13px;font-weight:300;color:var(--sa);line-height:1.8;margin-bottom:1.25rem;font-family:'Inter',sans-serif}
+.sticky{background:var(--vb);border-top:1px solid rgba(224,37,122,.3);padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;bottom:0;z-index:100}
+.stxt{font-size:13px;color:var(--bl);font-family:'Inter',sans-serif}
+.ssub{font-size:10px;color:var(--sa);font-weight:300;font-family:'Inter',sans-serif}
+.sprice{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--bl);margin-right:14px}
+.s-of{background:var(--bl);padding:5rem 2.5rem;position:relative;overflow:hidden;border-top:1px solid rgba(26,48,40,.06)}
+.of-circle{position:absolute;bottom:-100px;right:-80px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(26,48,40,.06);pointer-events:none}
+.offer-box{background:var(--bl);border:1.5px solid rgba(224,37,122,.25);border-radius:18px;padding:2.5rem;position:relative;overflow:hidden;transition:transform .3s;box-shadow:0 4px 32px rgba(224,37,122,.06);max-width:580px}
+.offer-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--fu)}
+.offer-box:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(224,37,122,.1)}
+.otitle{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--vb);margin-bottom:.5rem;line-height:1.15;font-weight:300}
+.osub{font-size:13px;font-weight:300;color:var(--gr);margin-bottom:1.75rem;line-height:1.8;font-family:'Inter',sans-serif}
+.oline{display:flex;gap:10px;font-size:13px;font-weight:300;color:var(--gr);line-height:1.65;padding:.4rem 0;border-bottom:1px solid rgba(26,48,40,.07);font-family:'Inter',sans-serif;transition:padding-left .3s,color .3s}
+.oline:hover{padding-left:6px;color:var(--vb)}
+.oline:last-of-type{border-bottom:none;margin-bottom:1.75rem}
+.of-div{height:1px;background:rgba(26,48,40,.07);margin:1.75rem 0}
+.oprice-row{display:flex;align-items:baseline;gap:16px;margin-bottom:1.5rem}
+.oprice{font-family:'Cormorant Garamond',serif;font-size:56px;color:var(--vb);line-height:1;font-weight:300}
+.oprice-label{font-size:12px;color:var(--gr);font-weight:300;line-height:1.7;font-family:'Inter',sans-serif}
+.of-badge{display:inline-block;background:rgba(26,48,40,.05);color:var(--vb);font-size:10px;font-weight:500;padding:5px 14px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:1.75rem}
+.s-faq{background:var(--bl);padding:1rem 2.5rem 5rem;border-top:1px solid rgba(26,48,40,.06)}
+.faq-item{padding:1.35rem 0;border-bottom:1px solid rgba(26,48,40,.08);cursor:pointer}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:14px;font-weight:400;color:var(--vb);margin-bottom:.5rem;display:flex;justify-content:space-between;gap:12px;font-family:'Inter',sans-serif}
+.faq-mark{color:var(--fu);font-size:18px;font-weight:300;transition:transform .3s}
+.faq-item.open .faq-mark{transform:rotate(45deg)}
+.faq-a{font-size:13px;font-weight:300;color:var(--gr);line-height:1.75;font-family:'Inter',sans-serif;max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .faq-a{max-height:200px}
+.footer{background:var(--vb);padding:2.5rem;text-align:center}
+.fbrand{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--bl);margin-bottom:.4rem;letter-spacing:.08em;font-weight:300}
+.ftagline{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--fu)}
+.flegal{font-size:10px;color:rgba(159,192,176,.5);margin-top:1.25rem;letter-spacing:.06em;font-family:'Inter',sans-serif}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+@keyframes fup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes win{to{transform:translateY(0);opacity:1}}
+@keyframes lgrow{to{transform:scaleX(1)}}
+@media(max-width:600px){
+  .nav{padding:1rem 1.5rem}
+  .h-content,.s-do,.s-ci,.s-co,.s-pq,.s-cm,.s-of,.s-faq{padding-left:1.5rem;padding-right:1.5rem}
+  .h-foot{padding:1rem 1.5rem}
+  .sticky{padding:1rem 1.5rem}
+  .footer{padding:2rem 1.5rem}
+  .offer-box{padding:1.75rem}
+}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:56px;background:var(--bl);position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(26,48,40,.1)}
+.brand{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.18em;color:var(--vb);text-transform:uppercase;font-weight:300;text-decoration:none;white-space:nowrap}
+.nav-center{display:flex;align-items:center;gap:0}
+.nav-center a{font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);text-decoration:none;padding:0 18px;height:56px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-center a:hover{color:var(--vb)}
+.nav-center a.active{color:var(--vb);border-bottom-color:var(--fu);font-weight:500}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-btn{font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--fu);padding:9px 20px;border-radius:100px;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:background .2s;white-space:nowrap;text-decoration:none}
+.nav-btn:hover{background:var(--fu2)}
+.burger{background:none;border:none;cursor:pointer;padding:6px;display:flex;flex-direction:column;gap:5.5px}
+.burger span{display:block;width:20px;height:1.5px;background:var(--vb);transition:all .3s;transform-origin:center}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.bmenu{position:fixed;inset:0;background:rgba(10,21,16,.97);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.bmenu.open{opacity:1;pointer-events:all}
+.bmenu-close{position:absolute;top:20px;right:22px;background:none;border:none;color:rgba(247,244,239,.4);font-size:16px;cursor:pointer;padding:8px;line-height:1;transition:color .2s}
+.bmenu-close:hover{color:#fff}
+.bmenu-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(247,244,239,.3);letter-spacing:.14em;margin-bottom:44px}
+.bmenu a{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.9rem,5.5vw,3rem);line-height:1.1;color:rgba(247,244,239,.75);text-decoration:none;padding:13px 0;width:220px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s}
+.bmenu a:last-of-type{border-bottom:none}
+.bmenu a:hover,.bmenu a.active{color:#E0257A}
+.bmenu-cta{margin-top:36px;background:#E0257A;color:#fff;border:none;font-family:'Inter',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:12px 28px;border-radius:100px;cursor:pointer;transition:background .2s;text-decoration:none}
+.bmenu-cta:hover{background:#C4206A}
+.bmenu-tag{position:absolute;bottom:26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:rgba(159,192,176,.3)}
+@media(max-width:680px){
+  .nav-center{display:none}
+  .nav{padding:0 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainnav">
+  <a href="https://cycleawakening.pages.dev/index.html" class="brand">Cycle Awakening</a>
+  <div class="nav-center">
+    <a href="https://cycleawakening.pages.dev/index.html" class="active">Cycle Awakening</a>
+    <a href="https://cycleawakening.pages.dev/blog/index.html">Blog</a>
+    <a href="https://cycleawakening.pages.dev/recommandations.html">Recommandations</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://cycleawakening.pages.dev/#" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'});return false;" class="nav-btn">Livre digital — 27€</a>
+    <button class="burger" id="burger" onclick="toggleBurger()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENU BURGER -->
+<div class="bmenu" id="bmenu">
+  <button class="bmenu-close" onclick="toggleBurger()">✕</button>
+  <div class="bmenu-logo">Cycle Awakening</div>
+  <a href="https://cycleawakening.pages.dev/index.html" class="active" onclick="toggleBurger()">Cycle Awakening</a>
+  <a href="https://cycleawakening.pages.dev/blog/index.html" onclick="toggleBurger()">Blog</a>
+  <a href="https://cycleawakening.pages.dev/recommandations.html" onclick="toggleBurger()">Recommandations</a>
+  <a href="https://cycleawakening.pages.dev/recommandations.html" class="bmenu-cta" onclick="toggleBurger()">Livre digital — 27€</a>
+  <div class="bmenu-tag">Redevenir toi. Chaque mois.</div>
+</div>
+
+<section class="hero" id="hw">
+  <video autoplay="" muted="" loop="" playsinline="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <source src="videos/ocean.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(10,21,16,.88) 0%,rgba(10,21,16,.72) 40%,rgba(10,21,16,.28) 68%,transparent 100%);"></div>
+  <div class="h-vig" style="z-index:2;"></div><div class="h-bar" style="z-index:20;"></div>
+  <div class="h-content">
+    <div class="h-ey"><div class="el"></div>Livre digital · Phase lutéale</div>
+    <div class="htitle">
+      <span class="wr"><span class="wi l1">Disparaître</span></span>
+      <span class="wr"><span class="wi l2">10 jours</span></span>
+      <span class="wr"><span class="wi l3">par mois.</span></span>
+      <span class="wr"><span class="wi l4">Plus jamais.</span></span>
+    </div>
+    <div class="h-sub">Tu fais déjà tout bien. Et pourtant chaque mois, tu t'effondres. Ce livre digital te donne le protocole exact pour traverser ta phase lutéale sans te perdre.</div>
+    <div class="h-btns">
+      <button class="bp" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir le livre digital — 27€</button>
+      <button class="bg" onclick="document.querySelector('.s-do').scrollIntoView({behavior:'smooth'})">En savoir plus ↓</button>
+    </div>
+  </div>
+  <div class="h-foot">
+    <div class="st"><div class="sn">3 piliers</div><div class="sl">Méthode</div></div><div class="sdv"></div>
+    <div class="st"><div class="sn">J17–J28</div><div class="sl">Protocole</div></div><div class="sdv"></div>
+    <div class="st"><div class="sn">+320</div><div class="sl">Femmes</div></div>
+  </div>
+</section>
+
+<section class="s-do" id="s-do">
+  <div class="tx"></div><div class="do-bg">?</div>
+  <div style="position:relative;z-index:1">
+    <div class="ew rev"><div class="dl"></div>Le problème</div>
+    <div class="stitle rev" style="color:var(--vb)"><div class="ws"><span>Tu</span> <span>te</span> <span>reconnais</span><br><span>dans</span> <span>ces</span> <em style="font-style:italic;color:var(--fu)"><span>phrases ?</span></em></div></div>
+    <div style="margin-top:2rem">
+      <div class="pain-item rev" style="transition-delay:.05s"><div class="pn">01</div><div class="pt">"Je ne comprends pas pourquoi je deviens une autre personne avant mes règles."</div></div>
+      <div class="pain-item rev" style="transition-delay:.12s"><div class="pn">02</div><div class="pt">"Je mange bien, je fais du sport. Et pourtant je m'effondre chaque mois."</div></div>
+      <div class="pain-item rev" style="transition-delay:.19s"><div class="pn">03</div><div class="pt">"J'ai l'impression de perdre qui je suis pendant 7 à 10 jours."</div></div>
+      <div class="pain-item rev" style="transition-delay:.26s"><div class="pn">04</div><div class="pt">"Je suis fatiguée de tout tester sans comprendre ce qui se passe vraiment."</div></div>
+      <div class="pain-item rev" style="transition-delay:.33s"><div class="pn">05</div><div class="pt">"Les conseils sont soit trop médicaux, soit trop vagues."</div></div>
+    </div>
+    <div class="do-cta rev" style="transition-delay:.44s">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--vm)">Il existe une autre façon de vivre son cycle.</div>
+      <button class="bp" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir le livre digital — 27€</button>
+    </div>
+  </div>
+</section>
+
+<section class="s-ci">
+  <div class="tx"></div><div class="ci-bar"></div>
+  <div class="ci-bg">Protocole</div><div class="ci-beam"></div>
+  <div class="ci-inner">
+    <div class="ew rev"><div class="dl"></div>Mon histoire</div>
+    <div class="ci-q rev" style="transition-delay:.1s">
+      <div class="ws"><span>Le</span> <span>problème</span> <span>n'est</span> <span>pas</span><br><span>ta</span> <span>discipline.</span><br>
+      <strong><span style="color:var(--fu)">C'est</span> <span style="color:var(--fu)">que</span> <span style="color:var(--fu)">personne</span><br><span style="color:var(--fu)">ne</span> <span style="color:var(--fu)">t'a</span> <span style="color:var(--fu)">donné</span> <span style="color:var(--fu)">le</span> <span style="color:var(--fu)">bon</span> <span style="color:var(--fu)">protocole.</span></strong></div>
+    </div>
+    <div class="ci-div rev" style="transition-delay:.3s"></div>
+    <div class="ci-story rev" style="transition-delay:.35s">Pendant des années, j'ai vécu exactement ça — disparaître 10 jours par mois sans comprendre pourquoi. J'ai cherché, testé, croisé nutrition, mouvement et compréhension hormonale. Ce guide est ce que j'aurais voulu trouver.</div>
+    <div class="cta-row rev" style="transition-delay:.45s;border-top-color:rgba(224,37,122,.2)">
+      <button class="bp" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir le livre digital — 27€</button>
+      <button onclick="document.querySelector('.s-co').scrollIntoView({behavior:'smooth'})" style="background:transparent;color:rgba(159,192,176,.7);font-size:11px;font-weight:300;padding:14px 22px;border-radius:100px;cursor:pointer;border:1px solid rgba(159,192,176,.2);font-family:'Inter',sans-serif;transition:all .3s">Voir le contenu ↓</button>
+    </div>
+  </div>
+</section>
+
+<section class="s-co" id="s-co">
+  <div class="tx"></div><div class="co-circle"></div>
+  <div style="position:relative;z-index:1">
+    <div class="ew rev"><div class="dl"></div>Le contenu</div>
+    <div class="stitle rev" style="color:var(--vb)">Ce que tu trouves<br>dans le <em style="font-style:italic;color:var(--fu)">guide</em></div>
+    <div class="rev" style="font-size:13px;font-weight:300;color:var(--gr);line-height:1.8;font-family:'Inter',sans-serif;max-width:400px;margin-bottom:2.5rem;transition-delay:.08s">Un protocole en 5 parties. Concret, actionnable, utilisable dès ce cycle.</div>
+    <div>
+      <div class="co-item rev" style="transition-delay:.1s"><div class="co-nw"><div class="co-num">01</div></div><div class="co-bd"><div class="co-tl">Ce qui se passe vraiment<span class="co-arr">→</span></div><div class="co-desc">Les hormones, la phase lutéale, pourquoi tu changes — sans jargon médical.</div></div></div>
+      <div class="co-item rev" style="transition-delay:.17s"><div class="co-nw"><div class="co-num">02</div></div><div class="co-bd"><div class="co-tl">Pourquoi rien n'a marché<span class="co-arr">→</span></div><div class="co-desc">Les erreurs classiques — trop d'effort, mauvaise nutrition, ignorer les signaux.</div></div></div>
+      <div class="co-item rev" style="transition-delay:.24s"><div class="co-nw"><div class="co-num">03</div></div><div class="co-bd"><div class="co-tl">La méthode en 3 piliers<span class="co-arr">→</span></div><div class="co-desc">Nutrition ciblée + mouvement adapté + lecture du cycle. Ta méthode, structurée.</div></div></div>
+      <div class="co-item rev" style="transition-delay:.31s"><div class="co-nw"><div class="co-num">04</div></div><div class="co-bd"><div class="co-tl">La semaine type J17–J28<span class="co-arr">→</span></div><div class="co-desc">Protocole concret jour par jour. Quoi manger, quoi éviter, comment bouger.</div></div></div>
+      <div class="co-dark rev" style="transition-delay:.38s"><div class="co-nw"><div class="co-num" style="color:rgba(224,37,122,.3)">05</div></div><div class="co-bd" style="border-left-color:rgba(224,37,122,.12)"><div class="co-tl" style="color:var(--bl)">Et maintenant<span class="co-arr">→</span></div><div class="co-desc" style="color:var(--sa)">Ce que tu peux faire seule + la suite si tu veux aller plus loin.</div></div></div>
+    </div>
+    <div class="cta-row rev" style="transition-delay:.46s;border-top-color:rgba(26,48,40,.08)">
+      <button class="bp" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir le livre digital — 27€</button>
+      <button class="btn-txt" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">75 pages · PDF immédiat <em>→</em></button>
+    </div>
+  </div>
+</section>
+
+<section class="s-pq">
+  <div class="tx"></div><div class="pq-bg">Toi</div>
+  <div style="position:relative;z-index:1">
+    <div class="ew rev"><div class="dl"></div>Pour qui</div>
+    <div class="stitle rev" style="color:var(--vb);margin-bottom:2rem">Ce guide est fait<br>pour <em style="font-style:italic;color:var(--fu)">toi</em> si —</div>
+    <div class="pq-grid">
+      <div class="pq-yes rev-l">
+        <div class="pq-lbl" style="color:var(--fu);border-color:rgba(224,37,122,.15)">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#E0257A"></circle><path d="M3.5 6.5l2 2 4-4" stroke="#E0257A" stroke-width="1.2" stroke-linecap="round"></path></svg>
+          Oui, c'est toi
+        </div>
+        <div class="pqi"><div class="mk" style="color:var(--fu)">+</div>Tu as un SPM qui t'épuise émotionnellement</div>
+        <div class="pqi"><div class="mk" style="color:var(--fu)">+</div>Tu fais déjà attention mais rien ne change</div>
+        <div class="pqi"><div class="mk" style="color:var(--fu)">+</div>Tu veux comprendre, pas juste survivre</div>
+        <div class="pqi"><div class="mk" style="color:var(--fu)">+</div>Tu cherches du concret, pas du vague</div>
+        <div class="pqi"><div class="mk" style="color:var(--fu)">+</div>Tu es prête à adapter ton rythme au cycle</div>
+      </div>
+      <div class="pq-no rev-r">
+        <div class="pq-lbl" style="color:rgba(92,92,92,.4);border-color:rgba(26,48,40,.06)">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="rgba(92,92,92,.25)"></circle><path d="M4.5 4.5l4 4M8.5 4.5l-4 4" stroke="rgba(92,92,92,.25)" stroke-width="1" stroke-linecap="round"></path></svg>
+          Pas pour toi si
+        </div>
+        <div class="pqni"><div class="mk" style="color:rgba(92,92,92,.25)">–</div>Tu cherches un diagnostic médical</div>
+        <div class="pqni"><div class="mk" style="color:rgba(92,92,92,.25)">–</div>Tu veux une solution miracle sans rien changer</div>
+        <div class="pqni"><div class="mk" style="color:rgba(92,92,92,.25)">–</div>Tu n'as aucun symptôme en phase lutéale</div>
+        <div class="pqni"><div class="mk" style="color:rgba(92,92,92,.25)">–</div>Tu cherches un régime ou programme sport</div>
+      </div>
+    </div>
+    <div class="cta-row rev" style="transition-delay:.35s;border-top-color:rgba(224,37,122,.1);justify-content:space-between">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--vm)">Tu te reconnais dans la colonne de gauche ?</div>
+      <button class="bp" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir le livre digital — 27€</button>
+    </div>
+  </div>
+</section>
+
+<section class="s-cm">
+  <div class="cm-inner">
+    <div class="ew rev"><div class="dl"></div>La communauté</div>
+    <div class="stitle rev" style="color:var(--bl)">Rejoins les femmes<br>qui ont arrêté<br>de <em style="font-style:italic;color:var(--fu)">subir.</em></div>
+    <div class="rev" style="font-size:13px;font-weight:300;color:var(--sa);line-height:1.85;margin-top:.75rem;font-family:'Inter',sans-serif;transition-delay:.1s">Rejoins la communauté. Tu seras la première informée des nouvelles ressources et des lancements.</div>
+    <div class="pillars rev" style="transition-delay:.15s">
+      <div class="pillar"><div class="pdot"></div><div class="ptxt"><strong>En avant-première</strong>Nouvelles ressources avant tout le monde</div></div>
+      <div class="pillar"><div class="pdot"></div><div class="ptxt"><strong>Chaque semaine</strong>Un email sur ta phase en cours</div></div>
+      <div class="pillar"><div class="pdot"></div><div class="ptxt"><strong>Les coulisses</strong>La construction de Cycle Awakening</div></div>
+      <div class="pillar"><div class="pdot"></div><div class="ptxt"><strong>Ne plus être seule</strong>Des femmes qui comprennent</div></div>
+    </div>
+    <div id="cm-form" class="rev" style="transition-delay:.22s">
+      <div class="cform">
+        <input class="cinput" type="email" id="cm-email" placeholder="ton@email.com">
+        <button class="cbtn" onclick="cmSub()">Rejoindre la communauté — gratuit</button>
+      </div>
+      <div class="clegal">Sans spam. Désabonnement en un clic.</div>
+      <div class="cproof">
+        <div class="avatars"><div class="av">ML</div><div class="av">SA</div><div class="av">JB</div><div class="av">CR</div><div class="av" style="font-size:9px">+</div></div>
+        <div class="cproof-txt"><strong>+320 femmes</strong> ont rejoint ce mois-ci</div>
+      </div>
+    </div>
+    <div id="cm-success" class="csuccess">
+      <div class="csuccess-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9L7 13L15 5" stroke="#F7F4EF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+      <div class="csuccess-title">Bienvenue dans la communauté.</div>
+      <div class="csuccess-sub">Tu recevras le prochain email cette semaine.<br><br>Et si tu veux aller plus loin —</div>
+      <button class="bp" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir le livre digital — 27€</button>
+    </div>
+  </div>
+</section>
+
+<div class="sticky">
+  <div><div class="stxt">Guide Cycle Awakening</div><div class="ssub">PDF · Accès immédiat</div></div>
+  <div style="display:flex;align-items:center">
+    <div class="sprice">27 €</div>
+    <button class="bp" style="padding:10px 22px;font-size:10px" onclick="document.querySelector('.s-of').scrollIntoView({behavior:'smooth'})">Obtenir →</button>
+  </div>
+</div>
+
+<section class="s-of" id="s-of">
+  <div class="tx"></div><div class="of-circle"></div>
+  <div style="position:relative;z-index:1">
+    <div class="ew rev"><div class="dl"></div>L'offre</div>
+    <div class="offer-box rev" style="transition-delay:.1s">
+      <div class="otitle">Cycle Awakening<br>Le Guide</div>
+      <div class="osub">La méthode pour ne plus disparaître 10 jours par mois. Nutrition, mouvement et compréhension hormonale pour ta phase lutéale.</div>
+      <div class="oline"><span style="color:var(--fu);margin-right:4px">+</span>75 pages · protocole complet phase lutéale</div>
+      <div class="oline"><span style="color:var(--fu);margin-right:4px">+</span>Semaine type J17–J28 jour par jour</div>
+      <div class="oline"><span style="color:var(--fu);margin-right:4px">+</span>Listes aliments à privilégier / éviter</div>
+      <div class="oline"><span style="color:var(--fu);margin-right:4px">+</span>Protocole mouvement selon ton énergie</div>
+      <div class="oline"><span style="color:var(--fu);margin-right:4px">+</span>Comprendre tes hormones sans jargon</div>
+      <div class="oline"><span style="color:var(--fu);margin-right:4px">+</span>PDF · Accès immédiat · Paiement unique</div>
+      <div class="of-div"></div>
+      <div class="oprice-row"><div class="oprice">27 €</div><div class="oprice-label">Paiement unique<br>Accès à vie</div></div>
+      <div class="of-badge">PDF · Envoyé immédiatement par email</div>
+      <!-- Remplacer le href par ton lien Stripe -->
+      <a href="https://cycleawakening.pages.dev/#" class="bp" style="display:block;width:100%;padding:17px;font-size:12px;text-align:center;text-decoration:none">Obtenir le guide maintenant</a>
+      <div style="text-align:center;margin-top:.85rem;font-size:10px;color:rgba(92,92,92,.45);font-family:'Inter',sans-serif">Paiement sécurisé · Accès immédiat</div>
+    </div>
+  </div>
+</section>
+
+<section class="s-faq">
+  <div class="ew rev"><div class="dl"></div>Questions fréquentes</div>
+  <div class="faq-item rev" style="transition-delay:.05s">
+    <div class="faq-q" onclick="toggleFaq(this)">C'est quoi exactement ce guide ?<span class="faq-mark">+</span></div>
+    <div class="faq-a">Un PDF de 75 pages avec un protocole complet pour traverser ta phase lutéale (J17 à J28) sans t'effondrer. Actionnable dès la première lecture.</div>
+  </div>
+  <div class="faq-item rev" style="transition-delay:.12s">
+    <div class="faq-q" onclick="toggleFaq(this)">Je n'ai pas de diagnostic SPM — c'est pour moi ?<span class="faq-mark">+</span></div>
+    <div class="faq-a">Si tu remarques des changements physiques ou émotionnels en fin de cycle, ce guide est fait pour toi. Pas besoin de diagnostic.</div>
+  </div>
+  <div class="faq-item rev" style="transition-delay:.19s">
+    <div class="faq-q" onclick="toggleFaq(this)">En combien de temps je reçois le guide ?<span class="faq-mark">+</span></div>
+    <div class="faq-a">Immédiatement après le paiement. Un email avec le lien de téléchargement t'est envoyé automatiquement.</div>
+  </div>
+  <div class="faq-item rev" style="transition-delay:.26s">
+    <div class="faq-q" onclick="toggleFaq(this)">Et si je veux aller plus loin ensuite ?<span class="faq-mark">+</span></div>
+    <div class="faq-a">Le guide présente la suite — l'accompagnement Cycle Awakening avec assistant hormonal personnalisé selon ton profil (SPM, SOPK, endométriose, ménopause).</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="fbrand">Cycle Awakening</div>
+  <div class="ftagline">Redevenir toi. Chaque mois.</div>
+  <div class="flegal">© 2026 · Cycle Awakening · Tous droits réservés</div>
+</footer>
+
+<script>
+
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      e.target.querySelectorAll('.ws').forEach(ws=>{ws.querySelectorAll('span').forEach((sp,i)=>{sp.style.transitionDelay=i*.07+'s'});ws.classList.add('on')});
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.08});
+document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el=>obs.observe(el));
+document.querySelectorAll('.stitle').forEach(el=>{
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.ws span').forEach((sp,i)=>{sp.style.transitionDelay=i*.08+'s'});e.target.querySelector('.ws')?.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
+  io.observe(el);
+});
+
+function cmSub(){
+  const inp=document.getElementById('cm-email');
+  if(!inp.value||!inp.value.includes('@')){inp.style.borderColor='#E0257A';inp.placeholder='Entre ton email';return}
+  document.getElementById('cm-form').style.display='none';
+  const s=document.getElementById('cm-success');
+  s.style.display='block';s.style.opacity='0';s.style.transition='opacity .5s';
+  setTimeout(()=>{s.style.opacity='1'},50);
+}
+document.getElementById('cm-email').addEventListener('keypress',e=>{if(e.key==='Enter')cmSub()});
+
+function toggleBurger(){
+  const m=document.getElementById('bmenu');
+  const b=document.getElementById('burger');
+  const open=m.classList.contains('open');
+  m.classList.toggle('open');
+  b.classList.toggle('open');
+  document.body.style.overflow=open?'':'hidden';
+}
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+
+
+</body></html>

@@ -32,6 +32,7 @@ public/                     Fichiers statiques (_headers, _redirects, favicon, i
 scripts/                    Outils : tokens, contrastes, image de partage, liens UTM, captures
 book/                       Livre PDF (étape 2)
 functions/                  Cloudflare Pages Functions (paiement, webhook, assistante — étapes 4 et 7)
+legacy/                     HTML de l'ancien site (référence de contenu, non publié)
 docs/                       Audit, migration, liens UTM, assets, backlog, règles IA, sources
 .claude/skills/             Skills projet : DA, pages légales FR, vidéo hero
 ```

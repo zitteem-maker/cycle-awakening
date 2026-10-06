@@ -69,10 +69,10 @@ svg { display: block; max-width: 100%; height: auto; }
 
 .section { padding-block: var(--space-section); }
 
-/* Ambiances (voir skill cycle-awakening-da) : jour (défaut), sauge, aube (premium), nuit (émotionnel). */
-.sage { background: var(--semantic-bg-sage); }
+/* Ambiances (voir skill cycle-awakening-da) : jour (défaut), beige, aube (premium), profond (émotionnel). */
+.sage { background: var(--semantic-bg-alt); }
 .dawn {
-  background: linear-gradient(180deg, var(--semantic-bg) 0%, var(--semantic-bg-dawn) 100%);
+  background: linear-gradient(180deg, var(--semantic-bg) 0%, var(--semantic-bg-alt) 100%);
 }
 .deep {
   background: linear-gradient(165deg, var(--semantic-bg-deep) 0%, var(--semantic-bg-deep-intense) 100%);
@@ -117,6 +117,13 @@ svg { display: block; max-width: 100%; height: auto; }
 .signature {
   font-family: var(--font-family-display);
   font-style: italic;
+}
+
+/* Italique signature fuchsia : réservé aux GRANDS titres (contraste 3:1 minimum, voir tokens). */
+.accent {
+  font-family: var(--font-family-display);
+  font-style: italic;
+  color: var(--semantic-accent);
 }
 
 .visually-hidden {
@@ -165,7 +172,7 @@ svg { display: block; max-width: 100%; height: auto; }
 
 /* Valeur légale manquante (TODO_LEGAL…) : visible pour être complétée, jamais inventée. */
 .todo-inline {
-  background: var(--semantic-bg-dawn);
+  background: var(--semantic-bg-muted);
   color: var(--semantic-text);
   outline: 1px dashed var(--semantic-text-muted);
   padding: 0 0.25em;

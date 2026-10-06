@@ -9,9 +9,9 @@ description: Choisir, licencier, compresser et intégrer une vidéo d'ambiance (
 
 Critères (DA) : plan **lent**, fixe ou travelling doux, 8 à 20 s, **bouclable** sans saut visible, lumière naturelle chaude ou bleue d'aube, **faceless**. Sujets : mer et horizon, vagues qui se retirent sur le sable, rideau de lin dans le vent, herbes hautes, vapeur d'une tasse en céramique, mains dans l'eau, dos ou nuque dans la lumière.
 
-Refuser : visages face caméra, sport intense, lumière blanche froide, couleurs saturées, rose/fuchsia, texte incrusté, logos, drones rapides.
+Refuser : visages face caméra, sport intense, lumière blanche froide, couleurs saturées, aplats fuchsia, texte incrusté, logos, drones rapides.
 
-Le texte du hero doit rester lisible : zone calme (ciel, mer, sable) là où le titre se pose. Un voile bleu nuit (`--semantic-bg-deep`, opacité 35–55 %) est ajouté par le composant.
+Le texte du hero doit rester lisible : zone calme (ciel, mer, sable) là où le titre se pose. Un voile vert bouteille (`--semantic-bg-deep`, opacité 35–55 %) est ajouté par le composant.
 
 ## 2. Où chercher (vérifier la licence de **chaque** clip)
 

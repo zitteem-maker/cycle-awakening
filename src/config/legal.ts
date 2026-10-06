@@ -16,7 +16,7 @@ export const legal = {
     vatNumber: null as string | null,
     /** Mention TVA si franchise en base (à confirmer avec l'expert-comptable). */
     vatNote: 'TODO_LEGAL_TVA (ex. « TVA non applicable, art. 293 B du CGI »)',
-    email: 'bonjour@cycleawakening.com',
+    email: 'hello@cycleawakening.com',
     phone: 'TODO_LEGAL_TELEPHONE',
     publicationDirector: 'TODO_LEGAL_DIRECTRICE_DE_PUBLICATION',
   },

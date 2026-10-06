@@ -46,6 +46,7 @@ const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être pr�
 )}
 
 <style>
+  /* Boutons de l'ancien site, sans fuchsia : capitales espacées, pilule, vert bouteille / crème. */
   .cta {
     display: inline-flex;
     align-items: center;
@@ -54,25 +55,25 @@ const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être pr�
     padding: var(--space-3) var(--space-8);
     border-radius: var(--radius-pill);
     font-family: var(--font-family-body);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     text-decoration: none;
     text-align: center;
     border: 1px solid transparent;
     transition:
       background-color var(--motion-duration-fast) var(--motion-ease),
       color var(--motion-duration-fast) var(--motion-ease),
-      border-color var(--motion-duration-fast) var(--motion-ease);
+      border-color var(--motion-duration-fast) var(--motion-ease),
+      transform var(--motion-duration-fast) var(--motion-ease);
   }
+  .cta:hover { transform: translateY(-2px); }
   .cta--primary {
     background: var(--semantic-cta-bg);
     color: var(--semantic-cta-text);
   }
-  .cta--primary:hover {
-    background: var(--semantic-bg-deep);
-    color: var(--semantic-text-on-deep);
-  }
+  .cta--primary:hover { background: var(--semantic-cta-bg-hover); }
   .cta--secondary {
     background: transparent;
     color: var(--semantic-text);
@@ -83,15 +84,11 @@ const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être pr�
     color: var(--semantic-bg);
   }
   .cta--on-deep {
-    background: var(--semantic-cta-bg);
-    color: var(--semantic-cta-text);
+    background: var(--semantic-cta-on-deep-bg);
+    color: var(--semantic-cta-on-deep-text);
   }
-  .cta--on-deep:hover {
-    background: var(--semantic-text-on-deep);
-  }
-  .cta--on-deep:focus-visible {
-    outline-color: var(--semantic-focus-on-deep);
-  }
+  .cta--on-deep:hover { background: var(--semantic-bg-alt); }
+  .cta--on-deep:focus-visible { outline-color: var(--semantic-focus-on-deep); }
   .cta-wrap {
     display: inline-flex;
     flex-direction: column;
@@ -102,5 +99,8 @@ const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être pr�
     font-size: var(--font-size-xs);
     color: inherit;
     opacity: 0.85;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta:hover { transform: none; }
   }
 </style>

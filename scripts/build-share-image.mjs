@@ -13,7 +13,7 @@ const t = flatten(loadTokens());
 // Polices intégrées en base64 : une page chargée par setContent ne peut pas lire de fichiers locaux.
 const font = (p) => `data:font/woff2;base64,${readFileSync(`${root}node_modules/@fontsource/${p}`).toString('base64')}`;
 const faviconSvg = readFileSync(`${root}public/favicon.svg`, 'utf8');
-const markLight = readFileSync(`${root}public/brand/marque-clair.svg`, 'utf8').replace('<svg ', '<svg width="260" height="260" ');
+const logoLight = readFileSync(`${root}public/brand/logo-clair.svg`, 'utf8').replace('<svg ', '<svg width="270" ');
 
 const fontFaces = `
   @font-face { font-family: 'Cormorant Garamond'; font-weight: 500; src: url(${font('cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2')}); }
@@ -33,16 +33,16 @@ const shareHtml = `<!doctype html><html><head><meta charset="utf-8"><style>
   h1 { font: 500 92px/1.02 'Cormorant Garamond', serif; margin: 0 0 32px; }
   p { font: italic 500 34px/1.3 'Cormorant Garamond', serif; color: ${t['semantic-text-muted']}; margin: 0; }
   .rule { width: 72px; height: 2px; background: ${t['semantic-accent']}; margin: 0 0 32px; }
+  h1 em { font-style: italic; color: ${t['semantic-accent']}; }
   .side { height: 630px; background: ${t['semantic-bg-deep']}; position: relative; }
-  .side svg { position: absolute; left: 50%; top: 50%; margin: -130px 0 0 -130px; }
+  .side { display: flex; align-items: center; justify-content: center; }
 </style></head><body>
   <div>
-    <div class="eyebrow">Cycle Awakening</div>
-    <h1>Redevenir toi.<br>Chaque mois.</h1>
+    <h1>Redevenir toi.<br><em>Chaque mois.</em></h1>
     <div class="rule"></div>
     <p>Tu n’es pas instable. Tu es cyclique.</p>
   </div>
-  <div class="side">${markLight}</div>
+  <div class="side">${logoLight}</div>
 </body></html>`;
 
 const iconHtml = (size) => `<!doctype html><html><head><style>

@@ -73,13 +73,13 @@ Tu as déjà le domaine et un compte Cloudflare. Il faut vérifier que le domain
 
 ## 5. Email : réception, envoi et authentification (SPF, DKIM, DMARC)
 
-Adresses à créer : `bonjour@cycleawakening.com` (affichée sur le site et dans les pages légales) et `dmarc@cycleawakening.com` (rapports DMARC). Le plus simple au départ : **Cloudflare Email Routing** (gratuit) qui les transfère vers ta boîte actuelle.
+Adresses à créer : `hello@cycleawakening.com` (affichée sur le site et dans les pages légales) et `dmarc@cycleawakening.com` (rapports DMARC). Le plus simple au départ : **Cloudflare Email Routing** (gratuit) qui les transfère vers ta boîte actuelle.
 
 Le domaine servira à **trois** usages, chacun avec ses enregistrements :
 
 | Usage | Exemple | Outil possible |
 |---|---|---|
-| Recevoir (`bonjour@`) | réponses clientes | **Cloudflare Email Routing** (gratuit, transfère vers ta boîte actuelle) ou une vraie boîte (Google Workspace, Zoho, OVH…) |
+| Recevoir (`hello@`) | réponses clientes | **Cloudflare Email Routing** (gratuit, transfère vers ta boîte actuelle) ou une vraie boîte (Google Workspace, Zoho, OVH…) |
 | Envoyer en marketing | newsletter, séquences | Brevo ou Kit |
 | Envoyer en transactionnel | lien de téléchargement, lien magique | Brevo, Resend ou Postmark |
 
@@ -88,7 +88,7 @@ Le domaine servira à **trois** usages, chacun avec ses enregistrements :
 
 ### MX (réception)
 
-- Avec Cloudflare Email Routing : *Email → Email Routing → Get started* ; Cloudflare ajoute les MX et le SPF tout seul. Créer l'adresse `bonjour@cycleawakening.com` → transfert vers ton email personnel.
+- Avec Cloudflare Email Routing : *Email → Email Routing → Get started* ; Cloudflare ajoute les MX et le SPF tout seul. Créer l'adresse `hello@cycleawakening.com` → transfert vers ton email personnel.
 - Avec une boîte hébergée : les MX donnés par le fournisseur.
 
 ### SPF — **un seul** enregistrement TXT à la racine

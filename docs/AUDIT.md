@@ -1,6 +1,6 @@
 # Audit de l'existant — étape 1
 
-*Date : 6 octobre 2026. Auteur : lead dev / design. Statut : audit partiel, à compléter dès que le site en ligne est accessible.*
+*Date : 6 octobre 2026. Auteur : lead dev / design. Statut : home et recommandations auditées à partir du HTML fourni (`legacy/`) ; blog non fourni.*
 
 ## 1. Ce qui a pu être vérifié
 
@@ -104,7 +104,45 @@ Message prêt à envoyer (à adapter) :
 
 | Sujet | Documents | Décision appliquée |
 |---|---|---|
-| Palette | Doc « Identité visuelle » (validée) = ta palette. `DA_Cycle_Awakening.docx` a une autre palette (ivoire chaud `#F2EDE4`, lin doré `#E8DCC8`…). `DA_V2` est fuchsia. | Palette de ton brief (= doc « Identité visuelle »). DA v1 .docx et v2 ignorées. **À confirmer.** |
+| Palette | Doc « Identité visuelle » (minéral doux), `DA_Cycle_Awakening.docx`, `DA_V2` (fuchsia), ancien site (vert bouteille + fuchsia). | **Tranché le 6 octobre 2026 : palette hybride de l'ancien site** (voir §7). |
 | Prix Premium | Brief Drive : Essential 15 €/mois, Premium 29 €/mois ou 249 €/an. Ton brief actuel : Premium 19 €/mois ou 149 €/an, pas d'offre Essential. | Ton brief actuel (`src/config/offers.ts`). |
 | Outils | Brief Drive : Framer/Webflow, Memberstack, Voiceflow. Ton brief actuel : Cloudflare Pages + Supabase. | Ton brief actuel. |
 | Posts Instagram | Annoncent « 75 pages », « 27 € », fond fuchsia, « Stop au HIIT en phase lutéale ». | 75 pages non repris (à confirmer). Visuels fuchsia à refaire. La formulation « stop au HIIT » est trop absolue pour le ton « pas de promesse, pas de règle rigide » : à revoir. |
+
+## 7. Constats sur le site réel (HTML fourni le 6 octobre 2026, copié dans `legacy/`)
+
+### Page d'accueil (`legacy/index.html`)
+
+| Priorité | Constat | Décision |
+|---|---|---|
+| P0 | Le lien d'achat final pointe vers `#` (commentaire « Remplacer le href par ton lien Stripe »). Les 8 autres boutons « Obtenir le livre digital — 27€ » ne font que défiler vers l'offre. | Corrigé par le CTA unique (`PUBLIC_CHECKOUT_URL`). |
+| P0 | **Le formulaire newsletter n'envoie rien** : `cmSub()` affiche « Bienvenue dans la communauté » sans transmettre l'email. Les inscriptions éventuelles sont perdues. | Vrai formulaire Brevo/Kit à l'étape 3. Prévenir l'ancien propriétaire qu'aucune liste n'existe. |
+| P0 | « +320 » apparaît deux fois (bandeau du hero et bloc communauté) avec 4 faux avatars (ML, SA, JB, CR). | Retiré ; compteur réel plus tard (`BACKLOG.md`). |
+| P0 | Aucune page légale, aucune mention « ne remplace pas un avis médical ». | Corrigé. |
+| P1 | Promesse de résultat : « Disparaître 10 jours par mois. **Plus jamais.** », « le protocole exact ». | À reformuler à l'étape 3 (pas de promesse, cf. ton de marque). |
+| P1 | « 75 pages » ×3, « Accès à vie », « envoyé immédiatement ». | Pages : variable automatique. « Accès à vie » → « à télécharger et garder ». « Immédiatement » seulement une fois l'automatisation testée. |
+| P1 | Animations sur chaque bloc (fondus, mots un par un, faisceau en boucle infinie), aucune prise en compte de `prefers-reduced-motion`. | Une seule animation marquante, mouvement réduit respecté. |
+| P1 | Accessibilité : textes de 8 à 12 px, gris à 40 % d'opacité (contraste insuffisant), FAQ et menu non utilisables au clavier, vidéo sans poster ni pause. | Corrigé par le socle (tokens AA, composants accessibles). |
+| P2 | Polices chargées depuis Google Fonts (transfert d'IP hors UE). | Polices auto-hébergées. |
+| P2 | Menu : Accueil, **Blog** (`/blog/index.html`), Recommandations. | Blog non fourni : à demander à l'ancien propriétaire (ou à réécrire à partir des 50 recherches). |
+
+Contenu réutilisable (à reprendre à l'étape 3, en réécrivant les promesses) : les 5 phrases « Tu te reconnais ? », le texte « Mon histoire », les 5 parties du guide, « pour qui / pas pour qui », les 4 bénéfices newsletter, les 4 questions de FAQ.
+
+### Page recommandations (`legacy/recommandations.html`)
+
+| Priorité | Constat | Décision |
+|---|---|---|
+| P0 | **Aucun lien produit actif** : les 36 boutons « Découvrir → » pointent vers `#`. Aucun identifiant d'affiliation n'est en place, donc rien à récupérer chez l'ancien propriétaire de ce côté. | Liens affiliés à créer sur tes propres comptes. |
+| P0 | **Allégations santé** sur des compléments et des produits : « efficacité prouvée », « magnésium pour le cortisol », « tryptophane pour la sérotonine », « oméga-3 pour réduire l'inflammation », gua sha qui « réduit la rétention d'eau et active le système lymphatique », bouillotte qui « stimule le nerf vague », « impact hormonal mesurable ». Les allégations de santé sur les compléments alimentaires sont strictement encadrées (règlement (CE) n° 1924/2006). | Réécrire en ressenti personnel (« ce que j'utilise et pourquoi je l'aime »), sans effet sur la santé. À faire relire. |
+| P0 | Huile essentielle de lavande et infusion de framboisier dans le « Kit phase lutéale », sans précaution (grossesse, allaitement, traitements). Contradiction avec les règles de l'assistante (§7). | Retirer les HE et plantes des kits, ou ajouter un encadré de précautions validé. |
+| P1 | Badges « Le plus efficace » / « Le plus sérieux du marché » : comparatifs non démontrés. | Remplacer par « mon préféré », « pour débuter », « le plus naturel ». |
+| P1 | Partenariat « Aurélie Pole » avec code -15 % « en cours de finalisation » publié. | Ne publier qu'une fois signé, avec la mention « partenariat commercial ». |
+| P1 | Éléments « À confirmer » / « Référence en cours » visibles publiquement. | Masqués tant que la référence n'existe pas. |
+| P1 | Aucune photo (emplacements « [ Photo … ] »). | Photos produits à obtenir auprès des marques (kits presse affiliés) ou à prendre toi-même. |
+| ✅ | Mention d'affiliation claire, en haut et en bas de page. | À conserver. |
+
+Contacts relevés : `hello@cycleawakening.com`, Instagram `@cycleawakening`. Le site utilisera `hello@` (au lieu de `bonjour@`).
+
+### Design system de l'ancien site → décision « hybride » (6 octobre 2026)
+
+Palette conservée : crème `#F7F4EF`, beiges `#EDE8E0` / `#E3DDD4`, vert bouteille `#1A3028` / `#2D4A3E`, sauge `#9FC0B0`, gris `#5C5C5C`. Le **fuchsia `#E0257A`** est réservé au logo et aux italiques des grands titres (≤ 10 %) ; les boutons passent en vert bouteille / crème. Le quasi-noir `#0A1510` et le mauve `#8B7BA8` ne sont pas repris. Cormorant Garamond + Inter conservées. Logo : « cycle » manuscrit (Sacramento) sur « AWAKENING » Art déco (Limelight), vectorisé.
