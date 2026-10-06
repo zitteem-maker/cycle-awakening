@@ -18,7 +18,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "logo": "node scripts/build-logo.mjs",
-    "hero-video": "node scripts/process-hero-video.mjs"
+    "hero-video": "node scripts/process-hero-video.mjs",
+    "build:book": "npm run tokens && node book/build.mjs",
+    "build:book:brouillon": "npm run tokens && node book/build.mjs --brouillon"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
@@ -37,7 +39,9 @@
     "@fontsource/monsieur-la-doulaise": "^5.3.0",
     "@fontsource/poiret-one": "^5.3.0",
     "@fontsource/sacramento": "^5.3.0",
+    "marked": "^18.1.0",
     "opentype.js": "^2.0.0",
+    "pdf-lib": "^1.17.1",
     "playwright-core": "^1.63.0"
   }
 }

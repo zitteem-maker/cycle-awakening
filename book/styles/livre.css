@@ -1,0 +1,139 @@
+/* Mise en page du livre (A4). Les couleurs et polices viennent des design tokens du site
+   (design-tokens/dist/tokens.css, injecté par book/build.mjs). Règles @page générées par le script. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 10.5pt; }
+body {
+  margin: 0;
+  font-family: var(--font-family-body);
+  color: var(--semantic-text);
+  line-height: 1.6;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  hyphens: auto;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-family-display);
+  font-weight: 500;
+  line-height: 1.15;
+  break-after: avoid;
+  text-wrap: balance;
+}
+h2 { font-size: 20pt; margin: 1.6em 0 0.5em; }
+h3 { font-size: 14pt; margin: 1.3em 0 0.4em; }
+p { margin: 0 0 0.75em; orphans: 3; widows: 3; }
+ul, ol { padding-left: 1.2em; margin: 0 0 0.9em; }
+li { margin-bottom: 0.35em; }
+strong { font-weight: 600; }
+a { color: var(--semantic-link); }
+
+.accent { font-family: var(--font-family-display); font-style: italic; color: var(--semantic-accent); }
+
+/* --- Couverture -------------------------------------------------------- */
+.couverture {
+  page: couverture;
+  height: 297mm;
+  background: linear-gradient(170deg, var(--semantic-bg-deep) 0%, var(--semantic-bg-deep-intense) 100%);
+  color: var(--semantic-text-on-deep);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34mm 24mm 26mm;
+  break-after: page;
+}
+.couverture .logo svg { width: 120mm; height: auto; }
+.couverture h1 { font-size: 46pt; margin: 0 0 6mm; color: var(--semantic-text-on-deep); }
+.couverture .sous-titre { font-family: var(--font-family-display); font-size: 19pt; font-style: italic; color: var(--semantic-text-on-deep-muted); max-width: 120mm; }
+.couverture .signature { font-family: var(--font-family-display); font-size: 15pt; font-style: italic; color: var(--semantic-accent); }
+.couverture .filet { width: 18mm; height: 1.2pt; background: var(--semantic-accent); margin: 8mm 0; }
+
+/* --- Pages liminaires ---------------------------------------------------- */
+.liminaire { break-after: page; }
+.liminaire h2 { margin-top: 0; }
+.avertissement {
+  border-left: 2.5pt solid var(--semantic-accent-text);
+  background: var(--semantic-bg-alt);
+  padding: 5mm 6mm;
+  margin: 8mm 0;
+}
+.avertissement p:last-child { margin: 0; }
+.petit { font-size: 8.5pt; color: var(--semantic-text-muted); }
+
+.sommaire { list-style: none; padding: 0; margin: 10mm 0 0; }
+.sommaire li { margin: 0 0 5mm; }
+.sommaire a { text-decoration: none; color: var(--semantic-text); display: grid; grid-template-columns: 14mm 1fr; align-items: baseline; }
+.sommaire .num { font-family: var(--font-family-display); font-style: italic; font-size: 16pt; color: var(--semantic-accent); }
+.sommaire .t { font-family: var(--font-family-display); font-size: 15pt; }
+.sommaire .sous { grid-column: 2; font-size: 9pt; color: var(--semantic-text-muted); }
+.sommaire .partie { margin-top: 9mm; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); }
+
+/* --- Chapitres ----------------------------------------------------------- */
+.chapitre { break-before: page; }
+.chapitre-entete { margin: 0 0 12mm; padding-bottom: 8mm; border-bottom: 0.6pt solid var(--semantic-line); }
+.chapitre-num { font-family: var(--font-family-display); font-style: italic; font-size: 40pt; line-height: 1; color: var(--semantic-accent); margin: 0 0 3mm; }
+.chapitre-entete h1 { font-size: 30pt; margin: 0 0 4mm; }
+.chapitre-accroche { font-family: var(--font-family-display); font-style: italic; font-size: 14pt; color: var(--semantic-text-muted); margin: 0; }
+.chapitre-statut {
+  display: inline-block;
+  font-size: 8pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 0.6pt dashed var(--semantic-text-muted);
+  color: var(--semantic-text-muted);
+  padding: 1mm 3mm;
+  margin-bottom: 6mm;
+}
+
+.encadre {
+  background: var(--semantic-bg-alt);
+  border-radius: 3mm;
+  padding: 5mm 6mm;
+  margin: 6mm 0;
+  break-inside: avoid;
+}
+.encadre-titre { font-family: var(--font-family-display); font-size: 13pt; font-weight: 600; margin-bottom: 2mm; }
+.encadre p:last-child, .encadre ul:last-child { margin-bottom: 0; }
+.encadre-alerte { background: transparent; border: 0.8pt solid var(--semantic-accent-text); }
+.encadre-alerte .encadre-titre { color: var(--semantic-accent-text); }
+
+.sources { margin-top: 10mm; padding-top: 4mm; border-top: 0.6pt solid var(--semantic-line); font-size: 8.5pt; color: var(--semantic-text-muted); }
+.sources-titre { font-weight: 600; color: var(--semantic-text); }
+
+/* --- Outils imprimables --------------------------------------------------- */
+.outil { break-before: page; }
+.outil h1 { font-size: 24pt; margin: 0 0 3mm; }
+.outil-etiquette { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); margin-bottom: 2mm; }
+.outil-intro { font-size: 9.5pt; color: var(--semantic-text-muted); max-width: 150mm; }
+.outil-champ { font-size: 9pt; margin: 4mm 0; }
+.outil-note { font-size: 8.5pt; color: var(--semantic-text-muted); margin-top: 5mm; }
+
+.grille { width: 100%; border-collapse: collapse; font-size: 8.5pt; table-layout: fixed; }
+.grille th, .grille td { border: 0.6pt solid var(--semantic-text-muted); padding: 1.5mm; vertical-align: top; }
+.grille thead th { background: var(--semantic-bg-alt); font-weight: 600; text-align: left; }
+.grille small { font-weight: 400; color: var(--semantic-text-muted); }
+.journal tbody tr { height: 19.5mm; }
+.journal col.c-jour { width: 13mm; }
+.journal col.c-energie { width: 21mm; }
+.journal .echelle { font-size: 8.5pt; white-space: nowrap; color: var(--semantic-text-muted); text-align: center; }
+.planner tbody tr { height: 21mm; }
+.planner th[scope='row'] { width: 30mm; text-align: left; font-weight: 600; background: var(--semantic-bg-alt); }
+
+.outil-bas { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 6mm; }
+.outil-bas.trois { grid-template-columns: 1fr 1fr 1fr; }
+.colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin: 5mm 0; }
+.colonnes.trois { grid-template-columns: 1fr 1fr 1fr; }
+.cadre { border: 0.6pt solid var(--semantic-text-muted); border-radius: 2.5mm; padding: 4mm; break-inside: avoid; font-size: 9pt; }
+.cadre-titre { font-family: var(--font-family-display); font-size: 12pt; font-weight: 600; margin-bottom: 2mm; }
+.cadre.alerte { border-color: var(--semantic-accent-text); margin-top: 5mm; }
+.cadre.alerte .cadre-titre { color: var(--semantic-accent-text); }
+.lignes { min-height: 26mm; background-image: repeating-linear-gradient(transparent 0 6.4mm, var(--semantic-line) 6.4mm 6.7mm); }
+.cases { list-style: none; padding: 0; margin: 0; }
+.cases li { padding-left: 6mm; position: relative; margin-bottom: 2.2mm; }
+.cases li::before { content: ''; position: absolute; left: 0; top: 0.8mm; width: 3.2mm; height: 3.2mm; border: 0.7pt solid var(--semantic-text); border-radius: 0.6mm; }
+
+/* --- Dernière page ------------------------------------------------------- */
+.fin { break-before: page; }
+.fin .logo svg { width: 70mm; height: auto; margin-bottom: 10mm; }
+.fin-titre { font-size: 26pt; margin: 0 0 6mm; }
