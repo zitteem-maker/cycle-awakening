@@ -40,7 +40,7 @@ Règles :
 
 ## Logo
 
-- Fichiers : `public/brand/logo.svg` (fond clair), `logo-clair.svg` (fond vert), `logo-monochrome-*.svg`, `monogramme.svg` (avatar réseaux, favicon). Généré par `npm run logo` (`scripts/build-logo.mjs`), texte vectorisé.
+- Fichiers : `public/brand/logo.svg` (fond clair), `logo-clair.svg` (fond vert), `logo-monochrome-*.svg`, `monogramme.svg` et `monogramme-clair.svg` (« A » Art déco + filet fuchsia : favicon, avatar réseaux). Généré par `npm run logo` (`scripts/build-logo.mjs`), texte vectorisé.
 - Composition : « cycle » en **Sacramento** fuchsia, posé en travers du haut de « AWAKENING » en **Limelight** (Art déco plein/délié), départ au-dessus du second A.
 - Dans le site : composant `Logo.astro` (le mot prend `currentColor`, « cycle » reste fuchsia).
 - Zone de protection : la hauteur d'une capitale tout autour. Taille minimale : 120 px de large (en dessous : monogramme).

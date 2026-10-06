@@ -41,3 +41,17 @@ Les règles font foi. Le prompt devra intégrer ce qui lui manque :
 7. **Médecine chinoise, acupuncture, phytothérapie** : explication générale possible, sans preuve affirmée ni remplacement d'un suivi (§7).
 8. **Détresse psychique** : numéro de la ligne d'écoute correspondant au pays de la personne, vérifié régulièrement ; ne pas rester seule (§3).
 9. **Spécialistes** : aucune transmission d'un échange sans consentement explicite au cas par cas (§8.5).
+
+## Décisions du 6 octobre 2026 (à ne pas oublier)
+
+- **Newsletter** : le formulaire du nouveau site envoie réellement l'inscription à l'outil d'emailing (double opt-in, tags). Étape 3.
+- **Recommandations** (étape 3) :
+  - les liens sont créés par la fondatrice ; tous ne sont pas affiliés ;
+  - chaque produit porte un champ `relation` : `aucune` (simple recommandation), `affilié`, `partenariat`, `produit offert` ;
+  - badge visible « lien affilié » / « partenariat » / « produit offert » sur la carte concernée, et `rel="sponsored"` sur ces liens (exigence Google) ; liens sans relation commerciale : lien normal, sans badge ;
+  - **toutes les allégations santé retirées**, réécriture en ressenti personnel (« ce que j'aime, quand je l'utilise ») ;
+  - HE et plantes retirées des kits ; éléments « À confirmer » masqués ; partenariat Aurélie publié seulement une fois signé.
+- **Reformulations de la home** (étape 3) : « Disparaître 10 jours par mois. Plus jamais. » → sans promesse de résultat ; « protocole exact » ; « Accès à vie » → « à télécharger et garder » ; « envoyé immédiatement » seulement une fois l'automatisation testée.
+- **Email de contact** : `hello@cycleawakening.com`.
+- **Blog** : réécrit à partir des 50 recherches ; 4 articles au lancement puis 2 par semaine ; email « Quoi de neuf » hebdomadaire depuis le flux RSS. Voir `docs/PLAN-EDITORIAL.md` et skill `seo-blog`. Infrastructure (collection, RSS, sitemap, schema.org) à l'étape 3.
+- **Favicon** : monogramme « A » Art déco + filet fuchsia (piste A), à valider.

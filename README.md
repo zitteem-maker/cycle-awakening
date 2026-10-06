@@ -34,7 +34,7 @@ book/                       Livre PDF (étape 2)
 functions/                  Cloudflare Pages Functions (paiement, webhook, assistante — étapes 4 et 7)
 legacy/                     HTML de l'ancien site (référence de contenu, non publié)
 docs/                       Audit, migration, liens UTM, assets, backlog, règles IA, sources
-.claude/skills/             Skills projet : DA, pages légales FR, vidéo hero
+.claude/skills/             Skills projet : DA, pages légales FR, vidéo hero, SEO et blog
 ```
 
 ## Scripts
@@ -61,5 +61,6 @@ docs/                       Audit, migration, liens UTM, assets, backlog, règle
 - [Liens UTM par réseau](docs/LIENS-UTM.md)
 - [Assets : état, sites recommandés, crédits](docs/ASSETS.md)
 - [Backlog des décisions](docs/BACKLOG.md)
+- [Plan éditorial du blog](docs/PLAN-EDITORIAL.md)
 - [Règles de l'assistante IA](docs/regles-assistante-ia.md)
 - [Documents sources](docs/SOURCES.md)

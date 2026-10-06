@@ -79,21 +79,18 @@ writeFileSync(`${out}logo-clair.svg`, svg(CREME, FUCHSIA)); // sur fond vert bou
 writeFileSync(`${out}logo-monochrome-vert.svg`, svg(VERT, VERT));
 writeFileSync(`${out}logo-monochrome-creme.svg`, svg(CREME, CREME));
 
-// --- Monogramme (favicon, avatar réseaux) : « A » Art déco + « c » manuscrit -----------------
-const A = setText(deco, 'A', 50, 0, 0);
+// --- Monogramme (favicon, avatar réseaux) : le « A » Art déco du logo, souligné d'un filet fuchsia --
+const A = setText(deco, 'A', 48, 0, 0);
 const aBox = bbox(A.d);
 const ax = 32 - (aBox.x1 + aBox.x2) / 2;
-const ay = 32 - (aBox.y1 + aBox.y2) / 2 + 3;
-const c = setText(script, 'c', 64, 0, 0);
-const cBox = bbox(c.d);
-const cx = 25 - (cBox.x1 + cBox.x2) / 2;
-const cy = 27 - (cBox.y1 + cBox.y2) / 2;
+const ay = 33 - (aBox.y1 + aBox.y2) / 2;
 const mono = (bg, fg, radius) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cycle Awakening"><title>Cycle Awakening</title>` +
   `<rect width="64" height="64" rx="${radius}" fill="${bg}"/>` +
   `<path transform="translate(${f(ax)} ${f(ay)})" d="${A.d}" fill="${fg}"/>` +
-  `<path transform="translate(${f(cx)} ${f(cy)})" d="${c.d}" fill="${FUCHSIA}" stroke="${FUCHSIA}" stroke-width="1.2"/></svg>\n`;
+  `<rect x="18" y="52" width="28" height="1.6" fill="${FUCHSIA}"/></svg>\n`;
 writeFileSync(`${out}monogramme.svg`, mono(VERT, CREME, 0));
+writeFileSync(`${out}monogramme-clair.svg`, mono(CREME, VERT, 0));
 writeFileSync(`${root}public/favicon.svg`, mono(VERT, CREME, 14));
 
 // --- Composant Astro inline : le mot hérite de currentColor, « cycle » reste fuchsia --------
