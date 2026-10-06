@@ -7,6 +7,15 @@ description: Rédiger ou mettre à jour les pages légales françaises de Cycle 
 
 > **Règle absolue** : ces pages sont des **gabarits**. Ne jamais écrire, dire ou laisser entendre qu'elles sont « conformes » ou « validées juridiquement ». Tant que `legal.validated` vaut `false` dans `src/config/legal.ts`, le bandeau « document en cours de validation » reste affiché. Seule l'éditrice passe ce drapeau à `true`, après relecture par un·e juriste.
 
+## Mode pré-lancement
+
+Tant que `missingForSales()` (`src/config/legal.ts`) renvoie des champs manquants :
+- mentions légales en version « site édité à titre non professionnel » (identité communiquée à l'hébergeur, LCEN) ;
+- CGV absentes du pied de page, page affichée avec un avertissement « aucune vente ouverte » ;
+- **le build échoue** si `PUBLIC_CHECKOUT_URL` contient un lien de paiement réel (les liens Stripe `test_` restent autorisés).
+Dès que le site collecte des emails, `controllerName` (prénom et nom) doit être renseigné : le RGPD impose d'identifier le responsable du traitement.
+Vendre ou toucher des commissions d'affiliation est une activité professionnelle : l'immatriculation doit précéder la première vente.
+
 ## Où sont les choses
 
 - Données de l'éditrice : `src/config/legal.ts` (raison sociale, SIREN, adresse, contact, médiateur, sous-traitants). Toute info manquante = `TODO_LEGAL_…`, jamais inventée.

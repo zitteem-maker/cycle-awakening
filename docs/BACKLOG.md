@@ -55,3 +55,13 @@ Les règles font foi. Le prompt devra intégrer ce qui lui manque :
 - **Email de contact** : `hello@cycleawakening.com`.
 - **Blog** : réécrit à partir des 50 recherches ; 4 articles au lancement puis 2 par semaine ; email « Quoi de neuf » hebdomadaire depuis le flux RSS. Voir `docs/PLAN-EDITORIAL.md` et skill `seo-blog`. Infrastructure (collection, RSS, sitemap, schema.org) à l'étape 3.
 - **Favicon** : monogramme « A » Art déco + filet fuchsia (piste A), à valider.
+
+## Rappels à faire à la fondatrice (Claude doit les signaler au bon moment)
+
+- **Avant d'activer les recommandations (étape 3)** : rappeler la règle d'affiliation — badge « lien affilié / partenariat / produit offert » + `rel="sponsored"` ; aucun badge pour une simple recommandation ; tout produit reçu gratuitement compte comme relation commerciale.
+- **Avant la première vente et avant tout lien affilié rémunéré** : immatriculation (micro-entreprise ou autre), puis renseigner `src/config/legal.ts` (statut, SIREN, adresse ou domiciliation, TVA, téléphone, médiateur). Le build refuse un lien de paiement réel tant qu'il manque une information (`missingForSales()`).
+- **Dès l'ouverture de la newsletter** : `controllerName` (prénom et nom) renseigné dans `src/config/legal.ts`, obligatoire au titre du RGPD.
+
+## Mode pré-lancement (en place depuis le 6 octobre 2026)
+
+Tant que `missingForSales()` n'est pas vide : mentions légales de site non professionnel, CGV retirées du pied de page (page conservée avec un avertissement), paiement réel impossible (liens Stripe de test autorisés).

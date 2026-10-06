@@ -7,6 +7,12 @@ export const legal = {
   validated: false,
   updatedAt: '2026-10-06',
 
+  /**
+   * Prénom et nom de la personne responsable du site. Requis dès que le site collecte des emails
+   * (newsletter), même avant toute vente : le RGPD impose d'indiquer qui traite les données.
+   */
+  controllerName: 'TODO_LEGAL_PRENOM_NOM',
+
   editor: {
     name: 'TODO_LEGAL_NOM_OU_RAISON_SOCIALE',
     legalForm: 'TODO_LEGAL_FORME (ex. entreprise individuelle / micro-entreprise, SASU…)',
@@ -47,3 +53,26 @@ export const legal = {
 };
 
 export const isTodo = (value: string | null | undefined) => !value || value.startsWith('TODO_LEGAL');
+
+/**
+ * Informations obligatoires AVANT la première vente (et avant d'activer des liens affiliés).
+ * Tant qu'il en manque une, le site reste en « pré-lancement » : pas de vente, mentions légales
+ * de site non professionnel, CGV non publiées.
+ */
+export function missingForSales(): string[] {
+  const e = legal.editor;
+  const required: Record<string, string | null> = {
+    'nom ou raison sociale': e.name,
+    'statut juridique': e.legalForm,
+    adresse: e.address,
+    SIREN: e.registration,
+    TVA: e.vatNumber ?? e.vatNote,
+    téléphone: e.phone,
+    'directrice de publication': e.publicationDirector,
+    'médiateur de la consommation': legal.mediator.name,
+    'site du médiateur': legal.mediator.website,
+  };
+  return Object.entries(required).filter(([, v]) => isTodo(v)).map(([k]) => k);
+}
+
+export const salesReady = missingForSales().length === 0;

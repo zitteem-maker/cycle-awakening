@@ -1,7 +1,7 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
 import Val from '../components/legal/Val.astro';
-import { legal } from '../config/legal';
+import { legal, salesReady } from '../config/legal';
 const e = legal.editor;
 ---
 
@@ -16,7 +16,7 @@ const e = legal.editor;
 
   <h2>Responsable du traitement</h2>
   <p>
-    <Val v={e.name} />, <Val v={e.address} />. Contact pour toute question sur tes données :
+    {salesReady ? <><Val v={e.name} />, <Val v={e.address} /></> : <Val v={legal.controllerName} />}. Contact pour toute question sur tes données :
     <a href={`mailto:${e.email}`}>{e.email}</a>.
   </p>
 

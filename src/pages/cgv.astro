@@ -1,12 +1,18 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
 import Val from '../components/legal/Val.astro';
-import { legal } from '../config/legal';
+import { legal, salesReady } from '../config/legal';
 import { guide, formatPrice } from '../config/offers';
 const e = legal.editor;
 ---
 
 <LegalLayout title="Conditions générales de vente" description="Conditions de vente du guide Cycle Awakening et des offres en ligne.">
+  {!salesReady && (
+    <p class="prelaunch" role="note">
+      Aucune vente n’est ouverte pour le moment. Les conditions ci-dessous sont un modèle de travail ; elles seront
+      complétées et publiées avant l’ouverture des ventes.
+    </p>
+  )}
   <h2>1. Objet et champ d’application</h2>
   <p>
     Les présentes conditions régissent les ventes conclues sur le site Cycle Awakening entre <Val v={e.name} />
@@ -106,3 +112,7 @@ const e = legal.editor;
     sont ceux prévus par la loi.
   </p>
 </LegalLayout>
+
+<style>
+  .prelaunch { font-weight: var(--font-weight-medium); }
+</style>

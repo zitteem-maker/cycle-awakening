@@ -2,6 +2,8 @@
 // Seules les variables préfixées PUBLIC_ sont exposées au navigateur ; les autres ne sont lues qu'au build.
 // Aucun secret ici.
 
+import { missingForSales } from './legal';
+
 const env = import.meta.env;
 
 /** URL canonique du site, sans slash final. Sert aux balises Open Graph, au sitemap et aux liens UTM. */
@@ -31,11 +33,21 @@ export const features = {
 
 function validCheckoutUrl(value: string | undefined): string | null {
   if (!value) return null;
+  let url: URL;
   try {
-    const url = new URL(value);
+    url = new URL(value);
     if (url.protocol !== 'https:') throw new Error('doit être en https');
-    return url.toString();
   } catch (err) {
     throw new Error(`PUBLIC_CHECKOUT_URL invalide (${value}) : ${(err as Error).message}`);
   }
+  // Garde-fou : pas de vente réelle sans informations légales. Les liens de TEST Stripe
+  // (buy.stripe.com/test_…) restent autorisés pour les essais en Preview.
+  const isStripeTest = url.hostname === 'buy.stripe.com' && url.pathname.startsWith('/test_');
+  const missing = missingForSales();
+  if (!isStripeTest && missing.length) {
+    throw new Error(
+      `Paiement réel bloqué : informations légales manquantes dans src/config/legal.ts (${missing.join(', ')}).`,
+    );
+  }
+  return url.toString();
 }
