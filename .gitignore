@@ -11,3 +11,4 @@ book/dist/
 *.log
 .DS_Store
 assets-src/
+livrables/
