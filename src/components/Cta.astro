@@ -1,0 +1,106 @@
+---
+// Composant d'appel à l'action UNIQUE pour l'achat du guide.
+// Toutes les pages l'utilisent : le lien de paiement vient de PUBLIC_CHECKOUT_URL, le prix de src/config/offers.ts.
+// Si le paiement n'est pas branché, il n'affiche jamais de lien mort : il renvoie vers la liste d'attente.
+import { CHECKOUT_URL } from '../config/site';
+import { guide, formatPrice } from '../config/offers';
+
+interface Props {
+  /** Emplacement du bouton, transmis au tracking (ex. "hero", "offre", "footer"). */
+  location: string;
+  /** Libellé personnalisé. Par défaut : « Obtenir le guide — 27 € ». */
+  label?: string;
+  variant?: 'primary' | 'secondary' | 'on-deep';
+  /** Cible quand le paiement n'est pas encore branché. */
+  fallbackHref?: string;
+}
+
+const { location, label, variant = 'primary', fallbackHref = '/#newsletter' } = Astro.props;
+const price = formatPrice(guide.priceCents);
+const available = CHECKOUT_URL !== null;
+const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être prévenue de la sortie';
+---
+
+{available ? (
+  <a
+    class:list={['cta', `cta--${variant}`]}
+    href={CHECKOUT_URL}
+    data-event="cta_click"
+    data-cta-location={location}
+    data-offer={guide.id}
+  >
+    {text}
+  </a>
+) : (
+  <span class="cta-wrap">
+    <a
+      class:list={['cta', `cta--${variant}`]}
+      href={fallbackHref}
+      data-event="cta_waitlist_click"
+      data-cta-location={location}
+    >
+      {text}
+    </a>
+    <span class="cta-note">Le guide arrive bientôt.</span>
+  </span>
+)}
+
+<style>
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--size-tap-target);
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid transparent;
+    transition:
+      background-color var(--motion-duration-fast) var(--motion-ease),
+      color var(--motion-duration-fast) var(--motion-ease),
+      border-color var(--motion-duration-fast) var(--motion-ease);
+  }
+  .cta--primary {
+    background: var(--semantic-cta-bg);
+    color: var(--semantic-cta-text);
+  }
+  .cta--primary:hover {
+    background: var(--semantic-bg-deep);
+    color: var(--semantic-text-on-deep);
+  }
+  .cta--secondary {
+    background: transparent;
+    color: var(--semantic-text);
+    border-color: var(--semantic-text);
+  }
+  .cta--secondary:hover {
+    background: var(--semantic-text);
+    color: var(--semantic-bg);
+  }
+  .cta--on-deep {
+    background: var(--semantic-cta-bg);
+    color: var(--semantic-cta-text);
+  }
+  .cta--on-deep:hover {
+    background: var(--semantic-text-on-deep);
+  }
+  .cta--on-deep:focus-visible {
+    outline-color: var(--semantic-focus-on-deep);
+  }
+  .cta-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .cta-note {
+    font-size: var(--font-size-xs);
+    color: inherit;
+    opacity: 0.85;
+  }
+</style>

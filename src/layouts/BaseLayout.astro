@@ -1,0 +1,75 @@
+---
+// Gabarit commun : métadonnées SEO, Open Graph / Twitter, favicon, polices préchargées.
+import '../styles/global.css';
+import { SITE_URL, site } from '../config/site';
+import interRegular from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import cormorantMedium from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2?url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Chemin d'une image de partage 1200×630 dans /public. Par défaut l'image générique. */
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article' | 'product';
+  /** true pour les pages à ne pas indexer (merci, téléchargement, guide de style…). */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = site.description,
+  image = site.shareImage,
+  imageAlt = site.shareImageAlt,
+  type = 'website',
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
+// Cloudflare Pages sert /merci.html sous /merci : l'URL canonique n'a ni « .html » ni « index ».
+const cleanPath = Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/(.)\/$/, '$1') || '/';
+const canonical = new URL(cleanPath, SITE_URL).toString();
+const imageUrl = new URL(image, SITE_URL).toString();
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={cormorantMedium} as="font" type="font/woff2" crossorigin />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#F4F1EC" />
+
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,68 @@
+---
+// Guide de style interne (non indexé) : vérifier visuellement tokens et CTA.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Cta from '../components/Cta.astro';
+import tokens from '../../design-tokens/tokens.json';
+import { CHECKOUT_URL } from '../config/site';
+
+const groups = Object.entries(tokens.color).map(([group, entries]) => ({
+  group,
+  description: (entries as Record<string, any>).$description,
+  swatches: Object.entries(entries as Record<string, any>)
+    .filter(([k]) => !k.startsWith('$'))
+    .map(([name, t]) => ({ name, value: t.value as string, usage: t.usage as string })),
+}));
+---
+
+<BaseLayout title="Guide de style" noindex>
+  <main id="contenu" class="container section">
+    <p class="eyebrow">Interne · non indexé</p>
+    <h1>Guide de style</h1>
+
+    <h2>Palette</h2>
+    {groups.map(({ group, description, swatches }) => (
+      <section class="group">
+        <h3>{description ?? group}</h3>
+        <ul class="swatches">
+          {swatches.map((s) => (
+            <li>
+              <span class="chip" style={`background:${s.value}`} />
+              <strong>{s.name}</strong> <code>{s.value}</code>
+              <small>{s.usage}</small>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <h2>Typographie</h2>
+    <h1>Titre 1 — Redevenir toi.</h1>
+    <h2>Titre 2 — Ralentir est une stratégie hormonale.</h2>
+    <h3>Titre 3 — Ce qui se passe vraiment</h3>
+    <p>Texte courant en Inter. Le contenu respire comme le message : beaucoup d'espace, des phrases courtes.</p>
+    <p class="signature">Accent signature, réservé au journal.</p>
+
+    <h2>CTA</h2>
+    <p>État actuel : {CHECKOUT_URL ? 'paiement branché' : 'paiement non branché (PUBLIC_CHECKOUT_URL vide)'}.</p>
+    <div class="row">
+      <Cta location="styleguide" />
+      <Cta location="styleguide" variant="secondary" />
+    </div>
+    <div class="row deep pad">
+      <Cta location="styleguide" variant="on-deep" />
+    </div>
+
+    <h2>Emplacement à remplir</h2>
+    <p class="todo">TODO_PREUVE : exemple d'emplacement réservé à une preuve réelle.</p>
+  </main>
+</BaseLayout>
+
+<style>
+  .group { margin-bottom: var(--space-8); }
+  .swatches { list-style: none; padding: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+  .swatches li { display: grid; gap: var(--space-1); }
+  .swatches small { color: var(--semantic-text-muted); }
+  .chip { display: block; height: 4rem; border-radius: var(--radius-md); border: 1px solid var(--semantic-bg-alt); }
+  .row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; margin-bottom: var(--space-8); }
+  .pad { padding: var(--space-8); border-radius: var(--radius-md); }
+</style>

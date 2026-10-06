@@ -1,0 +1,34 @@
+---
+// Page d'accueil provisoire (étape 1). La landing complète est reconstruite à l'étape 3
+// avec la structure : navigation, hero, preuves, problème, histoire, livre, pour qui, offre, FAQ, newsletter, footer.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Cta from '../components/Cta.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout>
+  <main id="contenu">
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">{site.name}</p>
+        <h1>{site.tagline}</h1>
+        <p class="lead">Tu n’es pas instable. <span class="signature">Tu es cyclique.</span></p>
+        <Cta location="hero" />
+      </div>
+    </section>
+
+    <section id="newsletter" class="section deep">
+      <div class="container">
+        <h2>Être prévenue</h2>
+        <p class="todo">TODO_ETAPE_3 : formulaire newsletter (Brevo ou Kit, double opt-in).</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+  }
+</style>

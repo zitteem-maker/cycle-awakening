@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+design-tokens/dist/
+.env
+.env.*
+!.env.example
+.dev.vars
+.wrangler/
+book/dist/
+*.log
+.DS_Store
