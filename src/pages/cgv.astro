@@ -1,0 +1,108 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import Val from '../components/legal/Val.astro';
+import { legal } from '../config/legal';
+import { guide, formatPrice } from '../config/offers';
+const e = legal.editor;
+---
+
+<LegalLayout title="Conditions générales de vente" description="Conditions de vente du guide Cycle Awakening et des offres en ligne.">
+  <h2>1. Objet et champ d’application</h2>
+  <p>
+    Les présentes conditions régissent les ventes conclues sur le site Cycle Awakening entre <Val v={e.name} />
+    (« Cycle Awakening ») et toute personne physique agissant à des fins non professionnelles (« la cliente »). Elles
+    sont acceptées au moment de la commande et peuvent être téléchargées ou imprimées depuis cette page.
+  </p>
+
+  <h2>2. Vendeur</h2>
+  <p>
+    <Val v={e.name} />, <Val v={e.legalForm} />, <Val v={e.address} />, <Val v={e.registration} />.
+    Contact : <a href={`mailto:${e.email}`}>{e.email}</a>.
+  </p>
+
+  <h2>3. Produits</h2>
+  <h3>3.1 Le Guide (contenu numérique)</h3>
+  <p>
+    « {guide.name} » est un guide numérique au format PDF{guide.pages ? ` de ${guide.pages} pages` : ''}, accompagné
+    d’outils imprimables. Il est fourni sans support matériel, par téléchargement. Il s’agit d’un contenu éducatif de mode
+    de vie : il ne remplace pas un avis médical et ne garantit aucun résultat.
+  </p>
+  <h3>3.2 Abonnement Premium</h3>
+  <p>
+    <Val v="TODO_LEGAL_PREMIUM (section à rédiger à l’ouverture de l’offre : durée, reconduction, essai, prix, résiliation en ligne)" />
+  </p>
+
+  <h2>4. Prix</h2>
+  <p>
+    Les prix sont indiqués en euros, toutes taxes comprises. Le Guide est vendu {formatPrice(guide.priceCents)}.
+    <Val v={e.vatNote} />. Le prix applicable est celui affiché au moment de la commande.
+  </p>
+
+  <h2>5. Commande et paiement</h2>
+  <p>
+    La commande s’effectue en ligne via la page de paiement sécurisée de notre prestataire Stripe. La commande est
+    définitive après validation du paiement (bouton de commande mentionnant l’obligation de paiement). Un email de
+    confirmation récapitulant la commande est envoyé à l’adresse indiquée. Aucune donnée bancaire n’est conservée par
+    Cycle Awakening.
+  </p>
+
+  <h2>6. Livraison du Guide</h2>
+  <p>
+    Le Guide est livré par email, sous la forme d’un lien de téléchargement personnel, en principe dans les minutes qui
+    suivent le paiement. Ce lien est valable 7 jours et permet 5 téléchargements. En cas de non-réception, la cliente
+    peut écrire à <a href={`mailto:${e.email}`}>{e.email}</a> : un nouveau lien lui est envoyé.
+  </p>
+
+  <h2>7. Droit de rétractation</h2>
+  <p>
+    La cliente dispose en principe d’un délai de 14 jours pour se rétracter (article L221-18 du Code de la consommation).
+  </p>
+  <p>
+    Toutefois, pour un contenu numérique fourni sans support matériel, ce droit ne peut plus être exercé lorsque
+    l’exécution a commencé avec l’<strong>accord préalable exprès</strong> de la cliente et sa <strong>renonciation
+    expresse</strong> à son droit de rétractation (article L221-28, 13° du Code de la consommation). Lors de la commande,
+    la cliente est invitée à cocher une case par laquelle elle demande l’accès immédiat au Guide et reconnaît perdre son
+    droit de rétractation. Cet accord et cette renonciation sont confirmés dans l’email de confirmation de commande.
+  </p>
+  <p>
+    Si la cliente n’a pas donné cet accord, elle peut se rétracter dans les 14 jours en écrivant à
+    <a href={`mailto:${e.email}`}>{e.email}</a> ; elle est alors remboursée dans les 14 jours, par le même moyen de
+    paiement.
+  </p>
+
+  <h2>8. Garantie légale de conformité</h2>
+  <p>
+    Le Guide bénéficie de la garantie légale de conformité des contenus numériques (articles L224-25-1 et suivants du Code
+    de la consommation). En cas de fichier défectueux ou illisible, écrire à <a href={`mailto:${e.email}`}>{e.email}</a> :
+    une version conforme est fournie ou, à défaut, la cliente est remboursée.
+  </p>
+
+  <h2>9. Responsabilité</h2>
+  <p>
+    Les contenus de Cycle Awakening sont des repères généraux de mode de vie. Ils ne constituent pas un acte médical et ne
+    tiennent pas compte de la situation médicale individuelle. Il appartient à chacune de consulter un·e professionnel·le
+    de santé pour tout symptôme, traitement ou situation particulière (grossesse, pathologie, traitement en cours).
+  </p>
+
+  <h2>10. Propriété intellectuelle</h2>
+  <p>
+    Le Guide est réservé à l’usage personnel de la cliente. Toute reproduction, diffusion, revente ou mise à disposition,
+    même gratuite, est interdite.
+  </p>
+
+  <h2>11. Données personnelles</h2>
+  <p>Les données collectées lors de la commande sont traitées conformément à la <a href="/confidentialite">politique de confidentialité</a>.</p>
+
+  <h2>12. Réclamations et médiation</h2>
+  <p>
+    Toute réclamation peut être adressée à <a href={`mailto:${e.email}`}>{e.email}</a>. En cas de désaccord persistant,
+    la cliente peut recourir gratuitement au médiateur de la consommation : <Val v={legal.mediator.name} />,
+    <Val v={legal.mediator.website} />.
+  </p>
+
+  <h2>13. Droit applicable</h2>
+  <p>
+    Les présentes conditions sont soumises au droit français. À défaut de résolution amiable, les tribunaux compétents
+    sont ceux prévus par la loi.
+  </p>
+</LegalLayout>

@@ -1,0 +1,72 @@
+---
+// Illustration de marque « horizon » : mer à l'aube, un point or doux qui se lève.
+// Sert de visuel hero tant qu'aucune vidéo ou photo réelle n'est fournie. Décorative (aria-hidden).
+// Le lever du point est LE moment d'animation marquant du site (coupé si mouvement réduit).
+interface Props {
+  /** Anime le lever du point (une seule fois par page). */
+  animate?: boolean;
+  /** Affiche le point or (soleil). Sans lui : un horizon vide, pour la 404. */
+  sun?: boolean;
+}
+const { animate = true, sun = true } = Astro.props;
+---
+
+<svg
+  class:list={['horizon', { 'horizon--animate': animate }]}
+  viewBox="0 0 1440 900"
+  preserveAspectRatio="xMaxYMid slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient id="hz-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--color-nuit-bleu-nuit)" />
+      <stop offset="0.46" stop-color="var(--color-nuit-vert-profond)" />
+      <stop offset="0.53" stop-color="var(--color-nuit-gris-brume)" stop-opacity="0.32" />
+    </linearGradient>
+    <linearGradient id="hz-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="var(--color-nuit-vert-profond)" />
+      <stop offset="1" stop-color="var(--color-derive-nuit-intense)" />
+    </linearGradient>
+    <radialGradient id="hz-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="var(--color-accent-or-doux)" stop-opacity="0.45" />
+      <stop offset="1" stop-color="var(--color-accent-or-doux)" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="hz-above"><rect width="1440" height="470" /></clipPath>
+  </defs>
+
+  <rect width="1440" height="900" fill="url(#hz-sky)" />
+  {sun && <g clip-path="url(#hz-above)" class="horizon__sun">
+    <circle cx="1180" cy="460" r="210" fill="url(#hz-glow)" />
+    <circle cx="1180" cy="460" r="46" fill="var(--color-accent-or-doux)" />
+  </g>}
+  <rect y="470" width="1440" height="430" fill="url(#hz-sea)" />
+  <g fill="none" stroke="var(--color-nuit-gris-brume)" stroke-linecap="round">
+    <path d="M0 470H1440" stroke-opacity="0.5" />
+    {sun && <><path d="M1080 500H1280" stroke="var(--color-accent-or-doux)" stroke-opacity="0.5" stroke-width="2" />
+    <path d="M1120 530H1240" stroke="var(--color-accent-or-doux)" stroke-opacity="0.35" stroke-width="2" />
+    <path d="M1150 562H1210" stroke="var(--color-accent-or-doux)" stroke-opacity="0.22" stroke-width="2" /></>}
+    <path d="M120 560C320 550 520 564 720 556" stroke-opacity="0.18" />
+    <path d="M260 630C520 618 760 638 1020 626" stroke-opacity="0.14" />
+    <path d="M40 720C380 708 700 730 1100 716" stroke-opacity="0.1" />
+  </g>
+</svg>
+
+<style>
+  .horizon {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .horizon--animate .horizon__sun {
+    animation: hz-rise var(--motion-duration-hero) var(--motion-ease) both;
+  }
+  @keyframes hz-rise {
+    from { transform: translateY(70px); opacity: 0.4; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .horizon--animate .horizon__sun { animation: none; }
+  }
+</style>

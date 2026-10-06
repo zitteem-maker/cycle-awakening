@@ -10,6 +10,7 @@ Site, livre PDF et (plus tard) espace membre de Cycle Awakening. Déployé sur C
 npm install
 cp .env.example .env   # puis compléter
 npm run dev            # http://localhost:4321  (guide de style : /styleguide)
+# Images de marque : npm run logo && npm run share-image
 npm run build          # tokens + contrôle des contrastes + build statique dans dist/
 ```
 
@@ -20,14 +21,19 @@ design-tokens/tokens.json   Source unique du design (couleurs, typo, espacements
 design-tokens/dist/         Généré par `npm run tokens` (CSS + JSON), non commité
 src/config/site.ts          Config publique lue depuis l'environnement (PUBLIC_SITE_URL, PUBLIC_CHECKOUT_URL, drapeaux)
 src/config/offers.ts        Offres, prix, nombre de pages du livre (variables uniques)
+src/config/legal.ts         Informations légales (TODO_LEGAL à compléter), sous-traitants
+src/config/book-meta.json   Nombre de pages du livre, écrit par le build du livre
 src/components/Cta.astro    CTA d'achat unique (piloté par PUBLIC_CHECKOUT_URL)
-src/layouts/BaseLayout.astro  SEO, Open Graph, favicon, polices préchargées
+src/components/HeroVideo.astro  Fond de hero vidéo accessible (ou illustration horizon)
+src/components/Logo.astro   Logo inline (généré par `npm run logo`)
+src/layouts/                BaseLayout (SEO, Open Graph, favicon, polices), PageLayout, LegalLayout
 src/pages/                  Pages du site
 public/                     Fichiers statiques (_headers, _redirects, favicon, image de partage)
 scripts/                    Outils : tokens, contrastes, image de partage, liens UTM, captures
 book/                       Livre PDF (étape 2)
 functions/                  Cloudflare Pages Functions (paiement, webhook, assistante — étapes 4 et 7)
-docs/                       Audit, migration, liens UTM, sources
+docs/                       Audit, migration, liens UTM, assets, backlog, règles IA, sources
+.claude/skills/             Skills projet : DA, pages légales FR, vidéo hero
 ```
 
 ## Scripts
@@ -38,6 +44,8 @@ docs/                       Audit, migration, liens UTM, sources
 | `npm run check:contrast` | Vérifie les contrastes WCAG AA des couples déclarés (bloque le build si échec) |
 | `npm run share-image` | Régénère l'image de partage 1200×630, le favicon et les icônes |
 | `npm run utm` | Régénère `docs/LIENS-UTM.md` et `public/_redirects` (lit `PUBLIC_SITE_URL`) |
+| `npm run logo` | Régénère le logo vectorisé, le favicon et le composant `Logo.astro` |
+| `npm run hero-video -- <fichier> [début] [durée]` | Compresse une vidéo hero (MP4, WebM, posters) |
 
 ## Règles
 
@@ -50,4 +58,7 @@ docs/                       Audit, migration, liens UTM, sources
 - [Audit de l'existant](docs/AUDIT.md)
 - [Migration : GitHub, Cloudflare, domaine, DNS, email](docs/MIGRATION.md)
 - [Liens UTM par réseau](docs/LIENS-UTM.md)
+- [Assets : état, sites recommandés, crédits](docs/ASSETS.md)
+- [Backlog des décisions](docs/BACKLOG.md)
+- [Règles de l'assistante IA](docs/regles-assistante-ia.md)
 - [Documents sources](docs/SOURCES.md)

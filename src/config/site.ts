@@ -5,7 +5,7 @@
 const env = import.meta.env;
 
 /** URL canonique du site, sans slash final. Sert aux balises Open Graph, au sitemap et aux liens UTM. */
-export const SITE_URL: string = (env.PUBLIC_SITE_URL || 'http://localhost:4321').replace(/\/$/, '');
+export const SITE_URL: string = (env.PUBLIC_SITE_URL || 'https://cycleawakening.com').replace(/\/$/, '');
 
 /**
  * Lien de paiement du guide (Stripe Payment Link, option A).

@@ -1,6 +1,6 @@
 # Migration vers ton compte Cloudflare et ton domaine
 
-Le site actuel (`cycleawakening.pages.dev`) est sur un compte Cloudflare **qui n'est pas le tien**. On ne le migre pas : on **reconstruit** dans ce dépôt, tu déploies sur **ton** compte, puis l'ancien propriétaire supprime l'ancien projet. Aucune redirection depuis l'ancien site n'est prévue (il n'a pas de trafic).
+Le site actuel (`cycleawakening.pages.dev`) est sur un compte Cloudflare **qui n'est pas le tien**. Le nouveau site sera servi sur **`cycleawakening.com`**, ton domaine. On ne le migre pas : on **reconstruit** dans ce dépôt, tu déploies sur **ton** compte, puis l'ancien propriétaire supprime l'ancien projet. Aucune redirection depuis l'ancien site n'est prévue (il n'a pas de trafic).
 
 Ordre conseillé : **1. GitHub → 2. Cloudflare Pages → 3. Domaine → 4. DNS du site → 5. Email → 6. Vérifications → 7. Suppression de l'ancien site.**
 
@@ -37,7 +37,7 @@ Le dépôt `zitteem-maker/cycle-awakening` existe et contient le code.
 
    | Variable | Production | Preview |
    |---|---|---|
-   | `PUBLIC_SITE_URL` | `https://ton-domaine.fr` | `https://cycle-awakening.pages.dev` |
+   | `PUBLIC_SITE_URL` | `https://cycleawakening.com` | `https://cycle-awakening.pages.dev` |
    | `PUBLIC_CHECKOUT_URL` | lien Stripe **live** | lien Stripe **test** |
    | `FEATURE_PREGNANCY_MODULES` | `false` | `false` (ou `true` pour relecture) |
 
@@ -45,27 +45,35 @@ Le dépôt `zitteem-maker/cycle-awakening` existe et contient le code.
 5. ☐ Lancer le premier déploiement, vérifier `https://cycle-awakening.pages.dev`.
 6. ☐ Les *preview deployments* (une URL par branche) sont publics par défaut : *Settings → General → Access policy* pour les protéger par **Cloudflare Access** (gratuit jusqu'à 50 utilisateurs).
 
+> Option : en connectant le connecteur **Cloudflare Developer Platform** à Claude (claude.ai → Paramètres → Connecteurs), je peux vérifier la configuration de ton compte avec toi. Tu restes seule à valider les actions.
+
 > Note : Cloudflare propose aussi « Workers avec assets statiques ». Pages reste supporté et suffit ici ; le projet peut basculer plus tard sans changer le code du site.
 
-## 3. Domaine
+## 3. Domaine `cycleawakening.com` (déjà acheté)
 
-- ☐ Choisir et acheter le domaine. Deux options :
-  - **Cloudflare Registrar** (*Domain Registration → Register Domains*) : prix coûtant, DNS déjà chez Cloudflare. Ne gère pas toutes les extensions.
-  - **Un autre registrar** (OVH, Gandi…) : puis *Add a domain* dans Cloudflare et remplacer les **serveurs de noms** chez le registrar par les deux fournis par Cloudflare. Propagation : de quelques minutes à 24 h.
-- ☐ Le domaine est **à ton nom** (titulaire = toi ou ta société), avec ton email : vérifier le WHOIS / la fiche titulaire.
-- ☐ Activer le **renouvellement automatique** et le **verrouillage de transfert**.
-- ☐ Activer **DNSSEC** (*DNS → Settings → DNSSEC*), puis, si registrar externe, copier l'enregistrement DS chez lui.
+Tu as déjà le domaine et un compte Cloudflare. Il faut vérifier que le domaine est **actif sur ton compte Cloudflare** :
+
+- ☐ *Dashboard Cloudflare → Websites* : `cycleawakening.com` apparaît-il avec le statut **Active** ?
+  - **Oui** → passer à l'étape 4.
+  - **Non, il est chez un autre registrar** (OVH, Gandi, GoDaddy…) → *Add a domain* → `cycleawakening.com` → plan Free → Cloudflare importe les DNS existants (les vérifier) → remplacer chez le registrar les **serveurs de noms** par les deux fournis par Cloudflare. Propagation : de quelques minutes à 24 h ; Cloudflare envoie un email quand c'est actif.
+  - **Il est sur le compte Cloudflare de quelqu'un d'autre** → le faire transférer vers ton compte avant toute chose.
+- ☐ Le titulaire du domaine est **toi** (ou ta société), avec ton email : vérifier la fiche titulaire chez le registrar.
+- ☐ **Renouvellement automatique** et **verrouillage de transfert** activés.
+- ☐ **DNSSEC** activé (*DNS → Settings → DNSSEC*) ; si registrar externe, copier l'enregistrement DS chez lui.
+- ☐ Si des enregistrements existent déjà (ancien site, ancienne boîte mail), me les lister avant de les supprimer.
 
 ## 4. DNS du site
 
-1. ☐ *Workers & Pages → cycle-awakening → Custom domains → Set up a custom domain* → `ton-domaine.fr`. Cloudflare crée l'enregistrement et le certificat HTTPS automatiquement.
-2. ☐ Ajouter aussi `www.ton-domaine.fr` en domaine personnalisé.
+1. ☐ *Workers & Pages → cycle-awakening → Custom domains → Set up a custom domain* → `cycleawakening.com`. Cloudflare crée l'enregistrement et le certificat HTTPS automatiquement.
+2. ☐ Ajouter aussi `www.cycleawakening.com` en domaine personnalisé.
 3. ☐ Choisir une seule version (recommandé : **sans www**) et rediriger l'autre : *Rules → Redirect Rules → Create rule → modèle « Redirect from WWW to root »* (301, conserver le chemin et la query string, donc les UTM).
 4. ☐ *SSL/TLS* : mode **Full (strict)**, *Edge Certificates* → **Always Use HTTPS** activé, **HSTS** activé une fois que tout fonctionne en HTTPS (commencer avec `max-age` court).
-5. ☐ Mettre `PUBLIC_SITE_URL=https://ton-domaine.fr` en Production, redéployer, puis lancer `npm run utm` en local pour régénérer `docs/LIENS-UTM.md` avec le vrai domaine.
+5. ✅ Le domaine `https://cycleawakening.com` est déjà la valeur par défaut du code et des liens UTM (`docs/LIENS-UTM.md`). En Preview, mettre `PUBLIC_SITE_URL` sur l'URL `pages.dev` pour que les aperçus ne se déclarent pas comme le site officiel.
 6. ☐ Optionnel : rediriger `cycle-awakening.pages.dev` vers le domaine (*Bulk Redirects*), sinon la balise `canonical` suffit à éviter le contenu dupliqué.
 
 ## 5. Email : réception, envoi et authentification (SPF, DKIM, DMARC)
+
+Adresses à créer : `bonjour@cycleawakening.com` (affichée sur le site et dans les pages légales) et `dmarc@cycleawakening.com` (rapports DMARC). Le plus simple au départ : **Cloudflare Email Routing** (gratuit) qui les transfère vers ta boîte actuelle.
 
 Le domaine servira à **trois** usages, chacun avec ses enregistrements :
 
@@ -80,7 +88,7 @@ Le domaine servira à **trois** usages, chacun avec ses enregistrements :
 
 ### MX (réception)
 
-- Avec Cloudflare Email Routing : *Email → Email Routing → Get started* ; Cloudflare ajoute les MX et le SPF tout seul. Créer l'adresse `bonjour@ton-domaine.fr` → transfert vers ton email personnel.
+- Avec Cloudflare Email Routing : *Email → Email Routing → Get started* ; Cloudflare ajoute les MX et le SPF tout seul. Créer l'adresse `bonjour@cycleawakening.com` → transfert vers ton email personnel.
 - Avec une boîte hébergée : les MX donnés par le fournisseur.
 
 ### SPF — **un seul** enregistrement TXT à la racine
@@ -94,7 +102,7 @@ v=spf1 include:<expéditeur 1> include:<expéditeur 2> ~all
 
 Exemples d'`include` (à vérifier dans chaque interface) : Cloudflare Email Routing `_spf.mx.cloudflare.net` · Google Workspace `_spf.google.com` · Brevo `spf.brevo.com`. Limite : 10 recherches DNS au total.
 
-Resend et certains outils utilisent un **sous-domaine d'envoi** (ex. `send.ton-domaine.fr`) avec leur propre MX et SPF : ne pas les fusionner dans le SPF racine.
+Resend et certains outils utilisent un **sous-domaine d'envoi** (ex. `send.cycleawakening.com`) avec leur propre MX et SPF : ne pas les fusionner dans le SPF racine.
 
 ### DKIM — un ou plusieurs enregistrements par outil d'envoi
 
@@ -112,7 +120,7 @@ Puis cliquer sur « Vérifier / Authenticate » dans l'outil.
 
 ```
 Type : TXT   Nom : _dmarc
-v=DMARC1; p=none; rua=mailto:dmarc@ton-domaine.fr; adkim=r; aspf=r; pct=100
+v=DMARC1; p=none; rua=mailto:dmarc@cycleawakening.com; adkim=r; aspf=r; pct=100
 ```
 
 1. ☐ Démarrer en `p=none` (observation). Créer l'adresse `dmarc@` (ou utiliser *Email → DMARC Management* de Cloudflare, gratuit, qui lit les rapports pour toi).

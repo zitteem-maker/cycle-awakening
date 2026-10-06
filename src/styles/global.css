@@ -45,6 +45,9 @@ p { margin: 0 0 var(--space-4); max-width: var(--size-content); }
 
 a { color: var(--semantic-link); text-underline-offset: 0.2em; }
 
+/* Adresses email, URL et marqueurs TODO : coupables pour ne jamais élargir la page sur mobile. */
+a, mark, code { overflow-wrap: anywhere; }
+
 img,
 video,
 svg { display: block; max-width: 100%; height: auto; }
@@ -55,7 +58,7 @@ svg { display: block; max-width: 100%; height: auto; }
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
-.deep :focus-visible { outline-color: var(--semantic-focus-on-deep); }
+.deep :focus-visible, .deep-green :focus-visible { outline-color: var(--semantic-focus-on-deep); }
 
 .container {
   width: 100%;
@@ -66,11 +69,40 @@ svg { display: block; max-width: 100%; height: auto; }
 
 .section { padding-block: var(--space-section); }
 
+/* Ambiances (voir skill cycle-awakening-da) : jour (défaut), sauge, aube (premium), nuit (émotionnel). */
+.sage { background: var(--semantic-bg-sage); }
+.dawn {
+  background: linear-gradient(180deg, var(--semantic-bg) 0%, var(--semantic-bg-dawn) 100%);
+}
 .deep {
-  background: var(--semantic-bg-deep);
+  background: linear-gradient(165deg, var(--semantic-bg-deep) 0%, var(--semantic-bg-deep-intense) 100%);
   color: var(--semantic-text-on-deep);
 }
-.deep a:not(.cta) { color: var(--semantic-text-on-deep); }
+.deep-green {
+  background: linear-gradient(165deg, var(--semantic-bg-deep-alt) 0%, var(--semantic-bg-deep) 100%);
+  color: var(--semantic-text-on-deep);
+}
+
+/* Grain papier / lin : texture très discrète sur les grandes surfaces. */
+.grain { position: relative; isolation: isolate; }
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--texture-grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.23 0 0 0 0 0.27 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.deep.grain::after, .deep-green.grain::after { mix-blend-mode: screen; opacity: calc(var(--texture-grain-opacity) * 0.6); }
+
+.card {
+  background: var(--semantic-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-8);
+}
+.deep a:not(.cta), .deep-green a:not(.cta) { color: var(--semantic-text-on-deep); }
 
 .eyebrow {
   font-family: var(--font-family-body);
@@ -80,7 +112,7 @@ svg { display: block; max-width: 100%; height: auto; }
   color: var(--semantic-text-muted);
   margin-bottom: var(--space-4);
 }
-.deep .eyebrow { color: var(--semantic-text-on-deep-muted); }
+.deep .eyebrow, .deep-green .eyebrow { color: var(--semantic-text-on-deep-muted); }
 
 .signature {
   font-family: var(--font-family-display);
@@ -115,7 +147,7 @@ svg { display: block; max-width: 100%; height: auto; }
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-sm);
 }
-.deep .todo {
+.deep .todo, .deep-green .todo {
   border-color: var(--semantic-text-on-deep-muted);
   color: var(--semantic-text-on-deep-muted);
 }
@@ -129,4 +161,13 @@ svg { display: block; max-width: 100%; height: auto; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Valeur légale manquante (TODO_LEGAL…) : visible pour être complétée, jamais inventée. */
+.todo-inline {
+  background: var(--semantic-bg-dawn);
+  color: var(--semantic-text);
+  outline: 1px dashed var(--semantic-text-muted);
+  padding: 0 0.25em;
+  font-size: 0.9em;
 }

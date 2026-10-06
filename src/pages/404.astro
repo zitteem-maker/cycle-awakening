@@ -1,0 +1,35 @@
+---
+// Page 404 (Cloudflare Pages sert automatiquement 404.html pour toute URL inconnue).
+import PageLayout from '../layouts/PageLayout.astro';
+import Horizon from '../components/art/Horizon.astro';
+---
+
+<PageLayout title="Page introuvable" description="Cette page n’existe pas ou plus." noindex>
+  <section class="nf deep">
+    <Horizon animate={false} sun={false} />
+    <div class="container nf__content">
+      <p class="eyebrow">Erreur 404</p>
+      <h1>Cette page s’est perdue en chemin.</h1>
+      <p class="lead">Le lien est peut-être ancien, ou l’adresse contient une faute de frappe. Rien de grave.</p>
+      <ul class="nf__links">
+        <li><a href="/">Revenir à l’accueil</a></li>
+        <li><a href="/#newsletter">Recevoir les prochains contenus</a></li>
+      </ul>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .nf { position: relative; min-height: 70vh; display: flex; align-items: center; overflow: hidden; }
+  .nf::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, rgb(46 58 68 / 0.75) 0%, rgb(46 58 68 / 0.2) 100%);
+  }
+  .nf__content { position: relative; z-index: 2; padding-block: var(--space-section); }
+  .lead { font-size: var(--font-size-lg); }
+  .nf__links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: var(--space-8); }
+  .nf__links a { display: inline-block; padding-block: var(--space-2); }
+</style>

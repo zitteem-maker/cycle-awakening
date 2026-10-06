@@ -5,7 +5,7 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-const site = (process.env.PUBLIC_SITE_URL || 'https://todo-domaine.fr').replace(/\/$/, '');
+const site = (process.env.PUBLIC_SITE_URL || 'https://cycleawakening.com').replace(/\/$/, '');
 const campaign = process.argv.find((a) => a.startsWith('--campaign='))?.split('=')[1] || 'lancement-guide';
 
 // Pages de destination : la home pour la découverte, le quiz arrivera à l'étape 5.
@@ -47,7 +47,7 @@ const md = `# Liens UTM par réseau
 
 > Fichier généré par \`npm run utm\` — ne pas modifier à la main.
 > Domaine : \`${site}\` · Campagne : \`${campaign}\`
-${site.includes('todo-domaine') ? '\n> ⚠️ Domaine non défini : renseigner `PUBLIC_SITE_URL` dans `.env` puis relancer `npm run utm`.\n' : ''}
+
 ## Convention
 
 | Paramètre | Valeur | Exemple |

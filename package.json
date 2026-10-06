@@ -16,7 +16,9 @@
     "dev": "astro dev",
     "prebuild": "npm run tokens && npm run check:contrast",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "logo": "node scripts/build-logo.mjs",
+    "hero-video": "node scripts/process-hero-video.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
@@ -24,6 +26,7 @@
     "astro": "^7.3.5"
   },
   "devDependencies": {
+    "opentype.js": "^2.0.0",
     "playwright-core": "^1.63.0"
   }
 }

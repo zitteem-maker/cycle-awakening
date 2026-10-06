@@ -1,0 +1,119 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import Val from '../components/legal/Val.astro';
+import { legal } from '../config/legal';
+const e = legal.editor;
+---
+
+<LegalLayout title="Politique de confidentialité" description="Comment Cycle Awakening collecte, utilise et protège tes données, y compris les données de santé.">
+  <h2>En bref</h2>
+  <ul>
+    <li>Nous collectons le minimum nécessaire, et seulement pour te rendre le service demandé.</li>
+    <li>Les informations liées à ta santé (réponses au quiz, journal de cycle, échanges avec l’assistante) ne sont utilisées qu’avec ton consentement explicite, que tu peux retirer à tout moment.</li>
+    <li>Tes données ne sont jamais vendues, ni utilisées pour de la publicité ciblée, ni transmises à des marques ou à des spécialistes sans ton accord.</li>
+    <li>Tu peux demander à tout moment l’accès, la copie ou la suppression de tes données.</li>
+  </ul>
+
+  <h2>Responsable du traitement</h2>
+  <p>
+    <Val v={e.name} />, <Val v={e.address} />. Contact pour toute question sur tes données :
+    <a href={`mailto:${e.email}`}>{e.email}</a>.
+  </p>
+
+  <h2>Données traitées, finalités et durées</h2>
+  <table>
+    <thead>
+      <tr><th scope="col">Traitement</th><th scope="col">Données</th><th scope="col">Base légale</th><th scope="col">Durée</th><th scope="col">Statut</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Achat et livraison du Guide</td>
+        <td>Email, nom, pays, informations de facturation (le paiement est traité par Stripe ; nous ne voyons pas ta carte)</td>
+        <td>Exécution du contrat ; obligations comptables</td>
+        <td>Durée de la relation, puis 10 ans pour les pièces comptables</td>
+        <td>À l’ouverture des ventes</td>
+      </tr>
+      <tr>
+        <td>Newsletter</td>
+        <td>Email, prénom (facultatif), centres d’intérêt choisis</td>
+        <td>Consentement (double confirmation)</td>
+        <td>Jusqu’au désabonnement, ou 3 ans sans ouverture</td>
+        <td>À venir</td>
+      </tr>
+      <tr>
+        <td>Quiz « profil »</td>
+        <td>Réponses sur ton cycle et tes symptômes (<strong>données de santé</strong>), email</td>
+        <td>Consentement explicite et séparé</td>
+        <td><Val v="TODO_LEGAL_DUREE_QUIZ" /></td>
+        <td>À venir</td>
+      </tr>
+      <tr>
+        <td>Espace membre et journal de cycle</td>
+        <td>Compte, profil, journal (<strong>données de santé</strong>)</td>
+        <td>Contrat ; consentement explicite pour les données de santé</td>
+        <td>Durée de l’abonnement, puis suppression sous <Val v="TODO_LEGAL_DELAI" /></td>
+        <td>À venir</td>
+      </tr>
+      <tr>
+        <td>Assistante IA</td>
+        <td>Messages échangés, contexte de profil autorisé</td>
+        <td>Consentement explicite</td>
+        <td><Val v="TODO_LEGAL_RETENTION_IA (courte, configurable)" /></td>
+        <td>À venir</td>
+      </tr>
+      <tr>
+        <td>Sécurité du site</td>
+        <td>Adresse IP, données techniques de connexion</td>
+        <td>Intérêt légitime (sécurité)</td>
+        <td>Durées de l’hébergeur</td>
+        <td>Actif</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Données de santé</h2>
+  <p>
+    Les informations sur ton cycle, tes symptômes ou ta santé sont des données sensibles. Elles ne sont collectées qu’après
+    ton consentement explicite, donné séparément (case non pré-cochée), et uniquement pour personnaliser ton
+    accompagnement. Il n’existe pas de champ « diagnostic ». Tu peux retirer ton consentement et supprimer ces données à
+    tout moment depuis ton espace ou par email.
+  </p>
+
+  <h2>Assistante IA</h2>
+  <p>
+    L’assistante de l’espace Premium est une intelligence artificielle, pas une personne ni un·e professionnel·le de
+    santé. Tes échanges sont transmis au fournisseur du modèle uniquement pour produire la réponse et ne sont pas utilisés
+    pour entraîner des modèles. Tu peux supprimer ton historique à tout moment.
+    <Val v="TODO_LEGAL_IA (fournisseur, localisation, conditions contractuelles de non-entraînement et de rétention à vérifier)" />
+  </p>
+
+  <h2>Destinataires et sous-traitants</h2>
+  <table>
+    <thead><tr><th scope="col">Prestataire</th><th scope="col">Rôle</th><th scope="col">Localisation</th><th scope="col">Garanties</th><th scope="col">Statut</th></tr></thead>
+    <tbody>
+      {legal.processors.map((p) => (
+        <tr><td><Val v={p.name} /></td><td>{p.role}</td><td><Val v={p.location} /></td><td><Val v={p.safeguard} /></td><td>{p.status}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Tes droits</h2>
+  <p>
+    Tu disposes d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de tes
+    données, ainsi que du droit de retirer ton consentement à tout moment. Écris à
+    <a href={`mailto:${e.email}`}>{e.email}</a> : nous répondons sous un mois. Tu peux aussi introduire une réclamation
+    auprès de la CNIL (<a href="https://www.cnil.fr">cnil.fr</a>).
+  </p>
+
+  <h2>Âge minimum</h2>
+  <p>Les services de Cycle Awakening sont destinés aux personnes âgées d’au moins {legal.minimumAge} ans.</p>
+
+  <h2>Sécurité</h2>
+  <p>
+    Connexions chiffrées (HTTPS), accès aux données limité au strict nécessaire, aucun secret ni clé d’accès dans le code
+    du site.
+  </p>
+
+  <h2>Cookies</h2>
+  <p>Voir la <a href="/cookies">politique cookies</a>.</p>
+</LegalLayout>

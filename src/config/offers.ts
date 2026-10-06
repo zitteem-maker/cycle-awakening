@@ -1,5 +1,6 @@
 // Offres et prix : seule source pour les montants affichés (jamais de prix en dur dans les pages).
 // Les montants facturés restent ceux configurés dans Stripe : garder les deux alignés.
+import bookMeta from './book-meta.json';
 
 export type Offer = {
   id: string;
@@ -16,10 +17,10 @@ export const guide = {
   billing: 'one-time',
   /**
    * Nombre de pages du livre : VARIABLE UNIQUE, utilisée partout (site, FAQ, emails).
-   * TODO_ASSET : chiffre réel à confirmer (75 annoncé sur le site, 25 dans une ancienne maquette).
-   * Tant que la valeur est `null`, aucun nombre de pages n'est affiché.
+   * Jamais saisi à la main : `npm run build:book` compte les pages du PDF réel et met à jour book-meta.json.
+   * Tant que la valeur est `null` (livre pas encore généré), aucun nombre de pages n'est affiché.
    */
-  pages: null as number | null,
+  pages: bookMeta.pages as number | null,
 } satisfies Offer & { pages: number | null };
 
 export const premium = {

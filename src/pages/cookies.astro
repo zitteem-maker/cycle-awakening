@@ -1,0 +1,47 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+---
+
+<LegalLayout title="Politique cookies" description="Les cookies et traceurs utilisés sur le site Cycle Awakening.">
+  <h2>Notre choix : le minimum</h2>
+  <p>
+    Le site Cycle Awakening n’utilise <strong>aucun cookie publicitaire</strong> et <strong>aucun traceur de réseau
+    social</strong>. C’est pour cela qu’aucune bannière ne te demande d’accepter des cookies.
+  </p>
+
+  <h2>Traceurs utilisés</h2>
+  <table>
+    <thead><tr><th scope="col">Nom</th><th scope="col">Émetteur</th><th scope="col">Finalité</th><th scope="col">Durée</th><th scope="col">Consentement</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Cookies techniques de sécurité (ex. <code>__cf_bm</code>), si la protection anti-robots est activée</td>
+        <td>Cloudflare</td>
+        <td>Protéger le site contre les robots et les attaques</td>
+        <td>30 minutes</td>
+        <td>Non requis (strictement nécessaire)</td>
+      </tr>
+      <tr>
+        <td>Mesure d’audience</td>
+        <td>À définir (outil sans cookie)</td>
+        <td>Compter les visites et les clics, de façon agrégée</td>
+        <td>Aucun cookie</td>
+        <td>Non requis si l’outil respecte les conditions de la CNIL ; sinon une bannière sera ajoutée</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Paiement</h2>
+  <p>
+    La page de paiement est hébergée par Stripe, sur son propre domaine. Stripe y dépose les cookies nécessaires au paiement
+    et à la prévention de la fraude, selon sa propre politique.
+  </p>
+
+  <h2>Si cela change</h2>
+  <p>
+    Si un traceur soumis à consentement devait être ajouté, une bannière te permettra de l’accepter ou de le refuser aussi
+    simplement, et un lien « Gérer mes cookies » sera ajouté en bas de chaque page. Cette page sera mise à jour avant.
+  </p>
+
+  <h2>Paramétrer ton navigateur</h2>
+  <p>Tu peux à tout moment supprimer ou bloquer les cookies depuis les réglages de ton navigateur.</p>
+</LegalLayout>

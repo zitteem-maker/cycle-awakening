@@ -1,32 +1,45 @@
 ---
-// Page d'accueil provisoire (étape 1). La landing complète est reconstruite à l'étape 3
+// Page d'accueil provisoire. La landing complète est reconstruite à l'étape 3
 // avec la structure : navigation, hero, preuves, problème, histoire, livre, pour qui, offre, FAQ, newsletter, footer.
-import BaseLayout from '../layouts/BaseLayout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 import Cta from '../components/Cta.astro';
-import { site } from '../config/site';
+import HeroVideo from '../components/HeroVideo.astro';
 ---
 
-<BaseLayout>
-  <main id="contenu">
-    <section class="section">
-      <div class="container">
-        <p class="eyebrow">{site.name}</p>
-        <h1>{site.tagline}</h1>
-        <p class="lead">Tu n’es pas instable. <span class="signature">Tu es cyclique.</span></p>
-        <Cta location="hero" />
-      </div>
-    </section>
+<PageLayout headerCta={false}>
+  <section class="hero deep">
+    <!-- Vidéo à brancher : <HeroVideo poster="/videos/hero-poster.jpg" sources={[…]} /> (voir skill hero-video) -->
+    <HeroVideo />
+    <div class="container hero__content">
+      <p class="eyebrow">Phase lutéale · SPM · J17–J28</p>
+      <h1>Redevenir toi.<br />Chaque mois.</h1>
+      <p class="lead">Tu n’es pas instable. <span class="signature">Tu es cyclique.</span></p>
+      <Cta location="hero" variant="on-deep" />
+    </div>
+  </section>
 
-    <section id="newsletter" class="section deep">
-      <div class="container">
-        <h2>Être prévenue</h2>
-        <p class="todo">TODO_ETAPE_3 : formulaire newsletter (Brevo ou Kit, double opt-in).</p>
-      </div>
-    </section>
-  </main>
-</BaseLayout>
+  <section id="newsletter" class="section sage">
+    <div class="container">
+      <h2>Être prévenue</h2>
+      <p class="todo">TODO_ETAPE_3 : formulaire newsletter (Brevo ou Kit, double opt-in).</p>
+    </div>
+  </section>
+</PageLayout>
 
 <style>
+  .hero {
+    position: relative;
+    min-height: min(92vh, 52rem);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-section) var(--space-16);
+  }
+  .hero .eyebrow { color: var(--semantic-text-on-deep-muted); }
   .lead {
     font-size: var(--font-size-lg);
     margin-bottom: var(--space-8);

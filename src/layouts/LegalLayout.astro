@@ -1,0 +1,41 @@
+---
+// Gabarit des pages légales : bandeau « en cours de validation » tant que legal.validated est false.
+import PageLayout from './PageLayout.astro';
+import { legal } from '../config/legal';
+
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+const updated = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' }).format(new Date(legal.updatedAt));
+---
+
+<PageLayout title={title} description={description} headerCta={false}>
+  <article class="legal container section">
+    {!legal.validated && (
+      <p class="legal__draft" role="note">
+        Document en cours de validation : ce texte est un modèle de travail, il n’a pas encore été relu par un·e juriste.
+      </p>
+    )}
+    <h1>{title}</h1>
+    <p class="legal__updated">Dernière mise à jour : {updated}</p>
+    <slot />
+  </article>
+</PageLayout>
+
+<style>
+  .legal { max-width: calc(var(--size-content) + 2 * var(--space-gutter)); }
+  .legal :global(h2) { font-size: var(--font-size-xl); margin-top: var(--space-12); }
+  .legal :global(h3) { font-size: var(--font-size-lg); margin-top: var(--space-8); }
+  .legal :global(ul) { padding-left: 1.2em; max-width: var(--size-content); }
+  .legal :global(li) { margin-bottom: var(--space-2); }
+  .legal :global(table) { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); margin-block: var(--space-6); display: block; overflow-x: auto; }
+  .legal :global(th), .legal :global(td) { text-align: left; vertical-align: top; padding: var(--space-3); border-bottom: 1px solid var(--semantic-line); min-width: 9rem; }
+  .legal :global(th) { font-weight: var(--font-weight-semibold); }
+  .legal__updated { color: var(--semantic-text-muted); font-size: var(--font-size-sm); }
+  .legal__draft {
+    background: var(--semantic-bg-dawn);
+    border-left: 3px solid var(--semantic-accent);
+    padding: var(--space-4);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-8);
+  }
+</style>

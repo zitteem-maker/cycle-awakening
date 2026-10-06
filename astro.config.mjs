@@ -6,7 +6,7 @@ import { loadEnv } from 'vite';
 const { PUBLIC_SITE_URL } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
 
 export default defineConfig({
-  site: PUBLIC_SITE_URL || 'http://localhost:4321',
+  site: PUBLIC_SITE_URL || 'https://cycleawakening.com',
   output: 'static',
   trailingSlash: 'never',
   build: { format: 'file' },

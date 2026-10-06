@@ -13,4 +13,4 @@ Documents de référence lus pour l'étape 1. Les originaux restent dans le Goog
 | La data réelle du marché | Méthode de recherche de mots-clés | Non |
 | Posts_Instagram_CycleAwakening.docx | Séquence de lancement (5 posts) | Non |
 
-**Manquant :** `regles-assistante-ia.md` (règles de l'assistante IA : zones verte/orange/rouge, signaux d'alerte, règles par profil…). Introuvable dans le dépôt et le Drive. Requis avant l'étape 7.
+**Fourni le 6 octobre 2026 :** [`regles-assistante-ia.md`](regles-assistante-ia.md) (règles de l'assistante IA). Il fait foi pour le prompt système et les tests de l'étape 7.

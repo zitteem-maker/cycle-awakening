@@ -9,12 +9,13 @@
 | Dépôt `zitteem-maker/cycle-awakening` | ✅ lu | **Vide** : aucun commit, aucun fichier, pas de dossier `/docs`. Le site en ligne a donc vraisemblablement été **déployé par glisser-déposer** (Cloudflare Pages « Direct Upload »), sans dépôt Git. |
 | Site en ligne `https://cycleawakening.pages.dev/` | ❌ non lu | L'environnement de travail bloque ce domaine (politique réseau). La Wayback Machine (`web.archive.org`) est bloquée aussi. **Aucun contenu du site n'a été récupéré.** |
 | Dossier Google Drive « 🌙 Cycle Awakening — Vision du projet » | ✅ lu | 7 documents : brief marketing/produit/IA, identité visuelle (palette validée), DA v1 (.docx), DA v2 fuchsia (.docx), 50 recherches, data marché, 5 posts Instagram de lancement. Voir [`SOURCES.md`](SOURCES.md). |
-| `/docs/regles-assistante-ia.md` | ❌ introuvable | Ni dans le dépôt ni dans le Drive. **Indispensable avant l'étape 7.** |
+| `/docs/regles-assistante-ia.md` | ✅ reçu | Fourni le 6 octobre 2026 → [`regles-assistante-ia.md`](regles-assistante-ia.md). |
 | `/docs/50-recherches.md` | ✅ importé | Copié depuis le Drive dans [`50-recherches.md`](50-recherches.md). |
 | `sections_en.html` (ancienne version anglaise, fuchsia `#E0257A`) | ❌ non lu | Connu uniquement par ta description. |
 
 ### Pour débloquer la lecture du site en ligne (au choix)
 
+0. **Connecteur MCP** (sur claude.ai → Paramètres → Connecteurs, puis activé dans la session) : **Parallel Search** (lecture web, gratuit, sans compte) ou **TinyFish** (navigateur cloud). Je ne peux pas les connecter moi-même.
 1. **Autoriser le domaine** : dans les réglages de l'environnement cloud (menu de l'environnement dans la barre de titre de la session → *Edit* → *Network access*), passer en *Custom* et ajouter `cycleawakening.pages.dev` aux domaines autorisés (en gardant la liste par défaut des gestionnaires de paquets). Doc : https://code.claude.com/docs/en/cloud-environments#network-access
 2. **Ou** enregistrer chaque page depuis ton navigateur (*Fichier → Enregistrer sous → Page web complète*) et déposer les fichiers dans `legacy/` du dépôt.
 3. **Ou, le mieux** : obtenir les fichiers source de l'ancien propriétaire (voir §4). C'est le seul moyen de récupérer la vidéo et les images en qualité d'origine.
@@ -44,20 +45,20 @@ D'après ton brief (non vérifié en ligne) :
 | # | Problème | Correction | État |
 |---|---|---|---|
 | 1 | Les CTA « Obtenir le livre digital — 27 € » pointent vers `#` : aucun paiement possible. | Composant CTA unique piloté par `PUBLIC_CHECKOUT_URL`. Tant qu'il est vide, le bouton devient « Être prévenue de la sortie » → newsletter. Plus jamais de lien mort. | ✅ fait (`src/components/Cta.astro`) — reste : créer le Payment Link Stripe (étape 4) |
-| 2 | « +320 femmes ont rejoint ce mois-ci » et avatars à initiales : preuve sociale non réelle. Risque de pratique commerciale trompeuse et perte de confiance. | Supprimés. Le bandeau de preuves n'affichera que des faits vrais ; sinon emplacement `TODO_PREUVE`. | ✅ non repris dans la reconstruction |
-| 3 | Nombre de pages incohérent (75 sur le site et dans le post Instagram n°5, 25 dans une maquette). | Variable unique `guide.pages` (`src/config/offers.ts`). Valeur `null` tant que tu ne confirmes pas : aucun nombre n'est affiché. | ✅ variable créée — **chiffre réel à me donner** |
-| 4 | Pages légales absentes ou non vérifiées (mentions légales obligatoires dès qu'on vend). | Gabarits mentions légales, CGV, confidentialité, cookies, **à faire valider** (je ne les présenterai pas comme validées). | ⏳ suite de l'étape 1 |
-| 5 | Pas de mention « ce contenu ne remplace pas un avis médical » visible. | Mention dans le footer, le PDF, l'espace membre, l'assistante. | ⏳ étape 3 |
+| 2 | « +320 femmes ont rejoint ce mois-ci » et avatars à initiales : preuve sociale non réelle. Risque de pratique commerciale trompeuse et perte de confiance. | Supprimés. Remplacés plus tard par un compteur **réel** (membres y compris en essai, texte « Vous êtes déjà X femmes à m'avoir fait confiance »), voir `BACKLOG.md`. | ✅ retiré — compteur réel en backlog |
+| 3 | Nombre de pages incohérent (75 sur le site et dans le post Instagram n°5, 25 dans une maquette). | Variable unique `guide.pages`, **alimentée automatiquement** par le build du livre (`src/config/book-meta.json`). | ✅ automatisé (étape 2) |
+| 4 | Pages légales absentes ou non vérifiées (mentions légales obligatoires dès qu'on vend). | Gabarits mentions légales, CGV, confidentialité, cookies, avec bandeau « en cours de validation » et champs `TODO_LEGAL` surlignés. Skill `pages-legales-fr`. | ✅ gabarits en ligne — **informations éditrice + relecture juriste à faire** |
+| 5 | Pas de mention « ce contenu ne remplace pas un avis médical » visible. | Mention dans le pied de page de toutes les pages ; PDF, espace membre, assistante ensuite. | ✅ site — ⏳ PDF / espace membre |
 
 ### P1 — qualité et conversion
 
 | # | Problème | Correction | État |
 |---|---|---|---|
-| 6 | Vidéo hero `videos/ocean.mp4` : existence, poids et licence inconnus ; pas de poster ni de fallback connus. | Récupérer l'original, compresser (H.264 + WebM, ≤ 2–3 Mo, 720p, sans son), image poster, fallback image, pas de lecture auto si `prefers-reduced-motion` ou économie de données. | ⏳ en attente du fichier |
+| 6 | Vidéo hero `videos/ocean.mp4` : existence, poids et licence inconnus ; pas de poster ni de fallback connus. | Composant `HeroVideo` (poster, pause, mouvement réduit, économie de données), script `npm run hero-video`, skill `hero-video`, sites recommandés dans `ASSETS.md`. Illustration « horizon » en attendant. | ✅ prêt — **vidéo à choisir** |
 | 7 | Palette fuchsia de `sections_en.html` hors charte. | Non reprise. Anglais : structure i18n prête, aucune traduction tant que tu ne la demandes pas. | ✅ i18n configuré (`astro.config.mjs`) |
 | 8 | Balises Open Graph, favicon, image de partage : absents ou non vérifiés. | Balises OG/Twitter dans le gabarit, favicon SVG + ICO + Apple, image 1200×630. | ✅ fait (marque provisoire en attendant le logo) |
 | 9 | Pas de liens trackés par réseau. | Liens UTM par réseau + liens courts `/ig`, `/tt`, `/pin`, `/in`. | ✅ fait ([`LIENS-UTM.md`](LIENS-UTM.md)) |
-| 10 | Pas de page `/merci` ni de 404. | À créer. | ⏳ suite de l'étape 1 |
+| 10 | Pas de page `/merci` ni de 404. | Créées. | ✅ fait |
 | 11 | Newsletter : branchement inconnu (formulaire probablement inactif). | Brevo ou Kit, double opt-in, tags. | ⏳ étape 3 |
 
 ### P2 — fondations techniques
@@ -79,7 +80,7 @@ D'après ton brief (non vérifié en ligne) :
 | Pages blog : liste des URLs, textes, images, dates | Ancien propriétaire | ❌ manquant |
 | Page recommandations : liste des produits, liens, identifiants d'affiliation | Ancien propriétaire | ❌ manquant |
 | `sections_en.html` | Ancien propriétaire | ❌ manquant (non prioritaire) |
-| Logo | Toi | ❌ manquant (favicon provisoire en place) |
+| Logo | Créé (`public/brand/`) | ✅ à valider |
 
 ## 5. Ce que tu dois demander à l'ancien propriétaire
 

@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import { legal } from '../config/legal';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer deep grain">
+  <div class="container site-footer__inner">
+    <div>
+      <a href="/" class="site-footer__logo" aria-label="Cycle Awakening, accueil"><Logo /></a>
+      <p class="site-footer__tagline signature">Tu n’es pas instable. Tu es cyclique.</p>
+    </div>
+    <nav aria-label="Informations légales">
+      <ul class="site-footer__links">
+        <li><a href="/mentions-legales">Mentions légales</a></li>
+        <li><a href="/cgv">Conditions générales de vente</a></li>
+        <li><a href="/confidentialite">Confidentialité</a></li>
+        <li><a href="/cookies">Cookies</a></li>
+        <li><a href={`mailto:${legal.editor.email}`}>{legal.editor.email}</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container">
+    <p class="site-footer__disclaimer">
+      Cycle Awakening propose un accompagnement de mode de vie. Il ne remplace pas un avis médical, un diagnostic ou un
+      traitement. En cas de douleur intense, de saignements très abondants ou de symptômes inhabituels, consulte un·e
+      professionnel·le de santé.
+    </p>
+    <p class="site-footer__copy">© {year} Cycle Awakening</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: var(--space-16) var(--space-8); font-size: var(--font-size-sm); }
+  .site-footer__inner { display: grid; gap: var(--space-8); margin-bottom: var(--space-12); }
+  @media (min-width: 48rem) { .site-footer__inner { grid-template-columns: 1fr auto; align-items: start; } }
+  .site-footer__logo { display: inline-block; color: var(--semantic-text-on-deep); }
+  .site-footer__logo :global(svg) { width: 15rem; height: auto; }
+  .site-footer__tagline { font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); margin-top: var(--space-4); }
+  .site-footer__links { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .site-footer__links a { display: inline-block; padding-block: var(--space-1); }
+  .site-footer__disclaimer { color: var(--semantic-text-on-deep-muted); max-width: 60ch; }
+  .site-footer__copy { color: var(--semantic-text-on-deep-muted); font-size: var(--font-size-xs); margin-top: var(--space-6); }
+</style>

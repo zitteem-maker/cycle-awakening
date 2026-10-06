@@ -1,0 +1,7 @@
+---
+// Affiche une valeur légale ; une valeur manquante (TODO_LEGAL…) est surlignée pour être repérée.
+import { isTodo } from '../../config/legal';
+interface Props { v: string | null | undefined }
+const { v } = Astro.props;
+---
+{isTodo(v) ? <mark class="todo-inline">{v ?? 'TODO_LEGAL'}</mark> : <>{v}</>}

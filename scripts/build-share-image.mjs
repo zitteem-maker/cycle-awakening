@@ -13,6 +13,7 @@ const t = flatten(loadTokens());
 // Polices intégrées en base64 : une page chargée par setContent ne peut pas lire de fichiers locaux.
 const font = (p) => `data:font/woff2;base64,${readFileSync(`${root}node_modules/@fontsource/${p}`).toString('base64')}`;
 const faviconSvg = readFileSync(`${root}public/favicon.svg`, 'utf8');
+const markLight = readFileSync(`${root}public/brand/marque-clair.svg`, 'utf8').replace('<svg ', '<svg width="260" height="260" ');
 
 const fontFaces = `
   @font-face { font-family: 'Cormorant Garamond'; font-weight: 500; src: url(${font('cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2')}); }
@@ -33,10 +34,7 @@ const shareHtml = `<!doctype html><html><head><meta charset="utf-8"><style>
   p { font: italic 500 34px/1.3 'Cormorant Garamond', serif; color: ${t['semantic-text-muted']}; margin: 0; }
   .rule { width: 72px; height: 2px; background: ${t['semantic-accent']}; margin: 0 0 32px; }
   .side { height: 630px; background: ${t['semantic-bg-deep']}; position: relative; }
-  .ring { position: absolute; left: 50%; top: 50%; width: 220px; height: 220px; margin: -110px 0 0 -110px;
-          border: 3px solid ${t['semantic-text-on-deep']}; border-radius: 50%; }
-  .dot { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -130px 0 0 52px;
-         background: ${t['semantic-accent']}; border-radius: 50%; }
+  .side svg { position: absolute; left: 50%; top: 50%; margin: -130px 0 0 -130px; }
 </style></head><body>
   <div>
     <div class="eyebrow">Cycle Awakening</div>
@@ -44,7 +42,7 @@ const shareHtml = `<!doctype html><html><head><meta charset="utf-8"><style>
     <div class="rule"></div>
     <p>Tu n’es pas instable. Tu es cyclique.</p>
   </div>
-  <div class="side"><div class="ring"></div><div class="dot"></div></div>
+  <div class="side">${markLight}</div>
 </body></html>`;
 
 const iconHtml = (size) => `<!doctype html><html><head><style>
