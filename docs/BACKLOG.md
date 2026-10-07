@@ -75,5 +75,5 @@ Tant que `missingForSales()` n'est pas vide : mentions légales de site non prof
 - **Photos** : 10 photos de recettes à fournir (voir `docs/PHOTOS-UNSPLASH.md`) ; la version finale du livre refuse de se fabriquer tant qu'une photo manque.
 - **Chapitre 5** : l'encart « Et si tu ne veux pas le faire seule » dit « je prépare l'accompagnement ». À passer au présent (avec le lien d'inscription) quand l'offre Premium sera ouverte.
 - **Notice pour lui** (bonus) : une page façon notice de montage, dans les outils, la version téléphone et en PDF séparé. À valider.
-- **Photos des ouvertures de chapitre** : `book/src/images/chapitres/ch1.jpg` à `ch6.jpg` (noms choisis par la fondatrice). Emplacement prêt dans la mise en page.
+- **Photos** (7 octobre) : ch1–ch6, banana bread, cookies, poisson (fichier « breakfast table linen »), infusion du soir, lait d’or, thème végétal et thème boissons en place. Manquent : bol orange, dattes, poulet soja, purée haricots-tofu, dal, thème petit-déjeuner, thème plats (« dinner table rustic » trop lourde pour le connecteur Drive). Crédits Unsplash à fournir.
 - **Photos des pages d'ouverture de thème** : `theme-petit-dejeuner.jpg`, `theme-plats.jpg`, `theme-vegetal.jpg`, `theme-boissons.jpg` (format paysage, haut de page).
