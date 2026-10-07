@@ -1,9 +1,8 @@
 ---
 statut: valide
-surtitre: Édito
 titre: Un dernier mot,
 titreAccent: entre nous
-chapeau: Si tu es arrivée jusqu'ici, j'ai envie de te dire une chose avant les recettes. Tu n'as rien à réussir. Tu as juste à t'écouter un peu plus qu'avant.
+chapeau: Si tu es arrivée jusqu'ici, j'ai envie de te dire une chose avant de te laisser. Tu n'as rien à réussir. Tu as juste à t'écouter un peu plus qu'avant.
 citation: Tu n'es pas instable. Tu es cyclique.
 salut: Prends soin de toi, vraiment.
 signature: Emeline

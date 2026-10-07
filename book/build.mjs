@@ -76,7 +76,7 @@ const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8'))
   html: typo(readFileSync(`${book}src/outils/${o.fichier}`, 'utf8')),
 }));
 
-// Édito « Un dernier mot, entre nous » (fin du chapitre 5). Deux mises en page : classique ou manuscrite.
+// Édito « Un dernier mot, entre nous » (toute dernière page du guide). Deux mises en page : classique ou manuscrite.
 const editoSrc = frontmatter(readFileSync(`${book}src/edito.md`, 'utf8'));
 const edito = {
   ...Object.fromEntries(Object.entries(editoSrc.data).map(([k, v]) => [k, typo(v)])),
@@ -177,7 +177,6 @@ function chapitreHtml(c) {
   ${statut}
   ${entete}
   ${marked.parse(c.body)}
-  ${c.ordre === 5 ? editoHtml() : ''}
 </section>`;
   }
   return `<section class="chapitre chapitre--photo" id="chapitre-${c.ordre}">
@@ -186,7 +185,6 @@ function chapitreHtml(c) {
     <div class="ch-bloc">${statut}${entete}</div>
   </div>
   <div class="ch-corps">${marked.parse(c.body)}</div>
-  ${c.ordre === 5 ? editoHtml() : ''}
 </section>`;
 }
 
@@ -257,7 +255,6 @@ function editoHtml(variante = livre.edito ?? 'classique') {
   return `<section class="edito edito--${variante}" id="edito">
   <header class="e-tete">
     <div class="e-logo">${logo}</div>
-    <p class="e-surtitre">${edito.surtitre}</p>
   </header>
   <h2 class="e-titre">${edito.titre} <em>${edito.titreAccent}</em></h2>
   <figure class="e-photo"><img src="${photo.url}" alt=""></figure>
@@ -323,12 +320,14 @@ ${(mobile ? outils.filter((o) => o.bonus) : outils).map(outilHtml).join('\n')}
 
 <section class="fin">
   <div class="logo">${logo}</div>
-  <h1 class="fin-titre">À très vite</h1>
+  <h1 class="fin-titre">Avant de refermer ce guide</h1>
   <p>Ton cycle n'est pas un problème à résoudre. C'est un rythme à apprendre. Prends ce qui t'aide, laisse le reste, et reviens à ce guide quand tu en as besoin.</p>
   ${avertissement}
   <p>Une question, un retour ? Écris-moi : <a href="mailto:${livre.email}">${livre.email}</a><br>
   <a href="${livre.site}">${livre.site.replace('https://', '')}</a> · ${livre.instagram}</p>
-</section>`;
+</section>
+
+${editoHtml()}`;
 
   return `<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
