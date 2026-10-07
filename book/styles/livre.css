@@ -123,6 +123,7 @@ h2 + *, h3 + *, .encadre-titre + * { break-before: avoid; }
 .chapitre--photo .chapitre-entete { border: none; margin: 0; padding: 0; }
 .chapitre--photo .chapitre-num { margin-top: -17mm; position: relative; z-index: 1; font-size: 64pt; }
 .ch-corps { break-before: page; }
+.saut-page { break-before: page; height: 0; }
 
 /* --- Encadrés : trois styles, tous légers ------------------------------- */
 .encadre {
@@ -201,7 +202,7 @@ h2 + *, h3 + *, .encadre-titre + * { break-before: avoid; }
 /* Page « recette » sans marges latérales (la photo touche le bord gauche), hauteur fixe. */
 .recette, .theme-page { page: recette; break-before: page; position: relative; height: 283mm; overflow: hidden; }
 
-.r-entete { position: absolute; top: 17mm; right: 16mm; width: 165mm; text-align: right; }
+.r-entete { position: absolute; top: 11mm; right: 16mm; width: 165mm; text-align: right; }
 .r-meta { font-size: 7.5pt; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--semantic-text-muted); margin: 0 0 3mm; }
 .r-meta span::before { content: '·'; margin: 0 2.2mm; }
 .r-meta .statut { color: var(--semantic-accent-text); }
@@ -216,7 +217,7 @@ h2.recette-nom {
   margin: 0;
 }
 
-.r-gauche { position: absolute; top: 66mm; left: 16mm; width: 74mm; }
+.r-gauche { position: absolute; top: 48mm; left: 16mm; width: 74mm; }
 .r-sous-titre { font-family: var(--font-family-display); font-style: italic; font-weight: 600; font-size: 14.5pt; line-height: 1.25; color: var(--semantic-accent-text); margin: 0 0 3mm; }
 .r-intro { font-size: 9.5pt; line-height: 1.5; margin: 0; }
 
@@ -251,7 +252,7 @@ h2.recette-nom {
 .r-carte ul { list-style: none; padding: 0; margin: 0; }
 .r-carte li { margin: 0 0 1.1mm; padding: 0; }
 
-.r-droite { position: absolute; top: 66mm; right: 16mm; bottom: 8mm; width: 92mm; display: flex; flex-direction: column; font-size: 9.5pt; line-height: 1.5; }
+.r-droite { position: absolute; top: 48mm; right: 16mm; bottom: 8mm; width: 92mm; display: flex; flex-direction: column; font-size: 9.5pt; line-height: 1.5; }
 .r-droite ol { list-style: none; counter-reset: etape; padding: 0; margin: 0; }
 .r-droite li { counter-increment: etape; position: relative; padding-left: 11mm; margin: 0 0 3.2mm; }
 .r-droite li::before {

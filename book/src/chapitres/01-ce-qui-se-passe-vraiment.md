@@ -93,6 +93,8 @@ Les symptômes les plus fréquents : fatigue, irritabilité, tristesse ou larmes
 </ul>
 </aside>
 
+<div class="saut-page"></div>
+
 ## Ce que ce guide fait, et ce qu'il ne fait pas
 
 Ce guide te donne des repères concrets de mode de vie pour traverser ta phase lutéale : comprendre, nourrir ton corps, bouger juste, ralentir sans culpabiliser, t'organiser.
@@ -109,7 +111,7 @@ Il ne pose **aucun diagnostic**, ne remplace **aucun traitement** et ne promet *
 <li>des symptômes nouveaux, ou qui s'aggravent d'un cycle à l'autre ;</li>
 <li>une humeur si basse, une anxiété si forte ou une irritabilité si intense qu'elles abîment ta vie ou tes relations. Il existe une forme sévère, le <strong>trouble dysphorique prémenstruel</strong>, qui se prend en charge.</li>
 </ul>
-<p><strong>Si tu as des idées noires ou des pensées de te faire du mal</strong>, n'attends pas : en France, appelle le <strong>3114</strong> (numéro national de prévention du suicide, gratuit, 24 h/24) ou le <strong>15</strong>. Ailleurs, le numéro d'urgence de ton pays. Tu n'as pas à traverser ça seule.</p>
+<p>Pour en parler : ta sage-femme, ton ou ta gynécologue, ton médecin ou un·e psychologue. Tu n'as pas à traverser ça seule. En cas d'urgence : le <strong>15</strong>.</p>
 </aside>
 
 <div class="sources">

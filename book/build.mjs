@@ -120,21 +120,25 @@ function pageRules({ impression, mobile }) {
     ? MOBILE.margin
     : `${t['print-margin-top']} ${t['print-margin-outer']} ${t['print-margin-bottom']} ${t['print-margin-inner']}`;
   const pied = `font-family: Inter, sans-serif; font-size: ${mobile ? '6.5pt' : '7.5pt'}; color: ${t['semantic-text-muted']};`;
-  const filigrane = draft
-    ? `@top-center { content: "BROUILLON · À VALIDER · NE PAS DIFFUSER"; ${pied} color: ${t['semantic-accent-text']}; letter-spacing: 0.12em; }`
-    : '';
+  // En-tête courant : « Cycle Awakening · 01 · Titre du chapitre » (pages nommées, une par chapitre).
+  const entete = (texte) => `@top-center { content: "${texte.replace(/"/g, '\\"')}"; ${pied} letter-spacing: 0.14em; text-transform: uppercase; }`;
+  const parties = impression ? '' : chapitres.map((c) => `
+@page partie-${c.ordre} { ${entete(`Cycle Awakening · ${num(c.ordre)} · ${c.titre}`)} }
+#chapitre-${c.ordre}.chapitre:not(.chapitre--photo), #chapitre-${c.ordre} .ch-corps { page: partie-${c.ordre}; }`).join('') + (impression ? '' : `
+@page outils { ${entete('Cycle Awakening · Outils à imprimer')} }
+.outil { page: outils; }`);
   return `
 @page {
   size: ${mobile ? MOBILE.size : 'A4'};
   margin: ${marge};
   ${impression ? '' : `background: ${t['semantic-bg']};`}
   @bottom-center { content: counter(page); ${pied} }
-  ${mobile ? '' : `@bottom-left { content: "Cycle Awakening · ${impression ? 'Outils imprimables' : livre.titre}"; ${pied} }`}
-  ${filigrane}
+  ${entete(`Cycle Awakening · ${impression ? 'Outils imprimables' : livre.titre}`)}
 }
+${parties}
 @page recette {
   margin: 0 0 ${mobile ? '13mm' : '14mm'} 0;
-  @bottom-left { content: none; }
+  @top-center { content: none; }
 }
 @page couverture {
   margin: 0;

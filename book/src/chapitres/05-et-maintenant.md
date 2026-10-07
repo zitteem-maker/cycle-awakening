@@ -25,9 +25,11 @@ Il n'y a pas de bonne vitesse. Certaines femmes ressentent un changement dès le
 2. Qu'est-ce qui n'a rien changé ?
 3. Qu'est-ce qui reste difficile, et qui mérite peut-être d'en parler à quelqu'un ?
 
+<div class="saut-page"></div>
+
 ## Quand demander de l'aide
 
-Ce guide est un accompagnement de mode de vie. Il a des limites, et c'est important de les connaître. Consulte un·e professionnel·le de santé (médecin généraliste, gynécologue, sage-femme) si :
+Ce guide est un accompagnement de mode de vie. Il a des limites, et c'est important de les connaître. Consulte un·e professionnel·le de santé (sage-femme, gynécologue, médecin généraliste, ou psychologue pour le moral) si :
 
 - tes symptômes restent très gênants malgré tes ajustements ;
 - tu as des douleurs importantes ou des règles très abondantes ;
@@ -37,10 +39,12 @@ Ce guide est un accompagnement de mode de vie. Il a des limites, et c'est import
 
 Arrive avec ton journal de cycle : tes observations sur deux ou trois mois sont précieuses pour la personne qui t'écoute.
 
-<aside class="encadre encadre-alerte">
-<p class="encadre-titre">En cas de détresse</p>
-<p>Si tu as des idées noires ou des pensées de te faire du mal, appelle sans attendre le <strong>3114</strong> (France, gratuit, 24 h/24) ou le <strong>15</strong>. Hors de France, le numéro d'urgence de ton pays.</p>
+<aside class="encadre encadre-rose">
+<p class="encadre-titre">Tu n'as pas à chercher seule</p>
+<p>Pour le corps : ta sage-femme, ton ou ta gynécologue, ton médecin. Pour le moral : un·e psychologue. Prochainement sur Cycle Awakening : la mise en relation avec une spécialiste, et un suivi personnalisé avec l'abonnement.</p>
 </aside>
+
+<div class="saut-page"></div>
 
 ## Un dernier mot avant les recettes
 

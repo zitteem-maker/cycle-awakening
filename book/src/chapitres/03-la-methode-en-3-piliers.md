@@ -46,6 +46,8 @@ Elles sont fréquentes et n'ont rien d'un défaut de volonté. Quelques repères
 <p>Ce n'est ni un régime, ni un programme minceur, ni une liste d'aliments interdits. Il n'y a aucun chiffre à compter. Et ce guide ne recommande aucun complément alimentaire : si tu te poses la question, parles-en à un·e professionnel·le de santé, qui tiendra compte de ta situation.</p>
 </aside>
 
+<div class="saut-page"></div>
+
 ## Pilier 2 — Bouger
 
 Le mouvement reste un allié en fin de cycle. La question n'est pas « faut-il arrêter le sport ? », mais **« quelle intensité aujourd'hui ? »**.
@@ -71,6 +73,8 @@ Pendant la séance, tout peut sembler possible. Le vrai indicateur, c'est **une 
 <p>Si tu t'entraînes beaucoup, la priorité est de manger suffisamment et de bien récupérer. Une fatigue qui dure, des blessures qui se répètent, ou des règles qui deviennent irrégulières ou disparaissent sont des signaux à montrer à un·e médecin.</p>
 </aside>
 
+<div class="saut-page"></div>
+
 ## Pilier 3 — Lire les signaux
 
 C'est le pilier le plus simple et le plus puissant. Il ne demande que deux minutes par jour.
@@ -95,5 +99,5 @@ Prévenir ton ou ta partenaire, tes proches, parfois une collègue de confiance 
 
 <aside class="encadre encadre-alerte">
 <p class="encadre-titre">Quand un signal n'est plus « normal »</p>
-<p>Une douleur qui t'empêche de fonctionner, des saignements très abondants, des symptômes nouveaux ou qui s'aggravent, ou une humeur si basse qu'elle abîme ta vie : ce ne sont pas des signaux à gérer seule. Consulte un·e professionnel·le de santé. En cas d'idées noires, appelle le 3114 (France) ou les urgences.</p>
+<p>Une douleur qui t'empêche de fonctionner, des saignements très abondants, des symptômes nouveaux ou qui s'aggravent, ou une humeur si basse qu'elle abîme ta vie : ce ne sont pas des signaux à gérer seule. Parles-en à ta sage-femme, ton ou ta gynécologue, ton médecin ou un·e psychologue.</p>
 </aside>
