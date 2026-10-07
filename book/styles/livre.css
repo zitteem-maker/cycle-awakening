@@ -417,7 +417,7 @@ h2.recette-nom {
 .e-citation { break-inside: avoid; margin: 4mm 0 !important; padding: 3mm 0; border-top: 0.6pt solid var(--semantic-accent); border-bottom: 0.6pt solid var(--semantic-accent);
   font-family: var(--font-family-display); font-style: italic; font-weight: 600; font-size: 16pt; line-height: 1.2; color: var(--semantic-accent-text); }
 .e-salut { font-style: italic; margin-top: 4mm !important; }
-.e-signature { font-family: 'Sacramento', cursive; font-size: 30pt; line-height: 1; color: var(--semantic-accent); margin: 0 !important; }
+.e-signature { font-family: var(--font-family-display); font-style: italic; font-weight: 600; font-size: 22pt; line-height: 1; color: var(--semantic-accent-text); margin: 0 !important; }
 .e-pied { position: absolute; left: 20mm; right: 20mm; bottom: 4mm; display: flex; align-items: center; gap: 4mm; font-size: 8pt; letter-spacing: 0.12em; }
 .e-pied span { flex: 1; border-top: 0.6pt solid var(--semantic-accent); }
 
@@ -444,3 +444,4 @@ h2.recette-nom {
 .mobile .e-photo { height: 70mm; margin: 0 -8mm 5mm; }
 .mobile .e-boucle { display: none; }
 .mobile .e-pied { margin-top: 5mm; }
+.mobile .e-gauche { margin-bottom: 3mm; }

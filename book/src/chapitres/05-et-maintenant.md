@@ -43,30 +43,3 @@ Arrive avec ton journal de cycle : tes observations sur deux ou trois mois sont 
 <p class="encadre-titre">Tu n'as pas à chercher seule</p>
 <p>Pour le corps : ta sage-femme, ton ou ta gynécologue, ton médecin. Pour le moral : un·e psychologue. Prochainement sur Cycle Awakening : la mise en relation avec une spécialiste, et un suivi personnalisé avec l'abonnement.</p>
 </aside>
-
-<div class="saut-page"></div>
-
-## Un dernier mot avant les recettes
-
-Si tu as l'impression que ça fait beaucoup, c'est normal. Tu viens de lire en une fois ce que ton corps va t'apprendre sur plusieurs mois.
-
-**Tu n'as rien à retenir par cœur.** Ce guide n'est pas un examen. C'est un point de départ, que tu peux rouvrir à chaque fin de cycle.
-
-Voici ce qui se passe, en général, quand on avance pas à pas :
-
-- **au premier cycle**, tu observes, et tu comprends enfin pourquoi certains jours sont plus durs ;
-- **au deuxième**, tu anticipes une ou deux choses, et la fin de cycle te surprend moins ;
-- **au troisième**, beaucoup de gestes deviennent automatiques. Tu ne « suis » plus une méthode : tu vis à ton rythme.
-
-C'est là que tout change. Pas parce que tu fais plus d'efforts, mais parce que tu n'as plus besoin d'y penser.
-
-Pour commencer, choisis **une seule chose** dans ce guide, celle qui te paraît la plus facile, et fais-la ce cycle-ci. C'est suffisant.
-
-<aside class="encadre">
-<p class="encadre-titre">Et si tu ne veux pas le faire seule</p>
-<p>Le plus difficile n'est pas de savoir quoi faire : c'est d'y penser au bon moment, quand la fatigue est là et que l'agenda déborde.</p>
-<p>C'est exactement pour ça que je prépare l'<strong>accompagnement Cycle Awakening</strong> : chaque semaine, ce qui compte pour ta phase et ton profil, au moment où tu en as besoin. Les repas, le mouvement, les rappels, et une réponse quand tu te poses une question. Cycle après cycle, jusqu'à ce que ce rythme devienne le tien.</p>
-<p>En attendant, la newsletter t'envoie chaque semaine un repère simple et une nouvelle recette. Tout est sur <a href="https://cycleawakening.com">cycleawakening.com</a>.</p>
-</aside>
-
-Tu n'es pas instable. Tu es cyclique. Et ce rythme, une fois apprivoisé, devient un allié : des semaines pour avancer, des semaines pour ralentir. Les deux comptent.

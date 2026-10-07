@@ -86,7 +86,8 @@ const edito = {
 function editoPhoto() {
   const vraie = `${book}src/images/edito/${edito.photo}`;
   if (existsSync(vraie)) return { url: pathToFileURL(vraie).href, provisoire: false };
-  return { url: pathToFileURL(`${book}src/images/${edito.photoProvisoire}`).href, provisoire: true };
+  // En attendant le portrait de la fondatrice : photo d'ambiance, sans mention.
+  return { url: pathToFileURL(`${book}src/images/${edito.photoAmbiance}`).href, provisoire: true };
 }
 
 // --- Contrôles de la version finale ---------------------------------------------------------
@@ -95,6 +96,7 @@ const problemes = [
   ...recettes.filter((r) => r.statut !== 'valide').map((r) => `recette « ${r.titre} » : statut ${r.statut}`),
   ...recettes.filter((r) => !r.photo).map((r) => `recette « ${r.titre} » : photo manquante (book/src/images/recettes/${r.photoNom})`),
   ...outils.filter((o) => o.statut !== 'valide').map((o) => `outil « ${o.titre} » : statut ${o.statut}`),
+  ...(edito.statut === 'valide' ? [] : [`édito : statut ${edito.statut}`]),
   ...chapitres.filter((c) => /TODO_SOURCE/.test(c.body)).map((c) => `chapitre ${c.ordre} : sources non vérifiées (TODO_SOURCE)`),
 ];
 if (!draft && problemes.length) {
@@ -175,6 +177,7 @@ function chapitreHtml(c) {
   ${statut}
   ${entete}
   ${marked.parse(c.body)}
+  ${c.ordre === 5 ? editoHtml() : ''}
 </section>`;
   }
   return `<section class="chapitre chapitre--photo" id="chapitre-${c.ordre}">
@@ -183,6 +186,7 @@ function chapitreHtml(c) {
     <div class="ch-bloc">${statut}${entete}</div>
   </div>
   <div class="ch-corps">${marked.parse(c.body)}</div>
+  ${c.ordre === 5 ? editoHtml() : ''}
 </section>`;
 }
 
@@ -250,14 +254,13 @@ const boucle = `<svg class="e-boucle" viewBox="0 0 90 150" aria-hidden="true"><p
 
 function editoHtml(variante = livre.edito ?? 'classique') {
   const photo = editoPhoto();
-  const signature = edito.signature.startsWith('TODO') ? 'Ta signature' : edito.signature;
   return `<section class="edito edito--${variante}" id="edito">
   <header class="e-tete">
     <div class="e-logo">${logo}</div>
     <p class="e-surtitre">${edito.surtitre}</p>
   </header>
   <h2 class="e-titre">${edito.titre} <em>${edito.titreAccent}</em></h2>
-  <figure class="e-photo"><img src="${photo.url}" alt="">${photo.provisoire ? '<figcaption>Photo provisoire · ta photo ici</figcaption>' : ''}</figure>
+  <figure class="e-photo"><img src="${photo.url}" alt=""></figure>
   ${boucle}
   <div class="e-gauche">
     <p class="e-chapeau">${edito.chapeau}</p>
@@ -267,7 +270,7 @@ function editoHtml(variante = livre.edito ?? 'classique') {
     ${edito.colonnes[1] ?? ''}
     <p class="e-citation">${edito.citation}</p>
     <p class="e-salut">${edito.salut}</p>
-    <p class="e-signature">${signature}</p>
+    <p class="e-signature">${edito.signature}</p>
   </div>
   <footer class="e-pied"><span></span><a href="${livre.site}">cycleawakening.com</a></footer>
 </section>`;
@@ -320,7 +323,7 @@ ${(mobile ? outils.filter((o) => o.bonus) : outils).map(outilHtml).join('\n')}
 
 <section class="fin">
   <div class="logo">${logo}</div>
-  <h1 class="fin-titre">Un dernier mot</h1>
+  <h1 class="fin-titre">À très vite</h1>
   <p>Ton cycle n'est pas un problème à résoudre. C'est un rythme à apprendre. Prends ce qui t'aide, laisse le reste, et reviens à ce guide quand tu en as besoin.</p>
   ${avertissement}
   <p>Une question, un retour ? Écris-moi : <a href="mailto:${livre.email}">${livre.email}</a><br>

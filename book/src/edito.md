@@ -1,14 +1,14 @@
 ---
-statut: brouillon
+statut: valide
 surtitre: Édito
 titre: Un dernier mot,
 titreAccent: entre nous
 chapeau: Si tu es arrivée jusqu'ici, j'ai envie de te dire une chose avant les recettes. Tu n'as rien à réussir. Tu as juste à t'écouter un peu plus qu'avant.
 citation: Tu n'es pas instable. Tu es cyclique.
 salut: Prends soin de toi, vraiment.
-signature: TODO_PRENOM
-photo: TODO_PHOTO_FONDATRICE
-photoProvisoire: reserve/tea-steam-evening-tasse-fleurs.jpg
+signature: Emeline
+photo: edito.jpg
+photoAmbiance: reserve/tea-steam-evening-tasse-fleurs.jpg
 ---
 Je connais ce moment : on referme un guide, on se dit « lundi, je change tout ». Puis la fatigue revient, l'agenda déborde, et le guide finit sur une étagère avec un peu de culpabilité en prime. Alors cette fois, on fait autrement.
 
