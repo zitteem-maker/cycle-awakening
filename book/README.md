@@ -17,6 +17,8 @@ Sorties dans `book/dist/` (non versionné, reproductible) :
 
 Recettes : `src/recettes/*.md` (frontmatter `nom`, `theme`, `titre`, `categorie`, `temps`, `portions`, `photo`, `intro`) et `src/recettes/themes.json` (pages d'ouverture). Photos dans `src/images/recettes/` (nom de fichier = champ `photo`).
 
+Ouvertures de chapitre : `src/images/chapitres/ch1.jpg` … `ch6.jpg` (photo pleine largeur en haut de page, titre dessous, texte à la page suivante). Facultatives : sans photo, la version finale garde l'en-tête simple. `src/images/reserve/` : photos reçues mais non utilisées.
+
 ## Contenu
 
 - `livre.json` — titre, sous-titre, édition, métadonnées.

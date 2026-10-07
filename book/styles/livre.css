@@ -107,6 +107,23 @@ h2 + *, h3 + *, .encadre-titre + * { break-before: avoid; }
   margin-bottom: 6mm;
 }
 
+/* Ouverture de chapitre avec photo : pleine page sans marges latérales, le texte reprend page suivante. */
+.ch-ouverture { page: recette; position: relative; height: 283mm; overflow: hidden; }
+.ch-photo { position: absolute; top: 0; left: 0; right: 0; height: 178mm; margin: 0; }
+.ch-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ch-photo--attente {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2mm;
+  background: linear-gradient(160deg, var(--semantic-bg-deep-alt), var(--semantic-bg-deep));
+  color: var(--semantic-text-on-deep-muted);
+  font-family: var(--font-family-display); font-style: italic; font-size: 15pt;
+}
+.ch-photo--attente small { font-family: var(--font-family-body); font-style: normal; font-size: 8pt; }
+.ch-bloc { position: absolute; top: 178mm; left: 0; right: 0; bottom: 0; padding: 0 24mm 10mm; display: flex; flex-direction: column; justify-content: center; }
+.ch-bloc .chapitre-statut { position: absolute; top: 6mm; right: 24mm; margin: 0; }
+.chapitre--photo .chapitre-entete { border: none; margin: 0; padding: 0; }
+.chapitre--photo .chapitre-num { margin-top: -17mm; position: relative; z-index: 1; font-size: 64pt; }
+.ch-corps { break-before: page; }
+
 /* --- Encadrés : trois styles, tous légers ------------------------------- */
 .encadre {
   border-radius: 3.5mm;
@@ -368,4 +385,9 @@ h2.recette-nom {
 .mobile .t-bloc { top: 80mm; padding: 0 9mm 12mm; }
 .mobile .t-titre { font-size: 24pt; }
 .mobile .t-script { font-size: 26pt; }
+.mobile .ch-ouverture { height: 157mm; }
+.mobile .ch-photo { height: 88mm; }
+.mobile .ch-bloc { top: 88mm; padding: 0 9mm 8mm; }
+.mobile .chapitre--photo .chapitre-num { margin-top: -11mm; font-size: 40pt; }
+.mobile .ch-bloc .chapitre-statut { top: 3mm; right: 9mm; font-size: 6.5pt; }
 .mobile .fin .logo svg { width: 50mm; }

@@ -40,7 +40,7 @@ function frontmatter(src) {
 
 const chapitres = readdirSync(`${book}src/chapitres`).filter((f) => f.endsWith('.md')).sort().map((f) => {
   const { data, body } = frontmatter(readFileSync(`${book}src/chapitres/${f}`, 'utf8'));
-  return { fichier: f, ordre: Number(data.ordre), titre: typo(data.titre), accroche: typo(data.accroche), statut: data.statut, body: typo(body) };
+  return { fichier: f, ordre: Number(data.ordre), titre: typo(data.titre), accroche: typo(data.accroche), statut: data.statut, body: typo(body), photo: imageUrl(`ch${Number(data.ordre)}.jpg`, 'chapitres') };
 });
 const recettes = readdirSync(`${book}src/recettes`).filter((f) => f.endsWith('.md')).sort().map((f) => {
   const { data, body } = frontmatter(readFileSync(`${book}src/recettes/${f}`, 'utf8'));
@@ -65,8 +65,8 @@ const recettes = readdirSync(`${book}src/recettes`).filter((f) => f.endsWith('.m
     sections,
   };
 });
-function imageUrl(nom) {
-  const chemin = `${book}src/images/recettes/${nom}`;
+function imageUrl(nom, dossier = 'recettes') {
+  const chemin = `${book}src/images/${dossier}/${nom}`;
   return existsSync(chemin) ? pathToFileURL(chemin).href : null;
 }
 const themesRecettes = JSON.parse(readFileSync(`${book}src/recettes/themes.json`, 'utf8')).map((t) => ({ ...t, url: imageUrl(t.photo) }));
@@ -144,16 +144,28 @@ function pageRules({ impression, mobile }) {
 }`;
 }
 
+// Page d'ouverture : photo pleine largeur (book/src/images/chapitres/chN.jpg) + titre.
+// Photo facultative : sans photo, la version finale garde l'en-tête simple ; le brouillon montre l'emplacement.
 function chapitreHtml(c) {
   const statut = c.statut === 'valide' ? '' : `<p class="chapitre-statut">${c.statut === 'plan' ? 'Plan proposé · à rédiger' : 'Brouillon · à valider'}</p>`;
-  return `<section class="chapitre" id="chapitre-${c.ordre}">
-  ${statut}
-  <header class="chapitre-entete">
+  const entete = `<header class="chapitre-entete">
     <p class="chapitre-num">${num(c.ordre)}</p>
     <h1>${c.titre}</h1>
     <p class="chapitre-accroche">${c.accroche}</p>
-  </header>
+  </header>`;
+  if (!c.photo && !draft) {
+    return `<section class="chapitre" id="chapitre-${c.ordre}">
+  ${statut}
+  ${entete}
   ${marked.parse(c.body)}
+</section>`;
+  }
+  return `<section class="chapitre chapitre--photo" id="chapitre-${c.ordre}">
+  <div class="ch-ouverture">
+    ${photoHtml(c.photo, `chapitres/ch${c.ordre}.jpg`, 'ch-photo')}
+    <div class="ch-bloc">${statut}${entete}</div>
+  </div>
+  <div class="ch-corps">${marked.parse(c.body)}</div>
 </section>`;
 }
 
