@@ -31,6 +31,8 @@ li { margin-bottom: 0.35em; }
 li::marker { color: var(--semantic-accent-text); }
 strong { font-weight: 600; color: var(--semantic-text); }
 a { color: var(--semantic-link); }
+/* Liens dans le texte : fuchsia et gras, toujours repérables ; rose pâle sur les encadrés verts. */
+.chapitre a, .edito a { color: var(--semantic-accent-text); font-weight: 600; text-decoration-thickness: 0.6pt; text-underline-offset: 0.6mm; }
 
 /* Règle de mise en page : on ne coupe jamais un paragraphe, une liste, un encadré ou un tableau
    entre deux pages, et un intertitre reste avec ce qui le suit. */
@@ -148,6 +150,7 @@ h2 + *, h3 + *, .encadre-titre + * { break-before: avoid; }
 }
 .encadre:not(.encadre-alerte):not(.encadre-rose) .encadre-titre,
 .encadre:not(.encadre-alerte):not(.encadre-rose) strong { color: var(--semantic-text-on-deep); }
+.encadre:not(.encadre-alerte):not(.encadre-rose) a { color: var(--color-accent-fuchsia-voile); font-weight: 700; }
 .encadre:not(.encadre-alerte):not(.encadre-rose) li::marker { color: var(--semantic-text-on-deep-muted); }
 
 /* 2. Astuce / mode d'emploi : fond fuchsia voile, frais et léger. */
@@ -392,3 +395,52 @@ h2.recette-nom {
 .mobile .chapitre--photo .chapitre-num { margin-top: -11mm; font-size: 40pt; }
 .mobile .ch-bloc .chapitre-statut { top: 3mm; right: 9mm; font-size: 6.5pt; }
 .mobile .fin .logo svg { width: 50mm; }
+
+/* --- Édito « Un dernier mot, entre nous » (page magazine) ------------------- */
+.edito { page: recette; break-before: page; position: relative; height: 283mm; overflow: hidden; }
+.e-tete { position: absolute; top: 13mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; align-items: center; }
+.e-logo svg { width: 42mm; height: auto; display: block; }
+.e-surtitre { margin: 0; font-size: 8pt; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--semantic-accent-text); display: flex; align-items: center; gap: 4mm; }
+.e-surtitre::before { content: ''; width: 18mm; border-top: 0.6pt solid var(--semantic-accent); }
+.e-titre { position: absolute; top: 38mm; left: 20mm; width: 120mm; margin: 0; z-index: 2;
+  font-family: var(--font-family-display); font-weight: 600; font-size: 50pt; line-height: 0.95; letter-spacing: -0.01em; color: var(--semantic-text); }
+.e-titre em { display: block; font-style: italic; color: var(--semantic-accent); }
+.e-photo { position: absolute; top: 58mm; right: 0; width: 84mm; height: 108mm; margin: 0; background: var(--semantic-bg-deep); }
+.e-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.e-photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2mm 3mm; background: rgb(26 48 40 / 0.72); color: var(--semantic-text-on-deep); font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; }
+.e-boucle { position: absolute; top: 124mm; right: 70mm; width: 24mm; height: 40mm; color: var(--semantic-text); opacity: 0.7; z-index: 2; }
+.e-gauche, .e-droite { position: absolute; bottom: 16mm; font-size: 9.6pt; line-height: 1.55; }
+.e-gauche { top: 94mm; left: 20mm; width: 86mm; }
+.e-droite { top: 174mm; right: 20mm; width: 80mm; }
+.e-gauche p, .e-droite p { margin: 0 0 3mm; }
+.e-chapeau { margin: 0 0 7mm !important; font-weight: 600; font-size: 12pt; line-height: 1.5; color: var(--semantic-text); }
+.e-citation { break-inside: avoid; margin: 4mm 0 !important; padding: 3mm 0; border-top: 0.6pt solid var(--semantic-accent); border-bottom: 0.6pt solid var(--semantic-accent);
+  font-family: var(--font-family-display); font-style: italic; font-weight: 600; font-size: 16pt; line-height: 1.2; color: var(--semantic-accent-text); }
+.e-salut { font-style: italic; margin-top: 4mm !important; }
+.e-signature { font-family: 'Sacramento', cursive; font-size: 30pt; line-height: 1; color: var(--semantic-accent); margin: 0 !important; }
+.e-pied { position: absolute; left: 20mm; right: 20mm; bottom: 4mm; display: flex; align-items: center; gap: 4mm; font-size: 8pt; letter-spacing: 0.12em; }
+.e-pied span { flex: 1; border-top: 0.6pt solid var(--semantic-accent); }
+
+/* Variante « manuscrite » : comme une lettre écrite à la main, avec la typo de « cycle ». */
+.edito--manuscrit .e-titre { font-family: 'Sacramento', cursive; font-weight: 400; font-size: 64pt; line-height: 0.9; letter-spacing: 0; color: var(--semantic-text); top: 34mm; width: 125mm; }
+.edito--manuscrit .e-titre em { font-style: normal; color: var(--semantic-accent); margin-left: 14mm; }
+.edito--manuscrit .e-chapeau { font-family: 'Sacramento', cursive; font-weight: 400; font-size: 20pt; line-height: 1.08; margin-bottom: 5mm !important; }
+.edito--manuscrit .e-gauche, .edito--manuscrit .e-droite { font-family: 'Sacramento', cursive; font-size: 15pt; line-height: 1.06; color: var(--semantic-text); }
+.edito--manuscrit .e-gauche { top: 90mm; }
+.edito--manuscrit .e-droite { top: 171mm; }
+.edito--manuscrit .e-gauche p, .edito--manuscrit .e-droite p { margin-bottom: 2mm; }
+.edito--manuscrit strong { font-weight: 400; color: var(--semantic-accent-text); }
+.edito--manuscrit a { font-weight: 400; }
+.edito--manuscrit .e-citation { font-family: 'Sacramento', cursive; font-style: normal; font-weight: 400; font-size: 23pt; line-height: 1; margin: 3mm 0 !important; padding: 2mm 0; }
+.edito--manuscrit .e-salut { font-style: normal; }
+.edito--manuscrit .e-signature { font-size: 32pt; }
+.edito--manuscrit .e-salut { margin-top: 2mm !important; }
+
+.mobile .edito { height: auto; overflow: visible; padding: 9mm 8mm 0; }
+.mobile .e-tete, .mobile .e-titre, .mobile .e-photo, .mobile .e-gauche, .mobile .e-droite, .mobile .e-pied { position: static; width: auto; }
+.mobile .e-logo svg { width: 30mm; }
+.mobile .e-titre { margin: 8mm 0 5mm; font-size: 30pt; }
+.mobile .edito--manuscrit .e-titre { font-size: 40pt; }
+.mobile .e-photo { height: 70mm; margin: 0 -8mm 5mm; }
+.mobile .e-boucle { display: none; }
+.mobile .e-pied { margin-top: 5mm; }

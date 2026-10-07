@@ -76,6 +76,19 @@ const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8'))
   html: typo(readFileSync(`${book}src/outils/${o.fichier}`, 'utf8')),
 }));
 
+// Édito « Un dernier mot, entre nous » (fin du chapitre 5). Deux mises en page : classique ou manuscrite.
+const editoSrc = frontmatter(readFileSync(`${book}src/edito.md`, 'utf8'));
+const edito = {
+  ...Object.fromEntries(Object.entries(editoSrc.data).map(([k, v]) => [k, typo(v)])),
+  // « <!-- colonne --> » sépare la colonne de gauche (sous le chapeau) de celle de droite (sous la photo).
+  colonnes: typo(editoSrc.body).split('<!-- colonne -->').map((x) => marked.parse(x)),
+};
+function editoPhoto() {
+  const vraie = `${book}src/images/edito/${edito.photo}`;
+  if (existsSync(vraie)) return { url: pathToFileURL(vraie).href, provisoire: false };
+  return { url: pathToFileURL(`${book}src/images/${edito.photoProvisoire}`).href, provisoire: true };
+}
+
 // --- Contrôles de la version finale ---------------------------------------------------------
 const problemes = [
   ...chapitres.filter((c) => c.statut !== 'valide').map((c) => `chapitre ${c.ordre} « ${c.titre} » : statut ${c.statut}`),
@@ -121,7 +134,7 @@ function pageRules({ impression, mobile }) {
     : `${t['print-margin-top']} ${t['print-margin-outer']} ${t['print-margin-bottom']} ${t['print-margin-inner']}`;
   const pied = `font-family: Inter, sans-serif; font-size: ${mobile ? '6.5pt' : '7.5pt'}; color: ${t['semantic-text-muted']};`;
   // En-tête courant : « Cycle Awakening · 01 · Titre du chapitre » (pages nommées, une par chapitre).
-  const entete = (texte) => `@top-center { content: "${texte.replace(/"/g, '\\"')}"; ${pied} letter-spacing: 0.14em; text-transform: uppercase; }`;
+  const entete = (texte) => `@top-center { content: "${texte.replace(/"/g, '\\"')}"; ${pied} color: ${t['semantic-accent-text']}; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }`;
   const parties = impression ? '' : chapitres.map((c) => `
 @page partie-${c.ordre} { ${entete(`Cycle Awakening · ${num(c.ordre)} · ${c.titre}`)} }
 #chapitre-${c.ordre}.chapitre:not(.chapitre--photo), #chapitre-${c.ordre} .ch-corps { page: partie-${c.ordre}; }`).join('') + (impression ? '' : `
@@ -232,6 +245,34 @@ function outilHtml(o, i) {
 </section>`;
 }
 
+// Trait manuscrit : boucle libre, à cheval sur le bord de la photo (comme un trait de crayon).
+const boucle = `<svg class="e-boucle" viewBox="0 0 90 150" aria-hidden="true"><path d="M86 6C52 2 40 22 54 40s30 10 22-6S30 18 26 52s40 34 36 58S10 140 4 120s30-30 48-10" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+
+function editoHtml(variante = livre.edito ?? 'classique') {
+  const photo = editoPhoto();
+  const signature = edito.signature.startsWith('TODO') ? 'Ta signature' : edito.signature;
+  return `<section class="edito edito--${variante}" id="edito">
+  <header class="e-tete">
+    <div class="e-logo">${logo}</div>
+    <p class="e-surtitre">${edito.surtitre}</p>
+  </header>
+  <h2 class="e-titre">${edito.titre} <em>${edito.titreAccent}</em></h2>
+  <figure class="e-photo"><img src="${photo.url}" alt="">${photo.provisoire ? '<figcaption>Photo provisoire · ta photo ici</figcaption>' : ''}</figure>
+  ${boucle}
+  <div class="e-gauche">
+    <p class="e-chapeau">${edito.chapeau}</p>
+    ${edito.colonnes[0]}
+  </div>
+  <div class="e-droite">
+    ${edito.colonnes[1] ?? ''}
+    <p class="e-citation">${edito.citation}</p>
+    <p class="e-salut">${edito.salut}</p>
+    <p class="e-signature">${signature}</p>
+  </div>
+  <footer class="e-pied"><span></span><a href="${livre.site}">cycleawakening.com</a></footer>
+</section>`;
+}
+
 const avertissement = `<div class="encadre encadre-alerte">
   <p class="encadre-titre">Ce guide ne remplace pas un avis médical</p>
   <p>Il propose des repères de mode de vie. Il ne pose aucun diagnostic, ne remplace aucun traitement et ne promet aucun résultat. En cas de douleur intense, de saignements très abondants, de symptômes nouveaux ou qui s'aggravent, ou si tu traverses une détresse importante, consulte un·e professionnel·le de santé. Si tu es enceinte, allaites ou suis un traitement, demande conseil avant tout changement.</p>
@@ -329,6 +370,18 @@ async function rendre(nom, html, meta) {
   if (mo > 15) throw new Error(`${nom}.pdf pèse ${mo.toFixed(1)} Mo (limite 15 Mo)`);
   console.log(`${nom}.pdf : ${pdf.getPageCount()} pages, ${mo.toFixed(2)} Mo`);
   return pdf.getPageCount();
+}
+
+// Aperçu de l'édito seul, dans ses deux variantes : npm run build:book:edito
+if (process.argv.includes('--apercu-edito')) {
+  for (const v of ['classique', 'manuscrit']) {
+    const complet = document({ impression: false });
+    const debut = complet.indexOf('<body', complet.indexOf('</head>'));
+    const html = `${complet.slice(0, complet.indexOf('>', debut) + 1)}${editoHtml(v)}</body></html>`;
+    await rendre(`apercu-edito-${v}`, html, { titre: `Aperçu édito (${v})` });
+  }
+  await browser.close();
+  process.exit(0);
 }
 
 const pagesGuide = await rendre('cycle-awakening-guide', document({ impression: false }), { titre: `Cycle Awakening — ${livre.titre}` });

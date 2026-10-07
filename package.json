@@ -20,7 +20,8 @@
     "logo": "node scripts/build-logo.mjs",
     "hero-video": "node scripts/process-hero-video.mjs",
     "build:book": "npm run tokens && node book/build.mjs",
-    "build:book:brouillon": "npm run tokens && node book/build.mjs --brouillon"
+    "build:book:brouillon": "npm run tokens && node book/build.mjs --brouillon",
+    "build:book:edito": "npm run tokens && node book/build.mjs --brouillon --apercu-edito"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
