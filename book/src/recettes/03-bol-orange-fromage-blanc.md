@@ -1,5 +1,7 @@
 ---
 ordre: 3
+nom: Bol orange & fromage blanc
+theme: Petit-déjeuner & en-cas
 titre: Fromage blanc, orange, sarrasin grillé et huile d'olive, œuf mollet
 categorie: Petit-déjeuner · En-cas
 temps: 10 min

@@ -78,7 +78,7 @@ On parle de **syndrome prémenstruel (SPM)** quand des symptômes physiques ou �
 
 Les symptômes les plus fréquents : fatigue, irritabilité, tristesse ou larmes faciles, anxiété, difficultés de concentration, ballonnements, seins douloureux, maux de tête, envies alimentaires, troubles du sommeil.
 
-<aside class="encadre">
+<aside class="encadre encadre-rose">
 <p class="encadre-titre">Un bon réflexe : noter</p>
 <p>Le meilleur moyen de savoir si tes symptômes suivent ton cycle, c'est de les noter pendant deux ou trois cycles. Le journal de cycle à la fin de ce guide est fait pour ça. Il t'aidera aussi si tu en parles à un·e professionnel·le de santé : tu arriveras avec des observations, pas seulement des impressions.</p>
 </aside>

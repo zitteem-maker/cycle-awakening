@@ -9,7 +9,7 @@ En fin de cycle, je n'ai ni l'énergie ni l'envie de passer une heure en cuisine
 
 Elles suivent toutes la même logique que le pilier « Nourrir » : **une assiette complète**, du goût, et **aucun interdit**. Il n'y a pas de calories, pas de « version light », pas de culpabilité.
 
-<aside class="encadre">
+<aside class="encadre encadre-rose">
 <p class="encadre-titre">Comment utiliser ces recettes</p>
 <ul>
 <li><strong>Entre J17 et J20</strong>, prépare celles qui se gardent : banana bread, cookies, purée de haricots blancs, dal.</li>

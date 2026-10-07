@@ -1,5 +1,7 @@
 ---
 ordre: 7
+nom: Haricots, carottes & tofu
+theme: Plats végétaux
 titre: Purée de haricots blancs, carottes rôties et tofu mariné
 categorie: Plat végétal
 temps: 15 min + 25 min de cuisson

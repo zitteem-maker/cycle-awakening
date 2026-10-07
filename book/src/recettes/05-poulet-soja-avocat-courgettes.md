@@ -1,5 +1,7 @@
 ---
 ordre: 5
+nom: Poulet soja & avocat
+theme: Plats
 titre: Poulet au soja, courgettes sautées, avocat et oignons verts
 categorie: Plat · 20 minutes
 temps: 10 min + 10 min de cuisson

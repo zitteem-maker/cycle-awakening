@@ -21,7 +21,7 @@ L'énergie est souvent encore là. C'est le meilleur moment pour préparer les j
 
 **S'organiser.** Remplis ton planner de la semaine. Place ce qui est exigeant maintenant, et protège ce qui peut l'être en fin de cycle.
 
-<aside class="encadre">
+<aside class="encadre encadre-rose">
 <p class="encadre-titre">Si tu ne fais qu'une chose</p>
 <p>Prépare deux repas d'avance pour la fin de cycle.</p>
 </aside>
@@ -38,7 +38,7 @@ Le sommeil peut devenir plus léger, la faim plus présente, la patience un peu 
 
 **S'organiser.** Relis tes premiers signes dans ton journal : sont-ils là ? Si oui, passe en mode fin de cycle un peu plus tôt.
 
-<aside class="encadre">
+<aside class="encadre encadre-rose">
 <p class="encadre-titre">Si tu ne fais qu'une chose</p>
 <p>Couche-toi trente minutes plus tôt.</p>
 </aside>
@@ -55,7 +55,7 @@ C'est souvent la période la plus délicate. L'objectif n'est pas d'être perfor
 
 **S'organiser.** Affiche ton **protocole d'urgence J24–J28** (outil imprimable). Préviens ton entourage. Quand tout pèse, tu n'as plus à décider : tu suis la liste.
 
-<aside class="encadre">
+<aside class="encadre encadre-rose">
 <p class="encadre-titre">Si tu ne fais qu'une chose</p>
 <p>Annule ou décale une seule chose, et dis à quelqu'un que tu as besoin de calme.</p>
 </aside>

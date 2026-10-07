@@ -1,5 +1,7 @@
 ---
 ordre: 9
+nom: Lait d'or & chai
+theme: Boissons chaudes
 titre: Lait d'or ou chai latte
 categorie: Boisson chaude
 temps: 5 à 10 min

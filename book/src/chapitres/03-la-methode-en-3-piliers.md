@@ -66,7 +66,7 @@ En début de phase lutéale, tu peux souvent garder tes habitudes. En fin de cyc
 
 Pendant la séance, tout peut sembler possible. Le vrai indicateur, c'est **une heure plus tard** : te sens-tu plus détendue, plus présente ? Ou vidée, irritable ? Note-le dans ton journal. En deux ou trois cycles, tu sauras exactement quoi faire, et quand.
 
-<aside class="encadre">
+<aside class="encadre encadre-rose">
 <p class="encadre-titre">Si tu es sportive</p>
 <p>Si tu t'entraînes beaucoup, la priorité est de manger suffisamment et de bien récupérer. Une fatigue qui dure, des blessures qui se répètent, ou des règles qui deviennent irrégulières ou disparaissent sont des signaux à montrer à un·e médecin.</p>
 </aside>

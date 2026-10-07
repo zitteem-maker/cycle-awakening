@@ -1,5 +1,7 @@
 ---
 ordre: 4
+nom: Dattes fourrées
+theme: Petit-déjeuner & en-cas
 titre: Dattes fourrées à la purée de noisette et au sarrasin
 categorie: En-cas express
 temps: 5 min

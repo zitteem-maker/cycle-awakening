@@ -2,6 +2,7 @@
 //   npm run build:book            → version finale (refuse tout chapitre non validé ou toute source non vérifiée)
 //   npm run build:book:brouillon  → version de travail, filigrane « brouillon », n'écrit pas book-meta.json
 // Sorties : book/dist/cycle-awakening-guide.pdf (version écran, outils en annexe)
+//           book/dist/cycle-awakening-guide-telephone.pdf (format téléphone / liseuse, sans les outils)
 //           book/dist/cycle-awakening-outils-imprimables.pdf (outils seuls, pour l'impression)
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -48,21 +49,27 @@ const recettes = readdirSync(`${book}src/recettes`).filter((f) => f.endsWith('.m
     const [titre, ...reste] = bloc.split('\n');
     return { titre: titre.trim(), html: marked.parse(reste.join('\n')) };
   });
-  const photoPath = `${book}src/images/recettes/${data.photo}`;
   return {
     id: f.replace(/^\d+-|\.md$/g, ''),
     ordre: Number(data.ordre),
     titre: typo(data.titre),
+    nom: typo(data.nom ?? data.titre),
+    theme: data.theme ?? 'Recettes',
     categorie: data.categorie,
     temps: data.temps,
     portions: data.portions,
     intro: typo(data.intro),
     statut: data.statut,
-    photo: existsSync(photoPath) ? pathToFileURL(photoPath).href : null,
+    photo: imageUrl(data.photo),
     photoNom: data.photo,
     sections,
   };
 });
+function imageUrl(nom) {
+  const chemin = `${book}src/images/recettes/${nom}`;
+  return existsSync(chemin) ? pathToFileURL(chemin).href : null;
+}
+const themesRecettes = JSON.parse(readFileSync(`${book}src/recettes/themes.json`, 'utf8')).map((t) => ({ ...t, url: imageUrl(t.photo) }));
 const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8')).map((o) => ({
   ...o,
   titre: typo(o.titre),
@@ -91,27 +98,43 @@ const fonts = [
   ['Cormorant Garamond', 500, 'normal', 'cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2'],
   ['Cormorant Garamond', 500, 'italic', 'cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2'],
   ['Cormorant Garamond', 600, 'normal', 'cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2'],
+  ['Cormorant Garamond', 600, 'italic', 'cormorant-garamond/files/cormorant-garamond-latin-600-italic.woff2'],
+  ['Cormorant Garamond', 700, 'normal', 'cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2'],
+  ['Cormorant Garamond', 700, 'italic', 'cormorant-garamond/files/cormorant-garamond-latin-700-italic.woff2'],
   ['Inter', 400, 'normal', 'inter/files/inter-latin-400-normal.woff2'],
   ['Inter', 500, 'normal', 'inter/files/inter-latin-500-normal.woff2'],
   ['Inter', 600, 'normal', 'inter/files/inter-latin-600-normal.woff2'],
+  ['Inter', 700, 'normal', 'inter/files/inter-latin-700-normal.woff2'],
+  // Polices du logo : titres des recettes (Limelight) et intertitres manuscrits (Sacramento).
+  ['Limelight', 400, 'normal', 'limelight/files/limelight-latin-400-normal.woff2'],
+  ['Sacramento', 400, 'normal', 'sacramento/files/sacramento-latin-400-normal.woff2'],
 ].map(([family, weight, style, file]) =>
   `@font-face{font-family:'${family}';font-weight:${weight};font-style:${style};src:url(${fontFile(file)}) format('woff2');}`).join('\n');
 
-function pageRules({ impression }) {
+// Format téléphone / liseuse : page étroite (proportions d'un écran), marges courtes.
+const MOBILE = { size: '105mm 170mm', margin: '11mm 9mm 13mm 9mm' };
+
+function pageRules({ impression, mobile }) {
   const t = tokens;
-  const marge = `${t['print-margin-top']} ${t['print-margin-outer']} ${t['print-margin-bottom']} ${t['print-margin-inner']}`;
-  const pied = `font-family: Inter, sans-serif; font-size: 7.5pt; color: ${t['semantic-text-muted']};`;
+  const marge = mobile
+    ? MOBILE.margin
+    : `${t['print-margin-top']} ${t['print-margin-outer']} ${t['print-margin-bottom']} ${t['print-margin-inner']}`;
+  const pied = `font-family: Inter, sans-serif; font-size: ${mobile ? '6.5pt' : '7.5pt'}; color: ${t['semantic-text-muted']};`;
   const filigrane = draft
     ? `@top-center { content: "BROUILLON · À VALIDER · NE PAS DIFFUSER"; ${pied} color: ${t['semantic-accent-text']}; letter-spacing: 0.12em; }`
     : '';
   return `
 @page {
-  size: A4;
+  size: ${mobile ? MOBILE.size : 'A4'};
   margin: ${marge};
   ${impression ? '' : `background: ${t['semantic-bg']};`}
   @bottom-center { content: counter(page); ${pied} }
-  @bottom-left { content: "Cycle Awakening · ${impression ? 'Outils imprimables' : livre.titre}"; ${pied} }
+  ${mobile ? '' : `@bottom-left { content: "Cycle Awakening · ${impression ? 'Outils imprimables' : livre.titre}"; ${pied} }`}
   ${filigrane}
+}
+@page recette {
+  margin: 0 0 ${mobile ? '13mm' : '14mm'} 0;
+  @bottom-left { content: none; }
 }
 @page couverture {
   margin: 0;
@@ -134,40 +157,74 @@ function chapitreHtml(c) {
 </section>`;
 }
 
-function recetteHtml(r) {
-  const [ingredients, preparation, ...autres] = r.sections;
-  const photo = r.photo
-    ? `<img src="${r.photo}" alt="">`
-    : `<div class="photo-attente"><span>Photo à venir</span><small>${r.photoNom}</small></div>`;
-  return `<section class="recette" id="recette-${r.id}">
-  <figure class="recette-photo">${photo}</figure>
-  <p class="recette-meta">${r.categorie}<span>${r.temps}</span><span>${r.portions}</span>${r.statut === 'valide' ? '' : '<span class="statut">brouillon</span>'}</p>
-  <h2 class="recette-titre">${r.titre}</h2>
-  <p class="recette-intro">${r.intro}</p>
-  <div class="recette-grille">
-    <div class="recette-ingredients"><h3>${ingredients.titre}</h3>${ingredients.html}</div>
-    <div class="recette-etapes"><h3>${preparation.titre}</h3>${preparation.html}
-      ${autres.map((a) => `<div class="recette-astuce"><p class="recette-astuce-titre">${a.titre}</p>${a.html}</div>`).join('')}
-    </div>
+// Trait décoratif organique (inspiré des livres de cuisine) : posé sur la photo, couleur crème.
+const trait = `<svg class="r-trait" viewBox="0 0 120 160" aria-hidden="true"><path d="M8 150c18-30 4-58 26-78s46-6 52-30-20-40 4-34 30 30 14 52-44 14-48 40 22 34 44 28" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M20 148c22-26 10-48 30-64" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/></svg>`;
+const soleil = `<svg class="t-soleil" viewBox="0 0 100 100" aria-hidden="true">${Array.from({ length: 18 }, (_, i) => {
+  const a = (i * 20 * Math.PI) / 180;
+  const r1 = i % 2 ? 14 : 8;
+  const r2 = i % 2 ? 40 : 48;
+  return `<line x1="${50 + r1 * Math.cos(a)}" y1="${50 + r1 * Math.sin(a)}" x2="${50 + r2 * Math.cos(a)}" y2="${50 + r2 * Math.sin(a)}" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>`;
+}).join('')}</svg>`;
+
+function photoHtml(url, nom, classe) {
+  return url
+    ? `<figure class="${classe}"><img src="${url}" alt=""></figure>`
+    : `<figure class="${classe} ${classe}--attente"><span>Photo à venir</span><small>${nom}</small></figure>`;
+}
+
+function themeHtml(t) {
+  return `<section class="theme-page">
+  ${photoHtml(t.url, t.photo, 't-photo')}
+  ${soleil}
+  <div class="t-bloc">
+    <p class="t-script">${t.script}</p>
+    <h2 class="t-titre">${t.nom}</h2>
   </div>
 </section>`;
 }
 
+function recetteHtml(r) {
+  const [ingredients, preparation, ...autres] = r.sections;
+  return `<section class="recette" id="recette-${r.id}">
+  <header class="r-entete">
+    <p class="r-meta">${r.categorie}<span>${r.temps}</span><span>${r.portions}</span>${r.statut === 'valide' ? '' : '<span class="statut">brouillon</span>'}</p>
+    <h2 class="recette-nom">${r.nom}</h2>
+  </header>
+  <div class="r-gauche">
+    <p class="r-sous-titre">${r.titre}</p>
+    <p class="r-intro">${r.intro}</p>
+  </div>
+  ${photoHtml(r.photo, r.photoNom, 'r-photo')}
+  ${trait}
+  <div class="r-carte"><h3>${ingredients.titre}</h3>${ingredients.html}</div>
+  <div class="r-droite">
+    <h3>${preparation.titre}</h3>${preparation.html}
+    ${autres.map((a) => `<div class="recette-astuce"><p class="recette-astuce-titre">${a.titre}</p>${a.html}</div>`).join('')}
+  </div>
+</section>`;
+}
+
+function recettesHtml() {
+  return themesRecettes.map((t) => [themeHtml(t), ...recettes.filter((r) => r.theme === t.nom).map(recetteHtml)].join('\n')).join('\n');
+}
+
 function outilHtml(o, i) {
   return `<section class="outil" id="outil-${o.id}">
-  <p class="outil-etiquette">Outil ${i + 1} / ${outils.length} · à imprimer${o.statut === 'valide' ? '' : ' · brouillon'}</p>
+  <p class="outil-etiquette">${o.bonus ? 'Bonus · à imprimer ou à transmettre' : `Outil ${i + 1} / ${outils.filter((x) => !x.bonus).length} · à imprimer`}${o.statut === 'valide' ? '' : ' · brouillon'}</p>
   <h1>${o.titre}</h1>
   ${o.html}
 </section>`;
 }
 
-const avertissement = `<div class="avertissement">
-  <p><strong>Ce guide ne remplace pas un avis médical.</strong> Il propose des repères de mode de vie. Il ne pose aucun diagnostic, ne remplace aucun traitement et ne promet aucun résultat. En cas de douleur intense, de saignements très abondants, de symptômes nouveaux ou qui s'aggravent, ou si tu traverses une détresse importante, consulte un·e professionnel·le de santé. Si tu es enceinte, allaites ou suis un traitement, demande conseil avant tout changement.</p>
+const avertissement = `<div class="encadre encadre-alerte">
+  <p class="encadre-titre">Ce guide ne remplace pas un avis médical</p>
+  <p>Il propose des repères de mode de vie. Il ne pose aucun diagnostic, ne remplace aucun traitement et ne promet aucun résultat. En cas de douleur intense, de saignements très abondants, de symptômes nouveaux ou qui s'aggravent, ou si tu traverses une détresse importante, consulte un·e professionnel·le de santé. Si tu es enceinte, allaites ou suis un traitement, demande conseil avant tout changement.</p>
 </div>`;
 
-function document({ impression }) {
+function document({ impression, mobile = false, seul = null }) {
+  const themes = themesRecettes.map((t) => t.nom);
   const corps = impression
-    ? outils.map(outilHtml).join('\n')
+    ? outils.filter((o) => !seul || o.id === seul).map(outilHtml).join('\n')
     : `
 <section class="couverture">
   <div class="logo">${logoClair}</div>
@@ -182,7 +239,7 @@ function document({ impression }) {
 <section class="liminaire">
   <h2>Avant de commencer</h2>
   ${avertissement}
-  <p>Ce guide est construit pour être utilisé, pas seulement lu. Commence par la partie qui te parle le plus. Les outils à imprimer sont à la fin, et aussi dans un fichier séparé.</p>
+  <p>Ce guide est construit pour être utilisé, pas seulement lu. Commence par la partie qui te parle le plus. ${mobile ? 'Cette version est mise en page pour le téléphone et la liseuse ; les outils à imprimer sont dans un fichier séparé.' : 'Les outils à imprimer sont à la fin, et aussi dans un fichier séparé.'}</p>
   <p class="petit">${livre.titre} · ${livre.edition} · ${date}<br>
   © ${new Date().getFullYear()} Cycle Awakening. Tous droits réservés. Ce guide est réservé à ton usage personnel : merci de ne pas le partager ni le revendre.<br>
   <a href="${livre.site}">${livre.site.replace('https://', '')}</a> · <a href="mailto:${livre.email}">${livre.email}</a></p>
@@ -190,18 +247,19 @@ function document({ impression }) {
 
 <section class="liminaire">
   <h2>Sommaire</h2>
+  <p class="bandeau">Le guide</p>
   <ol class="sommaire">
     ${chapitres.map((c) => `<li><a href="#chapitre-${c.ordre}"><span class="num">${num(c.ordre)}</span><span class="t">${c.titre}</span><span class="sous">${c.accroche}</span></a></li>`).join('\n    ')}
-    <li class="partie">Les recettes</li>
-    <li><ul class="sommaire-recettes">${recettes.map((r) => `<li><a href="#recette-${r.id}">${r.titre}</a></li>`).join('')}</ul></li>
-    <li class="partie">Outils à imprimer</li>
-    ${outils.map((o, i) => `<li><a href="#outil-${o.id}"><span class="num">${i + 1}</span><span class="t">${o.titre}</span></a></li>`).join('\n    ')}
   </ol>
+  ${themes.map((th) => `<p class="bandeau">Recettes · <span class="accent-theme">${th}</span></p>
+  <ul class="sommaire-colonnes">${recettes.filter((r) => r.theme === th).map((r) => `<li><a href="#recette-${r.id}">${r.nom}</a></li>`).join('')}</ul>`).join('\n  ')}
+  <p class="bandeau">${mobile ? 'Bonus' : 'Outils à imprimer'}</p>
+  <ul class="sommaire-colonnes">${(mobile ? outils.filter((o) => o.bonus) : outils).map((o) => `<li><a href="#outil-${o.id}">${o.titre}</a></li>`).join('')}</ul>
 </section>
 
 ${chapitres.map(chapitreHtml).join('\n')}
-${recettes.map(recetteHtml).join('\n')}
-${outils.map(outilHtml).join('\n')}
+${recettesHtml()}
+${(mobile ? outils.filter((o) => o.bonus) : outils).map(outilHtml).join('\n')}
 
 <section class="fin">
   <div class="logo">${logo}</div>
@@ -219,9 +277,9 @@ ${outils.map(outilHtml).join('\n')}
 ${fonts}
 ${tokensCss}
 ${css}
-${pageRules({ impression })}
+${pageRules({ impression, mobile })}
 </style></head>
-<body${draft ? ' class="brouillon"' : ''}>${corps}</body></html>`;
+<body class="${[draft && 'brouillon', mobile && 'mobile'].filter(Boolean).join(' ')}">${corps}</body></html>`;
 }
 
 // --- Rendu PDF -------------------------------------------------------------------------------
@@ -258,6 +316,8 @@ async function rendre(nom, html, meta) {
 }
 
 const pagesGuide = await rendre('cycle-awakening-guide', document({ impression: false }), { titre: `Cycle Awakening — ${livre.titre}` });
+await rendre('cycle-awakening-guide-telephone', document({ impression: false, mobile: true }), { titre: `Cycle Awakening — ${livre.titre} (téléphone et liseuse)` });
+await rendre('cycle-awakening-notice-pour-lui', document({ impression: true, seul: 'notice-pour-lui' }), { titre: 'Cycle Awakening — La notice pour lui' });
 await rendre('cycle-awakening-outils-imprimables', document({ impression: true }), { titre: 'Cycle Awakening — Outils imprimables' });
 await browser.close();
 

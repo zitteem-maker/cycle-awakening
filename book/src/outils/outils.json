@@ -1,6 +1,33 @@
 [
-  { "id": "journal", "titre": "Journal de cycle — 7 jours", "fichier": "journal-7-jours.html", "statut": "brouillon" },
-  { "id": "planner", "titre": "Planner de la semaine", "fichier": "planner-hebdo.html", "statut": "brouillon" },
-  { "id": "urgence", "titre": "Protocole d'urgence J24–J28", "fichier": "protocole-j24-j28.html", "statut": "brouillon" },
-  { "id": "courses", "titre": "Liste de courses de fin de cycle", "fichier": "liste-de-courses.html", "statut": "brouillon" }
+  {
+    "id": "journal",
+    "titre": "Journal de cycle — 7 jours",
+    "fichier": "journal-7-jours.html",
+    "statut": "brouillon"
+  },
+  {
+    "id": "planner",
+    "titre": "Planner de la semaine",
+    "fichier": "planner-hebdo.html",
+    "statut": "brouillon"
+  },
+  {
+    "id": "urgence",
+    "titre": "Protocole d'urgence J24–J28",
+    "fichier": "protocole-j24-j28.html",
+    "statut": "brouillon"
+  },
+  {
+    "id": "courses",
+    "titre": "Liste de courses de fin de cycle",
+    "fichier": "liste-de-courses.html",
+    "statut": "brouillon"
+  },
+  {
+    "id": "notice-pour-lui",
+    "titre": "Bonus · La notice pour lui",
+    "fichier": "notice-pour-lui.html",
+    "statut": "brouillon",
+    "bonus": true
+  }
 ]

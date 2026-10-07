@@ -73,3 +73,6 @@ Tant que `missingForSales()` n'est pas vide : mentions légales de site non prof
 - **Purée de haricots / tofu** : végane seulement avec le sirop d'érable (le miel n'est pas végan) ; le texte le précise.
 - **Cookies** : l'« option courageuse » utilise des pois chiches secs **trempés puis cuits** (jamais crus).
 - **Photos** : 10 photos de recettes à fournir (voir `docs/PHOTOS-UNSPLASH.md`) ; la version finale du livre refuse de se fabriquer tant qu'une photo manque.
+- **Chapitre 5** : l'encart « Et si tu ne veux pas le faire seule » dit « je prépare l'accompagnement ». À passer au présent (avec le lien d'inscription) quand l'offre Premium sera ouverte.
+- **Notice pour lui** (bonus) : une page façon notice de montage, dans les outils, la version téléphone et en PDF séparé. À valider.
+- **Photos des pages d'ouverture de thème** : `theme-petit-dejeuner.jpg`, `theme-plats.jpg`, `theme-vegetal.jpg`, `theme-boissons.jpg` (format paysage, haut de page).

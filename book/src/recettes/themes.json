@@ -1,0 +1,6 @@
+[
+  { "nom": "Petit-déjeuner & en-cas", "script": "pour bien commencer", "photo": "theme-petit-dejeuner.jpg" },
+  { "nom": "Plats", "script": "les soirs de semaine", "photo": "theme-plats.jpg" },
+  { "nom": "Plats végétaux", "script": "côté plantes", "photo": "theme-vegetal.jpg" },
+  { "nom": "Boissons chaudes", "script": "le rituel du soir", "photo": "theme-boissons.jpg" }
+]

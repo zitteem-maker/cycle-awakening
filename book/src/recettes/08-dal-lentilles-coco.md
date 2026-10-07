@@ -1,5 +1,7 @@
 ---
 ordre: 8
+nom: Dal coco
+theme: Plats végétaux
 titre: Dal de lentilles corail au lait de coco et aux épinards
 categorie: Plat végétal · Une casserole
 temps: 10 min + 20 min de cuisson

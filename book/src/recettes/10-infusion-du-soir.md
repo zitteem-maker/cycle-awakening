@@ -1,5 +1,7 @@
 ---
 ordre: 10
+nom: Infusion du soir
+theme: Boissons chaudes
 titre: Infusion du soir verveine, orange et cannelle
 categorie: Boisson chaude
 temps: 10 min

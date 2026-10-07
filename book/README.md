@@ -11,7 +11,11 @@ Source HTML/CSS reproductible, rendue en PDF A4 par Chromium (Playwright). Même
 
 Sorties dans `book/dist/` (non versionné, reproductible) :
 - `cycle-awakening-guide.pdf` — version écran : couverture, avertissement médical en page 2, sommaire cliquable, chapitres, outils en annexe, rappel final ;
-- `cycle-awakening-outils-imprimables.pdf` — les 4 outils seuls, fond blanc, une page A4 chacun.
+- `cycle-awakening-guide-telephone.pdf` — même contenu au format téléphone / liseuse (page étroite, une colonne), avec la notice bonus ;
+- `cycle-awakening-outils-imprimables.pdf` — les outils seuls (journal, planner, protocole J24–J28, courses, notice bonus), une page A4 chacun ;
+- `cycle-awakening-notice-pour-lui.pdf` — la notice bonus seule, à transmettre.
+
+Recettes : `src/recettes/*.md` (frontmatter `nom`, `theme`, `titre`, `categorie`, `temps`, `portions`, `photo`, `intro`) et `src/recettes/themes.json` (pages d'ouverture). Photos dans `src/images/recettes/` (nom de fichier = champ `photo`).
 
 ## Contenu
 

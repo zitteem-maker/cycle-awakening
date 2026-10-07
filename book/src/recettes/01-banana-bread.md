@@ -1,5 +1,7 @@
 ---
 ordre: 1
+nom: Banana bread
+theme: Petit-déjeuner & en-cas
 titre: Banana bread sans beurre aux pépites de chocolat
 categorie: Petit-déjeuner · Goûter
 temps: 15 min + 50 min de cuisson

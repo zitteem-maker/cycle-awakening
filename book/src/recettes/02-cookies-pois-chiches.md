@@ -1,5 +1,7 @@
 ---
 ordre: 2
+nom: Cookies pois chiches
+theme: Petit-déjeuner & en-cas
 titre: Cookies aux pois chiches, avoine, noix et fruits rouges
 categorie: Goûter · En-cas
 temps: 15 min + 15 min de cuisson
