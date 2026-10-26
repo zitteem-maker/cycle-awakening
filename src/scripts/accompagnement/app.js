@@ -113,6 +113,92 @@ const SESSIONS = {
       ["Hydratation","500 ml pendant l'heure",""],
       ["Dimanche","Au max ou chill","Entre le tennis et la suite : eau et ½ banane ferme."],
       ["Après","5 min d'étirements","Épaules, avant-bras, mollets."]]}]},
+  epaules:{name:"Épaules fines et dos dessiné",when:"Le soir · 25 min · 2 fois par semaine",short:"Posture de danseuse, mi-engagement, mi-détente.",
+    why:"Des épaules fines et un dos dessiné viennent surtout d'une posture ouverte et d'un taux de masse grasse modéré. Ces exercices tonifient le milieu et le bas des trapèzes et les rhomboïdes, sans muscler le haut des épaules. Pas de charge, transitions lentes : on finit au sol pour dormir.",
+    blocks:[
+      {h:"Réveil de la posture",d:"4 min",ex:[
+        ["Chat-vache","8 respirations","Insiste sur l'écart et le rapprochement des omoplates."],
+        ["Fil de l'aiguille","5 respirations par côté","Ouvre le haut du dos."]]},
+      {h:"Engagement",d:"10 min · 2 tours",ex:[
+        ["Swan prep (cobra pilates)","8","Allonge le sternum vers l'avant, les épaules glissent vers le bas du dos. L'exercice clé de la posture."],
+        ["T à plat ventre","8","Front posé, bras en croix, pouces vers le plafond : décolle les bras de 5 cm en serrant légèrement les omoplates."],
+        ["Y à plat ventre","8","Même chose, bras en Y. Le cou reste long."],
+        ["Swimming","20 s","Bras et jambes longs, petits battements."],
+        ["Dolphin ou chien tête en bas","5 respirations","Repousse le sol, les épaules loin des oreilles."],
+        ["Wall angels contre un mur","8, très lents","Bas du dos, arrière du crâne et bras collés au mur."]]},
+      {h:"Détente au sol",d:"10 min",ex:[
+        ["Posture de l'enfant bras longs","1 min + 30 s par côté","Décale les mains d'un côté puis de l'autre : étirement des dorsaux."],
+        ["Melting heart (chiot)","1 min 30",""],
+        ["Torsion allongée","1 min par côté","Bras en croix."],
+        ["Ouverture de poitrine sur coussin","2 à 3 min","Coussin ou bloc sous les omoplates, bras en cactus, respiration par le nez."],
+        ["Respiration 4-6","1 min","Inspire sur 4 temps, expire sur 6 : prépare le sommeil."]]}
+    ],
+    tips:["Arrête si une épaule pince.","La régularité compte plus que l'intensité : refais le bloc Engagement deux fois par semaine."]},
+  ashtangaA:{name:"Ashtanga · Série A",when:"75 à 90 min · ou version courte 45 min",short:"Première série (Yoga Chikitsa), dans l'ordre traditionnel.",
+    why:"La série primaire, toujours dans le même ordre : 5 respirations ujjayi par posture, regard (drishti) fixe, bandhas engagés, demi-vinyasa entre les postures assises. Version courte : salutations, postures debout, puis directement la séquence de fin.",
+    blocks:[
+      {h:"Salutations",d:"10 min",ex:[
+        ["Surya Namaskara A","5 fois","Une respiration par mouvement, 5 respirations en chien tête en bas."],
+        ["Surya Namaskara B","3 à 5 fois","Avec Utkatasana et Virabhadrasana I des deux côtés."]]},
+      {h:"Postures debout",d:"20 min",ex:[
+        ["Padangusthasana · Padahastasana","5 + 5",""],
+        ["Utthita et Parivrtta Trikonasana","5 par côté chacune",""],
+        ["Utthita et Parivrtta Parsvakonasana","5 par côté chacune",""],
+        ["Prasarita Padottanasana A, B, C, D","5 chacune",""],
+        ["Parsvottanasana","5 par côté","Mains en prière dans le dos, ou coudes tenus."],
+        ["Utthita Hasta Padangusthasana","5 par étape et par côté","Garde la jambe pliée si besoin."],
+        ["Ardha Baddha Padmottanasana","5 par côté","Sans lotus si le genou proteste : pied posé sur la cuisse ou au sol."],
+        ["Utkatasana · Virabhadrasana I et II","5 chacune","Enchaînées avec le vinyasa."]]},
+      {h:"Postures assises",d:"35 min",ex:[
+        ["Dandasana · Paschimottanasana A, B, C","5 chacune",""],
+        ["Purvottanasana","5",""],
+        ["Ardha Baddha Padma Paschimottanasana","5 par côté","Sans demi-lotus si besoin."],
+        ["Tiriang Mukha Ekapada Paschimottanasana","5 par côté",""],
+        ["Janu Sirsasana A, B, C","5 par côté chacune","C : seulement si le genou est à l'aise."],
+        ["Marichyasana A, B, C, D","5 par côté chacune","B et D demandent le demi-lotus : garde la variante jambe croisée."],
+        ["Navasana","5 fois 5 respirations","Avec un appui sur les mains entre chaque."],
+        ["Bhujapidasana · Kurmasana · Supta Kurmasana","5 chacune","Fais ce qui vient, sans forcer les épaules."],
+        ["Garbha Pindasana · Kukkutasana","5","Avec lotus seulement."],
+        ["Baddha Konasana · Upavistha Konasana · Supta Konasana","5 chacune",""],
+        ["Supta Padangusthasana · Ubhaya Padangusthasana · Urdhva Mukha Paschimottanasana","5 chacune",""],
+        ["Setu Bandhasana","5","Douce pour la nuque : appui sur les mains si besoin."]]},
+      {h:"Fin de pratique",d:"15 min",ex:[
+        ["Urdhva Dhanurasana","3 fois 5 respirations","Ou pont, puis Paschimottanasana 10 respirations."],
+        ["Salamba Sarvangasana · Halasana · Karnapidasana","10 · 8 · 8","Couverture pliée sous les épaules."],
+        ["Urdhva Padmasana · Pindasana · Matsyasana · Uttana Padasana","8 chacune",""],
+        ["Sirsasana","15 respirations","Seulement si tu le pratiques déjà ; sinon chien tête en bas."],
+        ["Baddha Padmasana · Yoga Mudra · Padmasana · Utpluthih","10 chacune","Demi-lotus ou tailleur si besoin."],
+        ["Savasana","5 à 10 min",""]]}
+    ],
+    tips:["Après le CrossFit, préfère la version courte.","En fin de cycle ou si tu es très fatiguée : salutations, postures debout et fin de pratique seulement."]},
+  ashtangaB:{name:"Ashtanga · Série B",when:"75 à 90 min",short:"Deuxième série (Nadi Shodhana) : flexions arrière et ouverture des hanches.",
+    why:"La série intermédiaire s'apprend traditionnellement pas à pas, une fois la série A installée. Fais les postures que tu maîtrises et arrête-toi avant les plus avancées (Kapotasana, jambe derrière la tête, Karandavasana). Mêmes règles : 5 respirations, drishti, bandhas, demi-vinyasa.",
+    blocks:[
+      {h:"Ouverture",d:"25 min",ex:[
+        ["Surya Namaskara A et B","5 et 3 à 5",""],
+        ["Postures debout de la série A","5 chacune","Jusqu'à Parsvottanasana, comme le veut la tradition."]]},
+      {h:"Flexions arrière et torsions",d:"25 min",ex:[
+        ["Pasasana","5 par côté","Talons sur un tapis roulé si besoin."],
+        ["Krounchasana","5 par côté",""],
+        ["Shalabhasana A et B","5 chacune","Excellent pour le dos dessiné."],
+        ["Bhekasana · Dhanurasana · Parsva Dhanurasana","5 chacune",""],
+        ["Ustrasana · Laghu Vajrasana","5 chacune","Laghu Vajrasana : seulement si Ustrasana est confortable."],
+        ["Kapotasana","5","Avancé : remplace par Ustrasana ou un pont si tu ne le pratiques pas avec un professeur."],
+        ["Supta Vajrasana","5","Demi-lotus ou variante sans lotus."],
+        ["Bakasana A et B · Bharadvajasana · Ardha Matsyendrasana","5 chacune",""]]},
+      {h:"Hanches, bras et tête",d:"20 min",ex:[
+        ["Eka Pada Sirsasana · Dwi Pada Sirsasana · Yoga Nidrasana","5 chacune","Jambe derrière la tête : seulement si déjà acquis. Sinon, berceau de la jambe."],
+        ["Tittibhasana A, B, C","5 chacune",""],
+        ["Pincha Mayurasana","5 à 10","Contre un mur au début. Très bon pour des épaules fines et fortes."],
+        ["Karandavasana · Mayurasana · Nakrasana","5","Avancées : garde Pincha Mayurasana et passe."],
+        ["Vatayanasana · Parighasana · Gomukhasana A et B","5 par côté chacune",""],
+        ["Supta Urdhva Pada Vajrasana","5 par côté",""],
+        ["Mukta Hasta et Baddha Hasta Sirsasana","5 chacune","Variantes d'équilibre sur la tête : uniquement si Sirsasana est stable."]]},
+      {h:"Fin de pratique",d:"15 min",ex:[
+        ["Urdhva Dhanurasana · Paschimottanasana","3 × 5 · 10",""],
+        ["Séquence de fin de la série A","comme en A","De Sarvangasana à Savasana."]]}
+    ],
+    tips:["Ne la fais pas le lendemain d'un CrossFit lourd pour le dos.","Une seule nouvelle posture avancée à la fois, idéalement vue avec un professeur."]},
   repos:{name:"Jour off",when:"Samedi",short:"Vraie récupération.",
     why:"Le jour où le corps intègre le travail de la semaine. Tu ne compenses rien.",
     blocks:[{h:"Si l'envie vient",ex:[
@@ -253,7 +339,7 @@ function openMeal(i,from){
 }
 
 /* ---------- sessions grid ---------- */
-$("#sgrid").innerHTML = ["crossfit","tractions","pilates","vinyasa","yin","marche","tennis","mobilite","repos"].map(k=>{
+$("#sgrid").innerHTML = ["crossfit","tractions","pilates","epaules","vinyasa","ashtangaA","ashtangaB","yin","marche","tennis","mobilite","repos"].map(k=>{
   const s=SESSIONS[k]; return `<button class="scard" data-s="${k}"><span class="w">${esc(s.when)}</span><h3>${esc(s.name)}</h3><p>${esc(s.short)}</p></button>`;}).join("");
 document.querySelectorAll("#sgrid [data-s]").forEach(b=>b.addEventListener("click",()=>openSession(b.dataset.s,b)));
 
