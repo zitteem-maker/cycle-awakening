@@ -10,3 +10,6 @@
 
 /styleguide
   X-Robots-Tag: noindex
+
+/accompagnement
+  X-Robots-Tag: noindex, nofollow

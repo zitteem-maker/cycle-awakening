@@ -2,6 +2,11 @@
 
 Décisions validées en cours de route, à implémenter à l'étape indiquée.
 
+## Espace accompagnement (test, 26 octobre 2026)
+
+- `/accompagnement` : prototype « Rythme & Assiette » pour la fondatrice, connexion Supabase par lien email, non référencé. Voir `docs/ACCOMPAGNEMENT.md`.
+- Avant toute ouverture à des membres : profils par personne, politique de confidentialité (données de santé, Supabase), contrôle d'accès côté serveur, assistante pour « Cuisiner avec mon frigo ».
+
 ## Compteur de membres (étape 6, affiché dès l'étape 3 si données réelles)
 
 Validé le 6 octobre 2026.

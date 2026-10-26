@@ -63,4 +63,5 @@ docs/                       Audit, migration, liens UTM, assets, backlog, règle
 - [Backlog des décisions](docs/BACKLOG.md)
 - [Plan éditorial du blog](docs/PLAN-EDITORIAL.md)
 - [Règles de l'assistante IA](docs/regles-assistante-ia.md)
+- [Espace accompagnement (test)](docs/ACCOMPAGNEMENT.md)
 - [Documents sources](docs/SOURCES.md)

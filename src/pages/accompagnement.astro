@@ -1,0 +1,265 @@
+---
+// Espace accompagnement « Rythme & Assiette » (version test, non référencée).
+// Connexion par lien email (Supabase) ; sans configuration Supabase, la page fonctionne en mode local.
+// Voir docs/ACCOMPAGNEMENT.md.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Logo from '../components/Logo.astro';
+import '../styles/accompagnement.css';
+---
+
+<BaseLayout title="Mon accompagnement" description="Ton programme : semaine, séances, assiette, encas et courses." noindex>
+<div class="acc-app">
+<header class="top wrap">
+  <div class="acc-top"><a href="/" class="acc-logo" aria-label="Cycle Awakening, accueil"><Logo /></a><div id="account" class="acc-account"></div></div>
+  <p class="eyebrow">Ton accompagnement</p>
+  <h1>Rythme &amp; <span class="accent">Assiette</span></h1>
+  <p>Ta semaine type : trois à quatre CrossFit en semaine, du mouvement doux, et une assiette pauvre en FODMAP pour dégonfler.</p>
+</header>
+
+
+<section id="gate" class="wrap acc-gate" hidden>
+  <h2>Connexion</h2>
+  <p>Entre ton email : tu reçois un lien pour te connecter, sans mot de passe. Tes cases cochées et tes réglages te suivent ensuite sur tous tes appareils.</p>
+  <form id="gate-form" novalidate>
+    <label for="gate-email">Email</label>
+    <div class="acc-gate-row">
+      <input id="gate-email" name="email" type="email" autocomplete="email" required placeholder="toi@exemple.com" />
+      <button type="submit" class="acc-btn">Recevoir mon lien</button>
+    </div>
+    <p id="gate-msg" class="acc-gate-msg" role="status"></p>
+  </form>
+</section>
+
+<div id="app" hidden>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" role="tablist">
+    <button class="tab" role="tab" id="t-semaine" data-view="semaine">Semaine</button>
+    <button class="tab" role="tab" id="t-seances" data-view="seances">Séances</button>
+    <button class="tab" role="tab" id="t-assiette" data-view="assiette">Assiette</button>
+    <button class="tab" role="tab" id="t-matin" data-view="matin">Encas</button>
+    <button class="tab" role="tab" id="t-courses" data-view="courses">Courses</button>
+  </div>
+</nav>
+
+<main class="wrap" id="contenu">
+  <section id="v-semaine" data-view-panel="semaine">
+    <div class="days" role="tablist" aria-label="Jours" id="days"></div>
+    <div id="dayview"></div>
+  </section>
+
+  <section id="v-seances" data-view-panel="seances" hidden>
+    <p class="note" style="margin-bottom:16px">Touche une séance pour voir son déroulé et ce qu'il faut privilégier.</p>
+    <div class="sgrid" id="sgrid"></div>
+  </section>
+
+  <section id="v-assiette" data-view-panel="assiette" hidden>
+    <div class="accs">
+      <details class="acc" id="acc-guide" open>
+        <summary><span class="st">Guide des aliments</span><span class="sm">Touche une catégorie</span></summary>
+        <div class="accbody">
+          <p>Portions par repas, d'après les seuils de l'université Monash. « À dose » : très bien toléré jusqu'à la portion indiquée.</p>
+          <details class="acc sub" id="fridge"><summary><span class="st">Cuisiner avec mon frigo</span><span class="count">Coche, puis crée</span></summary><div class="accbody">
+            <p>Coche ce que tu as sous la main : Claude te propose une recette pauvre en FODMAP, avec tes portions.</p>
+            <div id="fchips"></div>
+            <div class="filters" style="margin-top:10px" role="group" aria-label="Pour quel moment">
+              <button class="fbtn" data-moment="repas" aria-pressed="true">Repas</button>
+              <button class="fbtn" data-moment="petit-déjeuner" aria-pressed="false">Petit-déj</button>
+              <button class="fbtn" data-moment="collation" aria-pressed="false">Collation</button>
+              <button class="fbtn" data-who="famille" aria-pressed="true">Pour 3</button>
+              <button class="fbtn" data-who="toi" aria-pressed="false">Pour moi</button>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <button class="tab" id="fgo" aria-selected="true" style="padding:9px 16px">Créer une recette</button>
+              <button class="fbtn" id="fclear">Tout décocher</button>
+              <span id="fstatus" class="count"></span>
+            </div>
+            <div id="fout"></div>
+          </div></details>
+          <div class="filters" role="group" aria-label="Filtrer">
+            <button class="fbtn" data-f="all" aria-pressed="true">Tout</button>
+            <button class="fbtn" data-f="ok" aria-pressed="false">Libre</button>
+            <button class="fbtn" data-f="dose" aria-pressed="false">À dose</button>
+            <button class="fbtn" data-f="evite" aria-pressed="false">À éviter</button>
+            <input class="search" id="q" type="search" placeholder="Chercher : figue, burrata…" aria-label="Chercher un aliment">
+          </div>
+          <div id="guide"></div>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span class="st">Ventre léger</span><span class="sm">Hydratants, potassium, digestes</span></summary>
+        <div class="accbody">
+          <p>Ces aliments ne font pas perdre de graisse, mais ils limitent les gaz et la rétention d'eau. Mets-en à chaque repas.</p>
+          <div id="degonfle"></div>
+          <details class="acc sub"><summary><span class="st">À dose, mais utiles</span></summary><div class="accbody"><div class="rows" id="degonfleDose"></div></div></details>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span class="st">Laits et boissons végétales</span><span class="sm">Lesquels choisir</span></summary>
+        <div class="accbody"><div class="rows" id="laits"></div></div>
+      </details>
+
+      <details class="acc">
+        <summary><span class="st">Fruits</span><span class="sm">Portions par prise</span></summary>
+        <div class="accbody"><p>Une seule portion à la fois, 2 à 3 par jour, espacées de 2 à 3 heures.</p><div class="rows" id="fruits"></div></div>
+      </details>
+
+      <details class="acc">
+        <summary><span class="st">Repas plaisir</span><span class="sm">Jeudi soir, samedi soir</span></summary>
+        <div class="accbody">
+          <div class="ctag">Pizza commandée, samedi soir</div>
+          <ul class="list">
+            <li>Ta part : 2 parts (environ ¼ de pizza), de préférence pâte fine, avec jambon ou poulet pour les protéines.</li>
+            <li>Sans garniture à l'oignon ni à l'ail.</li>
+            <li>Une grande salade verte à côté.</li>
+          </ul>
+          <div class="ctag">Jeudi soir : burger commandé pour eux, mini tatin pour toi</div>
+          <ul class="list"><li>La recette de ta mini tatin au sarrasin est dans le repas du jeudi soir (onglet Semaine).</li></ul>
+          <div class="ctag">Si tu prends aussi un burger</div>
+          <ul class="list">
+            <li><b>Frites de patate douce : oui, environ 75 g</b>, soit une petite poignée. C'est la limite pour la patate douce.</li>
+            <li>Complète avec 100 g de frites ou de pommes de terre au four : la pomme de terre est libre.</li>
+            <li>Ton assiette complète : steak haché de bœuf à 5 % (120 g) ou poulet grillé, laitue, tomates, concombre, sauce au yaourt sans lactose.</li>
+            <li>Sans oignon, et sans sauce burger (souvent à l'ail). Pain au levain ou pas de pain.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span class="st">Gestes au quotidien</span><span class="sm">Digestion, anti-inflammatoire</span></summary>
+        <div class="accbody">
+          <ul class="list">
+            <li>Mange lentement, sans écran, et mâche bien.</li>
+            <li>Marche 10 minutes après le déjeuner et le dîner.</li>
+            <li>3 à 4 heures entre les repas, sans grignoter.</li>
+            <li>Bois entre les repas plutôt que pendant. Pas d'eau gazeuse ni de chewing-gum.</li>
+            <li>2 kiwis par jour et 1,5 à 2 L d'eau pour le transit.</li>
+            <li>Poisson gras chaque semaine, huile d'olive, curcuma, gingembre, herbes fraîches.</li>
+            <li>Shaker : whey isolate ou protéine végétale sans inuline ni édulcorant en « -ol ».</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span class="st">Les trois temps du FODMAP</span></summary>
+        <div class="accbody">
+          <div class="phases">
+            <div class="phase"><small>2 à 4 semaines</small><b>Éviction</b><p>Tu suis le guide et les portions « à dose ».</p></div>
+            <div class="phase"><small>6 à 8 semaines</small><b>Réintroduction</b><p>Une famille à la fois (lactose, ail, blé, figue…) sur 3 jours, en notant tes réactions.</p></div>
+            <div class="phase"><small>Ensuite</small><b>Personnalisation</b><p>Tu gardes tout ce que tu tolères.</p></div>
+          </div>
+        </div>
+      </details>
+    </div>
+    <p class="foot">Repères généraux, pas un avis médical. Les seuils viennent de l'appli Monash FODMAP, qui reste la référence à jour.</p>
+  </section>
+
+  <section id="v-matin" data-view-panel="matin" hidden>
+    <div class="filters" role="tablist" aria-label="Encas">
+      <button class="fbtn" data-sub="idees" aria-pressed="true">Petit-déj et collations</button>
+      <button class="fbtn" data-sub="patisseries" aria-pressed="false">Pâtisseries</button>
+    </div>
+    <div id="sub-idees" class="accs">
+      <details class="acc" open><summary><span class="st">Petit-déjeuner</span><span class="sm">20 g de protéines environ</span></summary><div class="accbody"><ul class="list" id="bkf"></ul></div></details>
+      <details class="acc"><summary><span class="st">Après le CrossFit</span><span class="sm">Dans l'heure</span></summary><div class="accbody"><ul class="list" id="post"></ul></div></details>
+      <details class="acc"><summary><span class="st">Collations</span><span class="sm">150 à 250 kcal</span></summary><div class="accbody"><ul class="list" id="snk"></ul></div></details>
+    </div>
+    <div id="sub-patisseries" class="accs" hidden>
+      <p class="note">Recettes de ton chat « Pâtisserie », adaptées : sans blé ni lactose, huile d'olive, moins de sucre, épices anti-inflammatoires. Change le nombre de parts : les quantités suivent. 1 à 2 fois par semaine.</p>
+      <div id="recipes" class="accs"></div>
+      <details class="acc"><summary><span class="st">Farines</span><span class="sm">Lesquelles utiliser</span></summary><div class="accbody"><div class="rows" id="flours"></div>
+        <div class="ctag">Mélange repère</div><ul class="list"><li><b>50 %</b> farine d'avoine, <b>30 %</b> farine de riz ou de sarrasin, <b>20 %</b> poudre d'amande.</li><li>Pour lier sans gluten : 1 c. à café de psyllium ou un œuf de plus.</li></ul></div></details>
+    </div>
+  </section>
+
+  <section id="v-courses" data-view-panel="courses" hidden>
+    <p class="note" style="margin-bottom:14px">Fruits et légumes, protéines et frais : 3 courses. Autres : une commande par semaine, poissons inclus. Les quantités incluent les petits-déjeuners et les collations.</p>
+    <div class="accs" id="courses"></div>
+    <button class="fbtn" id="creset" style="margin-top:16px">Tout décocher</button>
+  </section>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
+  <div class="in">
+    <div class="grab"></div>
+    <div class="shead"><h2 id="sh-title"></h2><button class="close" id="sh-close" aria-label="Fermer">×</button></div>
+    <div id="sh-body"></div>
+  </div>
+</div>
+
+
+</div>
+</div>
+</BaseLayout>
+
+<script>
+  import { runApp } from '../scripts/accompagnement/app.js';
+  import { supabase, createStore, loadRemote, readLocal } from '../scripts/accompagnement/store.js';
+
+  const $ = (s) => document.querySelector(s);
+  const account = $('#account');
+  const STATUS = { saving: 'Enregistrement…', saved: 'Synchronisé', error: 'Pas de connexion : enregistré sur cet appareil' };
+
+  function showApp(store) {
+    $('#gate').hidden = true;
+    $('#app').hidden = false;
+    runApp(store);
+  }
+
+  function renderAccount(text, withLogout) {
+    account.innerHTML = '';
+    const span = document.createElement('span');
+    span.id = 'sync';
+    span.textContent = text;
+    account.append(span);
+    if (withLogout) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'acc-link';
+      btn.textContent = 'Se déconnecter';
+      btn.addEventListener('click', async () => { await supabase.auth.signOut(); location.reload(); });
+      account.append(btn);
+    }
+  }
+
+  async function start() {
+    if (!supabase) {
+      renderAccount('Mode local : enregistré sur cet appareil', false);
+      showApp(createStore({ initial: readLocal() }));
+      return;
+    }
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      $('#gate').hidden = false;
+      supabase.auth.onAuthStateChange((_event, s) => { if (s) location.reload(); });
+      $('#gate-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = $('#gate-email').value.trim();
+        const msg = $('#gate-msg');
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Vérifie ton adresse email.'; return; }
+        msg.textContent = 'Envoi…';
+        const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + '/accompagnement' } });
+        msg.textContent = error
+          ? "Le lien n'a pas pu être envoyé. Réessaie dans une minute."
+          : `C'est envoyé. Ouvre le lien reçu à ${email}, sur cet appareil.`;
+      });
+      return;
+    }
+    const user = session.user;
+    let initial = readLocal();
+    try {
+      const remote = await loadRemote(user);
+      if (remote) initial = { ...initial, ...remote };
+    } catch {
+      /* hors ligne : on part de la copie locale */
+    }
+    const store = createStore({ user, initial, onStatus: (s) => { const el = $('#sync'); if (el) el.textContent = STATUS[s]; } });
+    renderAccount(user.email ?? 'Connectée', true);
+    showApp(store);
+    store.flush();
+  }
+
+  start();
+</script>

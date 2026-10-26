@@ -1,0 +1,2732 @@
+{
+ "recipes": [
+  {
+   "title": "Gâteau moelleux yaourt-citron",
+   "parts": 8,
+   "label": "parts",
+   "bake": "Four 180 °C · 35 min · moule de 20 cm",
+   "why": "Le gâteau au yaourt du chat Pâtisserie, avec yaourt sans lactose, farines d'avoine et de riz, et huile d'olive à la place du beurre.",
+   "ings": [
+    [
+     "Farine d'avoine",
+     120,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     80,
+     "g"
+    ],
+    [
+     "Poudre d'amande",
+     50,
+     "g"
+    ],
+    [
+     "Yaourt sans lactose",
+     250,
+     "g"
+    ],
+    [
+     "Œufs",
+     2,
+     "pièce"
+    ],
+    [
+     "Huile d'olive douce",
+     40,
+     "ml"
+    ],
+    [
+     "Sirop d'érable",
+     60,
+     "g"
+    ],
+    [
+     "Levure chimique",
+     8,
+     "g"
+    ],
+    [
+     "Zeste de citron",
+     1,
+     "pièce"
+    ],
+    [
+     "Sel",
+     1,
+     "pincée"
+    ]
+   ],
+   "steps": [
+    "Préchauffe le four à 180 °C et chemise le moule.",
+    "Fouette le yaourt, les œufs, l'huile, le sirop d'érable et le zeste.",
+    "Ajoute les farines, la poudre d'amande, la levure et le sel. Mélange juste assez.",
+    "Verse dans le moule et cuis 35 min, jusqu'à ce que la lame ressorte propre."
+   ],
+   "tip": "Protéines en plus : remplace 30 g de farine de riz par 30 g de whey isolate nature."
+  },
+  {
+   "title": "Scones avoine et sarrasin",
+   "parts": 8,
+   "label": "scones",
+   "bake": "Four 220 °C · 15 min",
+   "why": "Les scones du chat Pâtisserie, sans beurre ni blé : huile d'olive, lait d'amande et yaourt sans lactose.",
+   "ings": [
+    [
+     "Farine d'avoine",
+     150,
+     "g"
+    ],
+    [
+     "Farine de sarrasin",
+     100,
+     "g"
+    ],
+    [
+     "Fécule de maïs",
+     30,
+     "g"
+    ],
+    [
+     "Levure chimique",
+     10,
+     "g"
+    ],
+    [
+     "Sucre",
+     30,
+     "g"
+    ],
+    [
+     "Huile d'olive douce",
+     50,
+     "ml"
+    ],
+    [
+     "Yaourt sans lactose",
+     60,
+     "g"
+    ],
+    [
+     "Lait d'amande",
+     120,
+     "ml"
+    ],
+    [
+     "Œufs",
+     1,
+     "pièce"
+    ],
+    [
+     "Pépites de chocolat noir (option)",
+     40,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Préchauffe le four à 220 °C.",
+    "Mélange les farines, la fécule, la levure et le sucre.",
+    "Ajoute l'huile, le yaourt, le lait et la moitié de l'œuf battu. Forme une pâte souple sans trop pétrir, puis ajoute les pépites.",
+    "Étale sur 3 cm, découpe, dore avec le reste d'œuf et cuis 15 min."
+   ],
+   "tip": "À servir avec un yaourt sans lactose et 1 kiwi pour un petit-déjeuner complet."
+  },
+  {
+   "title": "Carrot cake à la poêle",
+   "parts": 8,
+   "label": "parts",
+   "bake": "Poêle de 24 cm, à couvert, feu très doux · 25 à 30 min",
+   "why": "Le carrot cake à la poêle du chat Pâtisserie. La carotte est libre, les noix apportent des oméga-3, cannelle et gingembre sont anti-inflammatoires.",
+   "ings": [
+    [
+     "Carottes râpées",
+     200,
+     "g"
+    ],
+    [
+     "Farine d'avoine",
+     120,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     60,
+     "g"
+    ],
+    [
+     "Œufs",
+     2,
+     "pièce"
+    ],
+    [
+     "Sirop d'érable",
+     60,
+     "g"
+    ],
+    [
+     "Huile d'olive douce",
+     40,
+     "ml"
+    ],
+    [
+     "Lait d'amande",
+     60,
+     "ml"
+    ],
+    [
+     "Noix concassées",
+     50,
+     "g"
+    ],
+    [
+     "Cannelle",
+     4,
+     "g"
+    ],
+    [
+     "Gingembre en poudre",
+     2,
+     "g"
+    ],
+    [
+     "Levure chimique",
+     8,
+     "g"
+    ],
+    [
+     "Glaçage : yaourt sans lactose",
+     100,
+     "g"
+    ],
+    [
+     "Glaçage : sirop d'érable",
+     15,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Fouette les œufs, le sirop, l'huile et le lait.",
+    "Ajoute les farines, les épices et la levure, puis les carottes et les noix.",
+    "Verse dans la poêle chemisée de papier cuisson, couvre et cuis à feu très doux sans soulever le couvercle 25 min. Vérifie à la lame.",
+    "Laisse reposer 5 min, démoule. Nappe du yaourt mélangé au sirop une fois froid."
+   ],
+   "tip": "Ajoute un zeste d'orange au glaçage : c'est un fruit libre."
+  },
+  {
+   "title": "Banana cake pépites à la poêle",
+   "parts": 8,
+   "label": "parts",
+   "bake": "Poêle de 22 à 24 cm, à couvert, feu très doux · 20 à 25 min",
+   "why": "Le banana cake du chat Pâtisserie : une seule banane mûre pour tout le gâteau, complétée par du sirop d'érable, pour rester pauvre en FODMAP.",
+   "ings": [
+    [
+     "Banane bien mûre",
+     1,
+     "pièce"
+    ],
+    [
+     "Farine d'avoine",
+     150,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     50,
+     "g"
+    ],
+    [
+     "Œufs",
+     2,
+     "pièce"
+    ],
+    [
+     "Sirop d'érable",
+     50,
+     "g"
+    ],
+    [
+     "Lait d'amande",
+     100,
+     "ml"
+    ],
+    [
+     "Huile d'olive douce",
+     30,
+     "ml"
+    ],
+    [
+     "Levure chimique",
+     8,
+     "g"
+    ],
+    [
+     "Cannelle",
+     2,
+     "g"
+    ],
+    [
+     "Pépites de chocolat noir",
+     50,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Écrase la banane, puis fouette-la avec les œufs, le sirop, le lait et l'huile.",
+    "Ajoute les farines, la levure et la cannelle, puis les pépites.",
+    "Verse dans la poêle chemisée, couvre et cuis à feu très doux 20 min sans soulever. Prolonge par 5 min si la lame ne sort pas propre.",
+    "Repos 5 min à couvert, puis retourne sur une assiette."
+   ],
+   "tip": "Ne dépasse pas une banane : c'est elle qui fixe la limite FODMAP de la recette."
+  },
+  {
+   "title": "Macatia express chocolat ou cannelle",
+   "parts": 8,
+   "label": "petits pains",
+   "bake": "Four 180 °C · 20 min",
+   "why": "La brioche-macatia du chat Pâtisserie, en version sans blé : farines d'avoine et de riz, psyllium pour le moelleux, œufs et yaourt pour les protéines.",
+   "ings": [
+    [
+     "Farine d'avoine",
+     150,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     100,
+     "g"
+    ],
+    [
+     "Fécule de pomme de terre",
+     50,
+     "g"
+    ],
+    [
+     "Psyllium blond",
+     8,
+     "g"
+    ],
+    [
+     "Levure chimique",
+     10,
+     "g"
+    ],
+    [
+     "Œufs",
+     2,
+     "pièce"
+    ],
+    [
+     "Yaourt sans lactose",
+     150,
+     "g"
+    ],
+    [
+     "Lait d'amande",
+     60,
+     "ml"
+    ],
+    [
+     "Sirop d'érable",
+     40,
+     "g"
+    ],
+    [
+     "Huile d'olive douce",
+     20,
+     "ml"
+    ],
+    [
+     "Pépites de chocolat noir, ou 4 g de cannelle + 20 g de sucre",
+     50,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Mélange les farines, la fécule, le psyllium et la levure.",
+    "Ajoute les œufs, le yaourt, le lait, le sirop et l'huile. Laisse reposer 10 min : le psyllium épaissit la pâte.",
+    "Incorpore les pépites, ou garde la cannelle-sucre pour le dessus. Forme 8 boules sur une plaque.",
+    "Cuis 20 min à 180 °C."
+   ],
+   "tip": "Petit-déjeuner complet : 1 macatia + yaourt sans lactose + 1 orange. Les raisins secs sont à éviter pendant l'éviction."
+  },
+  {
+   "title": "Cinnamon rolls express",
+   "parts": 8,
+   "label": "rolls",
+   "bake": "Four 190 °C · 22 min · sans levure boulangère",
+   "why": "Les cinnamon rolls du chat Pâtisserie, avec une pâte au yaourt sans lactose et sans blé.",
+   "ings": [
+    [
+     "Farine d'avoine",
+     150,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     100,
+     "g"
+    ],
+    [
+     "Fécule de maïs",
+     40,
+     "g"
+    ],
+    [
+     "Psyllium blond",
+     8,
+     "g"
+    ],
+    [
+     "Levure chimique",
+     10,
+     "g"
+    ],
+    [
+     "Sucre",
+     20,
+     "g"
+    ],
+    [
+     "Yaourt sans lactose",
+     180,
+     "g"
+    ],
+    [
+     "Œufs",
+     1,
+     "pièce"
+    ],
+    [
+     "Huile d'olive douce",
+     30,
+     "ml"
+    ],
+    [
+     "Garniture : beurre mou",
+     25,
+     "g"
+    ],
+    [
+     "Garniture : sucre roux",
+     40,
+     "g"
+    ],
+    [
+     "Garniture : cannelle",
+     6,
+     "g"
+    ],
+    [
+     "Glaçage : yaourt sans lactose",
+     60,
+     "g"
+    ],
+    [
+     "Glaçage : sirop d'érable",
+     15,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Mélange les ingrédients secs, puis ajoute le yaourt, l'œuf et l'huile. Repos 10 min.",
+    "Étale entre deux papiers cuisson en rectangle de 1 cm. Tartine de beurre, saupoudre de sucre et de cannelle.",
+    "Roule serré, coupe 8 tranches, place-les dans un moule.",
+    "Cuis 22 min à 190 °C, puis nappe du glaçage tiède."
+   ],
+   "tip": "Le psyllium remplace le gluten : sans lui, la pâte se casse au roulage."
+  },
+  {
+   "title": "Cookies avoine, amande et chocolat noir",
+   "parts": 12,
+   "label": "cookies",
+   "bake": "Four 180 °C · 10 à 12 min",
+   "why": "Les cookies du chat Pâtisserie, avec moins de sucre, de l'avoine et de l'amande, et l'huile d'olive à la place du ghee.",
+   "ings": [
+    [
+     "Flocons d'avoine",
+     100,
+     "g"
+    ],
+    [
+     "Farine d'avoine",
+     60,
+     "g"
+    ],
+    [
+     "Poudre d'amande",
+     60,
+     "g"
+    ],
+    [
+     "Huile d'olive douce",
+     50,
+     "ml"
+    ],
+    [
+     "Sucre",
+     50,
+     "g"
+    ],
+    [
+     "Sirop d'érable",
+     20,
+     "g"
+    ],
+    [
+     "Œufs",
+     1,
+     "pièce"
+    ],
+    [
+     "Bicarbonate",
+     2,
+     "g"
+    ],
+    [
+     "Sel",
+     1,
+     "pincée"
+    ],
+    [
+     "Chocolat noir haché",
+     70,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Fouette l'huile, le sucre, le sirop et l'œuf.",
+    "Ajoute les flocons, la farine, la poudre d'amande, le bicarbonate et le sel, puis le chocolat.",
+    "Forme 12 boules, aplatis-les légèrement et laisse 3 cm entre chaque.",
+    "Cuis 10 à 12 min : le centre doit rester tendre, ils durcissent en refroidissant."
+   ],
+   "tip": "2 cookies + 1 yaourt sans lactose = une collation complète."
+  },
+  {
+   "title": "Babka express cacao",
+   "parts": 10,
+   "label": "parts",
+   "bake": "Four 180 °C · 40 min · moule à cake · sans levure boulangère",
+   "why": "La babka express du chat Pâtisserie : pâte au yaourt sans lactose et sans blé, garniture cacao au ghee (pratiquement sans lactose) et chocolat noir.",
+   "ings": [
+    [
+     "Farine d'avoine",
+     160,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     110,
+     "g"
+    ],
+    [
+     "Fécule de maïs",
+     40,
+     "g"
+    ],
+    [
+     "Psyllium blond",
+     8,
+     "g"
+    ],
+    [
+     "Levure chimique",
+     12,
+     "g"
+    ],
+    [
+     "Sucre",
+     25,
+     "g"
+    ],
+    [
+     "Yaourt sans lactose",
+     200,
+     "g"
+    ],
+    [
+     "Œufs",
+     1,
+     "pièce"
+    ],
+    [
+     "Huile d'olive douce",
+     30,
+     "ml"
+    ],
+    [
+     "Garniture : ghee ou beurre fondu",
+     30,
+     "g"
+    ],
+    [
+     "Garniture : cacao non sucré",
+     20,
+     "g"
+    ],
+    [
+     "Garniture : sucre",
+     40,
+     "g"
+    ],
+    [
+     "Garniture : chocolat noir haché",
+     40,
+     "g"
+    ],
+    [
+     "Sirop d'érable (pour lustrer)",
+     15,
+     "g"
+    ]
+   ],
+   "steps": [
+    "Mélange les ingrédients secs, puis ajoute le yaourt, l'œuf et l'huile. Repos 10 min.",
+    "Mélange le ghee, le cacao et le sucre. Étale la pâte entre deux papiers cuisson en rectangle de 30 × 25 cm.",
+    "Tartine la garniture, parsème de chocolat, roule par le grand côté. Coupe le rouleau en deux dans la longueur, torsade les deux brins, pose dans le moule.",
+    "Cuis 40 min à 180 °C, en couvrant d'aluminium après 25 min. Badigeonne de sirop d'érable à la sortie."
+   ],
+   "tip": "Une tranche + 1 yaourt sans lactose = un goûter qui tient."
+  },
+  {
+   "title": "Pâte à crêpes à l'eau",
+   "parts": 12,
+   "label": "crêpes",
+   "bake": "Poêle chaude, 1 min par face · repos de la pâte 30 min",
+   "why": "Crêpes légères sans lait : sarrasin et riz, eau et œufs. Sucrées ou salées.",
+   "ings": [
+    [
+     "Farine de sarrasin",
+     125,
+     "g"
+    ],
+    [
+     "Farine de riz",
+     125,
+     "g"
+    ],
+    [
+     "Œufs",
+     2,
+     "pièce"
+    ],
+    [
+     "Eau",
+     500,
+     "ml"
+    ],
+    [
+     "Huile d'olive douce",
+     15,
+     "ml"
+    ],
+    [
+     "Sel",
+     1,
+     "pincée"
+    ]
+   ],
+   "steps": [
+    "Mélange les farines et le sel, ajoute les œufs et la moitié de l'eau. Fouette jusqu'à ce que ce soit lisse.",
+    "Ajoute le reste d'eau et l'huile. Laisse reposer 30 min.",
+    "Cuis dans une poêle chaude légèrement huilée, 1 min par face."
+   ],
+   "tip": "Garnitures : banane ferme et 10 g de chocolat noir, sirop d'érable et citron, yaourt sans lactose et kiwi, ou en salé œuf, lountza et 20 g de comté. 2 crêpes + une garniture protéinée = un petit-déjeuner complet."
+  }
+ ],
+ "meals": [
+  {
+   "cuisine": "Samedi",
+   "courseLabel": "Samedi (optionnel)",
+   "day": "Dimanche",
+   "moment": "Midi",
+   "title": "Poulet rôti, pommes de terre et carottes rôties, salade verte",
+   "method": "Rôti samedi (1 h 30 à 190 °C, légumes sur la même plaque), réchauffé dimanche midi. Il sert aussi lundi midi et lundi soir. Poids du poulet en cuit, sans peau.",
+   "items": [
+    {
+     "item": "Poulet entier (≈ 1,9 kg)",
+     "toi": 0,
+     "vous": 0,
+     "fils": 0,
+     "plat": 1,
+     "unit": "pièce"
+    },
+    {
+     "item": "Poulet rôti (cuit, sans peau)",
+     "toi": 100,
+     "vous": 150,
+     "fils": 80,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Pommes de terre",
+     "toi": 120,
+     "vous": 180,
+     "fils": 100,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Carottes",
+     "toi": 70,
+     "vous": 70,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Laitue",
+     "toi": 40,
+     "vous": 30,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Samedi",
+   "courseLabel": "Samedi (optionnel)",
+   "day": "Dimanche",
+   "moment": "Soir",
+   "title": "Bol tofu et halloumi grillés, riz sauvage, concombre, carottes râpées, tomates",
+   "method": "Tofu et halloumi à la poêle 8 min.",
+   "items": [
+    {
+     "item": "Tofu ferme",
+     "toi": 80,
+     "vous": 120,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Halloumi",
+     "toi": 40,
+     "vous": 60,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Riz sauvage",
+     "toi": 40,
+     "vous": 70,
+     "fils": 45,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Concombre",
+     "toi": 80,
+     "vous": 80,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Carottes",
+     "toi": 70,
+     "vous": 70,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Tomates",
+     "toi": 60,
+     "vous": 60,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Samedi",
+   "courseLabel": "Samedi (optionnel)",
+   "day": "Lundi",
+   "moment": "Midi",
+   "title": "Poulet yaourt-curcuma-gingembre, quinoa, brocoli et carottes",
+   "method": "Le reste du poulet de dimanche, effiloché et réchauffé dans le yaourt au curcuma et au gingembre.",
+   "items": [
+    {
+     "item": "Poulet rôti (cuit, sans peau)",
+     "toi": 100,
+     "vous": 150,
+     "fils": 80,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Quinoa",
+     "toi": 40,
+     "vous": 80,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Brocoli",
+     "toi": 75,
+     "vous": 75,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Carottes",
+     "toi": 70,
+     "vous": 70,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Yaourt sans lactose",
+     "toi": 0,
+     "vous": 0,
+     "fils": 0,
+     "plat": 100,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Lundi",
+   "courseLabel": "Lundi après-midi",
+   "day": "Lundi",
+   "moment": "Soir",
+   "title": "Pâtes complètes carbonara au poulet, salade verte",
+   "method": "Le reste du poulet remplace le guanciale. Jaunes d'œufs, parmesan, poivre, un peu d'eau de cuisson, sans crème. Dernier délai pour le poulet : mardi.",
+   "items": [
+    {
+     "item": "Pâtes complètes",
+     "toi": 40,
+     "vous": 100,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Poulet rôti (cuit, sans peau)",
+     "toi": 70,
+     "vous": 100,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Œufs",
+     "toi": 1,
+     "vous": 2,
+     "fils": 1,
+     "plat": 0,
+     "unit": "pièce"
+    },
+    {
+     "item": "Parmesan",
+     "toi": 15,
+     "vous": 20,
+     "fils": 10,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Laitue",
+     "toi": 50,
+     "vous": 50,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Lundi",
+   "courseLabel": "Lundi après-midi",
+   "day": "Mardi",
+   "moment": "Midi",
+   "title": "Agneau rôti (1/2), pommes de terre, haricots verts et carottes, yaourt aux herbes",
+   "method": "Agneau acheté lundi après-midi, rôti lundi soir et dégraissé. Réchauffé 15 min au four.",
+   "items": [
+    {
+     "item": "Épaule d'agneau avec os",
+     "toi": 100,
+     "vous": 130,
+     "fils": 70,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Pommes de terre",
+     "toi": 130,
+     "vous": 200,
+     "fils": 110,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Haricots verts",
+     "toi": 40,
+     "vous": 40,
+     "fils": 20,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Carottes",
+     "toi": 60,
+     "vous": 60,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Yaourt sans lactose",
+     "toi": 50,
+     "vous": 50,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Lundi",
+   "courseLabel": "Lundi après-midi",
+   "day": "Mardi",
+   "moment": "Soir",
+   "title": "Riz cantonnais au riz sauvage et lountza",
+   "method": "À préparer mardi après-midi, idéalement avec un riz cuit la veille. Œufs brouillés, porc fumé, carottes, haricots verts, brocoli et vert d'oignon nouveau, sautés avec 2 c. à soupe de sauce soja. Lountza locale : vérifie qu'elle est sans ail.",
+   "items": [
+    {
+     "item": "Riz sauvage",
+     "toi": 40,
+     "vous": 70,
+     "fils": 45,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Lountza (porc fumé)",
+     "toi": 50,
+     "vous": 70,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Œufs",
+     "toi": 1,
+     "vous": 2,
+     "fils": 1,
+     "plat": 0,
+     "unit": "pièce"
+    },
+    {
+     "item": "Carottes",
+     "toi": 80,
+     "vous": 80,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Haricots verts",
+     "toi": 50,
+     "vous": 50,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Brocoli",
+     "toi": 50,
+     "vous": 50,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Oignon nouveau (vert seulement)",
+     "toi": 10,
+     "vous": 10,
+     "fils": 5,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Sauce soja",
+     "toi": 0,
+     "vous": 0,
+     "fils": 0,
+     "plat": 30,
+     "unit": "ml"
+    }
+   ]
+  },
+  {
+   "cuisine": "Lundi",
+   "courseLabel": "Lundi après-midi",
+   "day": "Mercredi",
+   "moment": "Midi",
+   "title": "Agneau (2/2), quinoa, aubergines et carottes rôties, yaourt",
+   "method": "Micro-ondes 4 min.",
+   "items": [
+    {
+     "item": "Épaule d'agneau avec os",
+     "toi": 100,
+     "vous": 130,
+     "fils": 70,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Quinoa",
+     "toi": 40,
+     "vous": 80,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Aubergines",
+     "toi": 75,
+     "vous": 75,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Carottes",
+     "toi": 75,
+     "vous": 75,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Yaourt sans lactose",
+     "toi": 50,
+     "vous": 50,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Lundi",
+   "courseLabel": "Lundi après-midi",
+   "day": "Mercredi",
+   "moment": "Soir",
+   "title": "Focaccia à la lountza, patate douce rôtie, laitue, concombre",
+   "method": "Focaccia au levain ou à pousse longue, mieux tolérée, achetée lundi. Patate douce rôtie en tranches fines. Filet d'huile d'olive et citron.",
+   "items": [
+    {
+     "item": "Focaccia",
+     "toi": 70,
+     "vous": 120,
+     "fils": 80,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Lountza (porc fumé)",
+     "toi": 40,
+     "vous": 60,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Patate douce",
+     "toi": 60,
+     "vous": 60,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Laitue",
+     "toi": 30,
+     "vous": 30,
+     "fils": 20,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Concombre",
+     "toi": 60,
+     "vous": 60,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Lundi",
+   "courseLabel": "Lundi après-midi",
+   "day": "Jeudi",
+   "moment": "Midi",
+   "title": "Bar ou daurade au citron, pâtes complètes, brocoli et carottes",
+   "method": "Poisson de la commande, livrée jeudi matin. Four 15 min.",
+   "items": [
+    {
+     "item": "Bar ou daurade entiers (vidés)",
+     "toi": 250,
+     "vous": 300,
+     "fils": 170,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Pâtes complètes",
+     "toi": 40,
+     "vous": 100,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Brocoli",
+     "toi": 75,
+     "vous": 75,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Carottes",
+     "toi": 100,
+     "vous": 100,
+     "fils": 70,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Jeudi",
+   "courseLabel": "Jeudi",
+   "day": "Jeudi",
+   "moment": "Soir",
+   "title": "Repas plaisir : burger commandé pour eux, mini tatin et frites de patate douce pour toi",
+   "method": "Pour toi seule, dans un moule à tartelette de 12 cm. Pâte : 50 g de farine de sarrasin, 1 c. à soupe d'œuf battu, 1 c. à café d'huile d'olive, environ 20 ml d'eau, sel. Au fond du moule huilé : aubergine en tranches fines, saucisse en rondelles, tomates cerises coupées, parmesan, origan. Couvre de pâte, 25 min à 190 °C, puis retourne. Frites : 75 g de patate douce en bâtonnets, 1 c. à café d'huile, 20 min à 220 °C sur la même plaque. Laitue à côté.",
+   "items": [
+    {
+     "item": "Farine de sarrasin",
+     "toi": 50,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Saucisse (porc ou poulet)",
+     "toi": 90,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Aubergines",
+     "toi": 75,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Tomates cerises",
+     "toi": 40,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Parmesan",
+     "toi": 10,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Patate douce",
+     "toi": 75,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Laitue",
+     "toi": 40,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Jeudi",
+   "courseLabel": "Jeudi",
+   "day": "Vendredi",
+   "moment": "Midi",
+   "title": "Salade d'halloumi grillé, concombre, tomates, grenade, citron et menthe",
+   "method": "Halloumi grillé à sec, 2 min par face. Grenade à la place de la figue ou de la pastèque, à éviter pendant l'éviction. Pain au levain grillé à côté.",
+   "items": [
+    {
+     "item": "Halloumi",
+     "toi": 80,
+     "vous": 120,
+     "fils": 80,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Concombre",
+     "toi": 120,
+     "vous": 120,
+     "fils": 80,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Tomates",
+     "toi": 100,
+     "vous": 100,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Grenade",
+     "toi": 0,
+     "vous": 0,
+     "fils": 0,
+     "plat": 1,
+     "unit": "pièce"
+    },
+    {
+     "item": "Pain au levain",
+     "toi": 40,
+     "vous": 80,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Jeudi",
+   "courseLabel": "Jeudi",
+   "day": "Vendredi",
+   "moment": "Soir",
+   "title": "Bar ou daurade au four, pommes de terre et patate douce, haricots verts",
+   "method": "Poisson de la commande du jeudi. Four 20 min.",
+   "items": [
+    {
+     "item": "Bar ou daurade entiers (vidés)",
+     "toi": 250,
+     "vous": 300,
+     "fils": 170,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Pommes de terre",
+     "toi": 100,
+     "vous": 170,
+     "fils": 100,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Patate douce",
+     "toi": 60,
+     "vous": 75,
+     "fils": 50,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Haricots verts",
+     "toi": 50,
+     "vous": 50,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Jeudi",
+   "courseLabel": "Jeudi",
+   "day": "Samedi",
+   "moment": "Midi",
+   "title": "Brunch : omelette aux herbes et feta, pain au levain, tomates, salade verte",
+   "method": "Omelette aux herbes fraîches et à la ciboulette, feta émiettée.",
+   "items": [
+    {
+     "item": "Œufs",
+     "toi": 2,
+     "vous": 3,
+     "fils": 2,
+     "plat": 0,
+     "unit": "pièce"
+    },
+    {
+     "item": "Feta",
+     "toi": 20,
+     "vous": 25,
+     "fils": 15,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Pain au levain",
+     "toi": 40,
+     "vous": 80,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Tomates",
+     "toi": 65,
+     "vous": 100,
+     "fils": 60,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Laitue",
+     "toi": 40,
+     "vous": 40,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  },
+  {
+   "cuisine": "Jeudi",
+   "courseLabel": "Jeudi",
+   "day": "Samedi",
+   "moment": "Soir",
+   "title": "Pizza commandée, grande salade verte",
+   "method": "Pas de courses pour la pizza. Ta part : 2 parts (environ ¼ de pizza), sans garniture à l'oignon ni à l'ail, avec une grande salade verte. Une pâte fine au feu de bois est plus légère.",
+   "items": [
+    {
+     "item": "Laitue",
+     "toi": 60,
+     "vous": 40,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Tomates",
+     "toi": 40,
+     "vous": 40,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    }
+   ]
+  }
+ ],
+ "guide": [
+  [
+   "Légumes",
+   "Pommes de terre",
+   "ok",
+   "Libre (100–150 g)",
+   "Le féculent le plus sûr, et très rassasiant."
+  ],
+  [
+   "Légumes",
+   "Carottes",
+   "ok",
+   "Libre",
+   "Crues, râpées ou rôties."
+  ],
+  [
+   "Légumes",
+   "Concombre",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Légumes",
+   "Épinards",
+   "ok",
+   "Libre",
+   "Plutôt cuits si le ventre est gonflé."
+  ],
+  [
+   "Légumes",
+   "Salade verte : laitue, roquette, mâche",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Légumes",
+   "Panais",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Légumes",
+   "Vert d'oignon nouveau, ciboulette",
+   "ok",
+   "Libre",
+   "Pour remplacer l'oignon."
+  ],
+  [
+   "Légumes",
+   "Herbes fraîches, gingembre, citron",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Légumes",
+   "Haricots verts",
+   "dose",
+   "75 g par repas",
+   "Au-delà, ils fermentent plus."
+  ],
+  [
+   "Légumes",
+   "Brocoli",
+   "dose",
+   "75 g de têtes par repas",
+   "Les tiges seulement 45 g."
+  ],
+  [
+   "Légumes",
+   "Patate douce",
+   "dose",
+   "75 g par repas",
+   "Complète avec des pommes de terre."
+  ],
+  [
+   "Légumes",
+   "Courgette",
+   "dose",
+   "65 g par repas",
+   ""
+  ],
+  [
+   "Légumes",
+   "Aubergine",
+   "dose",
+   "75 g par repas",
+   "Rôtie au four, peu d'huile."
+  ],
+  [
+   "Légumes",
+   "Tomate",
+   "dose",
+   "1 petite (65 g) ou 5 cerises",
+   ""
+  ],
+  [
+   "Légumes",
+   "Tomates concassées en boîte",
+   "dose",
+   "100 g par repas",
+   ""
+  ],
+  [
+   "Légumes",
+   "Chou kale",
+   "dose",
+   "75 g par repas",
+   ""
+  ],
+  [
+   "Légumes",
+   "Fenouil (bulbe)",
+   "dose",
+   "75 g par repas",
+   ""
+  ],
+  [
+   "Légumes",
+   "Navet",
+   "dose",
+   "75 g par repas",
+   ""
+  ],
+  [
+   "Légumes",
+   "Courge japonaise (kabocha)",
+   "dose",
+   "75 g par repas",
+   "Butternut : seulement 45 g."
+  ],
+  [
+   "Légumes",
+   "Poireau",
+   "dose",
+   "Le vert seulement (≈ 50 g)",
+   "Le blanc est à éviter."
+  ],
+  [
+   "Légumes",
+   "Chou-fleur",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Légumes",
+   "Champignons de Paris",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Légumes",
+   "Oignon, ail, échalote, blanc de poireau",
+   "evite",
+   "",
+   "Huile infusée à l'ail : elle garde le goût sans les FODMAP."
+  ],
+  [
+   "Légumes",
+   "Asperges, artichaut, petits pois, céleri",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Féculents",
+   "Riz (toutes variétés)",
+   "ok",
+   "Libre (40–50 g cru)",
+   ""
+  ],
+  [
+   "Féculents",
+   "Quinoa",
+   "ok",
+   "Libre (40–50 g cru)",
+   ""
+  ],
+  [
+   "Féculents",
+   "Polenta, millet",
+   "ok",
+   "Libre (40–50 g cru)",
+   ""
+  ],
+  [
+   "Féculents",
+   "Pâtes sans gluten (riz, maïs)",
+   "ok",
+   "40–50 g crues",
+   ""
+  ],
+  [
+   "Féculents",
+   "Avoine",
+   "dose",
+   "50 g crue",
+   "Idéale au petit-déjeuner."
+  ],
+  [
+   "Féculents",
+   "Sarrasin en grains",
+   "dose",
+   "90 g cuit",
+   ""
+  ],
+  [
+   "Féculents",
+   "Pain au levain (blé ou épeautre)",
+   "dose",
+   "2 tranches",
+   "Vrai levain, longue fermentation."
+  ],
+  [
+   "Féculents",
+   "Galettes de riz",
+   "dose",
+   "2 à 3",
+   ""
+  ],
+  [
+   "Féculents",
+   "Pâtes de blé ou complètes",
+   "dose",
+   "40 g crues",
+   "Bien cuites."
+  ],
+  [
+   "Féculents",
+   "Riz sauvage",
+   "ok",
+   "Libre",
+   "Mélangé au basmati."
+  ],
+  [
+   "Féculents",
+   "Focaccia",
+   "dose",
+   "1 morceau (60–70 g)",
+   "Au levain ou à pousse longue, mieux tolérée."
+  ],
+  [
+   "Féculents",
+   "Pâte à pizza",
+   "dose",
+   "¼ de pizza",
+   "Pâte levée 24 h au frigo."
+  ],
+  [
+   "Féculents",
+   "Boulgour, couscous",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Féculents",
+   "Pita, pain blanc classique",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Féculents",
+   "Orge",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Protéines",
+   "Viandes, poissons, œufs nature",
+   "ok",
+   "Libre",
+   "Attention aux marinades et boulettes du commerce (ail, oignon)."
+  ],
+  [
+   "Protéines",
+   "Tofu ferme",
+   "ok",
+   "Libre (100–150 g)",
+   ""
+  ],
+  [
+   "Protéines",
+   "Bresaola, jambon blanc",
+   "ok",
+   "60–80 g",
+   "Vérifie l'étiquette : sans ail ni oignon."
+  ],
+  [
+   "Protéines",
+   "Saucisse, porc fumé",
+   "ok",
+   "80–100 g",
+   "Sans ail ni oignon. Choisis les moins grasses."
+  ],
+  [
+   "Protéines",
+   "Lentilles en conserve, rincées",
+   "dose",
+   "45 g",
+   ""
+  ],
+  [
+   "Protéines",
+   "Pois chiches en conserve, rincés",
+   "dose",
+   "40 g",
+   ""
+  ],
+  [
+   "Protéines",
+   "Légumineuses sèches cuites maison, tofu soyeux",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Parmesan, comté, cheddar",
+   "ok",
+   "30 g",
+   "Fromages affinés : presque sans lactose."
+  ],
+  [
+   "Laitages et laits",
+   "Yaourt, skyr sans lactose",
+   "ok",
+   "Libre",
+   "Introuvable ? Yaourt grec classique + un comprimé de lactase (pharmacie), ou yaourt de coco (peu de protéines)."
+  ],
+  [
+   "Laitages et laits",
+   "Yaourt de chèvre ou de brebis",
+   "evite",
+   "",
+   "Autant de lactose que le yaourt de vache."
+  ],
+  [
+   "Laitages et laits",
+   "Lait de vache sans lactose",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Lait d'amande",
+   "ok",
+   "Libre",
+   "Choisis-le sans sucre ajouté."
+  ],
+  [
+   "Laitages et laits",
+   "Lait de macadamia",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Boisson soja aux protéines de soja",
+   "ok",
+   "Libre",
+   "Lis l'étiquette : « protéines de soja », pas « fèves de soja »."
+  ],
+  [
+   "Laitages et laits",
+   "Lait de riz",
+   "dose",
+   "200 ml",
+   "Assez sucré, peu de protéines."
+  ],
+  [
+   "Laitages et laits",
+   "Boisson coco (en brique)",
+   "dose",
+   "125 ml",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Lait de coco en conserve (cuisine)",
+   "dose",
+   "60 ml par personne",
+   "Pour un curry : 1 petite brique pour 4."
+  ],
+  [
+   "Laitages et laits",
+   "Feta",
+   "dose",
+   "40 g",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Halloumi",
+   "dose",
+   "40 g, jusqu'à 80 g à tester",
+   "Fromage pauvre en lactose. Monash a testé 40 g ; 80 g passent chez la plupart des gens."
+  ],
+  [
+   "Laitages et laits",
+   "Mozzarella classique ou di bufala",
+   "dose",
+   "40 g",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Burrata",
+   "dose",
+   "30 g",
+   "Le cœur crémeux contient plus de lactose."
+  ],
+  [
+   "Laitages et laits",
+   "Parmesan végétarien (présure végétale)",
+   "ok",
+   "30 g",
+   "Affiné, donc presque sans lactose, comme le parmesan."
+  ],
+  [
+   "Laitages et laits",
+   "Fromage végan type « fauxmage »",
+   "dose",
+   "Selon la base",
+   "Base noix de cajou : à éviter. Base huile de coco et amidon : toléré, mais presque sans protéines."
+  ],
+  [
+   "Laitages et laits",
+   "Anari, ricotta",
+   "dose",
+   "40 g",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Yaourt grec, skyr, fromage blanc classiques",
+   "evite",
+   "",
+   "Prends leur version sans lactose."
+  ],
+  [
+   "Laitages et laits",
+   "Lait de vache classique",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Lait d'avoine",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Laitages et laits",
+   "Boisson soja aux fèves entières",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Huile d'olive",
+   "ok",
+   "1 c. à soupe par repas",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Huile infusée à l'ail",
+   "ok",
+   "1 c. à soupe",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Beurre",
+   "ok",
+   "Petite quantité",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Avocat",
+   "dose",
+   "30 g",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Amandes",
+   "dose",
+   "10 amandes",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Noix",
+   "dose",
+   "30 g",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Noix de pécan, macadamia",
+   "dose",
+   "20–40 g",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Beurre de cacahuète",
+   "dose",
+   "2 c. à soupe",
+   "Sans sucre ajouté."
+  ],
+  [
+   "Gras et oléagineux",
+   "Graines de courge, chia, lin",
+   "dose",
+   "1–2 c. à soupe",
+   ""
+  ],
+  [
+   "Gras et oléagineux",
+   "Noix de cajou, pistaches",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Café",
+   "ok",
+   "1–2 tasses",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Thé vert, menthe poivrée, gingembre",
+   "ok",
+   "Libre",
+   "La menthe poivrée aide les ballonnements."
+  ],
+  [
+   "Sucré et boissons",
+   "Moutarde, vinaigre, épices, herbes",
+   "ok",
+   "Libre",
+   "Cumin, curcuma, gingembre, origan."
+  ],
+  [
+   "Sucré et boissons",
+   "Sauce soja",
+   "ok",
+   "2 c. à soupe",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Sirop d'érable",
+   "dose",
+   "2 c. à soupe",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Sucre",
+   "dose",
+   "Petite quantité",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Chocolat noir",
+   "dose",
+   "30 g",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Miel, agave, sirop de fructose",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Sorbitol, xylitol, maltitol, inuline",
+   "evite",
+   "",
+   "Fréquents dans les barres, les poudres protéinées et les chewing-gums."
+  ],
+  [
+   "Sucré et boissons",
+   "Infusions camomille, fenouil",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Sucré et boissons",
+   "Eau gazeuse",
+   "evite",
+   "",
+   "Elle ajoute du gaz."
+  ]
+ ],
+ "fruits": [
+  [
+   "Kiwi vert",
+   "ok",
+   "2 petits (150 g)",
+   "Le meilleur allié du transit : 2 par jour."
+  ],
+  [
+   "Framboises",
+   "ok",
+   "30 framboises (60 g)",
+   ""
+  ],
+  [
+   "Myrtilles",
+   "ok",
+   "1 poignée (40–50 g)",
+   ""
+  ],
+  [
+   "Orange",
+   "ok",
+   "1 moyenne (130 g)",
+   ""
+  ],
+  [
+   "Clémentines, mandarines",
+   "ok",
+   "1 à 2 petites",
+   ""
+  ],
+  [
+   "Raisin",
+   "ok",
+   "150 g",
+   ""
+  ],
+  [
+   "Banane ferme",
+   "ok",
+   "1 moyenne (100 g)",
+   "Peau encore un peu verte au bout. Idéale autour du sport."
+  ],
+  [
+   "Banane mûre (tachetée)",
+   "dose",
+   "⅓ de banane (35 g)",
+   "En mûrissant, elle devient riche en FODMAP."
+  ],
+  [
+   "Melon cantaloup",
+   "ok",
+   "120 g",
+   ""
+  ],
+  [
+   "Papaye",
+   "ok",
+   "140 g",
+   ""
+  ],
+  [
+   "Fruit de la passion",
+   "ok",
+   "2 fruits",
+   ""
+  ],
+  [
+   "Grenade",
+   "ok",
+   "2 c. à soupe de grains (45 g)",
+   ""
+  ],
+  [
+   "Citron, citron vert",
+   "ok",
+   "Libre",
+   ""
+  ],
+  [
+   "Figue",
+   "evite",
+   "",
+   "Riche en fructanes. À tester à la réintroduction."
+  ],
+  [
+   "Pastèque",
+   "evite",
+   "",
+   "Riche en fructose et en mannitol."
+  ],
+  [
+   "Pomme, poire, mangue",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Pêche, nectarine, prune, cerise, abricot",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Dattes, fruits secs",
+   "evite",
+   "",
+   ""
+  ],
+  [
+   "Jus de fruits",
+   "evite",
+   "",
+   ""
+  ]
+ ],
+ "flours": [
+  [
+   "Farine d'avoine (flocons mixés)",
+   "ok",
+   "Ta base : moelleux et rassasiant."
+  ],
+  [
+   "Farine de riz",
+   "ok",
+   "Légère, neutre."
+  ],
+  [
+   "Farine de sarrasin",
+   "ok",
+   "Goût de noisette, parfaite pour crêpes et pancakes."
+  ],
+  [
+   "Fécule de maïs, de pomme de terre, tapioca",
+   "ok",
+   "En petite quantité pour la légèreté."
+  ],
+  [
+   "Farine de sorgho, millet, quinoa",
+   "ok",
+   ""
+  ],
+  [
+   "Mélange sans gluten du commerce",
+   "ok",
+   "Vérifie qu'il ne contient ni pois chiche, ni soja, ni coco, ni lupin."
+  ],
+  [
+   "Poudre d'amande",
+   "dose",
+   "Environ 25 g par part : dans un gâteau de 8 parts, jusqu'à 200 g."
+  ],
+  [
+   "Farine de blé ou d'épeautre classique",
+   "evite",
+   ""
+  ],
+  [
+   "Farine de coco, de pois chiche, de lupin, de soja",
+   "evite",
+   ""
+  ]
+ ],
+ "degonfle": [
+  [
+   "Riches en eau",
+   "Concombre",
+   "95 % d'eau, croquant, rassasiant."
+  ],
+  [
+   "Riches en eau",
+   "Laitue, mâche, roquette",
+   "Légères, à mettre sous les plats chauds."
+  ],
+  [
+   "Riches en potassium",
+   "Épinards cuits",
+   "Le potassium aide à éliminer l'eau retenue par le sel."
+  ],
+  [
+   "Riches en potassium",
+   "Pommes de terre (vapeur ou à l'eau)",
+   "Potassium et féculent très bien toléré."
+  ],
+  [
+   "Riches en potassium",
+   "Carottes cuites",
+   "Douces pour l'intestin."
+  ],
+  [
+   "Riches en potassium",
+   "Panais",
+   ""
+  ],
+  [
+   "Pour la digestion",
+   "Gingembre frais",
+   "Râpé dans les plats ou en infusion : il accélère la vidange de l'estomac."
+  ],
+  [
+   "Pour la digestion",
+   "Tisane de menthe poivrée",
+   "Elle relâche l'intestin et diminue les gaz."
+  ],
+  [
+   "Pour la digestion",
+   "Herbes fraîches : persil, basilic, coriandre, ciboulette",
+   "Du goût sans oignon ni ail."
+  ],
+  [
+   "Pour la digestion",
+   "Citron",
+   "Pour assaisonner à la place des sauces."
+  ],
+  [
+   "Faciles à digérer",
+   "Riz, quinoa, polenta",
+   "Féculents qui fermentent très peu."
+  ],
+  [
+   "Faciles à digérer",
+   "Poisson blanc, œufs, tofu ferme",
+   "Protéines légères."
+  ],
+  [
+   "Faciles à digérer",
+   "Eau plate, 1,5 à 2 L par jour",
+   "Paradoxalement, bien boire réduit la rétention."
+  ]
+ ],
+ "degonfleDose": [
+  [
+   "Kiwis",
+   "2 par jour",
+   "Les plus efficaces pour le transit."
+  ],
+  [
+   "Banane ferme",
+   "1 par jour",
+   "Potassium."
+  ],
+  [
+   "Myrtilles, framboises",
+   "1 poignée",
+   "Antioxydants, peu de sucre."
+  ],
+  [
+   "Courgette",
+   "65 g par repas",
+   "Très riche en eau."
+  ],
+  [
+   "Fenouil",
+   "75 g par repas",
+   "Traditionnellement utilisé contre les gaz."
+  ]
+ ],
+ "courses": [
+  {
+   "label": "Lundi après-midi",
+   "covers": "Lundi soir → jeudi midi",
+   "note": "",
+   "groups": [
+    {
+     "name": "Fruits et légumes",
+     "items": [
+      [
+       "Aubergines",
+       200,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Bananes",
+       10,
+       "pièce",
+       "Dont 4 fermes (bout encore vert)",
+       null
+      ],
+      [
+       "Brocoli",
+       2,
+       "pièce",
+       "≈ 340 g de têtes",
+       "2 brocolis"
+      ],
+      [
+       "Carottes",
+       850,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Concombre",
+       160,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Haricots verts",
+       230,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Kiwis",
+       6,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Laitue",
+       210,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Oignon nouveau (vert seulement)",
+       25,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Oranges",
+       3,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Patate douce",
+       160,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Pommes (Grégoire et Gabriel)",
+       6,
+       "pièce",
+       "À éviter pour toi pendant l'éviction",
+       null
+      ],
+      [
+       "Pommes de terre",
+       440,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Raisin noir",
+       220,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Tomates",
+       120,
+       "g",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "name": "Protéines et frais",
+     "items": [
+      [
+       "Focaccia",
+       270,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Lountza (porc fumé)",
+       290,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Épaule d'agneau avec os",
+       600,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Œufs",
+       10,
+       "pièce",
+       "Une boîte de 10 à chaque course",
+       null
+      ]
+     ]
+    }
+   ],
+   "cost": 37
+  },
+  {
+   "label": "Jeudi",
+   "covers": "Jeudi soir → samedi soir",
+   "note": "",
+   "groups": [
+    {
+     "name": "Fruits et légumes",
+     "items": [
+      [
+       "Aubergines",
+       80,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Bananes",
+       4,
+       "pièce",
+       "Dont 3 fermes (bout encore vert)",
+       null
+      ],
+      [
+       "Concombre",
+       320,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Grenade",
+       1,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Haricots verts",
+       130,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Kiwis",
+       4,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Laitue",
+       280,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Oranges",
+       2,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Patate douce",
+       260,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Pommes (Grégoire et Gabriel)",
+       6,
+       "pièce",
+       "À éviter pour toi pendant l'éviction",
+       null
+      ],
+      [
+       "Pommes de terre",
+       370,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Raisin noir",
+       150,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Tomates",
+       680,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Tomates cerises",
+       40,
+       "g",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "name": "Protéines et frais",
+     "items": [
+      [
+       "Halloumi",
+       280,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Saucisse (porc ou poulet)",
+       90,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Œufs",
+       10,
+       "pièce",
+       "Une boîte de 10 à chaque course",
+       null
+      ]
+     ]
+    }
+   ],
+   "cost": 21
+  },
+  {
+   "label": "Samedi (optionnel)",
+   "covers": "Dimanche → lundi midi",
+   "note": "Pas de course samedi ? Ajoute cette liste à celle du jeudi et congèle le poulet ; décongèle-le au frigo dès vendredi soir.",
+   "groups": [
+    {
+     "name": "Fruits et légumes",
+     "items": [
+      [
+       "Brocoli",
+       1,
+       "pièce",
+       "≈ 200 g de têtes",
+       "1 brocoli"
+      ],
+      [
+       "Carottes",
+       570,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Concombre",
+       220,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Kiwis",
+       4,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Laitue",
+       100,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Oranges",
+       2,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Pommes de terre",
+       400,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Raisin noir",
+       150,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Tomates",
+       240,
+       "g",
+       "",
+       null
+      ]
+     ]
+    },
+    {
+     "name": "Protéines et frais",
+     "items": [
+      [
+       "Halloumi",
+       140,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Poulet entier (≈ 1,9 kg)",
+       1,
+       "pièce",
+       "",
+       null
+      ],
+      [
+       "Œufs",
+       10,
+       "pièce",
+       "Une boîte de 10 à chaque course",
+       null
+      ]
+     ]
+    }
+   ],
+   "cost": 20
+  },
+  {
+   "label": "Commande « Autres »",
+   "covers": "Livrée le jeudi",
+   "note": "Placard à vérifier : huile d'olive, huile infusée à l'ail, citrons, herbes fraîches (persil, ciboulette, basilic, menthe), gingembre frais, curcuma, cumin, origan, poivre, tisane menthe poivrée, sirop d'érable.",
+   "groups": [
+    {
+     "name": "Autres",
+     "items": [
+      [
+       "Bar ou daurade entiers (vidés)",
+       1440,
+       "g",
+       "Pour vendredi soir et samedi midi",
+       null
+      ],
+      [
+       "Amandes",
+       70,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Avoine",
+       280,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Chocolat noir",
+       60,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Farine de sarrasin",
+       50,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Feta",
+       60,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Lait d'amande",
+       700,
+       "ml",
+       "",
+       null
+      ],
+      [
+       "Pain au levain",
+       740,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Parmesan",
+       60,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Pâtes complètes",
+       400,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Quinoa",
+       340,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Riz sauvage",
+       310,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Sauce soja",
+       30,
+       "ml",
+       "",
+       null
+      ],
+      [
+       "Tofu ferme",
+       260,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Yaourt sans lactose",
+       1100,
+       "g",
+       "Introuvable ? Yaourt grec + comprimé de lactase",
+       null
+      ]
+     ]
+    }
+   ],
+   "cost": 43
+  }
+ ]
+}
