@@ -106,7 +106,7 @@ const SESSIONS = {
       ["Posture","Long et léger","Épaules basses, regard loin, bras qui balancent."],
       ["Si tu as faim au réveil","½ banane ferme ou 1 kiwi",""],
       ["Au retour","Petit-déjeuner","Voir l'onglet Assiette."]]}],
-    tips:["Les autres jours : 10 min de marche après le déjeuner et le dîner."]},
+    tips:["Les autres jours : 15 à 20 min de marche après le déjeuner, et 10 min debout après le dîner."]},
   tennis:{name:"Tennis",when:"Lundi · dimanche matin",short:"Technique et plaisir.",
     why:"Au niveau actuel, c'est surtout du jeu technique. On le garde léger.",
     blocks:[{h:"Repères",ex:[
