@@ -711,7 +711,7 @@
     },
     {
      "item": "Riz sauvage",
-     "toi": 40,
+     "toi": 30,
      "vous": 70,
      "fils": 45,
      "plat": 0,
@@ -827,7 +827,7 @@
     },
     {
      "item": "Parmesan",
-     "toi": 15,
+     "toi": 10,
      "vous": 20,
      "fils": 10,
      "plat": 0,
@@ -1027,7 +1027,7 @@
    "items": [
     {
      "item": "Focaccia",
-     "toi": 70,
+     "toi": 55,
      "vous": 120,
      "fils": 80,
      "plat": 0,
@@ -1115,11 +1115,11 @@
    "day": "Jeudi",
    "moment": "Soir",
    "title": "Repas plaisir : burger commandé pour eux, mini tatin et frites de patate douce pour toi",
-   "method": "Pour toi seule, dans un moule à tartelette de 12 cm. Pâte : 50 g de farine de sarrasin, 1 c. à soupe d'œuf battu, 1 c. à café d'huile d'olive, environ 20 ml d'eau, sel. Au fond du moule huilé : aubergine en tranches fines, saucisse en rondelles, tomates cerises coupées, parmesan, origan. Couvre de pâte, 25 min à 190 °C, puis retourne. Frites : 75 g de patate douce en bâtonnets, 1 c. à café d'huile, 20 min à 220 °C sur la même plaque. Laitue à côté.",
+   "method": "Pour toi seule, dans un moule à tartelette de 12 cm. Pâte : 40 g de farine de sarrasin, 1 c. à soupe d'œuf battu, 1 c. à café d'huile d'olive, environ 20 ml d'eau, sel. Au fond du moule huilé : aubergine en tranches fines, saucisse en rondelles, tomates cerises coupées, parmesan, origan. Couvre de pâte, 25 min à 190 °C, puis retourne. Frites : 75 g de patate douce en bâtonnets, 1 c. à café d'huile, 20 min à 220 °C sur la même plaque. Laitue à côté.",
    "items": [
     {
      "item": "Farine de sarrasin",
-     "toi": 50,
+     "toi": 40,
      "vous": 0,
      "fils": 0,
      "plat": 0,
@@ -1127,7 +1127,7 @@
     },
     {
      "item": "Saucisse (porc ou poulet)",
-     "toi": 90,
+     "toi": 80,
      "vous": 0,
      "fils": 0,
      "plat": 0,
@@ -1181,15 +1181,23 @@
    "day": "Vendredi",
    "moment": "Midi",
    "title": "Salade d'halloumi grillé, concombre, tomates, grenade, citron et menthe",
-   "method": "Halloumi grillé à sec, 2 min par face. Grenade à la place de la figue ou de la pastèque, à éviter pendant l'éviction. Pain au levain grillé à côté.",
+   "method": "Halloumi grillé à sec, 2 min par face. Grenade à la place de la figue ou de la pastèque, à éviter pendant l'éviction. Pain au levain grillé et un œuf dur à côté.",
    "items": [
     {
      "item": "Halloumi",
-     "toi": 80,
+     "toi": 60,
      "vous": 120,
      "fils": 80,
      "plat": 0,
      "unit": "g"
+    },
+    {
+     "item": "Œufs",
+     "toi": 1,
+     "vous": 0,
+     "fils": 0,
+     "plat": 0,
+     "unit": "pièce"
     },
     {
      "item": "Concombre",
@@ -1293,7 +1301,7 @@
     },
     {
      "item": "Pain au levain",
-     "toi": 40,
+     "toi": 30,
      "vous": 80,
      "fils": 40,
      "plat": 0,
@@ -2340,7 +2348,7 @@
      "items": [
       [
        "Focaccia",
-       270,
+       260,
        "g",
        "",
        null
@@ -2484,14 +2492,14 @@
      "items": [
       [
        "Halloumi",
-       280,
+       260,
        "g",
        "",
        null
       ],
       [
        "Saucisse (porc ou poulet)",
-       90,
+       80,
        "g",
        "",
        null
@@ -2648,7 +2656,7 @@
       ],
       [
        "Farine de sarrasin",
-       50,
+       40,
        "g",
        "",
        null
@@ -2669,14 +2677,14 @@
       ],
       [
        "Pain au levain",
-       740,
+       730,
        "g",
        "",
        null
       ],
       [
        "Parmesan",
-       60,
+       50,
        "g",
        "",
        null
@@ -2697,7 +2705,7 @@
       ],
       [
        "Riz sauvage",
-       310,
+       300,
        "g",
        "",
        null
@@ -2726,7 +2734,7 @@
      ]
     }
    ],
-   "cost": 43
+   "cost": 42
   }
  ]
 }
