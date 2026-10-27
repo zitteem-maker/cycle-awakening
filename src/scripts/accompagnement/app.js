@@ -235,7 +235,7 @@ const DAYS = [
    bed:"21h30",bedNote:"CrossFit à 6h30 demain : réveil 5h30."}
 ];
 
-const RITUALS = ["8 000 à 10 000 pas","2 kiwis","1,5 à 2 L d'eau","Huile mesurée : 1 c. à soupe par plat","10 min de marche après le déjeuner","10 min de marche après le dîner","Repas sans écran, en mâchant lentement"];
+const RITUALS = ["8 000 à 10 000 pas","2 kiwis","1,5 à 2 L d'eau","Huile mesurée : 1 c. à soupe par plat","15 à 20 min de marche après le déjeuner","10 min debout après le dîner (rangement, vaisselle)","Repas sans écran, en mâchant lentement"];
 const BKF = ["Yaourt sans lactose 150 g + 40 g d'avoine + 75 g de raisin noir ou 1 kiwi","2 œufs + 2 tranches de pain au levain + tomates","Porridge : 40 g d'avoine, lait d'amande, 1 kiwi, 10 amandes, ½ dose de whey isolate","1 macatia ou 1 scone maison (onglet Pâtisseries) + yaourt sans lactose + 1 orange"];
 const POST = ["Banane ferme + café + shaker whey isolate (1 dose)","Puis l'un des petits-déjeuners au retour","Dimanche « au max » : ½ banane ferme entre le tennis et le CrossFit"];
 const SNK = ["Yaourt sans lactose + 2 kiwis","2 œufs durs + concombre","1 tranche de pain au levain + 30 g de lountza","10 amandes + 1 orange","Plaisir : 30 g de chocolat noir (2 fois par semaine) ; 1 part de pâtisserie maison (1 fois par semaine)"];
