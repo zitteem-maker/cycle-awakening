@@ -8,8 +8,8 @@ export function runApp(store) {
 
 
 const SESSIONS = {
-  crossfit:{name:"CrossFit",when:"Lundi, mercredi, jeudi 6h30 · dimanche en option",short:"Force et puissance, la technique avant la charge.",
-    why:"Trois séances en semaine, avec un seul enchaînement (mercredi, jeudi) : le jeudi, la technique passe avant la charge. Le dimanche est une 4e séance pour les semaines où tu as de l'énergie. L'objectif est une force propre et en pleine amplitude, pas le volume des cuisses.",
+  crossfit:{name:"CrossFit",when:"Lundi, mercredi, jeudi 6h30 · samedi en option",short:"Force et puissance, la technique avant la charge.",
+    why:"Trois séances en semaine, avec un seul enchaînement (mercredi, jeudi) : le jeudi, la technique passe avant la charge. Le samedi est une 4e séance pour les semaines où tu as de l'énergie, souvent haut du corps et rameur : barre légère, et saute les accessoires de jambes (step-ups). L'objectif est une force propre et en pleine amplitude, pas le volume des cuisses.",
     blocks:[
       {h:"Pendant la séance",ex:[
         ["Technique avant la charge","Toujours","Tu ne montes la charge que si le mouvement est propre."],
@@ -30,7 +30,7 @@ const SESSIONS = {
       ["Maintien menton au-dessus de la barre","3 × 10–15 s",""],
       ["Front support","3 × 10–20 s","Monte avec une box, bras verrouillés au-dessus de la barre, corps gainé."]]}],
     tips:["Progression : quand les négatives durent 5 s sans effort, passe à 3 × 4."]},
-  pilates:{name:"Pilates au tapis",when:"Mardi et samedi · maison · 45 min",short:"Centre, fessiers, dos, et le bloc taille fine.",
+  pilates:{name:"Pilates au tapis",when:"Mardi et dimanche · maison · 45 min",short:"Centre, fessiers, dos, et le bloc taille fine.",
     why:"La séance la plus utile pour une silhouette de danseuse : elle muscle sans volume, affine la taille et redresse la posture. Mouvements lents : 3 secondes pour monter, 3 pour descendre.",
     blocks:[
       {h:"Échauffement",d:"5 min",ex:[
@@ -81,7 +81,7 @@ const SESSIONS = {
       ["Chaturangas","Avec contrôle","Genoux au sol si les épaules sont fatiguées du jeudi."],
       ["Savasana complet","5 min","C'est de la récupération, pas du temps perdu."]]}],
     tips:["Fatiguée : remplace-le par 15 min de yin.","Bois bien après, et mange dans l'heure."]},
-  yin:{name:"Yin",when:"Après chaque CrossFit · mardi soir · 30 min le jeudi · dimanche",short:"Relâcher hanches et dos après la séance.",
+  yin:{name:"Yin",when:"Après chaque CrossFit · mardi soir · 30 min le jeudi",short:"Relâcher hanches et dos après la séance.",
     why:"Postures tenues, sans effort, à 60–70 % de ton amplitude. Respiration lente par le nez.",
     blocks:[{h:"La séquence",ex:[
       ["Papillon","2 min","Dos arrondi, tête lourde."],
@@ -107,11 +107,11 @@ const SESSIONS = {
       ["Si tu as faim au réveil","½ banane ferme ou 1 kiwi",""],
       ["Au retour","Petit-déjeuner","Voir l'onglet Assiette."]]}],
     tips:["Les autres jours : 15 à 20 min de marche après le déjeuner, et 10 min debout après le dîner."]},
-  tennis:{name:"Tennis",when:"Lundi · dimanche matin",short:"Technique et plaisir.",
+  tennis:{name:"Tennis",when:"Lundi · dimanche 8h",short:"Technique et plaisir.",
     why:"Au niveau actuel, c'est surtout du jeu technique. On le garde léger.",
     blocks:[{h:"Repères",ex:[
       ["Hydratation","500 ml pendant l'heure",""],
-      ["Dimanche","Au max ou chill","Entre le tennis et la suite : eau et ½ banane ferme."],
+      ["Dimanche","Avant le Pilates","Entre les deux : eau et ½ banane ferme."],
       ["Après","5 min d'étirements","Épaules, avant-bras, mollets."]]}]},
   epaules:{name:"Épaules fines et dos dessiné",when:"Le soir · 25 min · 2 fois par semaine",short:"Posture de danseuse, mi-engagement, mi-détente.",
     why:"Des épaules fines et un dos dessiné viennent surtout d'une posture ouverte et d'un taux de masse grasse modéré. Ces exercices tonifient le milieu et le bas des trapèzes et les rhomboïdes, sans muscler le haut des épaules. Pas de charge, transitions lentes : on finit au sol pour dormir.",
@@ -224,20 +224,20 @@ const DAYS = [
   {k:"Vendredi",s:"Ven",kind:"doux",tag:"Yoga",intent:"Marcher, puis s'allonger",
    acts:[["6h15","marche","Marche","Puis café avec Grégoire à la plage"],["Journée","vinyasa","Vinyasa","À la maison, 45 à 60 min"],["Option","epaules","Épaules et dos","25 min, le soir"]],
    bed:"22h30",bedNote:"Pas de réveil imposé demain."},
-  {k:"Samedi",s:"Sam",kind:"doux",tag:"Doux",intent:"Chill + gainage",
-   acts:[["Matin","pilates","Pilates","À la maison, 45 min, sans forcer"],["Libre","repos","Repos","Balade de 45 min à 1 h, sieste si tu en as envie"]],
-   bed:"22h00",bedNote:"Tennis demain matin."},
-  {k:"Dimanche",s:"Dim",kind:"choix",tag:"Choix",intent:"Selon ton énergie",
+  {k:"Samedi",s:"Sam",kind:"choix",tag:"Choix",intent:"Selon ton énergie",
    modes:{
-     max:{label:"Au max",acts:[["7h30","tennis","Tennis","Tranquille"],["8h25","","Entre les deux","Eau + ½ banane ferme"],["8h30","crossfit","CrossFit","4e séance, charges modérées"],["9h30","yin","Yin","15 min"],["10h00","","Café",""]],extra:["Shaker whey isolate après la séance"]},
-     chill:{label:"Chill morning",acts:[["8h00","tennis","Tennis","Jusqu'à 9h15"],["9h15","","Entre les deux","Eau + ½ banane ferme"],["9h30","yin","Yin","20 min"],["10h00","","Café",""],["Après-midi","marche","Balade","45 min à 1 h"]],extra:[]}
+     cf:{label:"CrossFit",acts:[["Matin","crossfit","CrossFit","Haut du corps et rameur : barre légère, version Liberty, pas de step-ups"],["Après","yin","Yin","10 à 15 min"],["Après-midi","marche","Balade","45 min à 1 h"]],extra:["Shaker whey isolate après la séance"]},
+     chill:{label:"Chill",acts:[["Matin","repos","Repos","Grasse matinée, café"],["Après-midi","marche","Balade","45 min à 1 h"],["Option","epaules","Épaules et dos","25 min"]],extra:[]}
    },
+   bed:"22h00",bedNote:"Tennis demain à 8h."},
+  {k:"Dimanche",s:"Dim",kind:"doux",tag:"Doux",intent:"Jeu, gainage, récupération",
+   acts:[["8h00","tennis","Tennis","Jusqu'à 9h15"],["9h15","","Entre les deux","Eau + ½ banane ferme"],["9h30","pilates","Pilates","À la maison, 45 min"],["10h30","","Café",""],["Après-midi","marche","Balade","45 min à 1 h"]],
    bed:"21h30",bedNote:"CrossFit à 6h30 demain : réveil 5h30."}
 ];
 
 const RITUALS = ["8 000 à 10 000 pas","2 kiwis","1,5 à 2 L d'eau","Huile mesurée : 1 c. à soupe par plat","15 à 20 min de marche après le déjeuner","10 min debout après le dîner (rangement, vaisselle)","Repas sans écran, en mâchant lentement"];
 const BKF = ["Yaourt sans lactose 150 g + 40 g d'avoine + 75 g de raisin noir ou 1 kiwi","2 œufs + 2 tranches de pain au levain + tomates","Porridge : 40 g d'avoine, lait d'amande, 1 kiwi, 10 amandes, ½ dose de whey isolate","1 macatia ou 1 scone maison (onglet Pâtisseries) + yaourt sans lactose + 1 orange"];
-const POST = ["Banane ferme + café + shaker whey isolate (1 dose)","Puis l'un des petits-déjeuners au retour","Dimanche « au max » : ½ banane ferme entre le tennis et le CrossFit"];
+const POST = ["Banane ferme + café + shaker whey isolate (1 dose)","Puis l'un des petits-déjeuners au retour","Samedi CrossFit : banane ferme avant, shaker après"];
 const SNK = ["Yaourt sans lactose + 2 kiwis","2 œufs durs + concombre","1 tranche de pain au levain + 30 g de lountza","10 amandes + 1 orange","Plaisir : 30 g de chocolat noir (2 fois par semaine) ; 1 part de pâtisserie maison (1 fois par semaine)"];
 const LAB = {ok:"Libre",dose:"À dose",evite:"À éviter"};
 
@@ -271,7 +271,7 @@ function mealCard(m){
 }
 function renderDay(){
   const d0 = DAYS[cur];
-  const mode = d0.modes ? (store.get("ra-sun")||"chill") : null;
+  const mode = d0.modes ? (store.get("ra-mode-"+d0.k)||"cf") : null;
   const d = d0.modes ? {...d0, acts:d0.modes[mode].acts, extra:d0.modes[mode].extra} : d0;
   const modeBar = d0.modes ? `<div class="filters" role="group" aria-label="Énergie">${Object.entries(d0.modes).map(([k,v])=>`<button class="fbtn" data-mode="${k}" aria-pressed="${k===mode}">${v.label}</button>`).join("")}</div>` : "";
   const acts = d.acts.map(([t,key,n,desc])=>{
@@ -300,7 +300,7 @@ function renderDay(){
     </div>`;
   document.querySelectorAll("#dayview [data-s]").forEach(b=>b.addEventListener("click",()=>openSession(b.dataset.s,b)));
   document.querySelectorAll("#dayview [data-meal]").forEach(b=>b.addEventListener("click",()=>openMeal(+b.dataset.meal,b)));
-  document.querySelectorAll("#dayview [data-mode]").forEach(b=>b.addEventListener("click",()=>{store.set("ra-sun",b.dataset.mode);renderDay();}));
+  document.querySelectorAll("#dayview [data-mode]").forEach(b=>b.addEventListener("click",()=>{store.set("ra-mode-"+d0.k,b.dataset.mode);renderDay();}));
   document.querySelectorAll("#dayview .checks input").forEach(c=>c.addEventListener("change",()=>store.set(c.id,c.checked?"1":"0")));
 }
 
