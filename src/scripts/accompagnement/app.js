@@ -8,8 +8,8 @@ export function runApp(store) {
 
 
 const SESSIONS = {
-  crossfit:{name:"CrossFit",when:"Lundi, mardi, jeudi, vendredi 6h30 · dimanche en option",short:"Force et puissance, la technique avant la charge.",
-    why:"Deux blocs de deux jours, avec une pause le mercredi. Si tu fais le dimanche, tu enchaînes dimanche, lundi, mardi : fais le mardi en version légère. L'objectif est une force propre et en pleine amplitude, pas le volume des cuisses.",
+  crossfit:{name:"CrossFit",when:"Lundi, mercredi, jeudi 6h30 · dimanche en option",short:"Force et puissance, la technique avant la charge.",
+    why:"Trois séances en semaine, avec un seul enchaînement (mercredi, jeudi) : le jeudi, la technique passe avant la charge. Le dimanche est une 4e séance pour les semaines où tu as de l'énergie. L'objectif est une force propre et en pleine amplitude, pas le volume des cuisses.",
     blocks:[
       {h:"Pendant la séance",ex:[
         ["Technique avant la charge","Toujours","Tu ne montes la charge que si le mouvement est propre."],
@@ -30,7 +30,7 @@ const SESSIONS = {
       ["Maintien menton au-dessus de la barre","3 × 10–15 s",""],
       ["Front support","3 × 10–20 s","Monte avec une box, bras verrouillés au-dessus de la barre, corps gainé."]]}],
     tips:["Progression : quand les négatives durent 5 s sans effort, passe à 3 × 4."]},
-  pilates:{name:"Pilates au tapis",when:"Mercredi et samedi · maison · 45 min",short:"Centre, fessiers, dos, et le bloc taille fine.",
+  pilates:{name:"Pilates au tapis",when:"Mardi et samedi · maison · 45 min",short:"Centre, fessiers, dos, et le bloc taille fine.",
     why:"La séance la plus utile pour une silhouette de danseuse : elle muscle sans volume, affine la taille et redresse la posture. Mouvements lents : 3 secondes pour monter, 3 pour descendre.",
     blocks:[
       {h:"Échauffement",d:"5 min",ex:[
@@ -71,17 +71,17 @@ const SESSIONS = {
     ],
     tips:["Semaines 3 et 4 : 3 séries de swimming, un élastique au-dessus des genoux pour la série couchée, hundred jambes tendues à 45°.",
           "Ventre très gonflé ce jour-là : remplace les blocs Centre et Taille fine par 5 min de respiration et de bascule du bassin."]},
-  vinyasa:{name:"Vinyasa",when:"Vendredi · juste après le CrossFit · maison",short:"Mobilité active et ligne longue.",
-    why:"30 à 40 min de slow flow à la maison, juste après le CrossFit, avec le samedi off pour récupérer. Le corps est chaud : c'est le bon moment pour gagner en amplitude. Studio une fois par mois si tu en as envie.",
+  vinyasa:{name:"Vinyasa",when:"Vendredi · maison · 45 à 60 min",short:"Mobilité active et ligne longue.",
+    why:"Une vraie séance le vendredi, à la maison, sans CrossFit avant : tu peux aller plus loin en amplitude et en équilibres. Le samedi doux suit. Studio une fois par mois si tu en as envie.",
     blocks:[{h:"Ce qu'il faut privilégier",ex:[
       ["Slow flow ou niveau intermédiaire","Plutôt que power ou hot","Surtout en fin de cycle, quand la chaleur fatigue et fait gonfler."],
       ["Hanches et ischios","Fentes, lézard, pyramide","Ce que le CrossFit raccourcit."],
       ["Épaules et colonne thoracique","Chiot, dauphin, ouvertures","Prépare tes mouvements au-dessus de la tête et le front support."],
       ["Souplesse active","Engage le muscle étiré","Tu soulèves et tu allonges au lieu de t'affaisser : c'est ce qui donne une ligne longue et tonique."],
-      ["Chaturangas","Peu, genoux au sol","Tes épaules sortent du CrossFit."],
+      ["Chaturangas","Avec contrôle","Genoux au sol si les épaules sont fatiguées du jeudi."],
       ["Savasana complet","5 min","C'est de la récupération, pas du temps perdu."]]}],
     tips:["Fatiguée : remplace-le par 15 min de yin.","Bois bien après, et mange dans l'heure."]},
-  yin:{name:"Yin",when:"Après chaque CrossFit · mercredi soir · 30 min le jeudi · dimanche",short:"Relâcher hanches et dos après la séance.",
+  yin:{name:"Yin",when:"Après chaque CrossFit · mardi soir · 30 min le jeudi · dimanche",short:"Relâcher hanches et dos après la séance.",
     why:"Postures tenues, sans effort, à 60–70 % de ton amplitude. Respiration lente par le nez.",
     blocks:[{h:"La séquence",ex:[
       ["Papillon","2 min","Dos arrondi, tête lourde."],
@@ -99,7 +99,7 @@ const SESSIONS = {
       ["Squat profond assisté","1 min","Tiens-toi à un montant de porte."],
       ["Ischios à la sangle","1 min par côté",""],
       ["Chat-vache","8",""]]}]},
-  marche:{name:"Marche du matin",when:"Mercredi 6h15 → 7h/7h30, et 10 min après chaque repas",short:"Puis café avec Grégoire à la plage.",
+  marche:{name:"Marche du matin",when:"Mardi et vendredi 6h15 → 7h/7h30 · balade le week-end",short:"Puis café avec Grégoire à la plage.",
     why:"Elle aide à perdre de la graisse sans creuser l'appétit ni ajouter d'inflammation, et elle relance la digestion.",
     blocks:[{h:"Comment",ex:[
       ["Rythme","Tu peux parler","Pas besoin d'essouffler."],
@@ -210,27 +210,27 @@ const SESSIONS = {
 
 const DAYS = [
   {k:"Lundi",s:"Lun",kind:"force",tag:"Force",intent:"Force + jeu",
-   acts:[["6h30","crossfit","CrossFit",""],["7h30","tractions","Tractions","10 min"],["7h40","yin","Yin","10 min"],["Journée","tennis","Tennis","Technique, tranquille : CrossFit demain"]],
-   bed:"21h30",bedNote:"CrossFit à 6h30 demain : réveil 5h30.",extra:["Shaker whey isolate après la séance"]},
-  {k:"Mardi",s:"Mar",kind:"force",tag:"Force",intent:"Force, fin du 1er bloc",
-   acts:[["6h30","crossfit","CrossFit","Version légère si tu as fait dimanche « au max »"],["7h30","yin","Yin","10 à 15 min"]],
+   acts:[["6h30","crossfit","CrossFit",""],["7h30","tractions","Tractions","10 min"],["7h40","yin","Yin","10 min"],["Journée","tennis","Tennis","Technique, tranquille"]],
    bed:"22h00",bedNote:"Marche à 6h15 demain.",extra:["Shaker whey isolate après la séance"]},
-  {k:"Mercredi",s:"Mer",kind:"doux",tag:"Doux",intent:"Remise à zéro",
+  {k:"Mardi",s:"Mar",kind:"doux",tag:"Doux",intent:"Remise à zéro",
    acts:[["6h15","marche","Marche","Puis café avec Grégoire à la plage"],["Journée","pilates","Pilates","À la maison, 45 min avec le bloc taille fine"],["Soir","yin","Yoga doux ou yin","20 à 30 min"]],
    bed:"21h30",bedNote:"CrossFit à 6h30 demain : réveil 5h30."},
-  {k:"Jeudi",s:"Jeu",kind:"force",tag:"Force",intent:"Force + long yin, puis plaisir",
-   acts:[["6h30","crossfit","CrossFit",""],["7h30","tractions","Tractions","10 min"],["7h40","yin","Yin","30 min"]],
+  {k:"Mercredi",s:"Mer",kind:"force",tag:"Force",intent:"Force, début du bloc",
+   acts:[["6h30","crossfit","CrossFit",""],["7h30","yin","Yin","10 à 15 min"]],
    bed:"21h30",bedNote:"CrossFit à 6h30 demain : réveil 5h30.",extra:["Shaker whey isolate après la séance"]},
-  {k:"Vendredi",s:"Ven",kind:"force",tag:"Force",intent:"Force + vinyasa",
-   acts:[["6h30","crossfit","CrossFit",""],["7h30","vinyasa","Vinyasa","À la maison, slow flow 30 à 40 min"]],
-   bed:"22h30",bedNote:"Pas de réveil imposé demain.",extra:["Shaker whey isolate après la séance"]},
+  {k:"Jeudi",s:"Jeu",kind:"force",tag:"Force",intent:"Force + long yin, puis plaisir",
+   acts:[["6h30","crossfit","CrossFit","2e jour d'affilée : technique d'abord"],["7h30","tractions","Tractions","10 min"],["7h40","yin","Yin","30 min"]],
+   bed:"22h00",bedNote:"Marche à 6h15 demain.",extra:["Shaker whey isolate après la séance"]},
+  {k:"Vendredi",s:"Ven",kind:"doux",tag:"Yoga",intent:"Marcher, puis s'allonger",
+   acts:[["6h15","marche","Marche","Puis café avec Grégoire à la plage"],["Journée","vinyasa","Vinyasa","À la maison, 45 à 60 min"],["Option","epaules","Épaules et dos","25 min, le soir"]],
+   bed:"22h30",bedNote:"Pas de réveil imposé demain."},
   {k:"Samedi",s:"Sam",kind:"doux",tag:"Doux",intent:"Chill + gainage",
-   acts:[["Matin","pilates","Pilates","À la maison, 45 min, sans forcer"],["Libre","repos","Repos","Balade, sieste si tu en as envie"]],
+   acts:[["Matin","pilates","Pilates","À la maison, 45 min, sans forcer"],["Libre","repos","Repos","Balade de 45 min à 1 h, sieste si tu en as envie"]],
    bed:"22h00",bedNote:"Tennis demain matin."},
   {k:"Dimanche",s:"Dim",kind:"choix",tag:"Choix",intent:"Selon ton énergie",
    modes:{
-     max:{label:"Au max",acts:[["7h30","tennis","Tennis","Tranquille"],["8h25","","Entre les deux","Eau + ½ banane ferme"],["8h30","crossfit","CrossFit","Charges modérées ; mardi sera en version légère"],["9h30","yin","Yin","15 min"],["10h00","","Café",""]],extra:["Shaker whey isolate après la séance"]},
-     chill:{label:"Chill morning",acts:[["8h00","tennis","Tennis","Jusqu'à 9h15"],["9h15","","Entre les deux","Eau + ½ banane ferme"],["9h30","yin","Yin","20 min"],["10h00","","Café",""]],extra:[]}
+     max:{label:"Au max",acts:[["7h30","tennis","Tennis","Tranquille"],["8h25","","Entre les deux","Eau + ½ banane ferme"],["8h30","crossfit","CrossFit","4e séance, charges modérées"],["9h30","yin","Yin","15 min"],["10h00","","Café",""]],extra:["Shaker whey isolate après la séance"]},
+     chill:{label:"Chill morning",acts:[["8h00","tennis","Tennis","Jusqu'à 9h15"],["9h15","","Entre les deux","Eau + ½ banane ferme"],["9h30","yin","Yin","20 min"],["10h00","","Café",""],["Après-midi","marche","Balade","45 min à 1 h"]],extra:[]}
    },
    bed:"21h30",bedNote:"CrossFit à 6h30 demain : réveil 5h30."}
 ];
