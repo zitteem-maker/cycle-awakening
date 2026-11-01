@@ -690,19 +690,43 @@
    "courseLabel": "Samedi (optionnel)",
    "day": "Dimanche",
    "moment": "Soir",
-   "title": "Bol tofu et halloumi grillés, riz sauvage, concombre, carottes râpées, tomates",
-   "method": "Tofu et halloumi à la poêle 8 min.",
+   "title": "Pizza express à la patate douce, poulet et parmesan, salade de concombre",
+   "method": "Pâte sans levure : écrase la patate douce cuite (vapeur ou micro-ondes 8 min), ajoute les farines d'avoine et de riz, l'œuf, 8 g de levure chimique, sel et origan. Étale sur 1 cm sur une plaque avec papier cuisson, 15 min à 200 °C. Sauce : fromage blanc sans lactose, 1 c. à café d'origan, 1 c. à café d'huile infusée à l'ail, sel, poivre. Étale la sauce, ajoute le poulet effiloché (reste du midi), les courgettes en fines lamelles, les tomates cerises coupées, le parmesan. 10 min à 200 °C, roquette à la sortie. Salade : concombre en rondelles, jus de citron, menthe, 1 c. à café d'huile d'olive, sel, graines de courge.",
    "items": [
     {
-     "item": "Tofu ferme",
-     "toi": 80,
-     "vous": 120,
-     "fils": 60,
+     "item": "Patate douce",
+     "toi": 75,
+     "vous": 90,
+     "fils": 75,
      "plat": 0,
      "unit": "g"
     },
     {
-     "item": "Halloumi",
+     "item": "Farine d'avoine",
+     "toi": 30,
+     "vous": 50,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Farine de riz",
+     "toi": 15,
+     "vous": 25,
+     "fils": 15,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Œufs",
+     "toi": 0,
+     "vous": 0,
+     "fils": 0,
+     "plat": 1,
+     "unit": "pièce"
+    },
+    {
+     "item": "Fromage blanc sans lactose",
      "toi": 40,
      "vous": 60,
      "fils": 40,
@@ -710,23 +734,47 @@
      "unit": "g"
     },
     {
-     "item": "Riz sauvage",
-     "toi": 30,
-     "vous": 70,
-     "fils": 45,
+     "item": "Parmesan",
+     "toi": 10,
+     "vous": 20,
+     "fils": 10,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Poulet rôti (cuit, sans peau)",
+     "toi": 50,
+     "vous": 80,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Courgettes",
+     "toi": 50,
+     "vous": 50,
+     "fils": 40,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Tomates cerises",
+     "toi": 35,
+     "vous": 35,
+     "fils": 30,
+     "plat": 0,
+     "unit": "g"
+    },
+    {
+     "item": "Roquette",
+     "toi": 10,
+     "vous": 10,
+     "fils": 10,
      "plat": 0,
      "unit": "g"
     },
     {
      "item": "Concombre",
-     "toi": 80,
-     "vous": 80,
-     "fils": 60,
-     "plat": 0,
-     "unit": "g"
-    },
-    {
-     "item": "Carottes",
      "toi": 70,
      "vous": 70,
      "fils": 50,
@@ -734,10 +782,10 @@
      "unit": "g"
     },
     {
-     "item": "Tomates",
-     "toi": 60,
-     "vous": 60,
-     "fils": 40,
+     "item": "Graines de courge",
+     "toi": 5,
+     "vous": 5,
+     "fils": 5,
      "plat": 0,
      "unit": "g"
     }
@@ -811,9 +859,9 @@
     },
     {
      "item": "Poulet rôti (cuit, sans peau)",
-     "toi": 70,
-     "vous": 100,
-     "fils": 50,
+     "toi": 60,
+     "vous": 90,
+     "fils": 40,
      "plat": 0,
      "unit": "g"
     },
@@ -2533,14 +2581,21 @@
       ],
       [
        "Carottes",
-       570,
+       380,
        "g",
        "",
        null
       ],
       [
        "Concombre",
-       220,
+       190,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Courgettes",
+       140,
        "g",
        "",
        null
@@ -2567,6 +2622,13 @@
        null
       ],
       [
+       "Patate douce",
+       240,
+       "g",
+       "",
+       null
+      ],
+      [
        "Pommes de terre",
        400,
        "g",
@@ -2581,8 +2643,22 @@
        null
       ],
       [
+       "Roquette",
+       30,
+       "g",
+       "",
+       null
+      ],
+      [
        "Tomates",
-       240,
+       80,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Tomates cerises",
+       100,
        "g",
        "",
        null
@@ -2592,13 +2668,6 @@
     {
      "name": "Protéines et frais",
      "items": [
-      [
-       "Halloumi",
-       140,
-       "g",
-       "",
-       null
-      ],
       [
        "Poulet entier (≈ 1,9 kg)",
        1,
@@ -2616,7 +2685,7 @@
      ]
     }
    ],
-   "cost": 20
+   "cost": 19
   },
   {
    "label": "Commande « Autres »",
@@ -2655,6 +2724,20 @@
        null
       ],
       [
+       "Farine d'avoine",
+       110,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Farine de riz",
+       60,
+       "g",
+       "",
+       null
+      ],
+      [
        "Farine de sarrasin",
        40,
        "g",
@@ -2664,6 +2747,20 @@
       [
        "Feta",
        60,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Fromage blanc sans lactose",
+       140,
+       "g",
+       "",
+       null
+      ],
+      [
+       "Graines de courge",
+       15,
        "g",
        "",
        null
@@ -2684,7 +2781,7 @@
       ],
       [
        "Parmesan",
-       50,
+       90,
        "g",
        "",
        null
@@ -2705,7 +2802,7 @@
       ],
       [
        "Riz sauvage",
-       300,
+       160,
        "g",
        "",
        null
@@ -2714,13 +2811,6 @@
        "Sauce soja",
        30,
        "ml",
-       "",
-       null
-      ],
-      [
-       "Tofu ferme",
-       260,
-       "g",
        "",
        null
       ],
@@ -2734,7 +2824,7 @@
      ]
     }
    ],
-   "cost": 42
+   "cost": 40
   }
  ]
 }
