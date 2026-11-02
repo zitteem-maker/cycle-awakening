@@ -21,6 +21,7 @@
     "hero-video": "node scripts/process-hero-video.mjs",
     "build:book": "npm run tokens && node book/build.mjs",
     "build:book:brouillon": "npm run tokens && node book/build.mjs --brouillon",
+    "build:book:relecture": "npm run tokens && node book/build.mjs --relecture",
     "build:book:edito": "npm run tokens && node book/build.mjs --brouillon --apercu-edito"
   },
   "dependencies": {

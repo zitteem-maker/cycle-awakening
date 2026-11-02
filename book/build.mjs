@@ -13,7 +13,10 @@ import { PDFDocument } from 'pdf-lib';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const book = `${root}book/`;
 const dist = `${book}dist/`;
-const draft = process.argv.includes('--brouillon');
+// --relecture : rendu identique à la version finale (sans étiquettes « brouillon »), mais sans les contrôles
+// de publication et sans toucher au nombre de pages du site. Pour relire le livre « comme imprimé ».
+const relecture = process.argv.includes('--relecture');
+const draft = process.argv.includes('--brouillon') || relecture;
 
 const livre = JSON.parse(readFileSync(`${book}livre.json`, 'utf8'));
 const tokens = JSON.parse(readFileSync(`${root}design-tokens/dist/tokens.json`, 'utf8'));
@@ -338,7 +341,7 @@ ${tokensCss}
 ${css}
 ${pageRules({ impression, mobile })}
 </style></head>
-<body class="${[draft && 'brouillon', mobile && 'mobile'].filter(Boolean).join(' ')}">${corps}</body></html>`;
+<body class="${[draft && 'brouillon', relecture && 'relecture', mobile && 'mobile'].filter(Boolean).join(' ')}">${corps}</body></html>`;
 }
 
 // --- Rendu PDF -------------------------------------------------------------------------------

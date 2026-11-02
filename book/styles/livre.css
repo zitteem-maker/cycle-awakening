@@ -445,3 +445,6 @@ h2.recette-nom {
 .mobile .e-boucle { display: none; }
 .mobile .e-pied { margin-top: 5mm; }
 .mobile .e-gauche { margin-bottom: 3mm; }
+
+/* Édition de relecture : rendu final, sans étiquettes de statut. */
+.relecture .chapitre-statut, .relecture .r-meta .statut { display: none; }

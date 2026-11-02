@@ -7,6 +7,7 @@ Source HTML/CSS reproductible, rendue en PDF A4 par Chromium (Playwright). Même
 | Commande | Résultat |
 |---|---|
 | `npm run build:book:brouillon` | Version de travail avec filigrane « Brouillon », quel que soit l'état des textes. Ne touche pas au nombre de pages du site. |
+| `npm run build:book:relecture` | Rendu identique à la version finale (sans étiquettes « brouillon »), sans les contrôles de publication. Pour relire le livre tel qu’il sera. Ne touche pas au nombre de pages du site. |
 | `npm run build:book` | Version finale. **Refuse** de se fabriquer tant qu'un chapitre ou un outil n'est pas `valide`, ou qu'il reste un `TODO_SOURCE`. Écrit le nombre réel de pages dans `src/config/book-meta.json` (utilisé par le site). |
 
 Sorties dans `book/dist/` (non versionné, reproductible) :
