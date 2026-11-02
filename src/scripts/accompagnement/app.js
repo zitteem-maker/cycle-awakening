@@ -236,6 +236,13 @@ const DAYS = [
 ];
 
 const RITUALS = ["8 000 à 10 000 pas","2 kiwis","1,5 à 2 L d'eau","Huile mesurée : 1 c. à soupe par plat","15 à 20 min de marche après le déjeuner","10 min debout après le dîner (rangement, vaisselle)","Repas sans écran, en mâchant lentement"];
+const EVENING = [
+  ["Noter tes 3 priorités du lendemain","2 min : tout ce qui reste en tête passe sur le papier."],
+  ["Fermer le dashboard et éteindre la lumière du bureau","Le geste qui marque la fin de ta journée de travail."],
+  ["Douche tiède","L'eau tiède aide la température du corps à redescendre, ce qui favorise l'endormissement."],
+  ["Lecture au lit, 10 à 20 min","Papier ou liseuse sans rétroéclairage, lumière chaude et douce, téléphone hors de la chambre ou en mode avion."],
+  ["Lumière éteinte, câlins avec Grégoire, sommeil",""]
+];
 const BKF = ["Yaourt sans lactose 150 g + 40 g d'avoine + 75 g de raisin noir ou 1 kiwi","2 œufs + 2 tranches de pain au levain + tomates","Porridge : 40 g d'avoine, lait d'amande, 1 kiwi, 10 amandes, ½ dose de whey isolate","1 macatia ou 1 scone maison (onglet Pâtisseries) + yaourt sans lactose + 1 orange"];
 const POST = ["Banane ferme + café + shaker whey isolate (1 dose)","Puis l'un des petits-déjeuners au retour","Samedi CrossFit : banane ferme avant, shaker après"];
 const SNK = ["Yaourt sans lactose + 2 kiwis","2 œufs durs + concombre","1 tranche de pain au levain + 30 g de lountza","10 amandes + 1 orange","Plaisir : 30 g de chocolat noir (2 fois par semaine) ; 1 part de pâtisserie maison (1 fois par semaine)"];
@@ -283,6 +290,10 @@ function renderDay(){
     const id=`ck-${cur}-${norm(r).replace(/[^a-z0-9]/g,"").slice(0,24)}`; const on = store.get(id)==="1";
     return `<label for="${id}"><input type="checkbox" id="${id}" ${on?"checked":""}><span>${esc(r)}</span></label>`;
   }).join("");
+  const evening = EVENING.map(([n,w],j)=>{
+    const id=`ev-${cur}-${j}`; const on = store.get(id)==="1";
+    return `<label for="${id}"><input type="checkbox" id="${id}" ${on?"checked":""}><span><b style="font-weight:600">${j+1}. ${esc(n)}</b>${w?`<span style="display:block;font-size:13px;color:var(--muted)">${esc(w)}</span>`:""}</span></label>`;
+  }).join("");
   const ms = mealsOf(d0.k).sort((a,b)=>(a.moment==='Midi'?0:1)-(b.moment==='Midi'?0:1));
   const meals = ms.length ? ms.map(mealCard).join("") : `<p class="note">${esc(d.free)}</p>`;
   $("#dayview").innerHTML = `
@@ -291,6 +302,7 @@ function renderDay(){
       <div class="col">
         <div><div class="label">Mouvement</div>${modeBar}<div class="timeline">${acts}</div></div>
         <div><div class="label">Rituels du jour</div><div class="checks">${checks}</div></div>
+        <div><div class="label">Rituels du soir</div><div class="checks">${evening}</div></div>
         <div class="sleep"><span class="label" style="margin:0">Coucher</span><strong>${d.bed}</strong><span style="color:var(--muted)">${esc(d.bedNote)}</span></div>
       </div>
       <div class="col">
