@@ -50,7 +50,8 @@ Règles :
 
 - Titres : **Cormorant Garamond** 500 ; italique pour les mots signature (`.accent` en fuchsia dans les grands titres, `.signature` sans couleur ailleurs).
 - Texte : **Inter** 400/500/600. Sur-titres : capitales espacées (`.eyebrow`).
-- Limelight et Sacramento : **logo uniquement** (vectorisés, jamais chargés comme polices web).
+- **Limelight** (police du logo) : autorisée sur le site pour les **grands mots d'affichage** uniquement (chiffres clés, prix, compteur de la roue, numéros de section). Jamais en texte courant ni en titre de plus de deux mots. Auto-hébergée (@fontsource/limelight).
+- **Sacramento** : logo et livre (intertitres de recettes) uniquement, pas sur le site.
 - Polices auto-hébergées (@fontsource), préchargées. Jamais de Google Fonts.
 
 ## Photo et illustration
@@ -61,7 +62,11 @@ Sans photo réelle : illustration de marque (`src/components/art/`) ou emplaceme
 
 ## Mouvement
 
-- **Un seul** moment marquant par page (entrée du hero). L'ancien site animait chaque bloc : on ne le reprend pas.
+Refonte du 3 novembre 2026 : la fondatrice veut « du peps, du dynamisme, un effet waouh », sans photo hero façon 2010.
+- **Hero** : entrée échelonnée des lignes du titre + roue du cycle animée (`src/components/home/CycleWheel.astro`) : c'est le moment marquant.
+- **Au défilement** : apparition douce des blocs `[data-reveal]` (fondu + 28 px, une seule fois, décalage `--d`). Pas de parallaxe lourde, pas de rebond.
+- **Bandeau défilant** des phrases signature (`Marquee.astro`), pause au survol.
+- **Interactions** : onglets du cycle, couverture du livre en 3D qui se redresse au survol, cartes recettes qui zooment légèrement.
 - Survols courts (`--motion-duration-fast`, léger soulèvement des boutons).
 - `prefers-reduced-motion` : tout est coupé, la vidéo hero est remplacée par son poster.
 

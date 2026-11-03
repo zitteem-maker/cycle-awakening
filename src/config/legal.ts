@@ -43,7 +43,7 @@ export const legal = {
   processors: [
     { name: 'Cloudflare, Inc.', role: 'Hébergement du site, sécurité, réseau de diffusion', location: 'États-Unis / UE', safeguard: 'Data Privacy Framework UE–États-Unis, clauses contractuelles types', status: 'actif' },
     { name: 'Stripe Payments Europe, Ltd.', role: 'Paiement, facturation, gestion des abonnements', location: 'Irlande (UE), transferts possibles vers les États-Unis', safeguard: 'Data Privacy Framework, clauses contractuelles types', status: 'prévu' },
-    { name: 'TODO_LEGAL_OUTIL_EMAILING (Brevo ou Kit)', role: 'Newsletter, emails de livraison', location: 'TODO', safeguard: 'TODO', status: 'prévu' },
+    { name: 'Brevo (Sendinblue SAS)', role: 'Newsletter (double opt-in), emails de livraison', location: 'France (UE)', safeguard: 'Hébergement dans l’UE', status: 'prévu' },
     { name: 'Supabase', role: 'Comptes et données de l\'espace membre', location: 'Région UE à choisir', safeguard: 'TODO', status: 'prévu' },
     { name: 'Anthropic', role: 'Modèle d\'IA de l\'assistante (espace Premium)', location: 'États-Unis', safeguard: 'TODO', status: 'prévu' },
   ],

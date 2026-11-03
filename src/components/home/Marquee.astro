@@ -1,0 +1,37 @@
+---
+// Bandeau défilant des phrases signature. Pause au survol et au focus ; figé si mouvement réduit.
+interface Props { phrases: string[] }
+const { phrases } = Astro.props;
+const suite = [...phrases, ...phrases];
+---
+
+<div class="marquee" role="region" aria-label="Nos phrases signature">
+  <ul class="visually-hidden">{phrases.map((p) => <li>{p}</li>)}</ul>
+  <div class="marquee__track" aria-hidden="true">
+    {suite.map((p) => (
+      <span class="marquee__item">{p}<span class="marquee__sep">✦</span></span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    background: var(--semantic-bg-deep-alt);
+    color: var(--semantic-text-on-deep);
+    padding-block: var(--space-4);
+    border-block: 1px solid rgb(247 244 239 / 0.08);
+  }
+  .marquee__track { display: flex; width: max-content; animation: defile 48s linear infinite; }
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+  .marquee__item {
+    display: inline-flex; align-items: center; gap: var(--space-8); padding-right: var(--space-8);
+    font-family: var(--font-family-display); font-style: italic; font-size: clamp(1.25rem, 1rem + 1.4vw, 2rem); white-space: nowrap;
+  }
+  .marquee__sep { color: var(--semantic-accent); font-style: normal; font-size: 0.7em; }
+  @keyframes defile { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+    .marquee__item:nth-child(n + 4) { display: none; }
+  }
+</style>

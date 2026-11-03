@@ -1,0 +1,20 @@
+---
+// Après l'envoi du formulaire sans JavaScript. Non indexée.
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout title="Vérifie tes emails" description="Confirme ton inscription à la newsletter." noindex headerCta={false}>
+  <section class="section dawn grain">
+    <div class="container message">
+      <p class="eyebrow">Newsletter</p>
+      <h1>Presque fini. <em class="accent">Regarde tes emails.</em></h1>
+      <p class="lead">Je viens de t’envoyer un email de confirmation. Clique sur le lien qu’il contient pour valider ton inscription. Rien reçu ? Regarde dans les spams ou l’onglet « Promotions ».</p>
+      <p><a href="/">Retour à l’accueil</a></p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .message { max-width: 48rem; min-height: 50vh; display: flex; flex-direction: column; justify-content: center; }
+  .lead { font-size: var(--font-size-lg); }
+</style>

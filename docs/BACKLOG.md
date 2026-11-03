@@ -80,3 +80,20 @@ Tant que `missingForSales()` n'est pas vide : mentions légales de site non prof
 - **Édito « Un dernier mot, entre nous »** (`book/src/edito.md`, validé le 7 octobre, version classique, signé Emeline) : toute dernière page du guide (après les recettes, les outils et le rappel médical), sans surtitre. Photo d'ambiance en attendant le portrait de la fondatrice : déposer `book/src/images/edito/edito.jpg`, il remplace automatiquement la photo d'ambiance.
 - **Photos** (7 octobre) : ch1–ch6, banana bread, cookies, poisson (fichier « breakfast table linen »), infusion du soir, lait d’or, thème végétal et thème boissons en place. Thèmes petit-déjeuner et plats ajoutés. Manquent : bol orange, dattes, poulet soja, purée haricots-tofu, dal. Crédits Unsplash à fournir.
 - **Photos des pages d'ouverture de thème** : `theme-petit-dejeuner.jpg`, `theme-plats.jpg`, `theme-vegetal.jpg`, `theme-boissons.jpg` (format paysage, haut de page).
+
+## À faire juste avant la mise en ligne (validé le 3 novembre 2026)
+
+Livre :
+- [ ] Photos des 5 recettes manquantes : bol orange-fromage blanc, dattes au beurre de noisette, poulet soja-avocat, purée haricots-carottes-tofu, dal coco.
+- [ ] Portrait de la fondatrice pour l'édito (`edito.jpg`, dossier Drive « photos unsplash »).
+- [ ] Liens Unsplash de toutes les photos (crédits en fin de livre).
+- [ ] Prana Chai : relation avec la marque (aucune / affilié / partenariat / produit offert), mentionnée dans le livre s'il y en a une.
+- [ ] Validation écrite des textes (chapitres 1 à 6, recettes, outils, notice) : statuts `valide`.
+- [ ] Sources `TODO_SOURCE` vérifiées (liste à préparer, relecture professionnelle).
+- [ ] Version finale `npm run build:book` (écrit le nombre de pages pour le site).
+
+Légal et offres :
+- [ ] Avant la page Recommandations publique : règle d'affiliation (badge + `rel="sponsored"`).
+- [ ] Ouverture de la newsletter : `controllerName` dans `src/config/legal.ts`.
+- [ ] Avant la première vente : immatriculation et informations légales complètes (`missingForSales()` vide).
+- [ ] Ouverture de l'abonnement : remplacer « je prépare l'accompagnement » / « Prochainement » (chapitre 5, notice, édito) par le vrai lien.

@@ -6,6 +6,9 @@
 @import '@fontsource/cormorant-garamond/latin-500.css';
 @import '@fontsource/cormorant-garamond/latin-500-italic.css';
 @import '@fontsource/cormorant-garamond/latin-600.css';
+@import '@fontsource/cormorant-garamond/latin-600-italic.css';
+/* Limelight (police du logo) : grands mots d'affichage uniquement (chiffres, prix, un mot par section). */
+@import '@fontsource/limelight/latin-400.css';
 
 *,
 *::before,
@@ -178,3 +181,12 @@ svg { display: block; max-width: 100%; height: auto; }
   padding: 0 0.25em;
   font-size: 0.9em;
 }
+
+/* Apparition au défilement (script dans BaseLayout). --d : rang pour décaler les éléments d'une même rangée. */
+.reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--motion-ease), transform 0.9s var(--motion-ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+.reveal-on [data-reveal].is-in { opacity: 1; transform: none; }

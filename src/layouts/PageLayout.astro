@@ -8,12 +8,14 @@ import type { ComponentProps } from 'astro/types';
 
 interface Props extends ComponentProps<typeof BaseLayout> {
   headerCta?: boolean;
+  /** En-tête transparent posé sur un hero profond, qui devient crème au défilement. */
+  headerOverlay?: boolean;
 }
-const { headerCta = true, ...base } = Astro.props;
+const { headerCta = true, headerOverlay = false, ...base } = Astro.props;
 ---
 
 <BaseLayout {...base}>
-  <SiteHeader cta={headerCta} />
+  <SiteHeader cta={headerCta} overlay={headerOverlay} />
   <main id="contenu">
     <slot />
   </main>

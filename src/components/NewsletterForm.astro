@@ -1,0 +1,98 @@
+---
+// Inscription newsletter → /api/newsletter (Cloudflare Pages Function, functions/api/newsletter.js),
+// qui transmet à Brevo en double opt-in. Aucune clé côté navigateur.
+// Sans JavaScript, le formulaire s'envoie normalement et la fonction redirige vers /newsletter-confirmation.
+interface Props {
+  /** Emplacement du formulaire (tag de segmentation et tracking). */
+  source: string;
+  variant?: 'light' | 'deep';
+}
+const { source, variant = 'light' } = Astro.props;
+const id = `nl-${source}`;
+---
+
+<form class:list={['nl', `nl--${variant}`]} method="post" action="/api/newsletter" data-newsletter novalidate>
+  <input type="hidden" name="source" value={source} />
+  <!-- Piège à robots : champ invisible, doit rester vide. -->
+  <div class="nl__trap" aria-hidden="true">
+    <label for={`${id}-site`}>Ne pas remplir</label>
+    <input id={`${id}-site`} name="site" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <div class="nl__row">
+    <label class="visually-hidden" for={`${id}-email`}>Ton adresse email</label>
+    <input id={`${id}-email`} class="nl__email" name="email" type="email" required autocomplete="email" placeholder="ton@email.com" />
+    <button class="nl__btn" type="submit">S’inscrire</button>
+  </div>
+  <label class="nl__consent">
+    <input type="checkbox" name="consent" value="oui" required />
+    <span>J’accepte de recevoir la newsletter de Cycle Awakening. Désinscription en un clic à tout moment. Voir la <a href="/confidentialite">politique de confidentialité</a>.</span>
+  </label>
+  <p class="nl__status" role="status" aria-live="polite" data-status></p>
+</form>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>('[data-newsletter]')) {
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get('email') || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = 'Vérifie ton adresse email.';
+        return;
+      }
+      if (!data.get('consent')) {
+        status.textContent = 'Coche la case pour accepter de recevoir la newsletter.';
+        return;
+      }
+      const btn = form.querySelector<HTMLButtonElement>('button')!;
+      btn.disabled = true;
+      status.textContent = 'Envoi…';
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(body.message || 'erreur');
+        form.classList.add('is-done');
+        status.textContent = 'Presque fini : ouvre l’email que je viens de t’envoyer et confirme ton inscription.';
+        window.dispatchEvent(new CustomEvent('ca:event', { detail: { name: 'newsletter_signup', source: data.get('source') } }));
+      } catch (err) {
+        status.textContent = (err as Error).message !== 'erreur'
+          ? (err as Error).message
+          : 'Oups, l’inscription n’a pas fonctionné. Réessaie dans un instant ou écris à hello@cycleawakening.com.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
+
+<style>
+  .nl { display: grid; gap: var(--space-4); max-width: 34rem; }
+  .nl__trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .nl__row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  .nl__email {
+    flex: 1 1 14rem; min-height: var(--size-tap-target); padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-pill); border: 1px solid var(--semantic-text); background: var(--semantic-bg);
+    color: var(--semantic-text); font: inherit;
+  }
+  .nl__btn {
+    min-height: var(--size-tap-target); padding: var(--space-3) var(--space-8); border-radius: var(--radius-pill); border: 0; cursor: pointer;
+    background: var(--semantic-cta-bg); color: var(--semantic-cta-text);
+    font: inherit; font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background-color var(--motion-duration-fast) var(--motion-ease), transform var(--motion-duration-fast) var(--motion-ease);
+  }
+  .nl__btn:hover { background: var(--semantic-cta-bg-hover); transform: translateY(-2px); }
+  .nl__btn:disabled { opacity: 0.6; cursor: wait; }
+  .nl__consent { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--font-size-xs); color: var(--semantic-text-muted); line-height: 1.5; }
+  .nl__consent input { width: 1.15rem; height: 1.15rem; margin-top: 0.1rem; flex: none; accent-color: var(--semantic-cta-bg); }
+  .nl__status { font-size: var(--font-size-sm); min-height: 1.5em; margin: 0; }
+  .nl.is-done .nl__row, .nl.is-done .nl__consent { display: none; }
+  .nl.is-done .nl__status { font-family: var(--font-family-display); font-size: var(--font-size-lg); }
+
+  .nl--deep .nl__email { background: transparent; border-color: rgb(247 244 239 / 0.5); color: var(--semantic-text-on-deep); }
+  .nl--deep .nl__email::placeholder { color: var(--semantic-text-on-deep-muted); }
+  .nl--deep .nl__btn { background: var(--semantic-cta-on-deep-bg); color: var(--semantic-cta-on-deep-text); }
+  .nl--deep .nl__btn:hover { background: var(--semantic-bg-alt); }
+  .nl--deep .nl__consent { color: var(--semantic-text-on-deep-muted); }
+  .nl--deep .nl__consent input { accent-color: var(--semantic-text-on-deep); }
+</style>
