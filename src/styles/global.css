@@ -197,12 +197,8 @@ svg { display: block; max-width: 100%; height: auto; }
 
 /* Éléments animés à l'entrée par src/scripts/motion.ts : invisibles jusqu'au départ de l'animation. */
 .js-motion [data-in],
-.js-motion [data-wheel-part],
-.js-motion [data-wheel-tick],
-.js-motion [data-wheel-label],
-.js-motion [data-wheel-dot],
-.js-motion [data-wheel-center],
-.js-motion [data-wheel-orbit] { opacity: 0; }
+.js-motion [data-piece],
+.js-motion [data-legende] { opacity: 0; }
 
 /* ==========================================================================
    Verre liquide, fond animé et relief (refonte du 3 novembre 2026)

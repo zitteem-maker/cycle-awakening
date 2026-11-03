@@ -36,28 +36,45 @@ if (!reduit) {
     const q = (sel: string) => heroEntree.querySelectorAll<Element>(sel);
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.fromTo(q('[data-in]'), { x: -110, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.4, stagger: 0.11 }, 0.1);
-    // La roue s'assemble quand elle est visible (dès le chargement sur ordinateur, au défilement sur téléphone).
-    const roue = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: heroEntree.querySelector('[data-wheel]'), start: 'top 88%' } });
-    // Quatre quartiers de verre qui arrivent de quatre directions et se posent.
-    q('[data-wheel-part]').forEach((part, i) => {
-      const el = part as SVGGElement;
-      const dx = Number(el.dataset.dx);
-      const dy = Number(el.dataset.dy);
-      // Origine fixée une seule fois (au centre de la roue) : la redéfinir dans le tween décalerait la pièce.
-      gsap.set(el, { svgOrigin: '200 200' });
-      roue.fromTo(
-        el,
-        { x: dx * 320, y: dy * 320, rotation: (i % 2 ? -1 : 1) * 38, scale: 0.65, opacity: 0 },
-        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.8 },
-        0.2 + i * 0.14,
-      );
-    });
-    roue.call(() => heroEntree.querySelector('[data-hero-disque]')?.classList.add('is-on'), undefined, 1.0);
-    roue.to(q('[data-wheel-orbit]'), { opacity: 1, duration: 1.2, ease: 'power2.out' }, 1.2);
-    roue.fromTo(q('[data-wheel-tick]'), { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.025, ease: 'power1.out' }, 1.35);
-    roue.fromTo(q('[data-wheel-label]'), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.14 }, 1.8);
-    roue.fromTo(q('[data-wheel-center]'), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 1.1, ease: 'back.out(1.8)' }, 2.0);
-    roue.fromTo(q('[data-wheel-dot]'), { opacity: 0, scale: 0, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(3)' }, 2.5);
+    // --- Roue en VUE ÉCLATÉE de montre : quatre plateaux inclinés, séparés en hauteur. ------------
+    const roueEl = heroEntree.querySelector<HTMLElement>('[data-wheel]');
+    if (roueEl) {
+      const pile = roueEl.querySelector<HTMLElement>('[data-wheel-stack]')!;
+      const plateaux = [...roueEl.querySelectorAll<HTMLElement>('[data-layer]')];
+      const pieces = [...roueEl.querySelectorAll<HTMLElement>('[data-piece]')];
+      const ecart = () => Math.min(100, roueEl.offsetWidth * 0.21); // hauteur entre deux plateaux
+      const eclate = { rotationX: 58, rotationZ: -28, scale: 0.74, y: () => roueEl.offsetWidth * 0.2 };
+      const axes = roueEl.querySelectorAll<HTMLElement>('[data-axe]');
+      roueEl.style.setProperty('--hauteur-axes', `${3 * ecart()}px`);
+      gsap.set(pile, { ...eclate });
+      plateaux.forEach((p, i) => gsap.set(p, { z: () => i * ecart() }));
+      roueEl.classList.add('is-eclatee');
+
+      // 1. Les plateaux tombent un à un à leur place dans la vue éclatée (du cadran à l'aiguille).
+      const pose = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: roueEl, start: 'top 88%' } });
+      pieces.forEach((piece, i) => {
+        pose.fromTo(piece, { z: 420, opacity: 0, scale: 0.85 }, { z: 0, opacity: 1, scale: 1, duration: 1.5 }, 0.25 + i * 0.22);
+      });
+      // Les quatre phases de verre arrivent en plus de quatre directions sur leur plateau.
+      roueEl.querySelectorAll<SVGGElement>('[data-wheel-part]').forEach((el, i) => {
+        gsap.set(el, { svgOrigin: '200 200' });
+        pose.fromTo(el, { x: Number(el.dataset.dx) * 240, y: Number(el.dataset.dy) * 240, rotation: (i % 2 ? -1 : 1) * 30, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.6 }, 0.55 + i * 0.1);
+      });
+      pose.fromTo(roueEl.querySelectorAll('[data-legende]'), { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 1, stagger: 0.12 }, 1.2);
+
+      // 2. Au défilement, la montre s'assemble : les plateaux se resserrent et se couchent à plat.
+      const assemble = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: window.matchMedia('(min-width: 60rem)').matches
+          ? { trigger: heroEntree, start: 'top top', end: 'bottom 35%', scrub: 0.6 }
+          : { trigger: roueEl, start: 'top 45%', end: 'bottom 20%', scrub: 0.6 },
+        onUpdate: () => roueEl.classList.toggle('is-eclatee', assemble.progress() < 0.85),
+      });
+      assemble.fromTo(pile, { ...eclate }, { rotationX: 0, rotationZ: 0, scale: 1, y: 0, immediateRender: false }, 0);
+      plateaux.forEach((p, i) => assemble.fromTo(p, { z: () => i * ecart() }, { z: i * 0.5, immediateRender: false }, 0));
+      assemble.to(roueEl.querySelectorAll('[data-legende]'), { opacity: 0, x: 30, stagger: 0.05, immediateRender: false }, 0.2);
+      assemble.fromTo(axes, { scaleY: 1 }, { scaleY: 0.01, immediateRender: false }, 0);
+    }
   }
 
   // --- Haut des autres pages : texte qui arrive depuis la gauche ---------------------------------
@@ -174,6 +191,15 @@ if (!reduit) {
       { rotateY: -10, rotateX: 0, y: -20, ease: 'none', scrollTrigger: { trigger: livre, start: 'top bottom', end: 'bottom 35%', scrub: true } },
     );
   }
+
+  // --- Questions : chaque carte pivote en 3D jusqu'à se poser, comme la couverture du guide -----
+  document.querySelectorAll<HTMLElement>('[data-faq-card]').forEach((carte, i) => {
+    gsap.fromTo(
+      carte,
+      { rotationY: i % 2 ? 34 : -34, rotationX: 12, y: 90, z: -120, opacity: 0, transformPerspective: 1400 },
+      { rotationY: 0, rotationX: 0, y: 0, z: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: carte, start: 'top 98%', end: 'top 62%', scrub: 0.5 } },
+    );
+  });
 
   // --- Bandeau défilant : accélère et s'incline avec la vitesse de défilement ----------------
   const bandeau = document.querySelector<HTMLElement>('[data-marquee]');

@@ -125,9 +125,10 @@ const faq = [
         <div class="hero__disque" data-depth="18" data-hero-disque><CycleWheel /></div>
       </div>
     </div>
+    <div class="hero__bandeau"><Marquee phrases={phrases} /></div>
   </section>
 
-  <!-- FAITS (vrais, issus du livre) : panneau de verre posé à cheval sur le hero -->
+  <!-- FAITS (vrais, issus du livre) : panneau opaque posé à cheval sur le bas du hero -->
   <section class="faits" aria-label="Le guide en chiffres">
     <div class="container">
       <div class="faits__verre">
@@ -140,8 +141,6 @@ const faq = [
       </div>
     </div>
   </section>
-
-  <Marquee phrases={phrases} />
 
   <!-- PROBLÈME -->
   <section class="section probleme" id="probleme">
@@ -285,9 +284,9 @@ const faq = [
         <p class="eyebrow">Questions</p>
         <h2 data-split>Tes <em class="accent">questions</em></h2>
       </div>
-      <div class="faq__liste glass">
+      <div class="faq__liste">
         {faq.map((f) => (
-          <details class="faq__item">
+          <details class="faq__item glass" data-faq-card>
             <summary>{f.q}</summary>
             <p>{f.r}</p>
           </details>
@@ -318,21 +317,16 @@ const faq = [
 
 <style>
   /* ---------- Hero ---------- */
-  .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-block: calc(var(--space-16) + 4rem) calc(var(--space-16) + 5rem); }
+  .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-block: calc(var(--space-16) + 4rem) calc(var(--space-16) + 11rem); }
+  /* Bandeau des phrases : fondu dans le bas du hero, juste au-dessus du panneau des chiffres. */
+  .hero__bandeau { position: absolute; left: 0; right: 0; bottom: 7rem; z-index: 1; }
   .hero__grid { position: relative; display: grid; gap: var(--space-12); align-items: center; }
   @media (min-width: 60rem) { .hero__grid { grid-template-columns: 1.15fr 1fr; } }
   .hero__title { font-size: clamp(3.1rem, 1.6rem + 6.4vw, 7.4rem); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: var(--space-8); }
   .hero__title .ligne { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
   .hero__title .hero__line { display: block; transform: translateY(105%); animation: monte 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(0.2s + var(--d) * 0.12s); }
   @keyframes monte { to { transform: none; } }
-  /* Disque de verre sous la roue : laisse deviner les halos en mouvement derrière. */
   .hero__disque { position: relative; }
-  .hero__disque::before {
-    content: ''; position: absolute; inset: 15%; border-radius: 50%;
-    background: rgb(247 244 239 / 0.05); border: 1px solid rgb(247 244 239 / 0.14);
-    backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2);
-    box-shadow: inset 0 1px 0 rgb(247 244 239 / 0.12), 0 40px 80px -30px rgb(18 34 25 / 0.8);
-  }
   .hero__lead { font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); max-width: 34rem; margin-bottom: var(--space-8); }
   .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; }
   .hero__link { color: var(--semantic-text-on-deep); font-size: var(--font-size-sm); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid currentColor; padding-block: var(--space-2); }
@@ -345,9 +339,10 @@ const faq = [
   .faits__verre {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8) var(--space-6);
     padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: 28px;
-    background: rgb(247 244 239 / 0.78); border: 1px solid rgb(255 253 249 / 0.6);
-    backdrop-filter: blur(22px) saturate(1.4); -webkit-backdrop-filter: blur(22px) saturate(1.4);
-    box-shadow: 0 30px 60px -30px rgb(18 34 25 / 0.55), inset 0 1px 0 rgb(255 253 249 / 0.8);
+    /* Opaque (demande du 3 novembre) : reflet de verre conservé, mais aucun fond visible au travers. */
+    background: linear-gradient(160deg, var(--color-base-blanc-chaud), var(--semantic-bg));
+    border: 1px solid rgb(255 253 249 / 0.9);
+    box-shadow: 0 30px 60px -30px rgb(18 34 25 / 0.55), inset 0 1px 0 rgb(255 255 255 / 1), inset 0 -1px 0 rgb(26 48 40 / 0.06);
   }
   @media (min-width: 52rem) { .faits__verre { grid-template-columns: repeat(4, 1fr); } }
   .fait { display: grid; gap: var(--space-2); }
@@ -433,7 +428,7 @@ const faq = [
   .recette img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--motion-ease); }
   .recette:hover img { transform: scale(1.06); }
   .recette { box-shadow: 0 30px 50px -30px rgb(18 34 25 / 0.55); }
-  .recette__legende.glass-deep { background: linear-gradient(150deg, rgb(26 48 40 / 0.62), rgb(18 34 25 / 0.5)); }
+  .recette__legende.glass-deep { background: linear-gradient(150deg, rgb(26 48 40 / 0.88), rgb(18 34 25 / 0.8)); }
   .recette__legende { position: absolute; left: var(--space-3); right: var(--space-3); bottom: var(--space-3); z-index: 1; display: grid; gap: var(--space-1); padding: var(--space-3) var(--space-4); border-radius: 16px; }
   .recette__nom { font-family: var(--font-family-display); font-size: var(--font-size-xl); line-height: 1.1; }
   .recette__temps { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--semantic-text-on-deep); }
@@ -486,9 +481,9 @@ const faq = [
   .faq__grid { display: grid; gap: var(--space-8); }
   @media (min-width: 60rem) { .faq__grid { grid-template-columns: 1fr 1.6fr; } }
   .faq h2 { font-size: clamp(2.2rem, 1.6rem + 2.6vw, 3.8rem); }
-  .faq__liste { padding: var(--space-2) clamp(1.25rem, 1rem + 1.5vw, 2.25rem); }
-  .faq__item { border-top: 1px solid var(--semantic-line); }
-  .faq__item:first-child { border-top: 0; }
+  .faq__liste { display: grid; gap: var(--space-4); perspective: 1400px; }
+  .faq__item { padding-inline: clamp(1.25rem, 1rem + 1.5vw, 2.25rem); transform-origin: left center; }
+  .faq__item[open] { border-color: var(--color-base-blanc-chaud); }
   
   .faq__item summary {
     list-style: none; cursor: pointer; padding-block: var(--space-6); padding-right: var(--space-12); position: relative;
@@ -511,8 +506,6 @@ const faq = [
   /* Avec les animations avancées, GSAP prend la main sur l'entrée du hero (pas de double animation). */
   :global(.js-motion) .hero__in, :global(.js-motion) .hero__title .hero__line { animation: none; transform: none; opacity: 1; }
   :global(.js-motion) .hero__title .ligne { overflow: visible; }
-  :global(.js-motion) .hero__disque::before { opacity: 0; transform: scale(0.7); transition: opacity 1.4s var(--motion-ease), transform 1.6s cubic-bezier(0.16, 1, 0.3, 1); }
-  :global(.js-motion) .hero__disque.is-on::before { opacity: 1; transform: none; }
   :global(.mot-masque) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
   :global(.mot-masque .mot) { display: inline-block; }
 
