@@ -83,6 +83,25 @@ const phases = [
       });
     });
     root.dataset.active = 'luteale';
+
+    // Pilotage au défilement (section épinglée, voir src/scripts/motion.ts) : le jour courant
+    // s'allume dans la barre et l'onglet de sa phase s'ouvre.
+    const jours = [...root.querySelectorAll<HTMLElement>('.phases__jour')];
+    let derniere = '';
+    window.addEventListener('ca:cycle-day', (e) => {
+      const j = (e as CustomEvent<number>).detail;
+      root.classList.add('is-scrubbing');
+      jours.forEach((el, i) => {
+        el.classList.toggle('is-passe', i + 1 <= j);
+        el.classList.toggle('is-jour', i + 1 === j);
+      });
+      const id = j <= 5 ? 'regles' : j <= 13 ? 'folliculaire' : j === 14 ? 'ovulation' : 'luteale';
+      if (id !== derniere) {
+        derniere = id;
+        select(tabs.find((t) => t.dataset.tab === id)!);
+      }
+      root.style.setProperty('--progression', String(j / 28));
+    });
   }
 </script>
 
@@ -117,5 +136,10 @@ const phases = [
   .phases__corps { font-family: var(--font-family-display); font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1.25; margin-bottom: var(--space-4); }
   .phases__ressenti { color: var(--semantic-text-on-deep-muted); font-size: var(--font-size-lg); }
   .phases__note { font-size: var(--font-size-xs); color: var(--semantic-text-on-deep-muted); margin-top: var(--space-8); }
+  /* Mode défilement : les jours passés s'allument, le jour courant grandit. */
+  .is-scrubbing .phases__jour { background: rgb(247 244 239 / 0.1); color: transparent; transform: none; }
+  .is-scrubbing .phases__jour.is-passe { background: rgb(247 244 239 / 0.55); }
+  .is-scrubbing .phases__jour.is-passe.phases__jour--zone { background: var(--semantic-accent); }
+  .is-scrubbing .phases__jour.is-jour { background: var(--semantic-text-on-deep); color: var(--semantic-bg-deep); transform: scaleY(1.25); }
   @keyframes apparait { from { opacity: 0; transform: translateY(8px); } }
 </style>

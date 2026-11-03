@@ -9,6 +9,10 @@ import CyclePhases from '../components/home/CyclePhases.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 import { guide, formatPrice } from '../config/offers';
 import { chapitres, recettes, outils } from '../data/livre';
+import { existsSync } from 'node:fs';
+
+// Portrait de la fondatrice : affiché dès que le fichier existe (public/images/site/emeline.webp).
+const portrait = existsSync(new URL('../../public/images/site/emeline.webp', import.meta.url)) ? '/images/site/emeline.webp' : null;
 
 const prix = formatPrice(guide.priceCents);
 const pages = guide.pages;
@@ -94,58 +98,64 @@ const faq = [
 
 <PageLayout headerOverlay>
   <!-- HERO -->
-  <section class="hero deep grain">
-    <div class="hero__glow" aria-hidden="true"></div>
+  <section class="hero deep grain" data-hero data-spotlight>
+    <div class="aurora" aria-hidden="true">
+      <span class="aurora__blob aurora__blob--1" data-depth="-40"></span>
+      <span class="aurora__blob aurora__blob--2" data-depth="30"></span>
+      <span class="aurora__blob aurora__blob--3" data-depth="-20"></span>
+    </div>
     <div class="container hero__grid">
       <div class="hero__text">
         <p class="eyebrow hero__in" style="--d: 0">Le guide de ta fin de cycle · J17–J28</p>
         <h1 class="hero__title">
-          <span class="hero__in" style="--d: 1">Tu n’es pas</span>
-          <span class="hero__in" style="--d: 2">instable.</span>
-          <em class="accent hero__in" style="--d: 3">Tu es cyclique.</em>
+          <span class="ligne"><span class="hero__line" style="--d: 1">Tu n’es pas</span></span>
+          <span class="ligne"><span class="hero__line" style="--d: 2">instable.</span></span>
+          <span class="ligne"><em class="accent hero__line" style="--d: 3">Tu es cyclique.</em></span>
         </h1>
         <p class="hero__lead hero__in" style="--d: 4">
           Fatigue, irritabilité, ventre gonflé, envie de disparaître quelques jours par mois : ta phase lutéale a une logique.
           Comprends-la, et organise-toi avec elle, pas contre elle.
         </p>
-        <div class="hero__ctas hero__in" style="--d: 5">
+        <div class="hero__ctas hero__in" style="--d: 5" data-magnetic>
           <Cta location="hero" variant="on-deep" />
           <a class="hero__link" href="#guide">Découvrir le guide <span aria-hidden="true">↓</span></a>
         </div>
       </div>
       <div class="hero__visual hero__in" style="--d: 2">
-        <CycleWheel />
+        <div class="hero__disque" data-depth="18"><CycleWheel /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAITS (vrais, issus du livre) : panneau de verre posé à cheval sur le hero -->
+  <section class="faits" aria-label="Le guide en chiffres">
+    <div class="container">
+      <div class="faits__verre">
+        {faits.map((f) => (
+          <div class="fait">
+            <span class="fait__chiffre" data-count={f.chiffre}>{f.chiffre}</span>
+            <span class="fait__libelle">{f.libelle}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <Marquee phrases={phrases} />
 
-  <!-- FAITS (vrais, issus du livre) -->
-  <section class="faits" aria-label="Le guide en chiffres">
-    <div class="container faits__grid">
-      {faits.map((f, i) => (
-        <div class="fait" data-reveal style={`--d: ${i}`}>
-          <span class="fait__chiffre">{f.chiffre}</span>
-          <span class="fait__libelle">{f.libelle}</span>
-        </div>
-      ))}
-    </div>
-  </section>
-
   <!-- PROBLÈME -->
   <section class="section probleme" id="probleme">
     <div class="container probleme__grid">
       <div class="probleme__titre">
         <p class="eyebrow">Le problème</p>
-        <h2>Tu te <em class="accent">reconnais</em> ?</h2>
+        <h2 data-split>Tu te <em class="accent">reconnais</em> ?</h2>
         <p class="probleme__chute" data-reveal>
           Ce n’est pas dans ta tête. Ce n’est pas un manque de volonté. C’est une phase de ton cycle, avec ses propres règles.
         </p>
       </div>
-      <ol class="probleme__liste">
+      <ol class="probleme__liste" data-stack>
         {reconnais.map((r, i) => (
-          <li class="citation" data-reveal>
+          <li class="citation" style={`--i: ${i}`}>
             <span class="citation__num">0{i + 1}</span>
             <p>« {r} »</p>
           </li>
@@ -155,31 +165,27 @@ const faq = [
   </section>
 
   <!-- TON CYCLE -->
-  <section class="section deep grain cycle" id="cycle">
-    <div class="container">
+  <section class="deep grain cycle" id="cycle" data-clip data-spotlight>
+    <div class="container cycle__inner" data-pin-cycle>
       <p class="eyebrow">Comprendre d’abord</p>
-      <h2 class="cycle__titre">Ton cycle en <em class="accent">quatre temps</em></h2>
+      <h2 class="cycle__titre" data-split>Ton cycle en <em class="accent">quatre temps</em></h2>
       <CyclePhases />
     </div>
   </section>
 
-  <!-- HISTOIRE -->
+  <!-- HISTOIRE : typographique, le texte s'allume mot à mot au défilement -->
   <section class="section histoire">
-    <div class="container histoire__grid">
-      <figure class="histoire__photo" data-reveal>
-        <img src="/images/site/mer.webp" alt="" width="1400" height="933" loading="lazy" decoding="async" />
-      </figure>
-      <div class="histoire__texte">
-        <p class="eyebrow">Mon histoire</p>
-        <h2>Le problème n’est pas ta <em class="accent">discipline.</em></h2>
-        <p class="histoire__lead" data-reveal>
-          Pendant des années, j’ai vécu exactement ça : disparaître quelques jours par mois sans comprendre pourquoi.
-        </p>
-        <p data-reveal>
-          J’ai cherché, testé, croisé nutrition, mouvement et compréhension du cycle. Ce guide, c’est celui que j’aurais voulu
-          trouver : simple, concret, sans culpabilité.
-        </p>
-        <p class="histoire__signature" data-reveal>Emeline<span>, fondatrice de Cycle Awakening</span></p>
+    <div class="container">
+      <p class="eyebrow">Mon histoire</p>
+      <h2 class="histoire__titre" data-split>Le problème n’est pas ta <em class="accent">discipline.</em></h2>
+      <p class="histoire__texte" data-words>
+        Pendant des années, j’ai vécu exactement ça : disparaître quelques jours par mois sans comprendre pourquoi.
+        J’ai cherché, testé, croisé nutrition, mouvement et compréhension du cycle. Ce guide, c’est celui que j’aurais voulu
+        trouver : <em>simple, concret, sans culpabilité.</em>
+      </p>
+      <div class="histoire__signature" data-reveal>
+        {portrait && <img class="histoire__portrait" src={portrait} alt="Emeline, fondatrice de Cycle Awakening" width="160" height="160" loading="lazy" />}
+        <p><span class="histoire__nom">Emeline</span><span class="histoire__role">Fondatrice de Cycle Awakening</span></p>
       </div>
     </div>
   </section>
@@ -187,8 +193,8 @@ const faq = [
   <!-- LE GUIDE -->
   <section class="section sage guide" id="guide">
     <div class="container guide__grid">
-      <div class="livre" data-reveal>
-        <div class="livre__objet">
+      <div class="livre">
+        <div class="livre__objet" data-book>
           <div class="livre__couverture">
             <img src="/brand/logo-clair.svg" alt="" class="livre__logo" />
             <p class="livre__titre">Le Guide</p>
@@ -200,7 +206,7 @@ const faq = [
       </div>
       <div>
         <p class="eyebrow">Le guide</p>
-        <h2>Tout ce qu’il faut pour ta <em class="accent">fin de cycle</em></h2>
+        <h2 data-split>Tout ce qu’il faut pour ta <em class="accent">fin de cycle</em></h2>
         <ol class="chapitres">
           {chapitres.map((c) => (
             <li class="chapitre" data-reveal>
@@ -222,7 +228,7 @@ const faq = [
       </div>
       <ul class="recettes__grille">
         {vitrine.map((r, i) => (
-          <li class="recette" data-reveal style={`--d: ${i}`}>
+          <li class="recette" data-speed={[0.06, 0.16, 0.04, 0.12][i]}>
             <img src={photosRecettes[r.photo]} alt={r.titre} loading="lazy" decoding="async" />
             <span class="recette__legende">
               <span class="recette__nom">{r.nom}</span>
@@ -238,7 +244,7 @@ const faq = [
   <section class="section pourqui">
     <div class="container">
       <p class="eyebrow">Pour qui</p>
-      <h2>Ce guide est fait <em class="accent">pour toi</em> si…</h2>
+      <h2 data-split>Ce guide est fait <em class="accent">pour toi</em> si…</h2>
       <div class="pourqui__grid">
         <ul class="liste liste--oui" data-reveal>
           <li class="liste__titre">Oui, c’est toi</li>
@@ -253,20 +259,21 @@ const faq = [
   </section>
 
   <!-- OFFRE -->
-  <section class="section deep grain offre" id="offre">
+  <section class="section deep grain offre" id="offre" data-clip data-spotlight>
+    <div class="aurora aurora--offre" aria-hidden="true"><span class="aurora__blob aurora__blob--1"></span><span class="aurora__blob aurora__blob--2"></span></div>
     <div class="container offre__grid">
       <div>
         <p class="eyebrow">L’offre</p>
-        <h2>Cycle Awakening, <em class="accent">le guide</em></h2>
+        <h2 data-split>Cycle Awakening, <em class="accent">le guide</em></h2>
         <p class="offre__intro">Comprendre, nourrir, bouger, ralentir : la méthode pour traverser ta phase lutéale sans te perdre.</p>
       </div>
-      <div class="offre__carte" data-reveal>
+      <div class="offre__carte" data-reveal data-magnetic>
         <p class="offre__prix">{prix}</p>
         <p class="offre__modalite">Paiement unique</p>
         <ul class="offre__liste">
           {contenu.map((c) => <li>{c}</li>)}
         </ul>
-        <Cta location="offre" variant="primary" />
+        <Cta location="offre" variant="on-deep" />
       </div>
     </div>
   </section>
@@ -276,7 +283,7 @@ const faq = [
     <div class="container faq__grid">
       <div>
         <p class="eyebrow">Questions</p>
-        <h2>Tes <em class="accent">questions</em></h2>
+        <h2 data-split>Tes <em class="accent">questions</em></h2>
       </div>
       <div class="faq__liste">
         {faq.map((f) => (
@@ -294,7 +301,7 @@ const faq = [
     <div class="container newsletter__grid">
       <div>
         <p class="eyebrow">La newsletter</p>
-        <h2>Chaque semaine, un repère <em class="accent">pour ta phase</em></h2>
+        <h2 data-split>Chaque semaine, un repère <em class="accent">pour ta phase</em></h2>
         <ul class="newsletter__plus">
           <li>Un repère simple selon le moment de ton cycle</li>
           <li>Une nouvelle recette de saison</li>
@@ -309,17 +316,40 @@ const faq = [
   </section>
 </PageLayout>
 
+<script>
+  import '../scripts/motion';
+</script>
+
 <style>
   /* ---------- Hero ---------- */
-  .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-block: calc(var(--space-16) + 4rem) var(--space-16); }
-  .hero__glow {
-    position: absolute; inset: -20% -10% auto auto; width: 70vmax; height: 70vmax; border-radius: 50%; pointer-events: none;
-    background: radial-gradient(circle, rgb(159 192 176 / 0.16) 0%, rgb(159 192 176 / 0) 60%);
+  .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-block: calc(var(--space-16) + 4rem) calc(var(--space-16) + 5rem); }
+  /* Halos flous en mouvement lent (transparence) + lumière qui suit le pointeur. */
+  .aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .aurora__blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55; will-change: transform; }
+  .aurora__blob--1 { width: 46vmax; height: 46vmax; right: -12vmax; top: -10vmax; background: radial-gradient(circle, var(--color-base-sauge) 0%, transparent 65%); opacity: 0.32; animation: derive-1 22s ease-in-out infinite alternate; }
+  .aurora__blob--2 { width: 34vmax; height: 34vmax; right: 8vmax; bottom: -14vmax; background: radial-gradient(circle, var(--color-accent-fuchsia) 0%, transparent 62%); opacity: 0.16; animation: derive-2 26s ease-in-out infinite alternate; }
+  .aurora__blob--3 { width: 40vmax; height: 40vmax; left: -16vmax; bottom: -18vmax; background: radial-gradient(circle, var(--color-profondeur-vert-mousse) 0%, transparent 70%); opacity: 0.9; animation: derive-1 30s ease-in-out infinite alternate-reverse; }
+  @keyframes derive-1 { to { translate: -6vmax 5vmax; scale: 1.15; } }
+  @keyframes derive-2 { to { translate: -8vmax -6vmax; scale: 0.9; } }
+  [data-spotlight] { position: relative; }
+  [data-spotlight]::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background: radial-gradient(520px circle at var(--mx, -999px) var(--my, -999px), rgb(247 244 239 / 0.07), transparent 60%);
   }
   .hero__grid { position: relative; display: grid; gap: var(--space-12); align-items: center; }
   @media (min-width: 60rem) { .hero__grid { grid-template-columns: 1.15fr 1fr; } }
   .hero__title { font-size: clamp(3.1rem, 1.6rem + 6.4vw, 7.4rem); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: var(--space-8); }
-  .hero__title span, .hero__title em { display: block; }
+  .hero__title .ligne { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .hero__title .hero__line { display: block; transform: translateY(105%); animation: monte 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(0.2s + var(--d) * 0.12s); }
+  @keyframes monte { to { transform: none; } }
+  /* Disque de verre sous la roue : laisse deviner les halos en mouvement derrière. */
+  .hero__disque { position: relative; }
+  .hero__disque::before {
+    content: ''; position: absolute; inset: 15%; border-radius: 50%;
+    background: rgb(247 244 239 / 0.05); border: 1px solid rgb(247 244 239 / 0.14);
+    backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: inset 0 1px 0 rgb(247 244 239 / 0.12), 0 40px 80px -30px rgb(18 34 25 / 0.8);
+  }
   .hero__lead { font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); max-width: 34rem; margin-bottom: var(--space-8); }
   .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; }
   .hero__link { color: var(--semantic-text-on-deep); font-size: var(--font-size-sm); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid currentColor; padding-block: var(--space-2); }
@@ -328,9 +358,15 @@ const faq = [
   @keyframes entree { to { opacity: 1; transform: none; } }
 
   /* ---------- Faits ---------- */
-  .faits { background: var(--semantic-bg); padding-block: var(--space-12); border-bottom: 1px solid var(--semantic-line); }
-  .faits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8) var(--space-6); }
-  @media (min-width: 52rem) { .faits__grid { grid-template-columns: repeat(4, 1fr); } }
+  .faits { position: relative; z-index: 2; margin-top: -5.5rem; margin-bottom: var(--space-8); }
+  .faits__verre {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8) var(--space-6);
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: 28px;
+    background: rgb(247 244 239 / 0.78); border: 1px solid rgb(255 253 249 / 0.6);
+    backdrop-filter: blur(22px) saturate(1.4); -webkit-backdrop-filter: blur(22px) saturate(1.4);
+    box-shadow: 0 30px 60px -30px rgb(18 34 25 / 0.55), inset 0 1px 0 rgb(255 253 249 / 0.8);
+  }
+  @media (min-width: 52rem) { .faits__verre { grid-template-columns: repeat(4, 1fr); } }
   .fait { display: grid; gap: var(--space-2); }
   .fait__chiffre { font-family: 'Limelight', var(--font-family-display); font-size: clamp(2.6rem, 2rem + 2.5vw, 4rem); line-height: 1; color: var(--semantic-text); }
   .fait__libelle { font-size: var(--font-size-sm); color: var(--semantic-text-muted); max-width: 14rem; }
@@ -343,35 +379,45 @@ const faq = [
   }
   .probleme h2 { font-size: clamp(2.6rem, 1.8rem + 3.6vw, 5rem); }
   .probleme__chute { font-family: var(--font-family-display); font-size: var(--font-size-xl); line-height: 1.3; }
-  .probleme__liste { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+  .probleme__liste { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-6); }
+  /* Cartes empilées : chacune reste collée un peu plus bas que la précédente. */
+  :global(.motion) .citation { position: sticky; top: calc(7rem + var(--i) * 1.1rem); transform-origin: center top; box-shadow: 0 -10px 30px -18px rgb(26 48 40 / 0.35); }
+  :global(.motion) .probleme__liste { padding-bottom: 6rem; }
   .citation {
     display: grid; grid-template-columns: auto 1fr; gap: var(--space-6); align-items: baseline;
-    padding: var(--space-8); border-radius: var(--radius-md); background: var(--semantic-bg-alt);
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: 24px; background: var(--semantic-bg-alt); border: 1px solid var(--semantic-line);
     transition: transform var(--motion-duration-base) var(--motion-ease), background-color var(--motion-duration-base) var(--motion-ease);
   }
-  .citation:hover { transform: translateX(6px); background: var(--semantic-bg-muted); }
+  .citation:hover { background: var(--semantic-bg-muted); }
   .citation__num { font-family: 'Limelight', var(--font-family-display); color: var(--semantic-accent-text); font-size: var(--font-size-lg); }
   .citation p { margin: 0; font-family: var(--font-family-display); font-style: italic; font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.75rem); line-height: 1.3; }
 
   /* ---------- Cycle ---------- */
-  .cycle__titre { font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.6rem); margin-bottom: var(--space-12); }
+  .cycle { overflow: hidden; }
+  .cycle__inner { position: relative; z-index: 1; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: var(--space-16); }
+  .cycle__titre { font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.6rem); margin-bottom: var(--space-8); }
 
   /* ---------- Histoire ---------- */
-  .histoire__grid { display: grid; gap: var(--space-12); align-items: center; }
-  @media (min-width: 60rem) { .histoire__grid { grid-template-columns: 1fr 1fr; } }
-  .histoire__photo { margin: 0; border-radius: 999px 999px var(--radius-md) var(--radius-md); overflow: hidden; aspect-ratio: 4 / 5; box-shadow: var(--shadow-lift); }
-  .histoire__photo img { width: 100%; height: 100%; object-fit: cover; }
-  .histoire h2 { font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.4rem); }
-  .histoire__lead { font-family: var(--font-family-display); font-size: var(--font-size-xl); line-height: 1.3; }
-  .histoire__signature { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-xl); color: var(--semantic-accent-text); margin-top: var(--space-8); }
-  .histoire__signature span { font-family: var(--font-family-body); font-style: normal; font-size: var(--font-size-sm); color: var(--semantic-text-muted); }
+  .histoire__titre { font-size: clamp(2.4rem, 1.4rem + 4.6vw, 6rem); max-width: 18ch; }
+  .histoire__texte {
+    font-family: var(--font-family-display); font-size: clamp(1.6rem, 1.1rem + 2.2vw, 3.1rem); line-height: 1.22;
+    max-width: 30ch; margin: var(--space-12) 0 var(--space-12) auto; text-wrap: pretty;
+  }
+  @media (max-width: 60rem) { .histoire__texte { margin-left: 0; } }
+  .histoire__texte em { color: var(--semantic-accent-text); }
+  .histoire__signature { display: flex; align-items: center; gap: var(--space-6); justify-content: flex-end; }
+  .histoire__signature p { margin: 0; display: grid; }
+  .histoire__portrait { width: 5rem; height: 5rem; border-radius: 50%; object-fit: cover; }
+  .histoire__nom { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-2xl); color: var(--semantic-accent-text); line-height: 1; }
+  .histoire__role { font-size: var(--font-size-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); margin-top: var(--space-2); }
 
   /* ---------- Guide ---------- */
   .guide__grid { display: grid; gap: var(--space-16); align-items: center; }
   @media (min-width: 60rem) { .guide__grid { grid-template-columns: 0.9fr 1.1fr; } }
   .livre { perspective: 1600px; display: grid; place-items: center; padding-block: var(--space-8); }
-  .livre__objet { position: relative; width: min(78vw, 22rem); aspect-ratio: 210 / 297; transform: rotateY(-22deg) rotateX(4deg); transform-style: preserve-3d; transition: transform 0.8s var(--motion-ease); }
-  .livre:hover .livre__objet { transform: rotateY(-6deg) rotateX(0deg) translateY(-6px); }
+  .livre__objet { position: relative; width: min(78vw, 22rem); aspect-ratio: 210 / 297; transform: rotateY(-22deg) rotateX(4deg); transform-style: preserve-3d; }
+  :global(html:not(.motion)) .livre__objet { transition: transform 0.8s var(--motion-ease); }
+  :global(html:not(.motion)) .livre:hover .livre__objet { transform: rotateY(-6deg) rotateX(0deg) translateY(-6px); }
   .livre__couverture {
     position: absolute; inset: 0; border-radius: 3px 10px 10px 3px; padding: 14% 12%;
     background: linear-gradient(165deg, var(--semantic-bg-deep-alt), var(--semantic-bg-deep) 55%, var(--semantic-bg-deep-intense));
@@ -424,12 +470,23 @@ const faq = [
   @media (min-width: 60rem) { .offre__grid { grid-template-columns: 1fr 1fr; } }
   .offre h2 { font-size: clamp(2.4rem, 1.6rem + 3.4vw, 4.6rem); }
   .offre__intro { font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); }
-  .offre__carte { background: var(--semantic-bg); color: var(--semantic-text); border-radius: var(--radius-md); padding: clamp(1.75rem, 1rem + 3vw, 3rem); box-shadow: var(--shadow-lift); }
+  .offre { overflow: hidden; }
+  .offre__grid { position: relative; z-index: 1; }
+  .offre__carte {
+    color: var(--semantic-text-on-deep); border-radius: 28px; padding: clamp(1.75rem, 1rem + 3vw, 3rem);
+    background: linear-gradient(160deg, rgb(247 244 239 / 0.12), rgb(247 244 239 / 0.04));
+    border: 1px solid rgb(247 244 239 / 0.2);
+    backdrop-filter: blur(24px) saturate(1.3); -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    box-shadow: inset 0 1px 0 rgb(247 244 239 / 0.2), 0 50px 90px -40px rgb(0 0 0 / 0.6);
+  }
+  .aurora--offre .aurora__blob--1 { right: auto; left: 40%; top: 10%; }
+  .aurora--offre .aurora__blob--2 { right: -10vmax; bottom: -10vmax; }
   .offre__prix { font-family: 'Limelight', var(--font-family-display); font-size: clamp(3.6rem, 2.6rem + 4vw, 5.6rem); line-height: 1; margin: 0; }
-  .offre__modalite { font-size: var(--font-size-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); margin: var(--space-2) 0 var(--space-6); }
+  .offre__modalite { font-size: var(--font-size-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-on-deep-muted); margin: var(--space-2) 0 var(--space-6); }
   .offre__liste { list-style: none; margin: 0 0 var(--space-8); padding: 0; display: grid; gap: var(--space-3); }
   .offre__liste li { padding-left: var(--space-6); position: relative; }
-  .offre__liste li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--semantic-accent-text); }
+  .offre__liste li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--semantic-accent); }
+  .offre__carte :global(.cta-note) { color: var(--semantic-text-on-deep-muted); }
 
   /* ---------- FAQ ---------- */
   .faq__grid { display: grid; gap: var(--space-8); }
@@ -455,7 +512,12 @@ const faq = [
   .newsletter__form { background: var(--semantic-bg); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
   .newsletter__note { font-size: var(--font-size-xs); color: var(--semantic-text-muted); margin: var(--space-4) 0 0; }
 
+  :global(.mot-masque) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+  :global(.mot-masque .mot) { display: inline-block; }
+
   @media (prefers-reduced-motion: reduce) {
+    .hero__title .hero__line { transform: none; animation: none; }
+    .aurora__blob { animation: none; }
     .hero__in { opacity: 1; transform: none; animation: none; }
     .citation:hover, .chapitre:hover { transform: none; padding-left: 0; }
     .livre__objet, .livre:hover .livre__objet { transform: rotateY(-14deg); }

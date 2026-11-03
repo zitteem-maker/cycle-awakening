@@ -5,7 +5,7 @@ const { phrases } = Astro.props;
 const suite = [...phrases, ...phrases];
 ---
 
-<div class="marquee" role="region" aria-label="Nos phrases signature">
+<div class="marquee" role="region" aria-label="Nos phrases signature" data-marquee>
   <ul class="visually-hidden">{phrases.map((p) => <li>{p}</li>)}</ul>
   <div class="marquee__track" aria-hidden="true">
     {suite.map((p) => (

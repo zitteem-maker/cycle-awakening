@@ -67,6 +67,9 @@ Refonte du 3 novembre 2026 : la fondatrice veut « du peps, du dynamisme, un eff
 - **Au défilement** : apparition douce des blocs `[data-reveal]` (fondu + 28 px, une seule fois, décalage `--d`). Pas de parallaxe lourde, pas de rebond.
 - **Bandeau défilant** des phrases signature (`Marquee.astro`), pause au survol.
 - **Interactions** : onglets du cycle, couverture du livre en 3D qui se redresse au survol, cartes recettes qui zooment légèrement.
+- **Niveau « expert » (validé le 3 novembre 2026)** : défilement fluide Lenis + GSAP ScrollTrigger, piloté par attributs dans `src/scripts/motion.ts` : `data-split` (titres mot à mot sous masque), `data-words` (texte qui s'allume au défilement), `data-count`, `data-stack` (cartes empilées), `data-clip` (section profonde qui s'ouvre), `data-pin-cycle` (section épinglée J1 → J28), `data-speed` (parallaxe), `data-book`, `data-marquee`, `data-magnetic` (boutons aimantés), `data-spotlight` (lumière qui suit la souris), `data-depth` (profondeur du hero).
+- **Transparence** : verre dépoli (`backdrop-filter`) sur l'en-tête, le panneau des chiffres à cheval sur le hero, le disque de la roue et la carte de l'offre ; halos flous en mouvement lent (`.aurora`) derrière. Le fuchsia n'y apparaît qu'en halo très diffus (≤ 16 %), jamais en aplat.
+- Sans JavaScript ou en mouvement réduit : aucun contenu caché, aucune animation.
 - Survols courts (`--motion-duration-fast`, léger soulèvement des boutons).
 - `prefers-reduced-motion` : tout est coupé, la vidéo hero est remplacée par son poster.
 
