@@ -42,32 +42,43 @@ if (!reduit) {
       const pile = roueEl.querySelector<HTMLElement>('[data-wheel-stack]')!;
       const plateaux = [...roueEl.querySelectorAll<HTMLElement>('[data-layer]')];
       const pieces = [...roueEl.querySelectorAll<HTMLElement>('[data-piece]')];
-      const ecart = () => Math.min(100, roueEl.offsetWidth * 0.21); // hauteur entre deux plateaux
-      const eclate = { rotationX: 58, rotationZ: -28, scale: 0.74, y: () => roueEl.offsetWidth * 0.2 };
+      const ecart = () => Math.min(90, roueEl.offsetWidth * 0.19); // hauteur entre deux plateaux
+      const eclate = { rotationX: 56, rotationZ: -26, scale: 0.66, y: () => roueEl.offsetWidth * 0.1 };
       const axes = roueEl.querySelectorAll<HTMLElement>('[data-axe]');
       roueEl.style.setProperty('--hauteur-axes', `${3 * ecart()}px`);
       gsap.set(pile, { ...eclate });
+      // La sphère et la bille restent face à nous : on annule l'inclinaison de la pile (ordre inverse).
+      const majFace = () => {
+        const rx = Number(gsap.getProperty(pile, 'rotationX'));
+        const rz = Number(gsap.getProperty(pile, 'rotationZ'));
+        roueEl.style.setProperty('--face', `rotateX(${-rx}deg) rotateZ(${-rz}deg)`);
+      };
+      majFace();
       plateaux.forEach((p, i) => gsap.set(p, { z: () => i * ecart() }));
       roueEl.classList.add('is-eclatee');
 
       // 1. Les plateaux tombent un à un à leur place dans la vue éclatée (des 28 jours au repère du jour).
       const pose = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: roueEl, start: 'top 88%' } });
       pieces.forEach((piece, i) => {
-        pose.fromTo(piece, { z: 420, opacity: 0, scale: 0.85 }, { z: 0, opacity: 1, scale: 1, duration: 1.2 }, 0.2 + i * 0.16);
+        // Fondu sur les enfants seulement : une opacité sur un conteneur 3D l'aplatirait.
+        pose.fromTo(piece, { z: 420, scale: 0.85 }, { z: 0, scale: 1, duration: 1.6 }, 0.3 + i * 0.26);
+        pose.fromTo(piece.children, { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' }, 0.3 + i * 0.26);
       });
+      // Sphère et bille (premier plan) : apparaissent avec le dernier plateau.
+      pose.fromTo(roueEl.querySelector('[data-avant]'), { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0.3 + 3 * 0.26 + 0.3);
       // Les quatre phases de verre arrivent en plus de quatre directions sur leur plateau.
       roueEl.querySelectorAll<SVGGElement>('[data-wheel-part]').forEach((el, i) => {
         gsap.set(el, { svgOrigin: '200 200' });
-        pose.fromTo(el, { x: Number(el.dataset.dx) * 240, y: Number(el.dataset.dy) * 240, rotation: (i % 2 ? -1 : 1) * 30, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.3 }, 0.4 + i * 0.08);
+        pose.fromTo(el, { x: Number(el.dataset.dx) * 240, y: Number(el.dataset.dy) * 240, rotation: (i % 2 ? -1 : 1) * 30, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.7 }, 0.6 + i * 0.12);
       });
-      pose.fromTo(roueEl.querySelectorAll('[data-legende]'), { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, stagger: 0.1 }, 0.9);
+      pose.fromTo(roueEl.querySelectorAll('[data-legende]'), { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 1.1, stagger: 0.14 }, 1.4);
 
       // 2. Courte pause en vue éclatée, puis assemblage rapide et automatique (sans attendre le défilement).
-      const debut = 2.2;
-      pose.call(() => roueEl.classList.remove('is-eclatee'), undefined, debut + 0.5);
-      pose.to(pile, { rotationX: 0, rotationZ: 0, scale: 1, y: 0, duration: 1.1, ease: 'power4.inOut' }, debut);
-      plateaux.forEach((p, i) => pose.to(p, { z: i * 0.5, duration: 1.1, ease: 'power4.inOut' }, debut));
-      pose.to(axes, { scaleY: 0.01, opacity: 0, duration: 0.8, ease: 'power3.in' }, debut);
+      const debut = 3.6;
+      pose.call(() => roueEl.classList.remove('is-eclatee'), undefined, debut + 1);
+      pose.to(pile, { rotationX: 0, rotationZ: 0, scale: 1, y: 0, duration: 1.8, ease: 'power3.inOut', onUpdate: majFace }, debut);
+      plateaux.forEach((p, i) => pose.to(p, { z: i * 0.5, duration: 1.8, ease: 'power3.inOut' }, debut));
+      pose.to(axes, { scaleY: 0.01, opacity: 0, duration: 1.2, ease: 'power3.in' }, debut);
     }
   }
 

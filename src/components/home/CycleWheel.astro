@@ -34,13 +34,15 @@ const phases = [
   return { ...p, d: secteur(p.debut, p.fin), lx, ly };
 });
 const zone = secteur(17, 28, 0.14, R + EP + 9, 4);
-const ticks = Array.from({ length: jours }, (_, i) => {
+// 28 perles (une par jour), plus grosses en début de semaine.
+const perles = Array.from({ length: jours }, (_, i) => {
   const j = i + 1;
-  const [x1, y1] = pt(j, R + 20);
-  const [x2, y2] = pt(j, R + (j % 7 === 1 ? 32 : 26));
-  const [nx, ny] = pt(j, R + 44);
-  return { j, x1, y1, x2, y2, nx, ny, fort: j % 7 === 1 };
+  const [x, y] = pt(j + 0.5, R + 27);
+  const [nx, ny] = pt(j + 0.5, R + 44);
+  return { j, x, y, nx, ny, fort: j % 7 === 1 };
 });
+// Épaisseur des pièces de verre (décalage de la tranche, en unités du dessin).
+const EPAISSEUR = 6;
 // Légende : ce que représente chaque couche, en langage du cycle (pas de vocabulaire de montre).
 const legende = [
   { cle: 'jours', titre: '28 jours', detail: 'un cycle moyen' },
@@ -63,14 +65,36 @@ const legende = [
           <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
             <defs>
               <radialGradient id="platine" cx="40%" cy="30%" r="75%">
-                <stop offset="0" style="stop-color: var(--color-base-creme); stop-opacity: 0.16" />
+                <stop offset="0" style="stop-color: var(--color-base-creme); stop-opacity: 0.18" />
                 <stop offset="1" style="stop-color: var(--color-base-creme); stop-opacity: 0.03" />
               </radialGradient>
+              <radialGradient id="perle" cx="35%" cy="30%" r="70%">
+                <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 1" />
+                <stop offset="0.45" style="stop-color: var(--color-base-sauge); stop-opacity: 0.9" />
+                <stop offset="1" style="stop-color: var(--color-profondeur-vert-nuit); stop-opacity: 1" />
+              </radialGradient>
+              <radialGradient id="perle-rose" cx="35%" cy="30%" r="70%">
+                <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 1" />
+                <stop offset="0.4" style="stop-color: var(--color-accent-fuchsia); stop-opacity: 1" />
+                <stop offset="1" style="stop-color: var(--color-profondeur-vert-nuit); stop-opacity: 1" />
+              </radialGradient>
+              <linearGradient id="biseau" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.55" />
+                <stop offset="0.5" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.05" />
+                <stop offset="1" style="stop-color: var(--color-profondeur-vert-nuit); stop-opacity: 0.8" />
+              </linearGradient>
             </defs>
-            <circle cx={C} cy={C} r={R + 52} class="wheel__platine" />
-            <circle class="wheel__orbit" cx={C} cy={C} r={R + 52} />
-            {ticks.map((t) => <line class:list={['wheel__tick', { 'wheel__tick--fort': t.fort }]} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} />)}
-            {ticks.filter((t) => t.fort || t.j === 17 || t.j === 28).map((t) => <text class="wheel__num" x={t.nx} y={t.ny}>{t.j}</text>)}
+            <!-- Platine biseautée : tranche sombre décalée + face claire -->
+            <circle cx={C} cy={C + EPAISSEUR} r={R + 54} class="wheel__platine-tranche" />
+            <circle cx={C} cy={C} r={R + 54} class="wheel__platine" />
+            <circle cx={C} cy={C} r={R + 54} class="wheel__biseau" />
+            {perles.map((p) => (
+              <g class="wheel__perle">
+                <ellipse cx={p.x + 1.2} cy={p.y + 2.4} rx={p.fort ? 4.4 : 3} ry={p.fort ? 2.6 : 1.8} class="wheel__perle-ombre" />
+                <circle cx={p.x} cy={p.y} r={p.fort ? 4.4 : 2.9} fill={p.j >= 17 ? 'url(#perle-rose)' : 'url(#perle)'} />
+              </g>
+            ))}
+            {perles.filter((p) => p.fort || p.j === 17 || p.j === 28).map((p) => <text class="wheel__num" x={p.nx} y={p.ny}>{p.j}</text>)}
           </svg>
         </div>
       </div>
@@ -85,6 +109,10 @@ const legende = [
                 <stop offset="0.45" style="stop-color: var(--color-base-creme); stop-opacity: 0.12" />
                 <stop offset="1" style="stop-color: var(--color-base-creme); stop-opacity: 0.05" />
               </linearGradient>
+              <linearGradient id="reflet" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.35" />
+                <stop offset="0.35" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0" />
+              </linearGradient>
               <linearGradient id="arete" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.95" />
                 <stop offset="0.5" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.15" />
@@ -93,12 +121,20 @@ const legende = [
             </defs>
             {phases.map((p) => (
               <g class="wheel__quartier" data-wheel-part data-dx={p.dx} data-dy={p.dy}>
+                <path class="wheel__ombre" d={p.d} transform={`translate(4 ${EPAISSEUR + 8})`} />
+                <path class="wheel__tranche" d={p.d} transform={`translate(0 ${EPAISSEUR})`} />
                 <path class="wheel__verre" d={p.d} />
+                <path class="wheel__reflet" d={p.d} />
                 <path class="wheel__arete" d={p.d} />
               </g>
             ))}
-            {phases.map((p) => <text class="wheel__label" x={p.lx} y={p.ly}>{p.nom}</text>)}
           </svg>
+          <!-- Noms des phases : texte en relief, toujours face à nous -->
+          {phases.map((p) => (
+            <span class="wheel__label-pos" style={`left: ${(p.lx / 4).toFixed(2)}%; top: ${(p.ly / 4).toFixed(2)}%`}>
+              <span class="wheel__label wheel__face">{p.nom}</span>
+            </span>
+          ))}
         </div>
       </div>
 
@@ -109,10 +145,16 @@ const legende = [
             <defs>
               <linearGradient id="verre-rose" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" style="stop-color: var(--color-accent-fuchsia); stop-opacity: 1" />
-                <stop offset="1" style="stop-color: var(--color-accent-fuchsia-profond); stop-opacity: 0.75" />
+                <stop offset="1" style="stop-color: var(--color-accent-fuchsia-profond); stop-opacity: 0.85" />
+              </linearGradient>
+              <linearGradient id="reflet-rose" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.45" />
+                <stop offset="0.4" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0" />
               </linearGradient>
             </defs>
+            <path class="wheel__zone-tranche" d={zone} transform={`translate(0 ${EPAISSEUR - 2})`} />
             <path class="wheel__zone" d={zone} />
+            <path class="wheel__reflet wheel__reflet--rose" d={zone} />
           </svg>
         </div>
       </div>
@@ -120,19 +162,28 @@ const legende = [
       <!-- 04 · Aiguille du jour + compteur -->
       <div class="wheel__layer" data-layer="3">
         <div class="wheel__piece" data-piece>
-          <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
-            <g class="wheel__marker" data-marker>
-              <circle cx={C} cy={C - R} r="17" class="wheel__halo" />
-              <circle cx={C} cy={C - R} r="8.5" class="wheel__dot" />
-            </g>
-            <circle cx={C} cy={C} r="62" class="wheel__cabochon" />
-          </svg>
-          <div class="wheel__center">
-            <span class="wheel__day" data-day>J17</span>
-            <span class="wheel__phase-name" data-phase>Lutéale</span>
-          </div>
+          <!-- Ombres couchées sur le plan (la sphère et la bille elles-mêmes sont au premier plan, plus bas) -->
+          <span class="wheel__sphere-ombre"></span>
+          <span class="wheel__bille-ombre" data-bille-ombre></span>
+          <!-- Points d'ancrage : leur position projetée à l'écran place la sphère et la bille -->
+          <span class="wheel__ancre" data-ancre-sphere style="left: 50%; top: 50%"></span>
+          <span class="wheel__ancre" data-ancre-echelle style="left: 60%; top: 50%"></span>
+          <span class="wheel__ancre" data-bille></span>
         </div>
       </div>
+    </div>
+
+    <!-- Premier plan : vraies sphères, toujours rondes (aucune déformation de perspective) -->
+    <div class="wheel__avant" data-avant>
+      <div class="wheel__sphere" data-sphere>
+        <div class="wheel__sphere-corps">
+          <span class="wheel__day" data-day>J17</span>
+          <span class="wheel__phase-name" data-phase>Lutéale</span>
+        </div>
+      </div>
+      <span class="wheel__bille" data-bille-visuel>
+        <span class="wheel__bille-marque" data-bille-marque></span>
+      </span>
     </div>
   </div>
 
@@ -150,43 +201,79 @@ const legende = [
     [14, 14, 'Ovulation'],
     [15, 28, 'Lutéale'],
   ];
-  // Le repère du jour tourne en continu : vite pendant la vue éclatée (classe is-eclatee), puis à un
-  // rythme posé, en ralentissant dans la zone J17–J28 pour laisser lire.
+  // La bille « aujourd'hui » roule de jour en jour dans la gorge de l'anneau (pas de saut) :
+  // vite pendant la vue éclatée (classe is-eclatee), puis à un rythme posé, plus lent dans J17–J28.
+  // Sa marque tourne avec la distance parcourue : on la voit rouler.
+  const R_POURCENT = 39.5; // rayon de la gorge, en % de la largeur du dessin (158 / 400)
+  const lisse = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   for (const wheel of document.querySelectorAll<HTMLElement>('[data-wheel]')) {
-    const marker = wheel.querySelector<SVGGElement>('[data-marker]')!;
+    const bille = wheel.querySelector<HTMLElement>('[data-bille]')!;
+    const scene = wheel.querySelector<HTMLElement>('.wheel__scene')!;
+    const ancreSphere = wheel.querySelector<HTMLElement>('[data-ancre-sphere]')!;
+    const ancreEchelle = wheel.querySelector<HTMLElement>('[data-ancre-echelle]')!;
+    const sphere = wheel.querySelector<HTMLElement>('[data-sphere]')!;
+    const billeVisuel = wheel.querySelector<HTMLElement>('[data-bille-visuel]')!;
+    // Recopie à chaque image la position projetée des ancres (qui suivent les plateaux 3D).
+    sphere.style.left = sphere.style.top = '0';
+    billeVisuel.style.display = 'block';
+    const suivre = () => {
+      const sc = scene.getBoundingClientRect();
+      const a = ancreSphere.getBoundingClientRect();
+      const e = ancreEchelle.getBoundingClientRect();
+      const b = bille.getBoundingClientRect();
+      const echelle = Math.hypot(e.x - a.x, e.y - a.y) / (sc.width * 0.1) || 1;
+      sphere.style.transform = `translate(${a.x - sc.x}px, ${a.y - sc.y}px) scale(${echelle})`;
+      billeVisuel.style.transform = `translate(${b.x - sc.x}px, ${b.y - sc.y}px) scale(${echelle})`;
+      requestAnimationFrame(suivre);
+    };
+    requestAnimationFrame(suivre);
+    const ombre = wheel.querySelector<HTMLElement>('[data-bille-ombre]')!;
+    const marque = wheel.querySelector<HTMLElement>('[data-bille-marque]')!;
     const day = wheel.querySelector<HTMLElement>('[data-day]')!;
     const phase = wheel.querySelector<HTMLElement>('[data-phase]')!;
-    let jourAffiche = 0;
-    const afficher = (angleDeg: number) => {
-      marker.style.transform = `rotate(${angleDeg}deg)`;
-      const j = (Math.floor(((angleDeg % 360) + 360) % 360 / (360 / 28)) % 28) + 1;
-      if (j === jourAffiche) return;
-      jourAffiche = j;
+    const placer = (jourFlottant: number) => {
+      const a = ((jourFlottant - 1 + 0.5) / 28) * 2 * Math.PI; // au milieu de la case du jour
+      const x = 50 + R_POURCENT * Math.sin(a);
+      const y = 50 - R_POURCENT * Math.cos(a);
+      bille.style.left = ombre.style.left = `${x}%`;
+      bille.style.top = ombre.style.top = `${y}%`;
+      // Rotation de la marque ∝ distance parcourue (périmètre / rayon de la bille ≈ 13 tours par cycle).
+      marque.style.transform = `rotate(${jourFlottant * 168}deg)`;
+    };
+    const afficherJour = (j: number) => {
       day.textContent = `J${j}`;
       phase.textContent = phases.find(([a, b]) => j >= a && j <= b)![2];
       wheel.classList.toggle('is-zone', j >= 17);
     };
-    let angle = (16 / 28) * 360; // J17
-    afficher(angle);
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      let avant = performance.now();
-      const boucle = (t: number) => {
-        const dt = Math.min(0.05, (t - avant) / 1000);
-        avant = t;
-        const eclatee = wheel.classList.contains('is-eclatee');
-        const vitesse = eclatee ? 110 : jourAffiche >= 17 ? 11 : 20; // degrés par seconde
-        angle += vitesse * dt;
-        afficher(angle);
-        requestAnimationFrame(boucle);
+    let jour = 17;
+    placer(jour);
+    afficherJour(jour);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) continue;
+
+    const etape = () => {
+      const eclatee = wheel.classList.contains('is-eclatee');
+      const duree = eclatee ? 420 : 900; // temps pour rouler d'un jour au suivant
+      const pause = eclatee ? 60 : jour >= 17 ? 1100 : 650;
+      const depart = jour;
+      const t0 = performance.now();
+      const anim = (t: number) => {
+        const k = Math.min(1, (t - t0) / duree);
+        placer(depart + lisse(k));
+        if (k < 1) return requestAnimationFrame(anim);
+        jour = (depart % 28) + 1;
+        if (jour === 1) placer(1); // repart du début sans tour arrière
+        afficherJour(jour);
+        setTimeout(etape, pause);
       };
-      requestAnimationFrame(boucle);
-    }
+      requestAnimationFrame(anim);
+    };
+    setTimeout(etape, 900);
   }
 </script>
 
 <style>
   .wheel { position: relative; width: min(100%, 30rem); margin-inline: auto; }
-  .wheel__scene { position: relative; aspect-ratio: 1; perspective: 1600px; perspective-origin: 50% 30%; }
+  .wheel__scene { position: relative; aspect-ratio: 1; perspective: 3200px; perspective-origin: 50% 40%; }
   .wheel__stack { position: absolute; inset: 0; transform-style: preserve-3d; }
   .wheel__layer { position: absolute; inset: 0; transform-style: preserve-3d; }
   .wheel__piece { position: absolute; inset: 0; transform-style: preserve-3d; }
@@ -198,44 +285,84 @@ const legende = [
     transform-origin: 50% 100%; transform: rotateX(-90deg); opacity: 0;
   }
   :global(.motion) .wheel.is-eclatee .wheel__axe { opacity: 1; }
-  /* 01 cadran */
-  .wheel__platine { fill: url(#platine); stroke: rgb(255 253 249 / 0.16); stroke-width: 1; }
-  .wheel__orbit { fill: none; stroke: var(--semantic-text-on-deep-muted); stroke-opacity: 0.4; stroke-width: 0.8; stroke-dasharray: 2 6; }
-  .wheel__tick { stroke: var(--semantic-text-on-deep-muted); stroke-opacity: 0.65; stroke-width: 1; stroke-linecap: round; }
-  .wheel__tick--fort { stroke-opacity: 1; stroke-width: 1.6; }
+  /* 01 platine et perles des jours */
+  .wheel__platine-tranche { fill: var(--semantic-bg-deep-intense); opacity: 0.85; }
+  .wheel__platine { fill: url(#platine); }
+  .wheel__biseau { fill: none; stroke: url(#biseau); stroke-width: 2.5; }
+  .wheel__perle-ombre { fill: rgb(0 0 0 / 0.45); filter: blur(1px); }
   .wheel__num { fill: var(--semantic-text-on-deep-muted); font-family: var(--font-family-body); font-size: 9px; letter-spacing: 0.08em; text-anchor: middle; dominant-baseline: middle; }
 
-  /* 02 phases */
+  /* 02 phases : verre épais (ombre portée, tranche, face, reflet, arête) */
+  .wheel__ombre { fill: rgb(0 0 0 / 0.35); filter: blur(5px); }
+  .wheel__tranche { fill: rgb(18 34 25 / 0.75); stroke: rgb(255 253 249 / 0.12); stroke-width: 0.8; }
   .wheel__verre { fill: url(#verre); }
+  .wheel__reflet { fill: url(#reflet); }
+  .wheel__reflet--rose { fill: url(#reflet-rose); }
   .wheel__arete { fill: none; stroke: url(#arete); stroke-width: 1.1; }
-  .wheel__label { fill: var(--semantic-text-on-deep-muted); font-family: var(--font-family-body); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; text-anchor: middle; dominant-baseline: middle; }
+  .wheel__label-pos { position: absolute; width: 0; height: 0; transform-style: preserve-3d; }
+  .wheel__label {
+    position: absolute; left: 0; top: 0; translate: -50% -50%; white-space: nowrap;
+    font-family: var(--font-family-body); font-size: clamp(0.55rem, 1.6vw, 0.66rem); letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--semantic-text-on-deep); opacity: 0.85;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 0.35), 0 2px 4px rgb(0 0 0 / 0.45);
+  }
 
   /* 03 zone */
-  .wheel__zone { fill: url(#verre-rose); filter: drop-shadow(0 0 6px rgb(224 37 122 / 0.6)); }
+  .wheel__zone-tranche { fill: var(--color-accent-fuchsia-profond); filter: brightness(0.55); }
+  .wheel__zone { fill: url(#verre-rose); filter: drop-shadow(0 0 6px rgb(224 37 122 / 0.55)); }
 
-  /* 04 repère du jour */
-  .wheel__marker { transform-origin: 200px 200px; }
-  /* Pendant la vue éclatée : le repère file, avec une traînée lumineuse. */
-  .wheel.is-eclatee .wheel__dot { filter: drop-shadow(0 0 8px rgb(255 253 249 / 0.9)); }
-  .wheel.is-eclatee.is-zone .wheel__dot { filter: drop-shadow(0 0 10px rgb(224 37 122 / 0.95)); }
-  .wheel__dot { fill: var(--semantic-text-on-deep); stroke: var(--semantic-bg-deep); stroke-width: 3; }
-  .wheel__halo { fill: rgb(247 244 239 / 0.12); stroke: var(--semantic-text-on-deep); stroke-opacity: 0.45; animation: pulse 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
-  .wheel.is-zone .wheel__halo { stroke: var(--semantic-accent); }
-  .wheel__cabochon { fill: rgb(18 34 25 / 0.55); stroke: rgb(255 253 249 / 0.25); stroke-width: 1; }
-  .wheel__center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; pointer-events: none; }
-  .wheel__day { font-family: 'Limelight', var(--font-family-display); font-size: clamp(2.6rem, 7vw, 4.2rem); line-height: 1; color: var(--semantic-text-on-deep); font-variant-numeric: tabular-nums; text-shadow: 0 2px 0 rgb(0 0 0 / 0.25), 0 10px 26px rgb(0 0 0 / 0.45); }
-  .wheel__phase-name { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-base); color: var(--semantic-text-on-deep-muted); margin-top: var(--space-1); }
+  .wheel__ancre { position: absolute; width: 0; height: 0; }
+  .wheel__avant { position: absolute; inset: 0; pointer-events: none; }
+
+  /* 04 sphère centrale : verre vert profond, reflet, texte gravé en relief */
+  /* Sans JavaScript : sphère centrée, bille masquée. Avec JavaScript : placées sur leurs ancres. */
+  .wheel__sphere { position: absolute; left: 50%; top: 50%; width: 34%; aspect-ratio: 1; margin: -17% 0 0 -17%; transform-origin: 50% 50%; }
+  .wheel__sphere-ombre { position: absolute; left: 50%; top: 50%; width: 34%; height: 34%; translate: -46% -40%; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / 0.55), transparent); filter: blur(10px); }
+  .wheel__sphere-corps {
+    position: absolute; inset: 0; border-radius: 50%; display: grid; place-content: center; text-align: center;
+    background:
+      radial-gradient(circle at 32% 26%, rgb(255 253 249 / 0.55) 0%, rgb(255 253 249 / 0) 18%),
+      radial-gradient(circle at 70% 85%, rgb(159 192 176 / 0.35) 0%, rgb(159 192 176 / 0) 35%),
+      radial-gradient(circle at 42% 38%, var(--color-profondeur-vert-mousse) 0%, var(--color-profondeur-vert-bouteille) 55%, var(--color-profondeur-vert-nuit) 100%);
+    box-shadow:
+      inset -10px -14px 26px rgb(0 0 0 / 0.5),
+      inset 6px 8px 16px rgb(255 253 249 / 0.12),
+      0 0 0 1px rgb(255 253 249 / 0.14),
+      0 26px 40px -16px rgb(0 0 0 / 0.7);
+  }
+  .wheel.is-zone .wheel__sphere-corps { box-shadow: inset -10px -14px 26px rgb(0 0 0 / 0.5), inset 6px 8px 16px rgb(255 253 249 / 0.12), 0 0 0 1px rgb(224 37 122 / 0.45), 0 0 34px -6px rgb(224 37 122 / 0.45), 0 26px 40px -16px rgb(0 0 0 / 0.7); }
+  .wheel__day {
+    font-family: 'Limelight', var(--font-family-display); font-size: clamp(2.2rem, 6.4vw, 3.6rem); line-height: 1; color: var(--color-base-blanc-chaud); font-variant-numeric: tabular-nums;
+    /* Relief : tranche en couches successives + ombre portée sur la sphère */
+    text-shadow: 0 1px 0 color-mix(in srgb, var(--color-base-creme) 88%, var(--color-profondeur-vert-nuit)), 0 2px 0 color-mix(in srgb, var(--color-base-creme) 75%, var(--color-profondeur-vert-nuit)), 0 3px 0 color-mix(in srgb, var(--color-base-creme) 62%, var(--color-profondeur-vert-nuit)), 0 4px 0 color-mix(in srgb, var(--color-base-creme) 50%, var(--color-profondeur-vert-nuit)), 0 6px 6px rgb(0 0 0 / 0.45), 0 12px 20px rgb(0 0 0 / 0.35);
+  }
+  .wheel__phase-name { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-sm); color: var(--semantic-text-on-deep-muted); margin-top: var(--space-1); text-shadow: 0 1px 2px rgb(0 0 0 / 0.5); }
   .wheel.is-zone .wheel__phase-name { color: var(--semantic-text-on-deep); }
+
+  /* Bille « aujourd'hui » : perle nacrée qui roule, avec ombre portée couchée sur le plan */
+  .wheel__bille {
+    display: none; position: absolute; width: clamp(18px, 6.2vw, 30px); aspect-ratio: 1; left: 0; top: 0; margin: calc(clamp(18px, 6.2vw, 30px) / -2) 0 0 calc(clamp(18px, 6.2vw, 30px) / -2); border-radius: 50%; overflow: hidden; transform-origin: 50% 50%;
+    background: radial-gradient(circle at 34% 28%, var(--color-base-blanc-chaud) 0%, var(--color-base-creme) 22%, color-mix(in srgb, var(--color-base-creme) 82%, var(--color-profondeur-vert-nuit)) 58%, color-mix(in srgb, var(--color-base-creme) 45%, var(--color-profondeur-vert-nuit)) 100%);
+    box-shadow: inset -3px -4px 7px rgb(0 0 0 / 0.35), inset 2px 2px 4px rgb(255 255 255 / 0.6), 0 0 0 1px rgb(0 0 0 / 0.15);
+  }
+  .wheel.is-zone .wheel__bille { background: radial-gradient(circle at 34% 28%, var(--color-base-blanc-chaud) 0%, color-mix(in srgb, var(--color-accent-fuchsia) 45%, var(--color-base-blanc-chaud)) 20%, var(--color-accent-fuchsia) 55%, color-mix(in srgb, var(--color-accent-fuchsia-profond) 55%, var(--color-profondeur-vert-nuit)) 100%); }
+  .wheel__bille::after { content: ''; position: absolute; left: 22%; top: 16%; width: 30%; height: 22%; border-radius: 50%; background: rgb(255 255 255 / 0.85); filter: blur(1px); }
+  /* Marque qui tourne avec la distance : on voit la bille rouler */
+  .wheel__bille-marque { position: absolute; inset: 0; border-radius: 50%; }
+  .wheel__bille-marque::before { content: ''; position: absolute; left: 46%; top: -10%; width: 10%; height: 120%; border-radius: 50%; background: rgb(26 48 40 / 0.18); }
+  .wheel__bille-ombre { position: absolute; width: clamp(18px, 6.2vw, 30px); height: clamp(8px, 2.6vw, 12px); translate: -40% 30%; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / 0.6), transparent); filter: blur(2px); }
+  .wheel.is-eclatee .wheel__bille { box-shadow: inset -3px -4px 7px rgb(0 0 0 / 0.35), inset 2px 2px 4px rgb(255 255 255 / 0.6), 0 0 18px 2px rgb(255 253 249 / 0.55); }
+  .wheel.is-eclatee.is-zone .wheel__bille { box-shadow: inset -3px -4px 7px rgb(0 0 0 / 0.35), inset 2px 2px 4px rgb(255 255 255 / 0.6), 0 0 20px 3px rgb(224 37 122 / 0.7); }
 
   /* Légende sur le côté */
   .wheel__legende { list-style: none; margin: 0; padding: 0; display: none; }
   .wheel__legende li { display: flex; gap: var(--space-3); align-items: baseline; font-size: var(--font-size-xs); color: var(--semantic-text-on-deep-muted); }
   .wheel__legende strong { color: var(--semantic-text-on-deep); font-weight: var(--font-weight-medium); }
   .wheel__puce { flex: none; width: 0.8rem; height: 0.8rem; border-radius: 50%; translate: 0 0.1rem; }
-  .wheel__puce--jours { border: 1px dashed var(--semantic-text-on-deep-muted); }
+  .wheel__puce--jours { background: radial-gradient(circle at 35% 30%, var(--color-base-blanc-chaud), var(--color-base-sauge) 45%, var(--color-profondeur-vert-nuit)); }
   .wheel__puce--phases { background: linear-gradient(145deg, rgb(255 253 249 / 0.6), rgb(247 244 239 / 0.15)); border: 1px solid rgb(255 253 249 / 0.5); }
-  .wheel__puce--zone { background: var(--semantic-accent); }
-  .wheel__puce--jour { background: var(--semantic-text-on-deep); box-shadow: 0 0 0 3px rgb(247 244 239 / 0.2); }
+  .wheel__puce--zone { background: radial-gradient(circle at 35% 30%, var(--color-base-blanc-chaud), var(--color-accent-fuchsia) 45%, color-mix(in srgb, var(--color-accent-fuchsia-profond) 55%, var(--color-profondeur-vert-nuit))); }
+  .wheel__puce--jour { background: radial-gradient(circle at 34% 28%, var(--color-base-blanc-chaud), color-mix(in srgb, var(--color-base-creme) 82%, var(--color-profondeur-vert-nuit)) 58%, color-mix(in srgb, var(--color-base-creme) 45%, var(--color-profondeur-vert-nuit))); box-shadow: 0 2px 4px rgb(0 0 0 / 0.4); }
 
   /* Vue éclatée active (classe posée par motion.ts) : repères et légende visibles. */
   :global(.motion) .wheel__legende { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2) var(--space-6); margin-top: var(--space-6); }
@@ -243,6 +370,4 @@ const legende = [
     :global(.motion) .wheel__legende { margin-top: var(--space-8); }
   }
 
-  @keyframes pulse { from { transform: scale(0.6); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .wheel__halo { animation: none; } }
 </style>

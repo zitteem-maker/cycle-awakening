@@ -197,7 +197,8 @@ svg { display: block; max-width: 100%; height: auto; }
 
 /* Éléments animés à l'entrée par src/scripts/motion.ts : invisibles jusqu'au départ de l'animation. */
 .js-motion [data-in],
-.js-motion [data-piece],
+.js-motion [data-piece] > *,
+.js-motion [data-avant],
 .js-motion [data-legende] { opacity: 0; }
 
 /* ==========================================================================
