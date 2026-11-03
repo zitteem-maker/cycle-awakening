@@ -363,6 +363,13 @@ h2.recette-nom {
 .mobile .encadre-alerte .encadre-titre { font-size: 9.5pt; }
 .mobile .sommaire .t { font-size: 13pt; }
 .mobile .sommaire-colonnes { columns: 1; }
+/* Sommaire téléphone resserré : recettes et bonus en lignes continues. */
+.mobile .sommaire li { margin-bottom: 1.2mm; }
+.mobile .sommaire .sous { font-size: 8pt; line-height: 1.3; }
+.mobile .bandeau { margin: 3.5mm 0 1.8mm; }
+.mobile .sommaire-colonnes li { display: inline; margin: 0; }
+.mobile .sommaire-colonnes a { display: inline; font-size: 11pt; }
+.mobile .sommaire-colonnes li + li::before { content: ' · '; color: var(--semantic-accent-text); }
 /* Tableau en fiches empilées */
 .mobile .tableau, .mobile .tableau tbody, .mobile .tableau tr, .mobile .tableau th, .mobile .tableau td { display: block; width: 100%; }
 .mobile .tableau thead { display: none; }
@@ -375,12 +382,16 @@ h2.recette-nom {
 .mobile .tableau tbody td:nth-of-type(3)::before { content: 'Ce qui aide souvent'; }
 /* Recettes en une colonne (pas de positionnement absolu sur petit écran) */
 .mobile .recette, .mobile .theme-page { height: auto; overflow: visible; }
-.mobile .recette { padding: 10mm 8mm 0; }
+.mobile .recette { page: recette-mobile; padding: 0 8mm; }
 .mobile .r-entete, .mobile .r-gauche, .mobile .r-photo, .mobile .r-carte, .mobile .r-droite { position: static; width: auto; text-align: left; }
 .mobile h2.recette-nom { font-size: 21pt; }
-.mobile .r-photo { height: 58mm; margin: 4mm -8mm; }
+.mobile .r-photo { height: 72mm; margin: 5mm -8mm 0; }
 .mobile .r-trait { display: none; }
-.mobile .r-carte { margin: -12mm 4mm 5mm; font-size: 10pt; }
+.mobile .r-carte { break-before: page; margin: 0 0 5mm; font-size: 10pt; }
+.mobile .r-carte li { margin-bottom: 0.6mm; }
+.mobile .r-carte h3, .mobile .r-droite h3 { line-height: 1.25; padding-top: 1mm; }
+/* La préparation commence sur sa propre page : le titre manuscrit n'est jamais coupé. */
+.mobile .r-droite { break-before: page; }
 .mobile .r-droite { display: block; font-size: 10.5pt; }
 .mobile .recette-astuce { margin-top: 4mm; }
 .mobile .theme-page { height: 157mm; }
@@ -448,3 +459,12 @@ h2.recette-nom {
 
 /* Édition de relecture : rendu final, sans étiquettes de statut. */
 .relecture .chapitre-statut, .relecture .r-meta .statut { display: none; }
+
+.insecable { white-space: nowrap; }
+
+/* Astuces : un seul emplacement visible selon le format. */
+.r-astuces-mobile { display: none; }
+.r-astuces-a4 { margin-top: auto; }
+.mobile .r-astuces-a4 { display: none; }
+.mobile .r-astuces-mobile { display: block; }
+.recette-astuce { break-inside: avoid; }

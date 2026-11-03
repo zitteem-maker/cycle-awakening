@@ -158,6 +158,11 @@ ${parties}
   margin: 0 0 ${mobile ? '13mm' : '14mm'} 0;
   @top-center { content: none; }
 }
+/* Téléphone : une recette peut s'étendre sur plusieurs pages, chaque page garde une marge haute et basse. */
+@page recette-mobile {
+  margin: 10mm 0 12mm 0;
+  @top-center { content: none; }
+}
 @page couverture {
   margin: 0;
   @bottom-center { content: none; }
@@ -219,6 +224,8 @@ function themeHtml(t) {
 
 function recetteHtml(r) {
   const [ingredients, preparation, ...autres] = r.sections;
+  // Astuces : en bas de la colonne de droite (A4), ou sous les ingrédients (téléphone). Une seule des deux s'affiche.
+  const astuces = (classe) => `<div class="${classe}">${autres.map((a) => `<div class="recette-astuce"><p class="recette-astuce-titre">${a.titre}</p>${a.html}</div>`).join('')}</div>`;
   return `<section class="recette" id="recette-${r.id}">
   <header class="r-entete">
     <p class="r-meta">${r.categorie}<span>${r.temps}</span><span>${r.portions}</span>${r.statut === 'valide' ? '' : '<span class="statut">brouillon</span>'}</p>
@@ -231,9 +238,10 @@ function recetteHtml(r) {
   ${photoHtml(r.photo, r.photoNom, 'r-photo')}
   ${trait}
   <div class="r-carte"><h3>${ingredients.titre}</h3>${ingredients.html}</div>
+  ${astuces('r-astuces-mobile')}
   <div class="r-droite">
     <h3>${preparation.titre}</h3>${preparation.html}
-    ${autres.map((a) => `<div class="recette-astuce"><p class="recette-astuce-titre">${a.titre}</p>${a.html}</div>`).join('')}
+    ${astuces('r-astuces-a4')}
   </div>
 </section>`;
 }
@@ -290,7 +298,7 @@ function document({ impression, mobile = false, seul = null }) {
   <div class="logo">${logoClair}</div>
   <div>
     <h1>${livre.titre}</h1>
-    <p class="sous-titre">${livre.sousTitre}</p>
+    <p class="sous-titre">${livre.sousTitre.replace(/,\s*(J\d+\s*–\s*J\d+)$/, ',<br><span class="insecable">$1</span>')}</p>
     <div class="filet"></div>
     <p class="signature">${livre.signature}</p>
   </div>
