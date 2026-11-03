@@ -78,8 +78,12 @@ const imageUrl = new URL(image, SITE_URL).toString();
     <slot name="head" />
   </head>
   <body>
+    <div class="fond-site" aria-hidden="true"><span></span><span></span><span></span></div>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
     <slot />
+    <script>
+      import '../scripts/motion';
+    </script>
     <script>
       // Apparition douce des blocs [data-reveal] quand ils entrent à l'écran (une seule fois).
       // Sans JavaScript ou en mouvement réduit, tout reste visible.

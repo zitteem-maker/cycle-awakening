@@ -3,27 +3,23 @@
 // Aucune donnée personnelle n'est affichée ni lue dans l'URL.
 import PageLayout from '../layouts/PageLayout.astro';
 import { legal } from '../config/legal';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <PageLayout title="Merci" description="Ton guide Cycle Awakening est en route." noindex headerCta={false}>
-  <section class="section dawn grain">
+  <PageHero eyebrow="Commande confirmée" title={'Merci. <em class="accent">Ton guide est en route.</em>'} lead="Tu vas recevoir dans quelques minutes un email avec ton lien de téléchargement personnel." />
+  <section class="section">
     <div class="container merci">
-      <p class="eyebrow">Commande confirmée</p>
-      <h1>Merci. <em class="accent">Ton guide est en route.</em></h1>
-      <p class="lead">
-        Tu vas recevoir dans quelques minutes un email avec ton lien de téléchargement personnel.
-      </p>
-
       <ol class="steps">
-        <li>
+        <li class="glass">
           <h2>Ouvre l’email « Ton guide Cycle Awakening »</h2>
           <p>Il est envoyé à l’adresse utilisée pour le paiement. Le lien est valable 7 jours et permet 5 téléchargements.</p>
         </li>
-        <li>
+        <li class="glass">
           <h2>Rien reçu après 15 minutes ?</h2>
           <p>Regarde dans les spams ou l’onglet « Promotions ». Si tu le trouves là, déplace-le dans ta boîte principale : les prochains arriveront au bon endroit.</p>
         </li>
-        <li>
+        <li class="glass">
           <h2>Toujours rien ?</h2>
           <p>
             Écris-nous à <a href={`mailto:${legal.editor.email}?subject=Je%20n%E2%80%99ai%20pas%20re%C3%A7u%20mon%20guide`}>{legal.editor.email}</a>{' '}
@@ -53,9 +49,6 @@ import { legal } from '../config/legal';
     counter-increment: step;
     position: relative;
     padding: var(--space-6) var(--space-6) var(--space-4) calc(var(--space-6) + 2.5rem);
-    background: var(--semantic-bg);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-soft);
   }
   .steps li::before {
     content: counter(step);

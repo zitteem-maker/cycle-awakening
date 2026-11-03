@@ -70,6 +70,11 @@ Refonte du 3 novembre 2026 : la fondatrice veut « du peps, du dynamisme, un eff
 - **Niveau « expert » (validé le 3 novembre 2026)** : défilement fluide Lenis + GSAP ScrollTrigger, piloté par attributs dans `src/scripts/motion.ts` : `data-split` (titres mot à mot sous masque), `data-words` (texte qui s'allume au défilement), `data-count`, `data-stack` (cartes empilées), `data-clip` (section profonde qui s'ouvre), `data-pin-cycle` (section épinglée J1 → J28), `data-speed` (parallaxe), `data-book`, `data-marquee`, `data-magnetic` (boutons aimantés), `data-spotlight` (lumière qui suit la souris), `data-depth` (profondeur du hero).
 - **Transparence** : verre dépoli (`backdrop-filter`) sur l'en-tête, le panneau des chiffres à cheval sur le hero, le disque de la roue et la carte de l'offre ; halos flous en mouvement lent (`.aurora`) derrière. Le fuchsia n'y apparaît qu'en halo très diffus (≤ 16 %), jamais en aplat.
 - Sans JavaScript ou en mouvement réduit : aucun contenu caché, aucune animation.
+- **Verre liquide partout (3 novembre 2026)** : utilitaires globaux `.glass` (sur clair) et `.glass-deep` (sur vert) dans `src/styles/global.css` : cartes, listes, FAQ, formulaire, panneaux légaux, légendes photo, barre de navigation flottante. Repli opaque automatique si le navigateur ne gère pas le flou.
+- **Fond du site** : dégradé crème → beige avec halos flous qui dérivent (`.fond-site`, dans `BaseLayout`). Les sections claires sont transparentes ou voilées, jamais d'aplat blanc.
+- **Chaque page a un haut de page profond** : composant `PageHero.astro` (dégradé vert + halos + lumière au pointeur), texte qui arrive par la gauche.
+- **Relief des titres** (h1, h2) : arête claire + ombre portée douce ; italiques fuchsia avec une fine épaisseur fuchsia profond. Jamais sur le texte courant.
+- **Achat** : les boutons restent pleins (vert ou crème) avec un simple reflet de verre, pour que le passage à l'achat reste évident.
 - Survols courts (`--motion-duration-fast`, léger soulèvement des boutons).
 - `prefers-reduced-motion` : tout est coupé, la vidéo hero est remplacée par son poster.
 

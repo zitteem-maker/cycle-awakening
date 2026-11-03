@@ -60,6 +60,11 @@ if (!reduit) {
     roue.fromTo(q('[data-wheel-dot]'), { opacity: 0, scale: 0, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(3)' }, 2.5);
   }
 
+  // --- Haut des autres pages : texte qui arrive depuis la gauche ---------------------------------
+  document.querySelectorAll<HTMLElement>('[data-hero-page]').forEach((h) => {
+    gsap.fromTo(h.querySelectorAll('[data-in]'), { x: -110, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.4, stagger: 0.11, ease: 'expo.out', delay: 0.1 });
+  });
+
   // --- Frise « Ton cycle en quatre temps » : jours éclatés qui se rangent, onglets de 4 côtés ----
   const frise = document.querySelector<HTMLElement>('[data-phases]');
   if (frise) {

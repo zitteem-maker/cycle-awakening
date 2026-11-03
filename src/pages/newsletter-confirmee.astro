@@ -1,20 +1,16 @@
 ---
 // Page de retour après le clic de confirmation (redirectionUrl Brevo). Non indexée.
 import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <PageLayout title="Inscription confirmée" description="Ton inscription à la newsletter est confirmée." noindex headerCta={false}>
-  <section class="section dawn grain">
-    <div class="container message">
-      <p class="eyebrow">Newsletter</p>
-      <h1>Bienvenue. <em class="accent">On se retrouve chaque semaine.</em></h1>
-      <p class="lead">Ton inscription est confirmée. Le prochain email arrive cette semaine : un repère pour ta phase et une nouvelle recette.</p>
-      <p><a href="/">Retour à l’accueil</a></p>
-    </div>
-  </section>
+  <PageHero size="page" eyebrow="Newsletter" title={'Bienvenue. <em class="accent">On se retrouve chaque semaine.</em>'} lead="Ton inscription est confirmée. Le prochain email arrive cette semaine : un repère pour ta phase et une nouvelle recette.">
+    <p class="retour"><a class="glass-deep retour__lien" href="/">Retour à l’accueil</a></p>
+  </PageHero>
 </PageLayout>
 
 <style>
-  .message { max-width: 48rem; min-height: 50vh; display: flex; flex-direction: column; justify-content: center; }
-  .lead { font-size: var(--font-size-lg); }
+  .retour { margin-top: var(--space-8); }
+  .retour__lien { display: inline-flex; align-items: center; min-height: var(--size-tap-target); padding: var(--space-3) var(--space-6); border-radius: var(--radius-pill); text-decoration: none; }
 </style>

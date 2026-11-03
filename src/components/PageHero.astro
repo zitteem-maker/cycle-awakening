@@ -1,0 +1,37 @@
+---
+// Haut de page commun (toutes les pages hors accueil) : dégradé profond, halos flous en mouvement,
+// lumière qui suit le pointeur. Le titre accepte du HTML (ex. <em class="accent">mot</em>).
+interface Props {
+  eyebrow?: string;
+  /** Titre en HTML de confiance (écrit dans le code, jamais une saisie utilisateur). */
+  title: string;
+  lead?: string;
+  /** Hauteur : « page » (plein écran, pages de message) ou « bandeau » (pages de contenu). */
+  size?: 'page' | 'bandeau';
+}
+const { eyebrow, title, lead, size = 'bandeau' } = Astro.props;
+---
+
+<section class:list={['page-hero deep grain', `page-hero--${size}`]} data-spotlight data-hero-page>
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora__blob aurora__blob--1"></span>
+    <span class="aurora__blob aurora__blob--2"></span>
+    <span class="aurora__blob aurora__blob--3"></span>
+  </div>
+  <div class="container page-hero__inner">
+    {eyebrow && <p class="eyebrow" data-in>{eyebrow}</p>}
+    <h1 class="page-hero__title" data-in set:html={title} />
+    {lead && <p class="page-hero__lead" data-in>{lead}</p>}
+    <div data-in><slot /></div>
+  </div>
+</section>
+
+<style>
+  .page-hero { position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+  .page-hero--bandeau { min-height: min(62svh, 34rem); padding-block: 9rem var(--space-12); }
+  .page-hero--page { min-height: 100svh; align-items: center; padding-block: 8rem var(--space-16); }
+  .page-hero__inner { position: relative; z-index: 1; }
+  .page-hero__title { font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5.6rem); line-height: 1; max-width: 16ch; letter-spacing: -0.015em; }
+  .page-hero--bandeau .page-hero__title { font-size: clamp(2.3rem, 1.6rem + 3vw, 4.2rem); max-width: 22ch; }
+  .page-hero__lead { font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); max-width: 40rem; }
+</style>

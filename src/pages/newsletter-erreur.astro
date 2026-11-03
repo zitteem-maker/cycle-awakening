@@ -1,20 +1,16 @@
 ---
 // Erreur d'inscription (formulaire envoyé sans JavaScript). Non indexée.
 import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <PageLayout title="Inscription impossible" description="L'inscription à la newsletter n'a pas abouti." noindex headerCta={false}>
-  <section class="section dawn grain">
-    <div class="container message">
-      <p class="eyebrow">Newsletter</p>
-      <h1>Oups. <em class="accent">Ça n’a pas fonctionné.</em></h1>
-      <p class="lead">Vérifie ton adresse email et la case de consentement, puis réessaie. Si le problème continue, écris à hello@cycleawakening.com.</p>
-      <p><a href="/">Retour à l’accueil</a></p>
-    </div>
-  </section>
+  <PageHero size="page" eyebrow="Newsletter" title={'Oups. <em class="accent">Ça n’a pas fonctionné.</em>'} lead="Vérifie ton adresse email et la case de consentement, puis réessaie. Si le problème continue, écris à hello@cycleawakening.com.">
+    <p class="retour"><a class="glass-deep retour__lien" href="/">Retour à l’accueil</a></p>
+  </PageHero>
 </PageLayout>
 
 <style>
-  .message { max-width: 48rem; min-height: 50vh; display: flex; flex-direction: column; justify-content: center; }
-  .lead { font-size: var(--font-size-lg); }
+  .retour { margin-top: var(--space-8); }
+  .retour__lien { display: inline-flex; align-items: center; min-height: var(--size-tap-target); padding: var(--space-3) var(--space-6); border-radius: var(--radius-pill); text-decoration: none; }
 </style>

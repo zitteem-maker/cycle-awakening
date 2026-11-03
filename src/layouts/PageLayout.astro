@@ -11,7 +11,7 @@ interface Props extends ComponentProps<typeof BaseLayout> {
   /** En-tête transparent posé sur un hero profond, qui devient crème au défilement. */
   headerOverlay?: boolean;
 }
-const { headerCta = true, headerOverlay = false, ...base } = Astro.props;
+const { headerCta = true, headerOverlay = true, ...base } = Astro.props;
 ---
 
 <BaseLayout {...base}>
