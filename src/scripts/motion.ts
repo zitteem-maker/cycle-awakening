@@ -30,6 +30,54 @@ if (!reduit) {
     });
   });
 
+  // --- Entrée du hero : texte depuis la gauche, roue « éclatée » qui s'assemble ----------------
+  const heroEntree = document.querySelector<HTMLElement>('[data-hero]');
+  if (heroEntree) {
+    const q = (sel: string) => heroEntree.querySelectorAll<Element>(sel);
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    tl.fromTo(q('[data-in]'), { x: -110, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.4, stagger: 0.11 }, 0.1);
+    // La roue s'assemble quand elle est visible (dès le chargement sur ordinateur, au défilement sur téléphone).
+    const roue = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: heroEntree.querySelector('[data-wheel]'), start: 'top 88%' } });
+    // Quatre quartiers de verre qui arrivent de quatre directions et se posent.
+    q('[data-wheel-part]').forEach((part, i) => {
+      const el = part as SVGGElement;
+      const dx = Number(el.dataset.dx);
+      const dy = Number(el.dataset.dy);
+      // Origine fixée une seule fois (au centre de la roue) : la redéfinir dans le tween décalerait la pièce.
+      gsap.set(el, { svgOrigin: '200 200' });
+      roue.fromTo(
+        el,
+        { x: dx * 320, y: dy * 320, rotation: (i % 2 ? -1 : 1) * 38, scale: 0.65, opacity: 0 },
+        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.8 },
+        0.2 + i * 0.14,
+      );
+    });
+    roue.call(() => heroEntree.querySelector('[data-hero-disque]')?.classList.add('is-on'), undefined, 1.0);
+    roue.to(q('[data-wheel-orbit]'), { opacity: 1, duration: 1.2, ease: 'power2.out' }, 1.2);
+    roue.fromTo(q('[data-wheel-tick]'), { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.025, ease: 'power1.out' }, 1.35);
+    roue.fromTo(q('[data-wheel-label]'), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.14 }, 1.8);
+    roue.fromTo(q('[data-wheel-center]'), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 1.1, ease: 'back.out(1.8)' }, 2.0);
+    roue.fromTo(q('[data-wheel-dot]'), { opacity: 0, scale: 0, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(3)' }, 2.5);
+  }
+
+  // --- Frise « Ton cycle en quatre temps » : jours éclatés qui se rangent, onglets de 4 côtés ----
+  const frise = document.querySelector<HTMLElement>('[data-phases]');
+  if (frise) {
+    const aleatoire = gsap.utils.random;
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: frise, start: 'top 82%' } });
+    tl.fromTo(
+      frise.querySelectorAll('.phases__jour'),
+      { x: () => aleatoire(-320, 320), y: () => aleatoire(-220, 220), rotation: () => aleatoire(-120, 120), scale: 0.3, opacity: 0 },
+      { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.5, stagger: { each: 0.022, from: 'random' }, clearProps: 'transform' },
+      0,
+    );
+    const depuis = [{ x: -260 }, { y: -160 }, { y: 160 }, { x: 260 }];
+    frise.querySelectorAll('[role="tab"]').forEach((tab, i) => {
+      tl.fromTo(tab, { ...depuis[i], opacity: 0, rotation: i % 2 ? 4 : -4 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.4, clearProps: 'transform' }, 0.45 + i * 0.1);
+    });
+    tl.fromTo(frise.querySelectorAll('.phases__panel:not([hidden]), .phases__note'), { x: -90, opacity: 0, filter: 'blur(8px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.3, stagger: 0.1 }, 0.9);
+  }
+
   // --- Titres : mots qui montent derrière un masque ------------------------------------------
   document.querySelectorAll<HTMLElement>('[data-split]').forEach((titre) => {
     const mots = decouperMots(titre);

@@ -106,23 +106,23 @@ const faq = [
     </div>
     <div class="container hero__grid">
       <div class="hero__text">
-        <p class="eyebrow hero__in" style="--d: 0">Le guide de ta fin de cycle · J17–J28</p>
+        <p class="eyebrow hero__in" style="--d: 0" data-in>Le guide de ta fin de cycle · J17–J28</p>
         <h1 class="hero__title">
-          <span class="ligne"><span class="hero__line" style="--d: 1">Tu n’es pas</span></span>
-          <span class="ligne"><span class="hero__line" style="--d: 2">instable.</span></span>
-          <span class="ligne"><em class="accent hero__line" style="--d: 3">Tu es cyclique.</em></span>
+          <span class="ligne"><span class="hero__line" style="--d: 1" data-in>Tu n’es pas</span></span>
+          <span class="ligne"><span class="hero__line" style="--d: 2" data-in>instable.</span></span>
+          <span class="ligne"><em class="accent hero__line" style="--d: 3" data-in>Tu es cyclique.</em></span>
         </h1>
-        <p class="hero__lead hero__in" style="--d: 4">
+        <p class="hero__lead hero__in" style="--d: 4" data-in>
           Fatigue, irritabilité, ventre gonflé, envie de disparaître quelques jours par mois : ta phase lutéale a une logique.
           Comprends-la, et organise-toi avec elle, pas contre elle.
         </p>
-        <div class="hero__ctas hero__in" style="--d: 5" data-magnetic>
+        <div class="hero__ctas hero__in" style="--d: 5" data-magnetic data-in>
           <Cta location="hero" variant="on-deep" />
           <a class="hero__link" href="#guide">Découvrir le guide <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <div class="hero__visual hero__in" style="--d: 2">
-        <div class="hero__disque" data-depth="18"><CycleWheel /></div>
+      <div class="hero__visual">
+        <div class="hero__disque" data-depth="18" data-hero-disque><CycleWheel /></div>
       </div>
     </div>
   </section>
@@ -512,6 +512,11 @@ const faq = [
   .newsletter__form { background: var(--semantic-bg); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); border-radius: var(--radius-md); box-shadow: var(--shadow-soft); }
   .newsletter__note { font-size: var(--font-size-xs); color: var(--semantic-text-muted); margin: var(--space-4) 0 0; }
 
+  /* Avec les animations avancées, GSAP prend la main sur l'entrée du hero (pas de double animation). */
+  :global(.js-motion) .hero__in, :global(.js-motion) .hero__title .hero__line { animation: none; transform: none; opacity: 1; }
+  :global(.js-motion) .hero__title .ligne { overflow: visible; }
+  :global(.js-motion) .hero__disque::before { opacity: 0; transform: scale(0.7); transition: opacity 1.4s var(--motion-ease), transform 1.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  :global(.js-motion) .hero__disque.is-on::before { opacity: 1; transform: none; }
   :global(.mot-masque) { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
   :global(.mot-masque .mot) { display: inline-block; }
 

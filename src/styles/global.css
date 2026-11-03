@@ -190,3 +190,12 @@ svg { display: block; max-width: 100%; height: auto; }
   transition-delay: calc(var(--d, 0) * 90ms);
 }
 .reveal-on [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Éléments animés à l'entrée par src/scripts/motion.ts : invisibles jusqu'au départ de l'animation. */
+.js-motion [data-in],
+.js-motion [data-wheel-part],
+.js-motion [data-wheel-tick],
+.js-motion [data-wheel-label],
+.js-motion [data-wheel-dot],
+.js-motion [data-wheel-center],
+.js-motion [data-wheel-orbit] { opacity: 0; }

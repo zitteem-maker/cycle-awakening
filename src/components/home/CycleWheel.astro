@@ -1,58 +1,96 @@
 ---
-// Roue du cycle (28 jours) : visuel signature du hero. Un repère fait le tour du cycle,
-// le compteur central affiche le jour et la phase ; l'arc fuchsia marque J17–J28, la zone du guide.
-// Décorative pour les lecteurs d'écran (le texte du hero porte l'information). Figée si mouvement réduit.
+// Roue du cycle (28 jours), visuel signature du hero, en « verre liquide » : quatre quartiers translucides
+// (règles, folliculaire, ovulation, lutéale) avec reflet sur l'arête ; l'arc J17–J28 est teinté fuchsia.
+// Entrée (src/scripts/motion.ts) : les quartiers arrivent de quatre directions et s'assemblent, puis
+// graduations, libellés, repère et compteur apparaissent. Décorative pour les lecteurs d'écran.
 const C = 200;
-const R = 160;
+const R = 158;
+const EP = 13; // demi-épaisseur de l'anneau
 const jours = 28;
 const angle = (j: number) => ((j - 1) / jours) * 2 * Math.PI - Math.PI / 2;
-const pt = (j: number, r = R) => [C + r * Math.cos(angle(j)), C + r * Math.sin(angle(j))];
-function arc(debut: number, fin: number, r = R, ecart = 0.12) {
-  const [x1, y1] = pt(debut + ecart, r);
-  const [x2, y2] = pt(fin + 1 - ecart, r);
-  const grand = fin + 1 - debut > jours / 2 ? 1 : 0;
-  return `M${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 ${grand} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+const pt = (j: number, r: number) => [C + r * Math.cos(angle(j)), C + r * Math.sin(angle(j))];
+const f = (n: number) => n.toFixed(2);
+/** Secteur d'anneau du début du jour `debut` à la fin du jour `fin`, avec un petit espace. */
+function secteur(debut: number, fin: number, ecart = 0.14, r = R, ep = EP) {
+  const a = debut + ecart;
+  const b = fin + 1 - ecart;
+  const grand = b - a > jours / 2 ? 1 : 0;
+  const [x1, y1] = pt(a, r + ep);
+  const [x2, y2] = pt(b, r + ep);
+  const [x3, y3] = pt(b, r - ep);
+  const [x4, y4] = pt(a, r - ep);
+  return `M${f(x1)} ${f(y1)} A${r + ep} ${r + ep} 0 ${grand} 1 ${f(x2)} ${f(y2)} L${f(x3)} ${f(y3)} A${r - ep} ${r - ep} 0 ${grand} 0 ${f(x4)} ${f(y4)} Z`;
 }
 // Repères moyens pour un cycle de 28 jours (le texte du site rappelle que chaque cycle est différent).
 const phases = [
-  { nom: 'Règles', debut: 1, fin: 5 },
-  { nom: 'Folliculaire', debut: 6, fin: 13 },
-  { nom: 'Ovulation', debut: 14, fin: 14 },
-  { nom: 'Lutéale', debut: 15, fin: 28 },
-];
+  { id: 'regles', nom: 'Règles', debut: 1, fin: 5, dx: 0.35, dy: -1 },
+  { id: 'folliculaire', nom: 'Folliculaire', debut: 6, fin: 13, dx: 1, dy: 0.25 },
+  { id: 'ovulation', nom: 'Ovulation', debut: 14, fin: 14, dx: -0.2, dy: 1 },
+  { id: 'luteale', nom: 'Lutéale', debut: 15, fin: 28, dx: -1, dy: -0.3 },
+].map((p) => {
+  const milieu = (p.debut + p.fin + 1) / 2;
+  const [lx, ly] = pt(milieu, R - 34);
+  return { ...p, d: secteur(p.debut, p.fin), lx, ly };
+});
+const zone = secteur(17, 28, 0.14, R, EP - 1.5);
 const ticks = Array.from({ length: jours }, (_, i) => {
   const j = i + 1;
-  const [x1, y1] = pt(j, R + 14);
-  const [x2, y2] = pt(j, R + (j % 7 === 1 ? 26 : 20));
+  const [x1, y1] = pt(j, R + 20);
+  const [x2, y2] = pt(j, R + (j % 7 === 1 ? 32 : 26));
   return { x1, y1, x2, y2, fort: j % 7 === 1 };
-});
-const labels = phases.map((p) => {
-  const milieu = (p.debut + p.fin + 1) / 2;
-  const [x, y] = pt(milieu, R - 30);
-  return { ...p, x, y };
 });
 ---
 
 <div class="wheel" data-wheel>
   <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
     <defs>
-      <radialGradient id="wheel-glow" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stop-color="var(--color-base-sauge)" stop-opacity="0.22" />
-        <stop offset="1" stop-color="var(--color-base-sauge)" stop-opacity="0" />
-      </radialGradient>
+      <!-- Verre : remplissage translucide + reflet en haut à gauche -->
+      <linearGradient id="verre" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" style="stop-color: var(--color-base-creme); stop-opacity: 0.34" />
+        <stop offset="0.45" style="stop-color: var(--color-base-creme); stop-opacity: 0.1" />
+        <stop offset="1" style="stop-color: var(--color-base-creme); stop-opacity: 0.04" />
+      </linearGradient>
+      <linearGradient id="verre-rose" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" style="stop-color: var(--color-accent-fuchsia); stop-opacity: 0.95" />
+        <stop offset="0.55" style="stop-color: var(--color-accent-fuchsia); stop-opacity: 0.72" />
+        <stop offset="1" style="stop-color: var(--color-accent-fuchsia-profond); stop-opacity: 0.55" />
+      </linearGradient>
+      <linearGradient id="arete" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.95" />
+        <stop offset="0.5" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.15" />
+        <stop offset="1" style="stop-color: var(--color-base-blanc-chaud); stop-opacity: 0.5" />
+      </linearGradient>
+      <filter id="ombre-verre" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
+        <feOffset dy="8" />
+        <feComponentTransfer><feFuncA type="linear" slope="0.35" /></feComponentTransfer>
+        <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
     </defs>
-    <circle cx={C} cy={C} r="196" fill="url(#wheel-glow)" />
-    <circle class="wheel__orbit" cx={C} cy={C} r={R + 40} />
-    {ticks.map((t) => <line class:list={['wheel__tick', { 'wheel__tick--fort': t.fort }]} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} />)}
-    {phases.map((p) => <path class="wheel__phase" d={arc(p.debut, p.fin)} />)}
-    <path class="wheel__zone" d={arc(17, 28, R, 0)} pathLength="1" />
-    {labels.map((l) => <text class="wheel__label" x={l.x} y={l.y}>{l.nom}</text>)}
+
+    <circle class="wheel__orbit" cx={C} cy={C} r={R + 44} data-wheel-orbit />
+    <g class="wheel__ticks">
+      {ticks.map((t) => <line class:list={['wheel__tick', { 'wheel__tick--fort': t.fort }]} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} data-wheel-tick />)}
+    </g>
+
+    {phases.map((p) => (
+      <g class="wheel__quartier" data-wheel-part data-dx={p.dx} data-dy={p.dy} filter="url(#ombre-verre)">
+        <path class="wheel__verre" d={p.d} />
+        {p.id === 'luteale' && <path class="wheel__zone" d={zone} />}
+        <path class="wheel__arete" d={p.d} />
+      </g>
+    ))}
+
+    {phases.map((p) => <text class="wheel__label" x={p.lx} y={p.ly} data-wheel-label>{p.nom}</text>)}
+
     <g class="wheel__marker" data-marker>
-      <circle cx={C} cy={C - R} r="9" class="wheel__dot" />
-      <circle cx={C} cy={C - R} r="16" class="wheel__halo" />
+      <g data-wheel-dot>
+        <circle cx={C} cy={C - R} r="17" class="wheel__halo" />
+        <circle cx={C} cy={C - R} r="8.5" class="wheel__dot" />
+      </g>
     </g>
   </svg>
-  <div class="wheel__center">
+  <div class="wheel__center" data-wheel-center>
     <span class="wheel__day" data-day>J17</span>
     <span class="wheel__phase-name" data-phase>Lutéale</span>
   </div>
@@ -79,13 +117,13 @@ const labels = phases.map((p) => {
     let j = 17;
     set(j);
     if (!reduit) {
-      // Le tour complet prend environ 22 s ; ralentit dans la zone J17–J28 pour laisser lire.
+      // Démarre après l'assemblage de la roue (voir motion.ts), puis fait le tour en ~22 s.
       const tick = () => {
         j = (j % 28) + 1;
         set(j);
         setTimeout(tick, j >= 17 ? 1000 : 600);
       };
-      setTimeout(tick, 2200);
+      setTimeout(tick, 4200);
     }
   }
 </script>
@@ -94,29 +132,23 @@ const labels = phases.map((p) => {
   .wheel { position: relative; width: min(100%, 30rem); aspect-ratio: 1; margin-inline: auto; }
   .wheel svg { width: 100%; height: 100%; overflow: visible; }
   .wheel__orbit { fill: none; stroke: var(--semantic-text-on-deep-muted); stroke-opacity: 0.35; stroke-width: 0.8; stroke-dasharray: 2 6; transform-origin: 200px 200px; animation: orbit 90s linear infinite; }
-  .wheel__tick { stroke: var(--semantic-text-on-deep-muted); stroke-opacity: 0.55; stroke-width: 1; stroke-linecap: round; }
-  .wheel__tick--fort { stroke-opacity: 0.9; stroke-width: 1.6; }
-  .wheel__phase { fill: none; stroke: var(--semantic-text-on-deep); stroke-opacity: 0.18; stroke-width: 22; }
-  .wheel__zone {
-    fill: none; stroke: var(--semantic-accent); stroke-width: 22; stroke-linecap: butt;
-    stroke-dasharray: 1; stroke-dashoffset: 1;
-    animation: draw 1.8s var(--motion-ease) 0.5s forwards;
-  }
+  .wheel__tick { stroke: var(--semantic-text-on-deep-muted); stroke-opacity: 0.6; stroke-width: 1; stroke-linecap: round; }
+  .wheel__tick--fort { stroke-opacity: 0.95; stroke-width: 1.6; }
+  .wheel__verre { fill: url(#verre); }
+  .wheel__zone { fill: url(#verre-rose); }
+  .wheel__arete { fill: none; stroke: url(#arete); stroke-width: 1.1; }
   .wheel__label { fill: var(--semantic-text-on-deep-muted); font-family: var(--font-family-body); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; text-anchor: middle; dominant-baseline: middle; }
   .wheel__marker { transform-origin: 200px 200px; transition: transform 0.55s var(--motion-ease); }
-  .wheel__dot { fill: var(--semantic-text-on-deep); }
-  .wheel__halo { fill: none; stroke: var(--semantic-text-on-deep); stroke-opacity: 0.4; animation: pulse 2.4s ease-out infinite; transform-origin: 200px 40px; }
-  .wheel__dot { stroke: var(--semantic-bg-deep); stroke-width: 3; }
+  .wheel__dot { fill: var(--semantic-text-on-deep); stroke: var(--semantic-bg-deep); stroke-width: 3; }
+  .wheel__halo { fill: rgb(247 244 239 / 0.12); stroke: var(--semantic-text-on-deep); stroke-opacity: 0.45; animation: pulse 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
   .wheel.is-zone .wheel__halo { stroke: var(--semantic-accent); }
   .wheel__center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; pointer-events: none; }
   .wheel__day { font-family: 'Limelight', var(--font-family-display); font-size: clamp(3.2rem, 9vw, 5.2rem); line-height: 1; color: var(--semantic-text-on-deep); font-variant-numeric: tabular-nums; }
   .wheel__phase-name { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); margin-top: var(--space-2); }
   .wheel.is-zone .wheel__phase-name { color: var(--semantic-text-on-deep); }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
   @keyframes orbit { to { transform: rotate(360deg); } }
-  @keyframes pulse { from { transform: scale(0.6); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+  @keyframes pulse { from { transform: scale(0.6); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
-    .wheel__zone { stroke-dashoffset: 0; animation: none; }
     .wheel__orbit, .wheel__halo { animation: none; }
   }
 </style>
