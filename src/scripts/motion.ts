@@ -30,13 +30,13 @@ if (!reduit) {
     });
   });
 
-  // --- Entrée du hero : texte depuis la gauche, roue « éclatée » qui s'assemble ----------------
+  // --- Entrée du hero : texte depuis la gauche, roue en vue éclatée qui s'assemble seule ---------
   const heroEntree = document.querySelector<HTMLElement>('[data-hero]');
   if (heroEntree) {
     const q = (sel: string) => heroEntree.querySelectorAll<Element>(sel);
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.fromTo(q('[data-in]'), { x: -110, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.4, stagger: 0.11 }, 0.1);
-    // --- Roue en VUE ÉCLATÉE de montre : quatre plateaux inclinés, séparés en hauteur. ------------
+    // --- Roue en VUE ÉCLATÉE (façon dessin d'horloger) : quatre plateaux inclinés, séparés en hauteur. ------------
     const roueEl = heroEntree.querySelector<HTMLElement>('[data-wheel]');
     if (roueEl) {
       const pile = roueEl.querySelector<HTMLElement>('[data-wheel-stack]')!;
@@ -50,30 +50,24 @@ if (!reduit) {
       plateaux.forEach((p, i) => gsap.set(p, { z: () => i * ecart() }));
       roueEl.classList.add('is-eclatee');
 
-      // 1. Les plateaux tombent un à un à leur place dans la vue éclatée (du cadran à l'aiguille).
+      // 1. Les plateaux tombent un à un à leur place dans la vue éclatée (des 28 jours au repère du jour).
       const pose = gsap.timeline({ defaults: { ease: 'expo.out' }, scrollTrigger: { trigger: roueEl, start: 'top 88%' } });
       pieces.forEach((piece, i) => {
-        pose.fromTo(piece, { z: 420, opacity: 0, scale: 0.85 }, { z: 0, opacity: 1, scale: 1, duration: 1.5 }, 0.25 + i * 0.22);
+        pose.fromTo(piece, { z: 420, opacity: 0, scale: 0.85 }, { z: 0, opacity: 1, scale: 1, duration: 1.2 }, 0.2 + i * 0.16);
       });
       // Les quatre phases de verre arrivent en plus de quatre directions sur leur plateau.
       roueEl.querySelectorAll<SVGGElement>('[data-wheel-part]').forEach((el, i) => {
         gsap.set(el, { svgOrigin: '200 200' });
-        pose.fromTo(el, { x: Number(el.dataset.dx) * 240, y: Number(el.dataset.dy) * 240, rotation: (i % 2 ? -1 : 1) * 30, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.6 }, 0.55 + i * 0.1);
+        pose.fromTo(el, { x: Number(el.dataset.dx) * 240, y: Number(el.dataset.dy) * 240, rotation: (i % 2 ? -1 : 1) * 30, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.3 }, 0.4 + i * 0.08);
       });
-      pose.fromTo(roueEl.querySelectorAll('[data-legende]'), { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 1, stagger: 0.12 }, 1.2);
+      pose.fromTo(roueEl.querySelectorAll('[data-legende]'), { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, stagger: 0.1 }, 0.9);
 
-      // 2. Au défilement, la montre s'assemble : les plateaux se resserrent et se couchent à plat.
-      const assemble = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: window.matchMedia('(min-width: 60rem)').matches
-          ? { trigger: heroEntree, start: 'top top', end: 'bottom 35%', scrub: 0.6 }
-          : { trigger: roueEl, start: 'top 45%', end: 'bottom 20%', scrub: 0.6 },
-        onUpdate: () => roueEl.classList.toggle('is-eclatee', assemble.progress() < 0.85),
-      });
-      assemble.fromTo(pile, { ...eclate }, { rotationX: 0, rotationZ: 0, scale: 1, y: 0, immediateRender: false }, 0);
-      plateaux.forEach((p, i) => assemble.fromTo(p, { z: () => i * ecart() }, { z: i * 0.5, immediateRender: false }, 0));
-      assemble.to(roueEl.querySelectorAll('[data-legende]'), { opacity: 0, x: 30, stagger: 0.05, immediateRender: false }, 0.2);
-      assemble.fromTo(axes, { scaleY: 1 }, { scaleY: 0.01, immediateRender: false }, 0);
+      // 2. Courte pause en vue éclatée, puis assemblage rapide et automatique (sans attendre le défilement).
+      const debut = 2.2;
+      pose.call(() => roueEl.classList.remove('is-eclatee'), undefined, debut + 0.5);
+      pose.to(pile, { rotationX: 0, rotationZ: 0, scale: 1, y: 0, duration: 1.1, ease: 'power4.inOut' }, debut);
+      plateaux.forEach((p, i) => pose.to(p, { z: i * 0.5, duration: 1.1, ease: 'power4.inOut' }, debut));
+      pose.to(axes, { scaleY: 0.01, opacity: 0, duration: 0.8, ease: 'power3.in' }, debut);
     }
   }
 
