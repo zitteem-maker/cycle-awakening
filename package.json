@@ -46,6 +46,7 @@
     "marked": "^18.1.0",
     "opentype.js": "^2.0.0",
     "pdf-lib": "^1.17.1",
-    "playwright-core": "^1.63.0"
+    "playwright-core": "^1.63.0",
+    "wrangler": "^4.157.0"
   }
 }

@@ -9,10 +9,10 @@ import CyclePhases from '../components/home/CyclePhases.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 import { guide, formatPrice } from '../config/offers';
 import { chapitres, recettes, outils } from '../data/livre';
-import { existsSync } from 'node:fs';
 
 // Portrait de la fondatrice : affiché dès que le fichier existe (public/images/site/emeline.webp).
-const portrait = existsSync(new URL('../../public/images/site/emeline.webp', import.meta.url)) ? '/images/site/emeline.webp' : null;
+// (recherche faite au build par Vite, compatible avec tous les environnements de rendu)
+const portrait = Object.keys(import.meta.glob('../../public/images/site/emeline.webp')).length ? '/images/site/emeline.webp' : null;
 
 const prix = formatPrice(guide.priceCents);
 const pages = guide.pages;
