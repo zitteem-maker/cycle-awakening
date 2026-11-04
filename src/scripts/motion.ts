@@ -177,7 +177,7 @@ if (!reduit) {
         window.dispatchEvent(new CustomEvent('ca:cycle-day', { detail: jour }));
         jour = (jour % 28) + 1;
       }
-      minuteur = window.setTimeout(tic, jour >= 17 ? 640 : 480);
+      minuteur = window.setTimeout(tic, jour >= 17 ? 380 : 280);
     };
     ScrollTrigger.create({
       trigger: cycle,
