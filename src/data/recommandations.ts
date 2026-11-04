@@ -8,7 +8,9 @@
 // Une fiche n'apparaît en production que si `lien` ET `relation` (≠ a-confirmer) sont renseignés.
 // Textes : ressenti personnel uniquement (« ce que j'aime, quand je l'utilise »), aucune allégation santé.
 //
-// À REMPLIR PAR LA FONDATRICE : `lien` (URL créée par toi, ex. lien d'affiliation) et `relation`.
+// Mise à jour du 4 novembre 2026 : aucune relation commerciale (confirmé par la fondatrice) → relation « aucune »,
+// liens vers les sites officiels. Restent sans lien (site officiel non trouvé) : Widding, B Yoga, Oko Living,
+// Les Actives Paris, Sentara Holistic, Cosmic Dealer.
 
 export type Relation = 'aucune' | 'affilie' | 'partenariat' | 'produit-offert' | 'a-confirmer';
 
@@ -37,38 +39,38 @@ export const categories: Record<Recommandation['categorie'], { titre: string; in
 
 export const recommandations: Recommandation[] = [
   // Épicerie
-  { marque: 'Amoseeds', produit: 'Graines, cacao cru et superaliments', categorie: 'epicerie', texte: 'Graines de courge, cacao cru : ce que j’ajoute à mes bols et à mes goûters. Je les aime parce qu’ils rendent un repas simple plus gourmand.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
-  { marque: 'Kazidomi', produit: 'Épicerie bio en ligne', categorie: 'epicerie', texte: 'Mon épicerie en ligne pour les essentiels : graines, purées d’oléagineux, infusions, huiles. Pratique quand je n’ai pas envie de sortir faire les courses.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
-  { marque: 'Protéalpes', produit: 'Protéines en poudre sans additifs', categorie: 'epicerie', texte: 'Une liste d’ingrédients courte, que je comprends. J’en ajoute parfois à mon petit-déjeuner les matins où j’ai besoin de quelque chose qui cale.', moment: 'Petit-déjeuner', lien: null, relation: 'a-confirmer' },
+  { marque: 'Amoseeds', produit: 'Graines, cacao cru et superaliments', categorie: 'epicerie', texte: 'Graines de courge, cacao cru : ce que j’ajoute à mes bols et à mes goûters. Je les aime parce qu’ils rendent un repas simple plus gourmand.', moment: 'Toute l’année', lien: 'https://www.amoseeds.com/', relation: 'aucune' },
+  { marque: 'Kazidomi', produit: 'Épicerie bio en ligne', categorie: 'epicerie', texte: 'Mon épicerie en ligne pour les essentiels : graines, purées d’oléagineux, infusions, huiles. Pratique quand je n’ai pas envie de sortir faire les courses.', moment: 'Toute l’année', lien: 'https://www.kazidomi.com/fr', relation: 'aucune' },
+  { marque: 'Protéalpes', produit: 'Protéines en poudre sans additifs', categorie: 'epicerie', texte: 'Une liste d’ingrédients courte, que je comprends. J’en ajoute parfois à mon petit-déjeuner les matins où j’ai besoin de quelque chose qui cale.', moment: 'Petit-déjeuner', lien: 'https://protealpes.com/', relation: 'aucune' },
 
   // Vêtements & lingerie
-  { marque: 'Ysé', produit: 'Lingerie, homewear et maillots', categorie: 'vetements', coupDeCoeur: true, texte: 'La lingerie que je porte en fin de cycle : rien ne serre, les matières sont douces. Leur homewear est devenu mon uniforme des soirées calmes.', moment: 'Surtout J20–J28', lien: null, relation: 'a-confirmer' },
-  { marque: 'Nénés Paris', produit: 'Lingerie pour le corps réel', categorie: 'vetements', texte: 'Des pièces pensées pour le corps tel qu’il est, qui change d’une semaine à l’autre. Confortables et sans artifice.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
-  { marque: 'Widding', produit: 'Laine mérinos et homewear', categorie: 'vetements', texte: 'Le mérinos, doux et chaud sans étouffer. Ce que j’enfile les soirs où j’ai besoin de me sentir enveloppée.', moment: 'Soirées J20–J28', lien: null, relation: 'a-confirmer' },
-  { marque: 'Sézane', produit: 'Basiques en matières naturelles', categorie: 'vetements', texte: 'Des basiques intemporels dans des matières agréables. Pour les jours où je veux de la douceur sans renoncer au style.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
-  { marque: 'Balzac Paris', produit: 'Mode éco-responsable', categorie: 'vetements', texte: 'Des basiques fabriqués en Europe, que je garde longtemps. Pour m’habiller tous les jours du cycle.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
-  { marque: 'Chlore', produit: 'Maillots de bain', categorie: 'vetements', texte: 'Pour la natation douce, une de mes pratiques préférées en fin de cycle. Des maillots qui tiennent et qui durent.', moment: 'Natation douce', lien: null, relation: 'a-confirmer' },
+  { marque: 'Ysé', produit: 'Lingerie, homewear et maillots', categorie: 'vetements', coupDeCoeur: true, texte: 'La lingerie que je porte en fin de cycle : rien ne serre, les matières sont douces. Leur homewear est devenu mon uniforme des soirées calmes.', moment: 'Surtout J20–J28', lien: 'https://yse-paris.com/', relation: 'aucune' },
+  { marque: 'Nénés Paris', produit: 'Lingerie pour le corps réel', categorie: 'vetements', texte: 'Des pièces pensées pour le corps tel qu’il est, qui change d’une semaine à l’autre. Confortables et sans artifice.', moment: 'Toute l’année', lien: 'https://nenes-paris.com/', relation: 'aucune' },
+  { marque: 'Widding', produit: 'Laine mérinos et homewear', categorie: 'vetements', texte: 'Le mérinos, doux et chaud sans étouffer. Ce que j’enfile les soirs où j’ai besoin de me sentir enveloppée.', moment: 'Soirées J20–J28', lien: null, relation: 'aucune' },
+  { marque: 'Sézane', produit: 'Basiques en matières naturelles', categorie: 'vetements', texte: 'Des basiques intemporels dans des matières agréables. Pour les jours où je veux de la douceur sans renoncer au style.', moment: 'Toute l’année', lien: 'https://www.sezane.com/fr', relation: 'aucune' },
+  { marque: 'Balzac Paris', produit: 'Mode éco-responsable', categorie: 'vetements', texte: 'Des basiques fabriqués en Europe, que je garde longtemps. Pour m’habiller tous les jours du cycle.', moment: 'Toute l’année', lien: 'https://www.balzac-paris.fr/', relation: 'aucune' },
+  { marque: 'Chlore', produit: 'Maillots de bain', categorie: 'vetements', texte: 'Pour la natation douce, une de mes pratiques préférées en fin de cycle. Des maillots qui tiennent et qui durent.', moment: 'Natation douce', lien: 'https://www.chlore-swimwear.fr/', relation: 'aucune' },
 
   // Barefoot
-  { marque: 'Vivobarefoot', produit: 'Running et lifestyle barefoot', categorie: 'barefoot', coupDeCoeur: true, texte: 'La marque qui m’a fait découvrir le barefoot. Semelle très fine, pied libre : ce que je mets pour mes longues marches.', moment: 'Marche', lien: null, relation: 'a-confirmer' },
-  { marque: 'Lejean', produit: 'Barefoot du quotidien', categorie: 'barefoot', coupDeCoeur: true, texte: 'Ma paire de tous les jours : élégante, vraiment barefoot, fabriquée en Europe. Celle que je mets le plus souvent.', moment: 'Quotidien', lien: null, relation: 'a-confirmer' },
-  { marque: 'Koops', produit: 'Barefoot casual élégant', categorie: 'barefoot', texte: 'Minimalistes et élégantes, pour les occasions où je veux du style sans enfermer mes pieds.', moment: 'Quotidien', lien: null, relation: 'a-confirmer' },
-  { marque: 'Wildling Shoes', produit: 'Barefoot artisanal', categorie: 'barefoot', texte: 'Des matières naturelles et un esprit artisanal que j’adore. Pour mes sorties en nature.', moment: 'Marche nature', lien: null, relation: 'a-confirmer' },
-  { marque: 'Muris Brand', produit: 'Barefoot au design contemporain', categorie: 'barefoot', texte: 'Une alternative plus urbaine, au design contemporain, pour celles qui veulent passer au barefoot en ville.', moment: 'Quotidien', lien: null, relation: 'a-confirmer' },
+  { marque: 'Vivobarefoot', produit: 'Running et lifestyle barefoot', categorie: 'barefoot', coupDeCoeur: true, texte: 'La marque qui m’a fait découvrir le barefoot. Semelle très fine, pied libre : ce que je mets pour mes longues marches.', moment: 'Marche', lien: 'https://www.vivobarefoot.com/fr', relation: 'aucune' },
+  { marque: 'Lejean', produit: 'Barefoot du quotidien', categorie: 'barefoot', coupDeCoeur: true, texte: 'Ma paire de tous les jours : élégante, vraiment barefoot, fabriquée en Europe. Celle que je mets le plus souvent.', moment: 'Quotidien', lien: 'https://lejanbrand.com/', relation: 'aucune' },
+  { marque: 'Koops', produit: 'Barefoot casual élégant', categorie: 'barefoot', texte: 'Minimalistes et élégantes, pour les occasions où je veux du style sans enfermer mes pieds.', moment: 'Quotidien', lien: 'https://koopsbrand.com/', relation: 'aucune' },
+  { marque: 'Wildling Shoes', produit: 'Barefoot artisanal', categorie: 'barefoot', texte: 'Des matières naturelles et un esprit artisanal que j’adore. Pour mes sorties en nature.', moment: 'Marche nature', lien: 'https://www.wildling.shoes/', relation: 'aucune' },
+  { marque: 'Muris Brand', produit: 'Barefoot au design contemporain', categorie: 'barefoot', texte: 'Une alternative plus urbaine, au design contemporain, pour celles qui veulent passer au barefoot en ville.', moment: 'Quotidien', lien: 'https://murisbrand.com/', relation: 'aucune' },
 
   // Sport & mouvement
-  { marque: 'Chin Mudra', produit: 'Tapis de yoga éco-responsable', categorie: 'mouvement', coupDeCoeur: true, texte: 'Mon tapis pour les séances lentes de fin de cycle. J’aime sa texture et sa démarche éco-responsable.', moment: 'Yoga doux J24–J28', lien: null, relation: 'a-confirmer' },
-  { marque: 'B Yoga', produit: 'Tapis à très bonne adhérence', categorie: 'mouvement', texte: 'Il ne glisse pas, même quand la séance chauffe. Mon tapis pour le Pilates et le yoga plus dynamique.', moment: 'Pilates, yoga dynamique', lien: null, relation: 'a-confirmer' },
-  { marque: 'Oko Living', produit: 'Accessoires de yoga naturels', categorie: 'mouvement', texte: 'Bolsters et blocs en matières naturelles. Ce qui rend mes séances de Yin yoga vraiment confortables.', moment: 'Yin yoga', lien: null, relation: 'a-confirmer' },
-  { marque: 'Circle Sportswear', produit: 'Vêtements de sport recyclés', categorie: 'mouvement', texte: 'Éco-conçus, confortables, au design épuré. Ce que je porte pour le yoga et le Pilates.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
-  { marque: 'Les Actives Paris', produit: 'Sport éco-responsable français', categorie: 'mouvement', texte: 'Une marque française engagée, en matières bio et recyclées. Pour bouger sans renoncer à mes valeurs.', moment: 'Toute l’année', lien: null, relation: 'a-confirmer' },
+  { marque: 'Chin Mudra', produit: 'Tapis de yoga éco-responsable', categorie: 'mouvement', coupDeCoeur: true, texte: 'Mon tapis pour les séances lentes de fin de cycle. J’aime sa texture et sa démarche éco-responsable.', moment: 'Yoga doux J24–J28', lien: 'https://chin-mudra.yoga/', relation: 'aucune' },
+  { marque: 'B Yoga', produit: 'Tapis à très bonne adhérence', categorie: 'mouvement', texte: 'Il ne glisse pas, même quand la séance chauffe. Mon tapis pour le Pilates et le yoga plus dynamique.', moment: 'Pilates, yoga dynamique', lien: null, relation: 'aucune' },
+  { marque: 'Oko Living', produit: 'Accessoires de yoga naturels', categorie: 'mouvement', texte: 'Bolsters et blocs en matières naturelles. Ce qui rend mes séances de Yin yoga vraiment confortables.', moment: 'Yin yoga', lien: null, relation: 'aucune' },
+  { marque: 'Circle Sportswear', produit: 'Vêtements de sport recyclés', categorie: 'mouvement', texte: 'Éco-conçus, confortables, au design épuré. Ce que je porte pour le yoga et le Pilates.', moment: 'Toute l’année', lien: 'https://circlesportswear.com/', relation: 'aucune' },
+  { marque: 'Les Actives Paris', produit: 'Sport éco-responsable français', categorie: 'mouvement', texte: 'Une marque française engagée, en matières bio et recyclées. Pour bouger sans renoncer à mes valeurs.', moment: 'Toute l’année', lien: null, relation: 'aucune' },
 
   // Maison & rituels
-  { marque: 'Yoshien', produit: 'Thés et infusions japonais', categorie: 'rituels', coupDeCoeur: true, texte: 'Des thés d’une qualité rare, en direct du Japon. Préparer mon thé est devenu un vrai moment de pause.', moment: 'Matin', lien: null, relation: 'a-confirmer' },
-  { marque: 'Sentara Holistic', produit: 'Gua sha et brosse pour le corps', categorie: 'rituels', texte: 'Le gua sha le soir, la brosse le matin : deux petits rituels qui m’obligent à prendre cinq minutes pour moi.', moment: 'Rituels J20–J28', lien: null, relation: 'a-confirmer' },
-  { marque: 'Suzanne Kaufmann', produit: 'Huile de bain naturelle', categorie: 'rituels', texte: 'Mon luxe des soirs de fin de cycle : un bain chaud, quelques gouttes, et le téléphone dans une autre pièce.', moment: 'Bain du soir', lien: null, relation: 'a-confirmer' },
-  { marque: 'Cosmic Dealer', produit: 'Encens', categorie: 'rituels', texte: 'Une odeur que j’associe au repos : quand je l’allume, mon cerveau comprend que la journée est finie.', moment: 'Rituel du soir', lien: null, relation: 'a-confirmer' },
-  { marque: 'Fellow', produit: 'Bouilloire design', categorie: 'rituels', texte: 'Une bouilloire qui donne envie de se faire une infusion. Le rituel du soir commence là.', moment: 'Infusion du soir', lien: null, relation: 'a-confirmer' },
+  { marque: 'Yoshien', produit: 'Thés et infusions japonais', categorie: 'rituels', coupDeCoeur: true, texte: 'Des thés d’une qualité rare, en direct du Japon. Préparer mon thé est devenu un vrai moment de pause.', moment: 'Matin', lien: 'https://www.yoshien.com/fr/', relation: 'aucune' },
+  { marque: 'Sentara Holistic', produit: 'Gua sha et brosse pour le corps', categorie: 'rituels', texte: 'Le gua sha le soir, la brosse le matin : deux petits rituels qui m’obligent à prendre cinq minutes pour moi.', moment: 'Rituels J20–J28', lien: null, relation: 'aucune' },
+  { marque: 'Susanne Kaufmann', produit: 'Huile de bain naturelle', categorie: 'rituels', texte: 'Mon luxe des soirs de fin de cycle : un bain chaud, quelques gouttes, et le téléphone dans une autre pièce.', moment: 'Bain du soir', lien: 'https://www.susannekaufmann.com/fr-fr', relation: 'aucune' },
+  { marque: 'Cosmic Dealer', produit: 'Encens', categorie: 'rituels', texte: 'Une odeur que j’associe au repos : quand je l’allume, mon cerveau comprend que la journée est finie.', moment: 'Rituel du soir', lien: null, relation: 'aucune' },
+  { marque: 'Fellow', produit: 'Bouilloire design', categorie: 'rituels', texte: 'Une bouilloire qui donne envie de se faire une infusion. Le rituel du soir commence là.', moment: 'Infusion du soir', lien: 'https://fellowproducts.com/', relation: 'aucune' },
 ];
 
 /** Mises de côté (jamais en production) : à trancher par la fondatrice.
