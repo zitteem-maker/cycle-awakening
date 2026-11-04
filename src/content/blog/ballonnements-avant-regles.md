@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-10
 updatedAt: 2026-11-10
 statut: brouillon
+photo: ballonnements-avant-regles.webp
+photoAlt: "Une personne qui enfile un grand pull en maille écru"
+photoCredit:
+  nom: "Valna Studio"
+  lien: "https://unsplash.com/fr/photos/personne-portant-un-chandail-en-tricot-gris-mU88MlEFcoU"
 consulter:
   - des douleurs abdominales intenses, ou qui t'empêchent de fonctionner
   - des ballonnements présents tout le mois, ou qui s'aggravent avec le temps

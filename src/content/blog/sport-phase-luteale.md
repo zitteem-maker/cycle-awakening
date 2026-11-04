@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-17
 updatedAt: 2026-11-17
 statut: brouillon
+photo: sport-phase-luteale.webp
+photoAlt: "Une femme pieds nus pose ses accessoires sur un tapis de yoga"
+photoCredit:
+  nom: "Mathilde Langevin"
+  lien: "https://unsplash.com/fr/photos/une-paire-de-pieds-avec-des-sandales-aBJ3A-2LJyU"
 consulter:
   - une douleur pendant ou après l'effort qui ne passe pas, ou qui s'aggrave
   - un essoufflement inhabituel, des palpitations ou des vertiges à l'effort

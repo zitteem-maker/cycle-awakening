@@ -9,10 +9,10 @@ publishedAt: 2026-11-04
 updatedAt: 2026-11-04
 statut: publie
 photo: phase-luteale.webp
-photoAlt: "Une femme de dos devant une fenêtre ouverte, lumière douce de fin de journée"
+photoAlt: "Bouquet de fleurs séchées blanches et dorées sur fond crème"
 photoCredit:
-  nom: "Sam Chang"
-  lien: "https://unsplash.com/fr/photos/femme-en-robe-brune-debout-pres-de-la-cloture-en-metal-bleu-pendant-la-journee-pP4kdLny3Gw"
+  nom: "Annie Spratt"
+  lien: "https://unsplash.com/fr/photos/fleur-blanche-en-gros-plan-photographie-zo7-ZyvplAI"
 consulter:
   - une douleur intense, brutale, ou qui t'empêche de fonctionner
   - des saignements très abondants, ou des symptômes nouveaux qui s'aggravent d'un cycle à l'autre

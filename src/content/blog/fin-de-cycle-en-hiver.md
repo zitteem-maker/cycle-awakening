@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-13
 updatedAt: 2026-11-13
 statut: brouillon
+photo: fin-de-cycle-en-hiver.webp
+photoAlt: "Une bougie allumée sur une table de nuit, à côté d'un lit défait"
+photoCredit:
+  nom: "Darla Hueske"
+  lien: "https://unsplash.com/fr/photos/une-bougie-allumee-sur-une-table-de-nuit-a-cote-dun-lit-chAI1N9AtfI"
 consulter:
   - une fatigue ou une humeur très basse qui dure tout l'hiver, pas seulement en fin de cycle
   - une perte d'intérêt pour tout, un sommeil très perturbé ou des idées très sombres

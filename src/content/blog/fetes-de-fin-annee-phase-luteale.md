@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-20
 updatedAt: 2026-11-20
 statut: brouillon
+photo: fetes-de-fin-annee-phase-luteale.webp
+photoAlt: "Table de fête dehors : gâteau, branches de sapin, bougies vertes et guirlande lumineuse"
+photoCredit:
+  nom: "Anita Austvika"
+  lien: "https://unsplash.com/fr/photos/une-table-avec-un-gateau-et-des-bougies-r2n8dcHevE0"
 consulter:
   - une humeur si basse, une anxiété si forte ou une irritabilité si intense qu'elles abîment tes fêtes, tes relations ou ton travail
   - des symptômes de fin de cycle qui s'aggravent d'un mois à l'autre
