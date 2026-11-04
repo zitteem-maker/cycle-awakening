@@ -3,31 +3,36 @@
     "id": "journal",
     "titre": "Journal de cycle — 7 jours",
     "fichier": "journal-7-jours.html",
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "titre_en": "Cycle journal — 7 days"
   },
   {
     "id": "planner",
     "titre": "Planner de la semaine",
     "fichier": "planner-hebdo.html",
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "titre_en": "Weekly planner"
   },
   {
     "id": "urgence",
     "titre": "Protocole d'urgence J24–J28",
     "fichier": "protocole-j24-j28.html",
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "titre_en": "Emergency plan D24–D28"
   },
   {
     "id": "courses",
     "titre": "Liste de courses de fin de cycle",
     "fichier": "liste-de-courses.html",
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "titre_en": "End-of-cycle shopping list"
   },
   {
     "id": "notice-pour-lui",
     "titre": "Bonus · La notice pour lui",
     "fichier": "notice-pour-lui.html",
     "statut": "brouillon",
-    "bonus": true
+    "bonus": true,
+    "titre_en": "Bonus · The guide for him"
   }
 ]

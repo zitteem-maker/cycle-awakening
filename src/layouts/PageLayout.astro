@@ -12,11 +12,12 @@ interface Props extends ComponentProps<typeof BaseLayout> {
   headerOverlay?: boolean;
 }
 const { headerCta = true, headerOverlay = true, ...base } = Astro.props;
+const { alternate } = base;
 ---
 
 <BaseLayout {...base}>
   <slot name="head" slot="head" />
-  <SiteHeader cta={headerCta} overlay={headerOverlay} />
+  <SiteHeader cta={headerCta} overlay={headerOverlay} alternate={alternate} />
   <main id="contenu">
     <slot />
   </main>

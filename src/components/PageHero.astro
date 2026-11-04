@@ -16,17 +16,20 @@ interface Props {
   /** Brouillon sans photo : affiche un emplacement « Photo à venir ». */
   photoAttendue?: boolean;
 }
+import { langOf, t as ui } from '../i18n';
 const { eyebrow, title, lead, size = 'bandeau', photo, photoAlt = '', credit, photoAttendue = false } = Astro.props;
-// Typographie française : espace insécable avant : ; ! ? (le signe ne se retrouve jamais seul en début de ligne).
-const typo = (t: string) => t.replace(/ ([:;!?»])/g, '\u00a0$1').replace(/« /g, '«\u00a0');
+const lang = langOf(Astro.url);
+const tx = ui(lang).hero;
+// Typographie française : espace insécable avant : ; ! ? (le signe ne se retrouve jamais seul en début de ligne). Pas en anglais.
+const typo = (t: string) => lang === 'en' ? t : t.replace(/ ([:;!?»])/g, '\u00a0$1').replace(/« /g, '«\u00a0');
 const avecPhoto = Boolean(photo) || photoAttendue;
 ---
 
 <section class:list={['page-hero deep grain', `page-hero--${size}`, { 'page-hero--photo': avecPhoto }]} data-spotlight data-hero-page>
   {avecPhoto && (
     <figure class="page-hero__photo" aria-hidden={photo ? undefined : 'true'}>
-      {photo ? <img src={photo} alt={photoAlt} loading="eager" decoding="async" fetchpriority="high" /> : <span class="page-hero__attente">Photo à venir</span>}
-      {credit && <figcaption>Photo : <a href={credit.lien} rel="noopener">{credit.nom}</a>{credit.lien.includes('unsplash.com') && ' sur Unsplash'}</figcaption>}
+      {photo ? <img src={photo} alt={photoAlt} loading="eager" decoding="async" fetchpriority="high" /> : <span class="page-hero__attente">{tx.photoAttente}</span>}
+      {credit && <figcaption>{tx.photo} <a href={credit.lien} rel="noopener">{credit.nom}</a>{credit.lien.includes('unsplash.com') && tx.surUnsplash}</figcaption>}
     </figure>
   )}
   <div class="aurora" aria-hidden="true">

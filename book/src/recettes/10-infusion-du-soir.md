@@ -7,6 +7,9 @@ categorie: Boisson chaude
 temps: 10 min
 portions: 1 théière (2 tasses)
 photo: infusion-du-soir.jpg
+nom_en: Evening infusion
+titre_en: Evening infusion with verbena, orange and cinnamon
+temps_en: 10 min
 intro: Une infusion douce et parfumée pour marquer la fin de journée. Le geste compte autant que la tasse.
 statut: brouillon
 ---

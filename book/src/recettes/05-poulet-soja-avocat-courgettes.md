@@ -7,6 +7,9 @@ categorie: Plat · 20 minutes
 temps: 10 min + 10 min de cuisson
 portions: 2 personnes
 photo: poulet-soja-avocat.jpg
+nom_en: Soy chicken & avocado
+titre_en: Soy chicken, sautéed courgettes, avocado and spring onions
+temps_en: 10 min + 10 min cooking
 intro: Un plat complet en vingt minutes : la marinade fait tout le travail, l'avocat apporte le fondant.
 statut: brouillon
 ---

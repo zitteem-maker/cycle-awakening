@@ -2,6 +2,8 @@
 ordre: 1
 titre: Ce qui se passe vraiment
 accroche: Avant de changer quoi que ce soit, comprendre. Ton corps ne te trahit pas. Il suit une logique.
+titre_en: What is really happening
+accroche_en: Before changing anything, understand. Your body is not betraying you. It follows a logic.
 statut: brouillon
 ---
 

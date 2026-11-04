@@ -4,6 +4,7 @@
 // Si le paiement n'est pas branché, il n'affiche jamais de lien mort : il renvoie vers la liste d'attente.
 import { CHECKOUT_URL } from '../config/site';
 import { guide, formatPrice } from '../config/offers';
+import { langOf, ancre, intlLocale, t } from '../i18n';
 
 interface Props {
   /** Emplacement du bouton, transmis au tracking (ex. "hero", "offre", "footer"). */
@@ -13,12 +14,16 @@ interface Props {
   variant?: 'primary' | 'secondary' | 'on-deep';
   /** Cible quand le paiement n'est pas encore branché. */
   fallbackHref?: string;
+  /** Libellé court (en-tête), quand le paiement n'est pas encore branché. */
+  court?: boolean;
 }
 
-const { location, label, variant = 'primary', fallbackHref = '/#newsletter' } = Astro.props;
-const price = formatPrice(guide.priceCents);
+const lang = langOf(Astro.url);
+const tx = t(lang).cta;
+const { location, label, variant = 'primary', fallbackHref = ancre('newsletter', lang), court = false } = Astro.props;
+const price = formatPrice(guide.priceCents, intlLocale[lang]);
 const available = CHECKOUT_URL !== null;
-const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être prévenue de la sortie';
+const text = available ? (label ?? tx.obtenir(price)) : court ? tx.attenteCourt : tx.attente;
 ---
 
 {available ? (
@@ -41,7 +46,7 @@ const text = available ? (label ?? `Obtenir le guide — ${price}`) : 'Être pr�
     >
       {text}
     </a>
-    <span class="cta-note">Le guide arrive bientôt.</span>
+    <span class="cta-note">{tx.bientot}</span>
   </span>
 )}
 

@@ -7,25 +7,30 @@ interface Props {
   source: string;
   variant?: 'light' | 'deep';
 }
+import { langOf, path, t } from '../i18n';
 const { source, variant = 'light' } = Astro.props;
 const id = `nl-${source}`;
+const lang = langOf(Astro.url);
+const tx = t(lang).nl;
+const messages = JSON.stringify({ verifie: tx.verifie, coche: tx.coche, envoi: tx.envoi, presque: tx.presque, oups: tx.oups });
 ---
 
-<form class:list={['nl', `nl--${variant}`]} method="post" action="/api/newsletter" data-newsletter novalidate>
+<form class:list={['nl', `nl--${variant}`]} method="post" action="/api/newsletter" data-newsletter data-messages={messages} novalidate>
   <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="lang" value={lang} />
   <!-- Piège à robots : champ invisible, doit rester vide. -->
   <div class="nl__trap" aria-hidden="true">
-    <label for={`${id}-site`}>Ne pas remplir</label>
+    <label for={`${id}-site`}>{tx.trap}</label>
     <input id={`${id}-site`} name="site" type="text" tabindex="-1" autocomplete="off" />
   </div>
   <div class="nl__row">
-    <label class="visually-hidden" for={`${id}-email`}>Ton adresse email</label>
-    <input id={`${id}-email`} class="nl__email" name="email" type="email" required autocomplete="email" placeholder="ton@email.com" />
-    <button class="nl__btn" type="submit">S’inscrire</button>
+    <label class="visually-hidden" for={`${id}-email`}>{tx.emailLabel}</label>
+    <input id={`${id}-email`} class="nl__email" name="email" type="email" required autocomplete="email" placeholder={tx.placeholder} />
+    <button class="nl__btn" type="submit">{tx.bouton}</button>
   </div>
   <label class="nl__consent">
     <input type="checkbox" name="consent" value="oui" required />
-    <span>J’accepte de recevoir la newsletter de Cycle Awakening. Désinscription en un clic à tout moment. Voir la <a href="/confidentialite">politique de confidentialité</a>.</span>
+    <span>{tx.consentement} <a href={path('confidentialite', lang)}>{tx.politique}</a>.</span>
   </label>
   <p class="nl__status" role="status" aria-live="polite" data-status></p>
 </form>
@@ -33,32 +38,33 @@ const id = `nl-${source}`;
 <script>
   for (const form of document.querySelectorAll<HTMLFormElement>('[data-newsletter]')) {
     const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const m = JSON.parse(form.dataset.messages || '{}') as Record<string, string>;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const data = new FormData(form);
       const email = String(data.get('email') || '').trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        status.textContent = 'Vérifie ton adresse email.';
+        status.textContent = m.verifie;
         return;
       }
       if (!data.get('consent')) {
-        status.textContent = 'Coche la case pour accepter de recevoir la newsletter.';
+        status.textContent = m.coche;
         return;
       }
       const btn = form.querySelector<HTMLButtonElement>('button')!;
       btn.disabled = true;
-      status.textContent = 'Envoi…';
+      status.textContent = m.envoi;
       try {
         const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         const body = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(body.message || 'erreur');
         form.classList.add('is-done');
-        status.textContent = 'Presque fini : ouvre l’email que je viens de t’envoyer et confirme ton inscription.';
+        status.textContent = m.presque;
         window.dispatchEvent(new CustomEvent('ca:event', { detail: { name: 'newsletter_signup', source: data.get('source') } }));
       } catch (err) {
         status.textContent = (err as Error).message !== 'erreur'
           ? (err as Error).message
-          : 'Oups, l’inscription n’a pas fonctionné. Réessaie dans un instant ou écris à hello@cycleawakening.com.';
+          : m.oups;
       } finally {
         btn.disabled = false;
       }

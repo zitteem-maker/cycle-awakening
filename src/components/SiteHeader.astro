@@ -3,30 +3,43 @@
 // Menu mobile accessible (bouton avec aria-expanded, fermeture avec Échap).
 import Logo from './Logo.astro';
 import Cta from './Cta.astro';
-interface Props { cta?: boolean; overlay?: boolean }
-const { cta = true, overlay = false } = Astro.props;
+import { langOf, alternates, path, ancre, langs, t, type Lang } from '../i18n';
+interface Props { cta?: boolean; overlay?: boolean; alternate?: Partial<Record<Lang, string | null>> }
+const { cta = true, overlay = false, alternate } = Astro.props;
+const lang = langOf(Astro.url);
+const tx = t(lang);
 const liens = [
-  { href: '/#guide', label: 'Le guide' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/recommandations', label: 'Recommandations' },
-  { href: '/#faq', label: 'Questions' },
-  { href: '/#newsletter', label: 'Newsletter' },
+  { href: ancre('guide', lang), label: tx.nav.guide },
+  { href: path('blog', lang), label: tx.nav.blog },
+  { href: path('recommandations', lang), label: tx.nav.recommandations },
+  { href: ancre('faq', lang), label: tx.nav.faq },
+  { href: ancre('newsletter', lang), label: tx.nav.newsletter },
 ];
+// Sélecteur de langue : même page dans l'autre langue, ou son accueil si la page n'a pas d'équivalent.
+const alt = alternates(Astro.url, alternate);
+const choix = langs.map((l) => ({ l, href: alt[l] ?? path('accueil', l), actif: l === lang }));
 ---
 
 <header class:list={['site-header', { 'site-header--overlay': overlay }]} data-header>
   <div class="container site-header__inner">
-    <a href="/" class="site-header__logo" aria-label="Cycle Awakening, accueil">
+    <a href={path('accueil', lang)} class="site-header__logo" aria-label={tx.accueilAria}>
       <Logo class="site-header__svg" />
     </a>
-    <nav class="site-header__nav" id="menu-principal" aria-label="Navigation principale">
+    <nav class="site-header__nav" id="menu-principal" aria-label={tx.navAria}>
       <ul>
         {liens.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
       </ul>
-      {cta && <div class="site-header__cta"><Cta location="header" variant="primary" /></div>}
+      {cta && <div class="site-header__cta"><Cta location="header" variant="primary" court /></div>}
+    </nav>
+    <nav class="site-header__langue" aria-label={tx.langue.aria}>
+      {choix.map((c) => (
+        c.actif
+          ? <span class="langue__item is-actif" aria-current="true" title={tx.langue[c.l]}>{c.l.toUpperCase()}</span>
+          : <a class="langue__item" href={c.href} hreflang={c.l} lang={c.l} title={tx.langue[c.l]} data-langue={c.l}>{c.l.toUpperCase()}</a>
+      ))}
     </nav>
     <button class="site-header__burger" type="button" aria-expanded="false" aria-controls="menu-principal" data-burger>
-      <span class="visually-hidden">Menu</span>
+      <span class="visually-hidden">{tx.menu}</span>
       <span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </div>
@@ -45,6 +58,10 @@ const liens = [
       header.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
     });
+    // Mémorise le choix de langue (préférence locale, aucun cookie).
+    header.querySelectorAll<HTMLAnchorElement>('[data-langue]').forEach((a) => a.addEventListener('click', () => {
+      try { localStorage.setItem('ca-langue', a.dataset.langue!); } catch { /* stockage indisponible */ }
+    }));
     header.querySelectorAll('nav a').forEach((a) => a.addEventListener('click', close));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
   }
@@ -72,10 +89,10 @@ const liens = [
     backdrop-filter: blur(20px) saturate(1.7); -webkit-backdrop-filter: blur(20px) saturate(1.7);
   }
   .site-header.is-open .site-header__inner { border-radius: 24px 24px 0 0; }
-  .site-header__logo { color: inherit; display: inline-flex; min-height: var(--size-tap-target); align-items: center; }
+  .site-header__logo { flex: none; color: inherit; display: inline-flex; min-height: var(--size-tap-target); align-items: center; }
   .site-header__logo :global(svg) { width: clamp(10rem, 28vw, 13rem); height: auto; }
-  .site-header__nav { display: flex; align-items: center; gap: var(--space-8); white-space: nowrap; }
-  .site-header__nav ul { list-style: none; display: flex; gap: var(--space-6); margin: 0; padding: 0; white-space: nowrap; }
+  .site-header__nav { display: flex; align-items: center; gap: var(--space-6); white-space: nowrap; margin-left: auto; }
+  .site-header__nav ul { list-style: none; display: flex; gap: 1.1rem; margin: 0; padding: 0; white-space: nowrap; }
   .site-header__nav a:not(.cta) {
     color: inherit; text-decoration: none; font-size: var(--font-size-xs); letter-spacing: 0.12em; text-transform: uppercase;
     background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; padding-block: var(--space-2);
@@ -87,7 +104,23 @@ const liens = [
   .site-header--overlay:not(.is-scrolled) :focus-visible { outline-color: var(--semantic-focus-on-deep); }
   .site-header__burger { display: none; }
 
-  @media (max-width: 74rem) {
+  /* Sélecteur de langue : petite pilule FR | EN, toujours visible en haut à droite. */
+  .site-header__langue {
+    display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: var(--radius-pill);
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent); flex: none;
+  }
+  .langue__item {
+    display: inline-grid; place-items: center; min-width: 2.4rem; min-height: 2rem; padding: 0 var(--space-2);
+    border-radius: var(--radius-pill); font-size: var(--font-size-xs); letter-spacing: 0.1em; color: inherit; text-decoration: none;
+    transition: background-color var(--motion-duration-fast) var(--motion-ease);
+  }
+  a.langue__item { opacity: 0.75; }
+  a.langue__item:hover { opacity: 1; background: color-mix(in srgb, currentColor 12%, transparent); }
+  .langue__item.is-actif { background: color-mix(in srgb, currentColor 16%, transparent); font-weight: var(--font-weight-semibold); }
+
+  @media (max-width: 84rem) {
+    .site-header__inner { gap: var(--space-3); }
+    .site-header__langue { margin-left: auto; }
     .site-header__burger {
       display: grid; place-content: center; gap: 6px; width: var(--size-tap-target); height: var(--size-tap-target);
       background: none; border: 0; color: inherit; cursor: pointer;

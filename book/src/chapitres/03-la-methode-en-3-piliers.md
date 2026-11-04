@@ -2,6 +2,8 @@
 ordre: 3
 titre: La méthode en trois piliers
 accroche: Nourrir, bouger, lire les signaux. Pas moins, différemment.
+titre_en: The method in three pillars
+accroche_en: Nourish, move, read the signals. Not less, differently.
 statut: brouillon
 ---
 

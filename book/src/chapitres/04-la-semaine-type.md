@@ -2,6 +2,8 @@
 ordre: 4
 titre: La semaine type J17–J28
 accroche: Concrètement, jour après jour. À adapter à la durée de ton cycle.
+titre_en: A typical week, D17–D28
+accroche_en: In practice, day after day. To adapt to the length of your cycle.
 statut: brouillon
 ---
 

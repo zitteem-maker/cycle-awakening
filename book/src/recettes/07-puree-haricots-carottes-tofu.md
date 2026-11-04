@@ -7,6 +7,9 @@ categorie: Plat végétal
 temps: 15 min + 25 min de cuisson
 portions: 2 personnes
 photo: puree-haricots-carottes.jpg
+nom_en: Beans, carrots & tofu
+titre_en: White bean purée, roasted carrots and marinated tofu
+temps_en: 15 min + 25 min cooking
 intro: Une purée onctueuse sans pommes de terre, des carottes rôties au cumin, un tofu laqué au soja. Végan avec le sirop d'érable.
 statut: brouillon
 ---

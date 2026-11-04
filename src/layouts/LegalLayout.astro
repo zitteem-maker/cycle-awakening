@@ -3,21 +3,21 @@
 import PageLayout from './PageLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { legal } from '../config/legal';
+import { langOf, formatDate, t } from '../i18n';
 
 interface Props { title: string; description: string }
 const { title, description } = Astro.props;
-const updated = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long' }).format(new Date(legal.updatedAt));
+const lang = langOf(Astro.url);
+const tx = t(lang).legal;
+const updated = formatDate(new Date(legal.updatedAt), lang);
 ---
 
 <PageLayout title={title} description={description} headerCta={false}>
-  <PageHero eyebrow="Informations légales" title={title} lead={`Dernière mise à jour : ${updated}`} />
+  <PageHero eyebrow={tx.eyebrow} title={title} lead={tx.maj(updated)} />
   <article class="legal container section">
     <div class="legal__verre glass">
-    {!legal.validated && (
-      <p class="legal__draft" role="note">
-        Document en cours de validation : ce texte est un modèle de travail, il n’a pas encore été relu par un·e juriste.
-      </p>
-    )}
+    {tx.traduction && <p class="legal__draft" role="note">{tx.traduction}</p>}
+    {!legal.validated && <p class="legal__draft" role="note">{tx.brouillon}</p>}
     <slot />
     </div>
   </article>

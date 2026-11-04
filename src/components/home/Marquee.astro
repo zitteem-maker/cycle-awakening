@@ -2,10 +2,12 @@
 // Bandeau défilant des phrases signature. Pause au survol et au focus ; figé si mouvement réduit.
 interface Props { phrases: string[] }
 const { phrases } = Astro.props;
+import { langOf } from '../../i18n';
+const en = langOf(Astro.url) === 'en';
 const suite = [...phrases, ...phrases];
 ---
 
-<div class="marquee" role="region" aria-label="Nos phrases signature" data-marquee>
+<div class="marquee" role="region" aria-label={en ? 'Our signature phrases' : 'Nos phrases signature'} data-marquee>
   <ul class="visually-hidden">{phrases.map((p) => <li>{p}</li>)}</ul>
   <div class="marquee__track" aria-hidden="true">
     {suite.map((p) => (

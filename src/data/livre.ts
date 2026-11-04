@@ -27,6 +27,8 @@ export const chapitres = lire(chapitresSrc).map((c) => ({
   ordre: Number(c.ordre),
   titre: c.titre,
   accroche: c.accroche,
+  titre_en: c.titre_en ?? c.titre,
+  accroche_en: c.accroche_en ?? c.accroche,
 }));
 
 export const recettes = lire(recettesSrc).map((r) => ({
@@ -35,9 +37,13 @@ export const recettes = lire(recettesSrc).map((r) => ({
   theme: r.theme,
   temps: r.temps,
   photo: r.photo,
+  nom_en: r.nom_en ?? r.nom ?? r.titre,
+  titre_en: r.titre_en ?? r.titre,
+  temps_en: r.temps_en ?? r.temps,
 }));
 
-export const outils = (outilsJson as { titre: string; bonus?: boolean }[]).map((o) => ({
+export const outils = (outilsJson as { titre: string; titre_en?: string; bonus?: boolean }[]).map((o) => ({
   titre: o.titre.replace(/^Bonus · /, ''),
+  titre_en: (o.titre_en ?? o.titre).replace(/^Bonus · /, ''),
   bonus: Boolean(o.bonus),
 }));

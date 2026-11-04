@@ -2,6 +2,8 @@
 ordre: 5
 titre: Et maintenant
 accroche: Un cycle ne suffit pas pour tout changer. Trois cycles, souvent, font la différence.
+titre_en: And now
+accroche_en: One cycle is not enough to change everything. Three cycles often make the difference.
 statut: brouillon
 ---
 

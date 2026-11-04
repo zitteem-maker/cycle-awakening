@@ -1,33 +1,32 @@
 ---
 import Logo from './Logo.astro';
 import { legal, salesReady } from '../config/legal';
+import { langOf, path, t } from '../i18n';
 const year = new Date().getFullYear();
+const lang = langOf(Astro.url);
+const f = t(lang).footer;
 ---
 
 <footer class="site-footer deep grain">
   <div class="container site-footer__inner">
     <div>
-      <a href="/" class="site-footer__logo" aria-label="Cycle Awakening, accueil"><Logo /></a>
-      <p class="site-footer__tagline signature">Tu n’es pas instable. Tu es cyclique.</p>
+      <a href={path('accueil', lang)} class="site-footer__logo" aria-label={t(lang).accueilAria}><Logo /></a>
+      <p class="site-footer__tagline signature">{f.signature}</p>
     </div>
-    <nav aria-label="Informations légales">
+    <nav aria-label={f.aria}>
       <ul class="site-footer__links">
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/recommandations">Recommandations</a></li>
-        <li><a href="/mentions-legales">Mentions légales</a></li>
-        {salesReady && <li><a href="/cgv">Conditions générales de vente</a></li>}
-        <li><a href="/confidentialite">Confidentialité</a></li>
-        <li><a href="/cookies">Cookies</a></li>
+        <li><a href={path('blog', lang)}>{f.blog}</a></li>
+        <li><a href={path('recommandations', lang)}>{f.recommandations}</a></li>
+        <li><a href={path('mentions', lang)}>{f.mentions}</a></li>
+        {salesReady && <li><a href={path('cgv', lang)}>{f.cgv}</a></li>}
+        <li><a href={path('confidentialite', lang)}>{f.confidentialite}</a></li>
+        <li><a href={path('cookies', lang)}>{f.cookies}</a></li>
         <li><a href={`mailto:${legal.editor.email}`}>{legal.editor.email}</a></li>
       </ul>
     </nav>
   </div>
   <div class="container">
-    <p class="site-footer__disclaimer">
-      Cycle Awakening propose un accompagnement de mode de vie. Il ne remplace pas un avis médical, un diagnostic ou un
-      traitement. En cas de douleur intense, de saignements très abondants ou de symptômes inhabituels, consulte un·e
-      professionnel·le de santé.
-    </p>
+    <p class="site-footer__disclaimer">{f.disclaimer}</p>
     <p class="site-footer__copy">© {year} Cycle Awakening</p>
   </div>
 </footer>

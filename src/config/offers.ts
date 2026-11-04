@@ -31,7 +31,7 @@ export const premium = {
 export const starter = { id: 'starter', name: 'Cycle Starter', priceCents: null, billing: 'free' } satisfies Offer;
 
 export function formatPrice(cents: number | null, locale = 'fr-FR'): string {
-  if (cents === null) return 'Gratuit';
+  if (cents === null) return locale.startsWith('en') ? 'Free' : 'Gratuit';
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: 'EUR',

@@ -2,6 +2,7 @@
 // Gabarit commun : métadonnées SEO, Open Graph / Twitter, favicon, polices préchargées.
 import '../styles/global.css';
 import { SITE_URL, site } from '../config/site';
+import { langOf, alternates, cleanPath, htmlLang, ogLocale, t, type Lang } from '../i18n';
 import interRegular from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import cormorantMedium from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2?url';
 
@@ -14,26 +15,32 @@ interface Props {
   type?: 'website' | 'article' | 'product';
   /** true pour les pages à ne pas indexer (merci, téléchargement, guide de style…). */
   noindex?: boolean;
+  /** Équivalent de la page dans l'autre langue, pour les pages hors table de routes (articles). */
+  alternate?: Partial<Record<Lang, string | null>>;
 }
 
+const lang = langOf(Astro.url);
+const tx = t(lang);
 const {
   title,
-  description = site.description,
+  description = tx.description,
   image = site.shareImage,
-  imageAlt = site.shareImageAlt,
+  imageAlt = tx.shareAlt,
   type = 'website',
   noindex = false,
+  alternate,
 } = Astro.props;
 
-const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.tagline}`;
-// Cloudflare Pages sert /merci.html sous /merci : l'URL canonique n'a ni « .html » ni « index ».
-const cleanPath = Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/(.)\/$/, '$1') || '/';
-const canonical = new URL(cleanPath, SITE_URL).toString();
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${tx.tagline}`;
+// L'URL canonique n'a ni « .html » ni « index ».
+const canonical = new URL(cleanPath(Astro.url), SITE_URL).toString();
+const alt = alternates(Astro.url, alternate);
+const hreflang = noindex ? [] : (Object.entries(alt).filter(([, u]) => u) as [Lang, string][]);
 const imageUrl = new URL(image, SITE_URL).toString();
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,6 +48,8 @@ const imageUrl = new URL(image, SITE_URL).toString();
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {hreflang.map(([l, u]) => <link rel="alternate" hreflang={htmlLang[l]} href={new URL(u, SITE_URL).toString()} />)}
+    {hreflang.length > 1 && alt.fr && <link rel="alternate" hreflang="x-default" href={new URL(alt.fr, SITE_URL).toString()} />}
 
     <link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={cormorantMedium} as="font" type="font/woff2" crossorigin />
@@ -52,7 +61,7 @@ const imageUrl = new URL(image, SITE_URL).toString();
     <meta name="theme-color" content="#F7F4EF" />
 
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:locale" content={site.locale} />
+    <meta property="og:locale" content={ogLocale[lang]} />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -79,7 +88,7 @@ const imageUrl = new URL(image, SITE_URL).toString();
   </head>
   <body>
     <div class="fond-site" aria-hidden="true"><span></span><span></span><span></span></div>
-    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <a class="skip-link" href="#contenu">{tx.skip}</a>
     <slot />
     <script>
       import '../scripts/motion';

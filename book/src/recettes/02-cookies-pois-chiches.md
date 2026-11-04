@@ -7,6 +7,9 @@ categorie: Goûter · En-cas
 temps: 15 min + 15 min de cuisson
 portions: 12 cookies
 photo: cookies-pois-chiches.jpg
+nom_en: Chickpea cookies
+titre_en: Chickpea, oat, walnut and red berry cookies
+temps_en: 15 min + 15 min baking
 intro: Une base de pois chiches qu'on ne devine pas, des flocons d'avoine, du croquant et l'acidité des fruits rouges.
 statut: brouillon
 ---

@@ -1,7 +1,31 @@
 ---
 // « Ton cycle en quatre temps » : onglets accessibles (clavier : flèches gauche/droite).
 // Textes repris du chapitre 1 du guide, formulés en tendances, sans diagnostic.
-const phases = [
+import { langOf } from '../../i18n';
+const en = langOf(Astro.url) === 'en';
+const phasesEn = [
+  {
+    id: 'regles', nom: 'Period', jours: 'D1 – D5', part: 5,
+    corps: 'Hormones are at their lowest. The body sheds the lining of the uterus.',
+    ressenti: 'Many women feel: tired, in need of warmth, wanting to stay quiet.',
+  },
+  {
+    id: 'folliculaire', nom: 'Follicular', jours: 'D6 – D13', part: 8,
+    corps: 'Oestrogen rises again, and a follicle gets ready in the ovary.',
+    ressenti: 'Many women feel: energy coming back, wanting to do things and see people.',
+  },
+  {
+    id: 'ovulation', nom: 'Ovulation', jours: '≈ D14', part: 1,
+    corps: 'Hormonal peak: the egg is released. A short moment, often around the middle of the cycle.',
+    ressenti: 'Many women feel: drive and confidence.',
+  },
+  {
+    id: 'luteale', nom: 'Luteal', jours: 'D15 – D28', part: 14,
+    corps: 'Progesterone dominates, then all hormones fall before the period.',
+    ressenti: 'Many women feel: slower, more sensitive, bloated, with cravings and lighter sleep. This is where the guide walks with you, from D17 to D28.',
+  },
+];
+const phasesFr = [
   {
     id: 'regles', nom: 'Règles', jours: 'J1 – J5', part: 5,
     corps: 'Les hormones sont à leur niveau le plus bas. Le corps élimine la muqueuse de l’utérus.',
@@ -23,6 +47,7 @@ const phases = [
     ressenti: 'Beaucoup ressentent : ralentissement, sensibilité, ballonnements, envies, sommeil plus léger. C’est là que le guide t’accompagne, de J17 à J28.',
   },
 ];
+const phases = en ? phasesEn : phasesFr;
 ---
 
 <div class="phases" data-phases>
@@ -34,7 +59,7 @@ const phases = [
     })}
   </div>
 
-  <div class="phases__tabs" role="tablist" aria-label="Les quatre temps du cycle">
+  <div class="phases__tabs" role="tablist" aria-label={en ? 'The four phases of the cycle' : 'Les quatre temps du cycle'}>
     {phases.map((p, i) => (
       <button
         type="button"
@@ -59,7 +84,7 @@ const phases = [
       <p class="phases__ressenti">{p.ressenti}</p>
     </div>
   ))}
-  <p class="phases__note">Repères pour un cycle moyen de 28 jours. Le tien peut être plus court ou plus long : c’est normal.</p>
+  <p class="phases__note">{en ? 'Markers for an average 28-day cycle. Yours may be shorter or longer: that’s normal.' : 'Repères pour un cycle moyen de 28 jours. Le tien peut être plus court ou plus long : c’est normal.'}</p>
 </div>
 
 <script>

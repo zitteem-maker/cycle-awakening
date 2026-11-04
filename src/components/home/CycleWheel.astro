@@ -5,6 +5,11 @@
 //   03 ta zone J17–J28 (verre fuchsia) · 04 le repère du jour + le compteur
 // src/scripts/motion.ts : les plateaux se posent en vue éclatée, puis s'assemblent au défilement.
 // Sans JavaScript ou en mouvement réduit : la roue s'affiche assemblée, à plat. Décorative (aria-hidden).
+import { langOf } from '../../i18n';
+const lang = langOf(Astro.url);
+const en = lang === 'en';
+/** Préfixe des jours : J17 en français, D17 (Day 17) en anglais. */
+const J = en ? 'D' : 'J';
 const C = 200;
 const R = 158;
 const EP = 13;
@@ -24,10 +29,10 @@ function secteur(debut: number, fin: number, ecart = 0.14, r = R, ep = EP) {
 }
 // Repères moyens pour un cycle de 28 jours (le site rappelle que chaque cycle est différent).
 const phases = [
-  { id: 'regles', nom: 'Règles', debut: 1, fin: 5, dx: 0.35, dy: -1 },
-  { id: 'folliculaire', nom: 'Folliculaire', debut: 6, fin: 13, dx: 1, dy: 0.25 },
+  { id: 'regles', nom: en ? 'Period' : 'Règles', debut: 1, fin: 5, dx: 0.35, dy: -1 },
+  { id: 'folliculaire', nom: en ? 'Follicular' : 'Folliculaire', debut: 6, fin: 13, dx: 1, dy: 0.25 },
   { id: 'ovulation', nom: 'Ovulation', debut: 14, fin: 14, dx: -0.2, dy: 1 },
-  { id: 'luteale', nom: 'Lutéale', debut: 15, fin: 28, dx: -1, dy: -0.3 },
+  { id: 'luteale', nom: en ? 'Luteal' : 'Lutéale', debut: 15, fin: 28, dx: -1, dy: -0.3 },
 ].map((p) => {
   const milieu = (p.debut + p.fin + 1) / 2;
   const [lx, ly] = pt(milieu, R - 34);
@@ -44,15 +49,23 @@ const perles = Array.from({ length: jours }, (_, i) => {
 // Épaisseur des pièces de verre (décalage de la tranche, en unités du dessin).
 const EPAISSEUR = 6;
 // Légende : ce que représente chaque couche, en langage du cycle (pas de vocabulaire de montre).
-const legende = [
-  { cle: 'jours', titre: '28 jours', detail: 'un cycle moyen' },
-  { cle: 'phases', titre: 'Quatre phases', detail: 'chacune ses règles' },
-  { cle: 'zone', titre: 'J17 – J28', detail: 'là où le guide t’accompagne' },
-  { cle: 'jour', titre: 'Aujourd’hui', detail: 'le jour où tu en es' },
-];
+const legende = en
+  ? [
+      { cle: 'jours', titre: '28 days', detail: 'an average cycle' },
+      { cle: 'phases', titre: 'Four phases', detail: 'each with its own rules' },
+      { cle: 'zone', titre: 'D17 – D28', detail: 'where the guide walks with you' },
+      { cle: 'jour', titre: 'Today', detail: 'the day you’re on' },
+    ]
+  : [
+      { cle: 'jours', titre: '28 jours', detail: 'un cycle moyen' },
+      { cle: 'phases', titre: 'Quatre phases', detail: 'chacune ses règles' },
+      { cle: 'zone', titre: 'J17 – J28', detail: 'là où le guide t’accompagne' },
+      { cle: 'jour', titre: 'Aujourd’hui', detail: 'le jour où tu en es' },
+    ];
+const phasesScript = JSON.stringify(phases.map((p) => [p.debut, p.fin, p.nom]));
 ---
 
-<div class="wheel" data-wheel>
+<div class="wheel" data-wheel data-prefixe={J} data-phases={phasesScript}>
   <div class="wheel__scene">
     <div class="wheel__stack" data-wheel-stack>
       <!-- Axes d'assemblage (pointillés verticaux entre les plateaux, comme sur un dessin d'horloger) -->
@@ -177,8 +190,8 @@ const legende = [
     <div class="wheel__avant" data-avant>
       <div class="wheel__sphere" data-sphere>
         <div class="wheel__sphere-corps">
-          <span class="wheel__day" data-day>J17</span>
-          <span class="wheel__phase-name" data-phase>Lutéale</span>
+          <span class="wheel__day" data-day>{J}17</span>
+          <span class="wheel__phase-name" data-phase>{en ? 'Luteal' : 'Lutéale'}</span>
         </div>
       </div>
       <span class="wheel__bille" data-bille-visuel>
@@ -195,12 +208,6 @@ const legende = [
 </div>
 
 <script>
-  const phases: [number, number, string][] = [
-    [1, 5, 'Règles'],
-    [6, 13, 'Folliculaire'],
-    [14, 14, 'Ovulation'],
-    [15, 28, 'Lutéale'],
-  ];
   // La bille « aujourd'hui » roule dans la gorge de l'anneau :
   //  1. pendant la vue éclatée (classe is-eclatee) : elle file vite, en continu ;
   //  2. une fois la roue assemblée : elle fait un dernier tour complet en ralentissant, et se pose sur J17.
@@ -223,6 +230,8 @@ const legende = [
     const marque = wheel.querySelector<HTMLElement>('[data-bille-marque]')!;
     const day = wheel.querySelector<HTMLElement>('[data-day]')!;
     const phase = wheel.querySelector<HTMLElement>('[data-phase]')!;
+    const phases = JSON.parse(wheel.dataset.phases || '[]') as [number, number, string][];
+    const prefixe = wheel.dataset.prefixe || 'J';
     sphere.style.left = sphere.style.top = '0';
     billeVisuel.style.display = 'block';
 
@@ -253,7 +262,7 @@ const legende = [
       const j = ((Math.floor(jourFlottant - 1) % 28) + 28) % 28 + 1;
       if (j !== jourAffiche) {
         jourAffiche = j;
-        day.textContent = `J${j}`;
+        day.textContent = `${prefixe}${j}`;
         phase.textContent = phases.find(([d, f]) => j >= d && j <= f)![2];
         wheel.classList.toggle('is-zone', j >= 17);
       }

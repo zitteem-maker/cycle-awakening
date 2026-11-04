@@ -2,6 +2,8 @@
 ordre: 6
 titre: Ma cuisine de fin de cycle
 accroche: Des recettes simples, rapides, rassasiantes. Celles que je cuisine vraiment.
+titre_en: My end-of-cycle kitchen
+accroche_en: Simple, quick, filling recipes. The ones I actually cook.
 statut: brouillon
 ---
 

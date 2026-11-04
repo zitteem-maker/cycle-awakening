@@ -7,6 +7,9 @@ categorie: Petit-déjeuner · En-cas
 temps: 10 min
 portions: 1 personne
 photo: bol-orange-fromage-blanc.jpg
+nom_en: Orange & fromage blanc bowl
+titre_en: Fromage blanc, orange, toasted buckwheat and olive oil, soft-boiled egg
+temps_en: 10 min
 intro: Mon péché mignon. Le frais de l'orange, le croquant du sarrasin, le filet d'huile d'olive, et un ou deux œufs à côté pour tenir jusqu'au déjeuner.
 statut: brouillon
 ---
