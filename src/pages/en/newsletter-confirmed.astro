@@ -1,0 +1,16 @@
+---
+// Newsletter service page (English). Not indexed.
+import PageLayout from '../../layouts/PageLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<PageLayout title="Subscription confirmed" description="Your newsletter subscription is confirmed." noindex headerCta={false}>
+  <PageHero size="page" eyebrow="Newsletter" title={'Welcome. <em class="accent">See you every week.</em>'} lead="Your subscription is confirmed. The next email arrives this week: a marker for your phase and a new recipe.">
+    <p class="retour"><a class="glass-deep retour__lien" href="/en">Back to home</a></p>
+  </PageHero>
+</PageLayout>
+
+<style>
+  .retour { margin-top: var(--space-8); }
+  .retour__lien { display: inline-flex; align-items: center; min-height: var(--size-tap-target); padding: var(--space-3) var(--space-6); border-radius: var(--radius-pill); text-decoration: none; }
+</style>

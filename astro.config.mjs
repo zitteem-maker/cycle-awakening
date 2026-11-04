@@ -14,11 +14,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Pages de service et non indexées hors du plan du site.
-      filter: (page) => !/\/(merci|styleguide|newsletter-[a-z]+|404)(\.html)?$/.test(page),
+      filter: (page) => !/\/(merci|thank-you|styleguide|newsletter-[a-z]+|404)(\.html)?$/.test(page),
     }),
   ],
   i18n: {
-    // Français par défaut, anglais prêt mais non traduit tant que ce n'est pas demandé.
+    // Français par défaut (sans préfixe), anglais sous /en (voir src/i18n).
     defaultLocale: 'fr',
     locales: ['fr', 'en'],
     routing: { prefixDefaultLocale: false },

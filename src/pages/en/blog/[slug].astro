@@ -1,0 +1,13 @@
+---
+// Article (English). Template: src/views/BlogArticle.astro.
+import BlogArticle from '../../../views/BlogArticle.astro';
+import { articles, slugOf } from '../../../data/blog';
+
+export async function getStaticPaths() {
+  const liste = await articles('en');
+  return liste.map((a) => ({ params: { slug: slugOf(a) }, props: { article: a, tous: liste } }));
+}
+const { article, tous } = Astro.props;
+---
+
+<BlogArticle article={article} tous={tous} />

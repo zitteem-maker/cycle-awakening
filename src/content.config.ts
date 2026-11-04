@@ -5,6 +5,10 @@ import { glob } from 'astro/loaders';
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
+    /** Langue de l'article. Les articles anglais sont dans src/content/blog/en/. */
+    lang: z.enum(['fr', 'en']).default('fr'),
+    /** Article anglais : identifiant de l'article français dont il est la traduction (ex. « phase-luteale »). */
+    traductionDe: z.string().optional(),
     title: z.string().max(80),
     description: z.string().min(80).max(170),
     pillar: z.enum(['phase-luteale', 'alimentation', 'sport', 'sopk', 'endometriose', 'perimenopause']),

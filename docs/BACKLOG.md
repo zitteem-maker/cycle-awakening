@@ -118,3 +118,14 @@ Mises de côté à la demande de la fondatrice. Chaque lien obtenu → fiche ave
 - Sans programme trouvé : Kazidomi, Holidermie. Palais des Thés : États-Unis seulement.
 - **Goop** : candidature affiliée en cours (description rédigée le 4 nov.). Si acceptée, ne relayer que des produits neutres (soins du corps, maison, mode) : pas de compléments ni d’allégations hormonales.
 - **Shopify Collabs** : profil créé par la fondatrice (bio de 270 caractères rédigée le 4 nov.). Chercher d'autres marques via l'onglet Discover.
+
+## Site bilingue FR / EN (4 novembre 2026)
+
+- Sélecteur FR | EN en haut à droite ; anglais sous `/en` (slugs traduits, table dans `src/i18n/index.ts`).
+- Textes : communs dans `src/i18n/index.ts`, pages dans `src/views/*.astro` (un markup pour les deux langues).
+- Blog : chaque article anglais est dans `src/content/blog/en/`, avec `traductionDe` = identifiant français. **Règle : un article validé en français est traduit avant publication, et son statut anglais suit le statut français.**
+- Recommandations : champ `en` de chaque fiche (`src/data/recommandations.ts`), à mettre à jour avec le texte français.
+- Pages légales anglaises : traduction informative, « la version française fait foi ».
+- [ ] Brevo : créer le modèle de confirmation double opt-in en anglais et renseigner `BREVO_DOI_TEMPLATE_ID_EN` (sinon le modèle français est envoyé). L'attribut Brevo `LANGUE` (fr | en) est à créer dans Brevo.
+- [ ] Livre en anglais : chantier séparé (chapitres, recettes, outils, notice, édito). Les titres anglais existent déjà dans les sources (`titre_en`, `nom_en`…). D'ici là, la version anglaise du site précise que le guide est en français.
+- [ ] Relecture des traductions anglaises par la fondatrice (ou un·e relecteur·rice anglophone) avant la mise en ligne.

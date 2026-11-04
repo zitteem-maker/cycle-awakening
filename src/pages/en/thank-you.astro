@@ -1,0 +1,47 @@
+---
+// Stripe success page (English). Not indexed. No personal data shown or read from the URL.
+import PageLayout from '../../layouts/PageLayout.astro';
+import { legal } from '../../config/legal';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<PageLayout title="Thank you" description="Your Cycle Awakening guide is on its way." noindex headerCta={false}>
+  <PageHero eyebrow="Order confirmed" title={'Thank you. <em class="accent">Your guide is on its way.</em>'} lead="In a few minutes, you’ll receive an email with your personal download link." />
+  <section class="section">
+    <div class="container merci">
+      <ol class="steps">
+        <li class="glass">
+          <h2>Open the email “Your Cycle Awakening guide”</h2>
+          <p>It’s sent to the address used for payment. The link is valid for 7 days and allows 5 downloads.</p>
+        </li>
+        <li class="glass">
+          <h2>Nothing after 15 minutes?</h2>
+          <p>Check your spam or “Promotions” tab. If you find it there, move it to your main inbox: the next ones will land in the right place.</p>
+        </li>
+        <li class="glass">
+          <h2>Still nothing?</h2>
+          <p>
+            Write to us at <a href={`mailto:${legal.editor.email}?subject=I%20didn%E2%80%99t%20receive%20my%20guide`}>{legal.editor.email}</a>{' '}
+            from the address you used to buy: we’ll send you your link again.
+          </p>
+        </li>
+      </ol>
+
+      <p class="note">Take your time reading it. Start with the part that speaks to you most: there’s no set order.</p>
+      <p><a href="/en">Back to home</a></p>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  addEventListener('load', () => window.dispatchEvent(new CustomEvent('ca:track', { detail: { event: 'purchase', offer: 'guide' } })));
+</script>
+
+<style>
+  .merci { max-width: calc(var(--size-content) + 2 * var(--space-gutter)); }
+  .steps { list-style: none; padding: 0; margin: var(--space-12) 0; display: grid; gap: var(--space-6); counter-reset: step; }
+  .steps li { counter-increment: step; position: relative; padding: var(--space-6) var(--space-6) var(--space-4) calc(var(--space-6) + 2.5rem); }
+  .steps li::before { content: counter(step); position: absolute; left: var(--space-6); top: var(--space-6); font-family: var(--font-family-display); font-size: var(--font-size-xl); line-height: 1; color: var(--semantic-text-muted); }
+  .steps h2 { font-size: var(--font-size-lg); margin-bottom: var(--space-2); }
+  .note { color: var(--semantic-text-muted); }
+</style>

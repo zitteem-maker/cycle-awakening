@@ -1,0 +1,186 @@
+---
+// Recommandations : règle d'affiliation dans src/data/recommandations.ts.
+// Production : seules les fiches avec un lien ET une relation confirmée. Prévisualisation : tout, avec repères à compléter.
+// Utilisée par /recommandations (français) et /en/recommendations (anglais).
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { recommandations, enAttente, categories, categoriesEn, libellesRelation, libellesRelationEn, type Recommandation } from '../data/recommandations';
+import { afficherBrouillons } from '../data/blog';
+import { langOf } from '../i18n';
+
+const en = langOf(Astro.url) === 'en';
+const cats = en ? categoriesEn : categories;
+const libelles = en ? libellesRelationEn : libellesRelation;
+/** Textes de la fiche dans la langue de la page. */
+const L = (r: Recommandation) => (en && r.en ? r.en : { produit: r.produit, texte: r.texte, moment: r.moment });
+const tx = en
+  ? {
+      title: 'My recommendations',
+      description: 'What I really use to cook simply, move the right amount and slow down at the end of my cycle. A personal selection, with commercial links clearly marked.',
+      eyebrow: 'My recommendations', hero: 'What I <em class="accent">really</em> use',
+      lead: 'Not a catalogue: the objects, clothes and products that are part of my daily life, and when I use them.',
+      apercu: 'Preview: all entries are shown. In production, an entry only appears once its link and relationship are filled in (src/data/recommandations.ts).',
+      transparence: 'Transparency',
+      intro: 'I only recommend what I use myself.',
+      commerciales: 'Some links are commercial: affiliate link (I earn a commission, at no extra cost to you), referral link (I may receive a benefit from the brand), partnership or gifted product. Each one is marked on its entry.',
+      pasCommerciales: 'When a link is commercial (affiliate, referral, partnership or gifted product), it is marked on its entry.',
+      gouts: 'These recommendations are personal tastes, not health advice.',
+      vide: 'The selection is coming very soon.',
+      filtresAria: 'Filter by category', tout: 'See all',
+      coeur: 'Favourite · ', code: (rem: string | undefined) => (rem ? `${rem} with the code ` : 'Code '),
+      todo: 'To complete:', lien: 'link', relation: 'relationship', decouvrir: 'Discover', aVenir: 'Link coming soon',
+      attente: 'Set aside (never in production)',
+    }
+  : {
+      title: 'Mes recommandations',
+      description: 'Ce que j’utilise vraiment, pour cuisiner simple, bouger juste et ralentir en fin de cycle. Une sélection personnelle, liens commerciaux signalés.',
+      eyebrow: 'Mes recommandations', hero: 'Ce que j’utilise <em class="accent">vraiment</em>',
+      lead: 'Pas un catalogue : les objets, vêtements et produits qui font partie de mon quotidien, et le moment où je les utilise.',
+      apercu: 'Prévisualisation : toutes les fiches sont affichées. En production, une fiche n’apparaît qu’avec son lien et sa relation renseignés (src/data/recommandations.ts).',
+      transparence: 'Transparence',
+      intro: 'Je ne recommande que ce que j’utilise moi-même.',
+      commerciales: 'Certains liens sont commerciaux : lien affilié (je touche une commission, sans surcoût pour toi), lien de parrainage (je peux recevoir un avantage de la marque), partenariat ou produit offert. Chacun est signalé sur sa fiche.',
+      pasCommerciales: 'Quand un lien est commercial (lien affilié, parrainage, partenariat ou produit offert), il est signalé sur sa fiche.',
+      gouts: 'Ces recommandations sont des goûts personnels, pas des conseils de santé.',
+      vide: 'La sélection arrive très bientôt.',
+      filtresAria: 'Filtrer par catégorie', tout: 'Tout voir',
+      coeur: 'Coup de cœur · ', code: (rem: string | undefined) => (rem ? `${rem} avec le code ` : 'Code '),
+      todo: 'À compléter :', lien: 'lien', relation: 'relation', decouvrir: 'Découvrir', aVenir: 'Lien à venir',
+      attente: 'Mises de côté (jamais en production)',
+    };
+
+const complete = (r: Recommandation) => r.lien !== null && r.relation !== 'a-confirmer';
+const visibles = recommandations.filter((r) => afficherBrouillons || complete(r));
+const commerciales = visibles.some((r) => complete(r) && r.relation !== 'aucune');
+const parCategorie = (Object.keys(cats) as Recommandation['categorie'][])
+  .map((c) => ({ id: c, ...cats[c], fiches: visibles.filter((r) => r.categorie === c) }))
+  .filter((c) => c.fiches.length);
+const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(0, 2).toUpperCase();
+---
+
+<PageLayout title={tx.title} description={tx.description}>
+  <PageHero eyebrow={tx.eyebrow} title={tx.hero} lead={tx.lead} />
+
+  <section class="section">
+    <div class="container">
+      {afficherBrouillons && (
+        <p class="todo">{tx.apercu}</p>
+      )}
+
+      <div class="transparence glass">
+        <p class="transparence__titre">{tx.transparence}</p>
+        <p>{tx.intro} {commerciales ? tx.commerciales : tx.pasCommerciales} {tx.gouts}</p>
+      </div>
+
+      {visibles.length === 0 ? (
+        <p class="vide glass">{tx.vide}</p>
+      ) : (
+        <>
+          <div class="filtres" role="toolbar" aria-label={tx.filtresAria} data-filtres>
+            <button type="button" class="filtre" aria-pressed="true" data-filtre="tout">{tx.tout}</button>
+            {parCategorie.map((c) => <button type="button" class="filtre" aria-pressed="false" data-filtre={c.id}>{c.titre}</button>)}
+          </div>
+
+          {parCategorie.map((c) => (
+            <section class="categorie" data-categorie={c.id} aria-labelledby={`cat-${c.id}`}>
+              <h2 id={`cat-${c.id}`} data-split>{c.titre}</h2>
+              <p class="categorie__intro">{c.intro}</p>
+              <ul class="fiches">
+                {c.fiches.map((r, i) => {
+                  const commercial = r.relation !== 'aucune' && r.relation !== 'a-confirmer';
+                  return (
+                    <li class="fiche glass" data-reveal style={`--d: ${i % 3}`}>
+                      <div class="fiche__tete">
+                        <span class="fiche__monogramme" aria-hidden="true">{initiales(r.marque)}</span>
+                        <div>
+                          <h3 class="fiche__marque">{r.marque}</h3>
+                          <p class="fiche__produit">{L(r).produit}</p>
+                        </div>
+                      </div>
+                      <p class="fiche__texte">{L(r).texte}</p>
+                      <p class="fiche__moment">{r.coupDeCoeur && <span class="fiche__coeur">{tx.coeur}</span>}{L(r).moment}</p>
+                      {r.code && (
+                        <p class="fiche__code">{tx.code(r.remise)}<strong>{r.code}</strong></p>
+                      )}
+                      <div class="fiche__pied">
+                        {commercial && <span class="badge">{libelles[r.relation as keyof typeof libelles]}</span>}
+                        {!complete(r) && <span class="badge badge--todo">{tx.todo} {r.lien === null ? tx.lien : ''}{r.lien === null && r.relation === 'a-confirmer' ? ' + ' : ''}{r.relation === 'a-confirmer' ? tx.relation : ''}</span>}
+                        {r.lien ? (
+                          <a class="fiche__lien" href={r.lien} target="_blank" rel={commercial ? 'sponsored nofollow noopener' : 'noopener'} data-event="reco_click" data-reco={r.marque}>
+                            {tx.decouvrir} <span aria-hidden="true">→</span>
+                          </a>
+                        ) : (
+                          <span class="fiche__lien fiche__lien--inactif">{tx.aVenir}</span>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ))}
+        </>
+      )}
+
+      {afficherBrouillons && !en && enAttente.length > 0 && (
+        <section class="attente">
+          <h2>{tx.attente}</h2>
+          <ul>{enAttente.map((e) => <li><strong>{e.marque}</strong> : {e.raison}</li>)}</ul>
+        </section>
+      )}
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  for (const barre of document.querySelectorAll<HTMLElement>('[data-filtres]')) {
+    const boutons = [...barre.querySelectorAll<HTMLButtonElement>('[data-filtre]')];
+    boutons.forEach((b) => b.addEventListener('click', () => {
+      const f = b.dataset.filtre;
+      boutons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      document.querySelectorAll<HTMLElement>('[data-categorie]').forEach((s) => { s.hidden = f !== 'tout' && s.dataset.categorie !== f; });
+    }));
+  }
+</script>
+
+<style>
+  .transparence { padding: var(--space-6) clamp(1.25rem, 1rem + 2vw, 2.5rem); margin-bottom: var(--space-12); max-width: 52rem; }
+  .transparence__titre { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-accent-text); margin-bottom: var(--space-2); }
+  .transparence p:last-child { margin: 0; }
+  .filtres { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-12); }
+  .filtre {
+    min-height: var(--size-tap-target); padding: var(--space-2) var(--space-6); border-radius: var(--radius-pill); cursor: pointer; font: inherit; font-size: var(--font-size-sm);
+    background: linear-gradient(145deg, rgb(255 253 249 / 0.72), rgb(247 244 239 / 0.38)); border: 1px solid rgb(255 253 249 / 0.75); color: var(--semantic-text);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9), 0 10px 20px -16px rgb(26 48 40 / 0.4);
+  }
+  .filtre[aria-pressed='true'] { background: var(--semantic-cta-bg); color: var(--semantic-cta-text); border-color: transparent; }
+  .categorie { margin-bottom: var(--space-16); }
+  .categorie h2 { font-size: clamp(2rem, 1.5rem + 2vw, 3.2rem); margin-bottom: var(--space-2); }
+  .categorie__intro { color: var(--semantic-text-muted); margin-bottom: var(--space-8); }
+  .fiches { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-6); }
+  @media (min-width: 48rem) { .fiches { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 72rem) { .fiches { grid-template-columns: repeat(3, 1fr); } }
+  .fiche { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .fiche__tete { display: flex; gap: var(--space-4); align-items: center; }
+  .fiche__monogramme {
+    flex: none; width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; font-family: 'Limelight', var(--font-family-display); font-size: 0.95rem;
+    color: var(--semantic-text-on-deep); background: radial-gradient(circle at 34% 28%, var(--semantic-bg-deep-alt), var(--semantic-bg-deep) 60%, var(--semantic-bg-deep-intense));
+    box-shadow: inset -3px -4px 8px rgb(0 0 0 / 0.35), 0 8px 16px -8px rgb(18 34 25 / 0.6);
+  }
+  .fiche__marque { font-size: var(--font-size-xl); margin: 0; }
+  .fiche__produit { font-size: var(--font-size-sm); color: var(--semantic-text-muted); margin: 0; }
+  .fiche__texte { margin: 0; }
+  .fiche__moment { font-size: var(--font-size-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--semantic-text-muted); margin: 0; }
+  .fiche__coeur { color: var(--semantic-accent-text); }
+  .fiche__pied { margin-top: auto; padding-top: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; border-top: 1px solid var(--semantic-line); }
+  .badge { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--semantic-bg-accent-soft); color: var(--semantic-accent-text); }
+  .fiche__code { margin: 0; font-size: var(--font-size-sm); color: var(--semantic-text); }
+  .fiche__code strong { font-weight: var(--font-weight-semibold); letter-spacing: 0.06em; color: var(--semantic-accent-text); }
+  .badge--todo { background: var(--semantic-bg-muted); color: var(--semantic-text); }
+  .fiche__lien { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--semantic-text); text-decoration: none; min-height: var(--size-tap-target); display: inline-flex; align-items: center; }
+  .fiche__lien:hover { color: var(--semantic-accent-text); }
+  .fiche__lien--inactif { color: var(--semantic-text-muted); font-weight: var(--font-weight-regular); }
+  .attente { margin-top: var(--space-12); padding: var(--space-6); border: 1px dashed var(--semantic-text-muted); border-radius: var(--radius-md); font-size: var(--font-size-sm); }
+  .attente h2 { font-size: var(--font-size-lg); }
+  .vide { padding: var(--space-8); }
+</style>

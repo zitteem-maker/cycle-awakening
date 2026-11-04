@@ -1,0 +1,48 @@
+---
+// Cookie policy (English translation, for information; the French version prevails).
+import LegalLayout from '../../layouts/LegalLayout.astro';
+---
+
+<LegalLayout title="Cookie policy" description="The cookies and trackers used on the Cycle Awakening website.">
+  <h2>Our choice: the minimum</h2>
+  <p>
+    The Cycle Awakening website uses <strong>no advertising cookies</strong> and <strong>no social media
+    trackers</strong>. That’s why no banner asks you to accept cookies.
+  </p>
+
+  <h2>Trackers used</h2>
+  <table>
+    <thead><tr><th scope="col">Name</th><th scope="col">Provider</th><th scope="col">Purpose</th><th scope="col">Duration</th><th scope="col">Consent</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Technical security cookies (e.g. <code>__cf_bm</code>), if bot protection is enabled</td>
+        <td>Cloudflare</td>
+        <td>Protecting the website against bots and attacks</td>
+        <td>30 minutes</td>
+        <td>Not required (strictly necessary)</td>
+      </tr>
+      <tr>
+        <td>Audience measurement (no cookie, no identifier)</td>
+        <td>Cycle Awakening, hosted by Cloudflare (Workers Analytics Engine)</td>
+        <td>Counting page views and button clicks in aggregate (e.g. “Get the guide”, newsletter sign-up). Only the following are recorded: the name of the action, the page, the button’s location, the country (inferred by Cloudflare) and the website you came from. No IP address, no email, no identifier.</td>
+        <td>No cookie; aggregated data kept for 3 months by Cloudflare</td>
+        <td>Not required (strictly anonymous measurement, with no tracker on your device). If your browser sends “Do Not Track” or “Global Privacy Control”, nothing is sent.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Payment</h2>
+  <p>
+    The payment page is hosted by Stripe, on its own domain. Stripe sets the cookies needed for payment and fraud
+    prevention there, under its own policy.
+  </p>
+
+  <h2>If this changes</h2>
+  <p>
+    If a tracker requiring consent were ever added, a banner would let you accept or refuse it just as easily, and a
+    “Manage my cookies” link would be added at the bottom of every page. This page would be updated beforehand.
+  </p>
+
+  <h2>Setting up your browser</h2>
+  <p>You can delete or block cookies at any time in your browser settings.</p>
+</LegalLayout>

@@ -1,0 +1,126 @@
+---
+// Privacy policy (English translation, for information; the French version prevails).
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import Val from '../../components/legal/Val.astro';
+import { legal, salesReady } from '../../config/legal';
+const e = legal.editor;
+// Traduction des libellés des sous-traitants (src/config/legal.ts reste la source).
+const role: Record<string, string> = {
+  'Cloudflare, Inc.': 'Website hosting, security, content delivery network',
+  'Stripe Payments Europe, Ltd.': 'Payment, invoicing, subscription management',
+  'Brevo (Sendinblue SAS)': 'Newsletter (double opt-in), delivery emails',
+  Supabase: 'Accounts and member area data',
+  Anthropic: 'AI model for the assistant (Premium area)',
+};
+const lieu = (s: string) => s.replace('États-Unis', 'United States').replace('Irlande (UE), transferts possibles vers les', 'Ireland (EU), possible transfers to the').replace('Région UE à choisir', 'EU region to be chosen').replace('France (UE)', 'France (EU)').replace('UE', 'EU');
+const garantie = (s: string) => s.replace('clauses contractuelles types', 'standard contractual clauses').replace('Data Privacy Framework UE–États-Unis', 'EU–US Data Privacy Framework').replace('Hébergement dans l’UE', 'Hosting in the EU');
+const statut = (s: string) => (s === 'actif' ? 'active' : s === 'prévu' ? 'planned' : s);
+---
+
+<LegalLayout title="Privacy policy" description="How Cycle Awakening collects, uses and protects your data, including health data.">
+  <h2>In short</h2>
+  <ul>
+    <li>We collect the minimum necessary, and only to provide the service you asked for.</li>
+    <li>Information related to your health (quiz answers, cycle journal, conversations with the assistant) is only used with your explicit consent, which you can withdraw at any time.</li>
+    <li>Your data is never sold, never used for targeted advertising, and never passed on to brands or specialists without your agreement.</li>
+    <li>You can ask at any time to access, copy or delete your data.</li>
+  </ul>
+
+  <h2>Data controller</h2>
+  <p>
+    {salesReady ? <><Val v={e.name} />, <Val v={e.address} /></> : <Val v={legal.controllerName} />}. Contact for any question about your data:
+    <a href={`mailto:${e.email}`}>{e.email}</a>.
+  </p>
+
+  <h2>Data processed, purposes and retention periods</h2>
+  <table>
+    <thead>
+      <tr><th scope="col">Processing</th><th scope="col">Data</th><th scope="col">Legal basis</th><th scope="col">Retention</th><th scope="col">Status</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Purchase and delivery of the Guide</td>
+        <td>Email, name, country, billing information (payment is processed by Stripe; we never see your card)</td>
+        <td>Performance of the contract; accounting obligations</td>
+        <td>Duration of the relationship, then 10 years for accounting records</td>
+        <td>When sales open</td>
+      </tr>
+      <tr>
+        <td>Newsletter</td>
+        <td>Email, first name (optional), chosen interests, language</td>
+        <td>Consent (double confirmation)</td>
+        <td>Until you unsubscribe, or 3 years without opening</td>
+        <td>Coming soon</td>
+      </tr>
+      <tr>
+        <td>“Profile” quiz</td>
+        <td>Answers about your cycle and your symptoms (<strong>health data</strong>), email</td>
+        <td>Explicit and separate consent</td>
+        <td><Val v="TODO_LEGAL_DUREE_QUIZ" /></td>
+        <td>Coming soon</td>
+      </tr>
+      <tr>
+        <td>Member area and cycle journal</td>
+        <td>Account, profile, journal (<strong>health data</strong>)</td>
+        <td>Contract; explicit consent for health data</td>
+        <td>Duration of the subscription, then deletion within <Val v="TODO_LEGAL_DELAI" /></td>
+        <td>Coming soon</td>
+      </tr>
+      <tr>
+        <td>AI assistant</td>
+        <td>Messages exchanged, authorised profile context</td>
+        <td>Explicit consent</td>
+        <td><Val v="TODO_LEGAL_RETENTION_IA (courte, configurable)" /></td>
+        <td>Coming soon</td>
+      </tr>
+      <tr>
+        <td>Website security</td>
+        <td>IP address, technical connection data</td>
+        <td>Legitimate interest (security)</td>
+        <td>The host’s retention periods</td>
+        <td>Active</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Health data</h2>
+  <p>
+    Information about your cycle, your symptoms or your health is sensitive data. It is only collected after your explicit
+    consent, given separately (an unticked box), and only to personalise your support. There is no “diagnosis” field. You
+    can withdraw your consent and delete this data at any time from your account or by email.
+  </p>
+
+  <h2>AI assistant</h2>
+  <p>
+    The assistant in the Premium area is an artificial intelligence, not a person or a health professional. Your
+    conversations are sent to the model provider only to produce the answer and are not used to train models. You can
+    delete your history at any time.
+    <Val v="TODO_LEGAL_IA (fournisseur, localisation, conditions contractuelles de non-entraînement et de rétention à vérifier)" />
+  </p>
+
+  <h2>Recipients and processors</h2>
+  <table>
+    <thead><tr><th scope="col">Provider</th><th scope="col">Role</th><th scope="col">Location</th><th scope="col">Safeguards</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+      {legal.processors.map((p) => (
+        <tr><td><Val v={p.name} /></td><td>{role[p.name] ?? p.role}</td><td><Val v={lieu(p.location)} /></td><td><Val v={garantie(p.safeguard)} /></td><td>{statut(p.status)}</td></tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Your rights</h2>
+  <p>
+    You have the right to access, rectify, erase, restrict, object to and port your data, as well as the right to withdraw
+    your consent at any time. Write to <a href={`mailto:${e.email}`}>{e.email}</a>: we reply within one month. You can also
+    lodge a complaint with the CNIL, the French data protection authority (<a href="https://www.cnil.fr">cnil.fr</a>).
+  </p>
+
+  <h2>Minimum age</h2>
+  <p>Cycle Awakening’s services are intended for people aged at least {legal.minimumAge}.</p>
+
+  <h2>Security</h2>
+  <p>Encrypted connections (HTTPS), access to data limited to what is strictly necessary, no secrets or access keys in the website’s code.</p>
+
+  <h2>Cookies</h2>
+  <p>See the <a href="/en/cookies">cookie policy</a>.</p>
+</LegalLayout>

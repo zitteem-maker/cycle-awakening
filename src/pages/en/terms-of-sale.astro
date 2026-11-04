@@ -1,0 +1,114 @@
+---
+// Terms of sale (English translation, for information; the French version prevails).
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import Val from '../../components/legal/Val.astro';
+import { legal, salesReady } from '../../config/legal';
+import { guide, formatPrice } from '../../config/offers';
+const e = legal.editor;
+---
+
+<LegalLayout title="Terms of sale" description="Terms of sale for the Cycle Awakening guide and online offers.">
+  {!salesReady && (
+    <p class="prelaunch" role="note">
+      No sales are open at the moment. The terms below are a working draft; they will be completed and published before
+      sales open.
+    </p>
+  )}
+  <h2>1. Purpose and scope</h2>
+  <p>
+    These terms govern sales made on the Cycle Awakening website between <Val v={e.name} /> (“Cycle Awakening”) and any
+    individual acting for non-professional purposes (“the customer”). They are accepted when the order is placed and can be
+    downloaded or printed from this page.
+  </p>
+
+  <h2>2. Seller</h2>
+  <p>
+    <Val v={e.name} />, <Val v={e.legalForm} />, <Val v={e.address} />, <Val v={e.registration} />.
+    Contact: <a href={`mailto:${e.email}`}>{e.email}</a>.
+  </p>
+
+  <h2>3. Products</h2>
+  <h3>3.1 The Guide (digital content)</h3>
+  <p>
+    “{guide.name}” is a digital guide in PDF format{guide.pages ? ` of ${guide.pages} pages` : ''}, with printable tools.
+    It is provided without a physical medium, by download. It is educational lifestyle content: it does not replace
+    medical advice and guarantees no results. The Guide is currently written in French.
+  </p>
+  <h3>3.2 Premium subscription</h3>
+  <p>
+    <Val v="TODO_LEGAL_PREMIUM (section à rédiger à l’ouverture de l’offre : durée, reconduction, essai, prix, résiliation en ligne)" />
+  </p>
+
+  <h2>4. Prices</h2>
+  <p>
+    Prices are shown in euros, including all taxes. The Guide is sold at {formatPrice(guide.priceCents, 'en-GB')}.
+    <Val v={e.vatNote} />. The applicable price is the one displayed when the order is placed.
+  </p>
+
+  <h2>5. Order and payment</h2>
+  <p>
+    Orders are placed online via the secure payment page of our provider Stripe. The order is final once payment has been
+    validated (order button stating the obligation to pay). A confirmation email summarising the order is sent to the
+    address provided. Cycle Awakening does not store any bank details.
+  </p>
+
+  <h2>6. Delivery of the Guide</h2>
+  <p>
+    The Guide is delivered by email, as a personal download link, usually within minutes of payment. This link is valid
+    for 7 days and allows 5 downloads. If it does not arrive, the customer can write to
+    <a href={`mailto:${e.email}`}>{e.email}</a>: a new link will be sent.
+  </p>
+
+  <h2>7. Right of withdrawal</h2>
+  <p>The customer in principle has 14 days to withdraw (article L221-18 of the French Consumer Code).</p>
+  <p>
+    However, for digital content supplied without a physical medium, this right can no longer be exercised once
+    performance has begun with the customer’s <strong>prior express consent</strong> and her <strong>express
+    waiver</strong> of her right of withdrawal (article L221-28, 13° of the French Consumer Code). When ordering, the
+    customer is asked to tick a box requesting immediate access to the Guide and acknowledging the loss of her right of
+    withdrawal. This consent and waiver are confirmed in the order confirmation email.
+  </p>
+  <p>
+    If the customer has not given this consent, she can withdraw within 14 days by writing to
+    <a href={`mailto:${e.email}`}>{e.email}</a>; she will then be refunded within 14 days, using the same means of payment.
+  </p>
+
+  <h2>8. Legal guarantee of conformity</h2>
+  <p>
+    The Guide benefits from the legal guarantee of conformity for digital content (articles L224-25-1 et seq. of the
+    French Consumer Code). If the file is defective or unreadable, write to <a href={`mailto:${e.email}`}>{e.email}</a>: a
+    compliant version will be provided or, failing that, the customer will be refunded.
+  </p>
+
+  <h2>9. Liability</h2>
+  <p>
+    Cycle Awakening’s content consists of general lifestyle markers. It is not a medical act and does not take individual
+    medical circumstances into account. It is up to each person to consult a health professional about any symptom,
+    treatment or particular situation (pregnancy, illness, ongoing treatment).
+  </p>
+
+  <h2>10. Intellectual property</h2>
+  <p>
+    The Guide is reserved for the customer’s personal use. Any reproduction, distribution, resale or sharing, even free of
+    charge, is prohibited.
+  </p>
+
+  <h2>11. Personal data</h2>
+  <p>Data collected when ordering is processed in accordance with the <a href="/en/privacy">privacy policy</a>.</p>
+
+  <h2>12. Complaints and mediation</h2>
+  <p>
+    Any complaint can be sent to <a href={`mailto:${e.email}`}>{e.email}</a>. If a disagreement persists, the customer may
+    use the consumer mediator free of charge: <Val v={legal.mediator.name} />, <Val v={legal.mediator.website} />.
+  </p>
+
+  <h2>13. Governing law</h2>
+  <p>
+    These terms are governed by French law. Failing an amicable solution, the competent courts are those provided for by
+    law.
+  </p>
+</LegalLayout>
+
+<style>
+  .prelaunch { font-weight: var(--font-weight-medium); }
+</style>

@@ -1,0 +1,71 @@
+---
+// Legal notice (English translation, for information; the French version prevails).
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import Val from '../../components/legal/Val.astro';
+import { legal, salesReady } from '../../config/legal';
+import { SITE_URL } from '../../config/site';
+const e = legal.editor;
+const h = legal.host;
+---
+
+<LegalLayout title="Legal notice" description="Publisher, host and legal information for the Cycle Awakening website.">
+  {salesReady ? (
+    <>
+      <h2>Website publisher</h2>
+      <p>
+        The website <a href={SITE_URL}>{SITE_URL.replace(/^https?:\/\//, '')}</a> is published by:<br />
+        <Val v={e.name} />, <Val v={e.legalForm} /><br />
+        Address: <Val v={e.address} /><br />
+        Registration: <Val v={e.registration} /><br />
+        {e.capital && <>Share capital: {e.capital}<br /></>}
+        {e.vatNumber ? <>EU VAT number: {e.vatNumber}<br /></> : <><Val v={e.vatNote} /><br /></>}
+        Email: <a href={`mailto:${e.email}`}>{e.email}</a><br />
+        Phone: <Val v={e.phone} />
+      </p>
+      <p>Publication director: <Val v={e.publicationDirector} /></p>
+    </>
+  ) : (
+    <>
+      <h2>Website publisher</h2>
+      <p>
+        This website is published on a non-professional basis by a private individual, <Val v={legal.controllerName} />.
+        No sales are open at the moment. In accordance with French law no. 2004-575 of 21 June 2004 (LCEN), the
+        publisher’s identification details have been provided to the host.
+      </p>
+      <p>Contact: <a href={`mailto:${e.email}`}>{e.email}</a></p>
+      <p>This notice will be completed before sales open.</p>
+    </>
+  )}
+
+  <h2>Host</h2>
+  <p>
+    {h.name.replace('service Cloudflare Pages', 'Cloudflare Pages service')}<br />
+    {h.address.replace('États-Unis', 'United States')}<br />
+    Phone: <Val v={h.phone} /><br />
+    <a href={h.website}>{h.website.replace('https://', '')}</a>
+  </p>
+
+  <h2>Nature of the content</h2>
+  <p>
+    Cycle Awakening offers educational content and lifestyle support around the menstrual cycle and hormonal changes.
+    This content is not medical advice, a diagnosis or a treatment, and does not replace a consultation with a health
+    professional.
+  </p>
+
+  <h2>Intellectual property</h2>
+  <p>
+    The texts, the guide, the illustrations, the logo and the layout of the website are protected by copyright. Any
+    reproduction or distribution, in whole or in part, without written permission is prohibited. The purchased guide is
+    for personal use only and may not be shared or resold.
+  </p>
+
+  <h2>Credits</h2>
+  <p>
+    Logo, illustrations and share image: Cycle Awakening.<br />
+    Fonts: Cormorant Garamond and Inter (SIL Open Font License), hosted on this website.<br />
+    Photos and videos: <Val v="TODO_LEGAL_CREDITS (source et licence de chaque visuel, voir docs/ASSETS.md)" />
+  </p>
+
+  <h2>Contact</h2>
+  <p>For any question: <a href={`mailto:${e.email}`}>{e.email}</a>.</p>
+</LegalLayout>

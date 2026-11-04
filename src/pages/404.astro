@@ -15,10 +15,13 @@ import PageHero from '../components/PageHero.astro';
       <li><a class="glass-deep nf__lien" href="/">Revenir à l’accueil</a></li>
       <li><a class="glass-deep nf__lien" href="/#newsletter">Recevoir les prochains contenus</a></li>
     </ul>
+    <p class="nf__en" lang="en">Page not found. <a href="/en">Go to the English home page</a></p>
   </PageHero>
 </PageLayout>
 
 <style>
+  .nf__en { margin-top: var(--space-6); color: var(--semantic-text-on-deep-muted); font-size: var(--font-size-sm); }
+  .nf__en a { color: var(--semantic-text-on-deep); }
   .nf__links { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
   .nf__lien { display: inline-flex; align-items: center; min-height: var(--size-tap-target); padding: var(--space-3) var(--space-6); border-radius: var(--radius-pill); text-decoration: none; }
 </style>

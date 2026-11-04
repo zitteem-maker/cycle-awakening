@@ -1,0 +1,16 @@
+---
+// Newsletter service page (English). Not indexed.
+import PageLayout from '../../layouts/PageLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+---
+
+<PageLayout title="Sign-up failed" description="The newsletter sign-up did not go through." noindex headerCta={false}>
+  <PageHero size="page" eyebrow="Newsletter" title={'Oops. <em class="accent">That didn’t work.</em>'} lead="Check your email address and the consent box, then try again. If the problem continues, write to hello@cycleawakening.com.">
+    <p class="retour"><a class="glass-deep retour__lien" href="/en">Back to home</a></p>
+  </PageHero>
+</PageLayout>
+
+<style>
+  .retour { margin-top: var(--space-8); }
+  .retour__lien { display: inline-flex; align-items: center; min-height: var(--size-tap-target); padding: var(--space-3) var(--space-6); border-radius: var(--radius-pill); text-decoration: none; }
+</style>
