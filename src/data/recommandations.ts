@@ -40,7 +40,7 @@ export const categoriesEn: Record<Recommandation['categorie'], { titre: string; 
   vetements: { titre: 'Clothing & lingerie', intro: 'The pieces I wear when my body changes and nothing should squeeze.' },
   barefoot: { titre: 'Barefoot shoes', intro: 'For walking, my favourite activity on days when energy drops.' },
   mouvement: { titre: 'Sport & movement', intro: 'The gear for my practice: yoga, Pilates, walking.' },
-  rituels: { titre: 'Home & rituals', intro: 'The objects of my quiet evenings, the ones that make me want to slow down.' },
+  rituels: { titre: 'Body & rituals', intro: 'What takes care of my body and my quiet evenings, the things that make me want to slow down.' },
 };
 
 export const categories: Record<Recommandation['categorie'], { titre: string; intro: string }> = {
@@ -48,7 +48,7 @@ export const categories: Record<Recommandation['categorie'], { titre: string; in
   vetements: { titre: 'Vêtements & lingerie', intro: 'Les pièces que je porte quand le corps change et que rien ne doit serrer.' },
   barefoot: { titre: 'Chaussures barefoot', intro: 'Pour la marche, ma pratique préférée des jours où l’énergie baisse.' },
   mouvement: { titre: 'Sport & mouvement', intro: 'Le matériel de ma pratique : yoga, Pilates, marche.' },
-  rituels: { titre: 'Maison & rituels', intro: 'Les objets de mes soirées calmes, ceux qui me donnent envie de ralentir.' },
+  rituels: { titre: 'Corps & rituels', intro: 'Ce qui prend soin de mon corps et de mes soirées calmes, ce qui me donne envie de ralentir.' },
 };
 
 export const recommandations: Recommandation[] = [
