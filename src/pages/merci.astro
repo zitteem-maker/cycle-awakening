@@ -37,8 +37,9 @@ import PageHero from '../components/PageHero.astro';
 </PageLayout>
 
 <script>
-  // Événement d'achat pour l'analytics (branché à l'étape 3, sans cookie). Aucune donnée personnelle.
-  window.dispatchEvent(new CustomEvent('ca:track', { detail: { event: 'purchase', offer: 'guide' } }));
+  // Événement d'achat pour la mesure d'audience sans cookie. Aucune donnée personnelle.
+  // Après le chargement, pour que le module de mesure (src/scripts/mesure.ts) écoute déjà.
+  addEventListener('load', () => window.dispatchEvent(new CustomEvent('ca:track', { detail: { event: 'purchase', offer: 'guide' } })));
 </script>
 
 <style>
