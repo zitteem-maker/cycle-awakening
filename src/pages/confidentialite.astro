@@ -1,7 +1,7 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
 import Val from '../components/legal/Val.astro';
-import { legal, salesReady } from '../config/legal';
+import { legal, editorKnown } from '../config/legal';
 const e = legal.editor;
 ---
 
@@ -16,7 +16,7 @@ const e = legal.editor;
 
   <h2>Responsable du traitement</h2>
   <p>
-    {salesReady ? <><Val v={e.name} />, <Val v={e.address} /></> : <Val v={legal.controllerName} />}. Contact pour toute question sur tes données :
+    {editorKnown ? <><Val v={e.name} />, <Val v={e.address} /></> : <Val v={legal.controllerName} />}. Contact pour toute question sur tes données :
     <a href={`mailto:${e.email}`}>{e.email}</a>.
   </p>
 
@@ -102,7 +102,9 @@ const e = legal.editor;
     Tu disposes d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de tes
     données, ainsi que du droit de retirer ton consentement à tout moment. Écris à
     <a href={`mailto:${e.email}`}>{e.email}</a> : nous répondons sous un mois. Tu peux aussi introduire une réclamation
-    auprès de la CNIL (<a href="https://www.cnil.fr">cnil.fr</a>).
+    auprès de l’autorité de protection des données de ton pays (en France, la CNIL : <a href="https://www.cnil.fr">cnil.fr</a>)
+    ou de l’autorité chypriote, le Commissaire à la protection des données personnelles
+    (<a href="https://www.dataprotection.gov.cy">dataprotection.gov.cy</a>).
   </p>
 
   <h2>Âge minimum</h2>

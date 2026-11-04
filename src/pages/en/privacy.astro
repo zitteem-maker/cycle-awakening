@@ -2,7 +2,7 @@
 // Privacy policy (English translation, for information; the French version prevails).
 import LegalLayout from '../../layouts/LegalLayout.astro';
 import Val from '../../components/legal/Val.astro';
-import { legal, salesReady } from '../../config/legal';
+import { legal, editorKnown } from '../../config/legal';
 const e = legal.editor;
 // Traduction des libellés des sous-traitants (src/config/legal.ts reste la source).
 const role: Record<string, string> = {
@@ -28,7 +28,7 @@ const statut = (s: string) => (s === 'actif' ? 'active' : s === 'prévu' ? 'plan
 
   <h2>Data controller</h2>
   <p>
-    {salesReady ? <><Val v={e.name} />, <Val v={e.address} /></> : <Val v={legal.controllerName} />}. Contact for any question about your data:
+    {editorKnown ? <><Val v={e.name} />, <Val v={e.addressEn} /></> : <Val v={legal.controllerName} />}. Contact for any question about your data:
     <a href={`mailto:${e.email}`}>{e.email}</a>.
   </p>
 
@@ -112,7 +112,9 @@ const statut = (s: string) => (s === 'actif' ? 'active' : s === 'prévu' ? 'plan
   <p>
     You have the right to access, rectify, erase, restrict, object to and port your data, as well as the right to withdraw
     your consent at any time. Write to <a href={`mailto:${e.email}`}>{e.email}</a>: we reply within one month. You can also
-    lodge a complaint with the CNIL, the French data protection authority (<a href="https://www.cnil.fr">cnil.fr</a>).
+    lodge a complaint with the data protection authority of your country (in France, the CNIL: <a href="https://www.cnil.fr">cnil.fr</a>)
+    or with the Cyprus authority, the Commissioner for Personal Data Protection
+    (<a href="https://www.dataprotection.gov.cy">dataprotection.gov.cy</a>).
   </p>
 
   <h2>Minimum age</h2>

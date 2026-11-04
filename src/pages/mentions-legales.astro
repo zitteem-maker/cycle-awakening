@@ -1,14 +1,14 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
 import Val from '../components/legal/Val.astro';
-import { legal, salesReady } from '../config/legal';
+import { legal, editorKnown, isTodo } from '../config/legal';
 import { SITE_URL } from '../config/site';
 const e = legal.editor;
 const h = legal.host;
 ---
 
 <LegalLayout title="Mentions légales" description="Éditrice, hébergeur et informations légales du site Cycle Awakening.">
-  {salesReady ? (
+  {editorKnown ? (
     <>
       <h2>Éditrice du site</h2>
       <p>
@@ -16,10 +16,11 @@ const h = legal.host;
         <Val v={e.name} />, <Val v={e.legalForm} /><br />
         Adresse : <Val v={e.address} /><br />
         Immatriculation : <Val v={e.registration} /><br />
+        Date d’immatriculation : 22 juin 2026<br />
         {e.capital && <>Capital social : {e.capital}<br /></>}
         {e.vatNumber ? <>N° de TVA intracommunautaire : {e.vatNumber}<br /></> : <><Val v={e.vatNote} /><br /></>}
-        Email : <a href={`mailto:${e.email}`}>{e.email}</a><br />
-        Téléphone : <Val v={e.phone} />
+        Email : <a href={`mailto:${e.email}`}>{e.email}</a>
+        {!isTodo(e.phone) && <><br />Téléphone : {e.phone}</>}
       </p>
       <p>Directrice de la publication : <Val v={e.publicationDirector} /></p>
 
@@ -63,7 +64,7 @@ const h = legal.host;
   <p>
     Logo, illustrations et image de partage : Cycle Awakening.<br />
     Polices : Cormorant Garamond et Inter (licence SIL Open Font License), hébergées sur ce site.<br />
-    Photos et vidéos : <Val v="TODO_LEGAL_CREDITS (source et licence de chaque visuel, voir docs/ASSETS.md)" />
+    Photos : Unsplash (licence Unsplash), photographe crédité·e sur chaque page ; Cycle Awakening.
   </p>
 
   <h2>Contact</h2>

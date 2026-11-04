@@ -23,7 +23,7 @@ const e = legal.editor;
 
   <h2>2. Seller</h2>
   <p>
-    <Val v={e.name} />, <Val v={e.legalForm} />, <Val v={e.address} />, <Val v={e.registration} />.
+    <Val v={e.name} />, <Val v={e.legalFormEn} />, <Val v={e.addressEn} />, <Val v={e.registrationEn} />, VAT {e.vatNumber}.
     Contact: <a href={`mailto:${e.email}`}>{e.email}</a>.
   </p>
 
@@ -42,7 +42,7 @@ const e = legal.editor;
   <h2>4. Prices</h2>
   <p>
     Prices are shown in euros, including all taxes. The Guide is sold at {formatPrice(guide.priceCents, 'en-GB')}.
-    <Val v={e.vatNote} />. The applicable price is the one displayed when the order is placed.
+    <Val v={e.vatNoteEn} />. The applicable price is the one displayed when the order is placed.
   </p>
 
   <h2>5. Order and payment</h2>
@@ -60,11 +60,11 @@ const e = legal.editor;
   </p>
 
   <h2>7. Right of withdrawal</h2>
-  <p>The customer in principle has 14 days to withdraw (article L221-18 of the French Consumer Code).</p>
+  <p>The customer in principle has 14 days to withdraw (EU Directive 2011/83/EU; in France, article L221-18 of the Consumer Code).</p>
   <p>
     However, for digital content supplied without a physical medium, this right can no longer be exercised once
     performance has begun with the customer’s <strong>prior express consent</strong> and her <strong>express
-    waiver</strong> of her right of withdrawal (article L221-28, 13° of the French Consumer Code). When ordering, the
+    waiver</strong> of her right of withdrawal (Directive 2011/83/EU, article 16; in France, article L221-28, 13° of the Consumer Code). When ordering, the
     customer is asked to tick a box requesting immediate access to the Guide and acknowledging the loss of her right of
     withdrawal. This consent and waiver are confirmed in the order confirmation email.
   </p>
@@ -75,8 +75,8 @@ const e = legal.editor;
 
   <h2>8. Legal guarantee of conformity</h2>
   <p>
-    The Guide benefits from the legal guarantee of conformity for digital content (articles L224-25-1 et seq. of the
-    French Consumer Code). If the file is defective or unreadable, write to <a href={`mailto:${e.email}`}>{e.email}</a>: a
+    The Guide benefits from the legal guarantee of conformity for digital content (EU Directive 2019/770; in France, articles L224-25-1 et seq.
+    of the Consumer Code). If the file is defective or unreadable, write to <a href={`mailto:${e.email}`}>{e.email}</a>: a
     compliant version will be provided or, failing that, the customer will be refunded.
   </p>
 
@@ -99,13 +99,15 @@ const e = legal.editor;
   <h2>12. Complaints and mediation</h2>
   <p>
     Any complaint can be sent to <a href={`mailto:${e.email}`}>{e.email}</a>. If a disagreement persists, the customer may
-    use the consumer mediator free of charge: <Val v={legal.mediator.name} />, <Val v={legal.mediator.website} />.
+    contact the <Val v={legal.mediator.nameEn} /> free of charge, which helps consumers with cross-border disputes within the
+    European Union: <a href={legal.mediator.website}>{legal.mediator.website.replace('https://', '')}</a>.
   </p>
 
   <h2>13. Governing law</h2>
   <p>
-    These terms are governed by French law. Failing an amicable solution, the competent courts are those provided for by
-    law.
+    These terms are governed by the law of Cyprus. This choice does not deprive the customer of the protection afforded
+    by the mandatory provisions of the law of her country of residence (EU “Rome I” Regulation, article 6). Failing an
+    amicable solution, the customer may bring proceedings before the courts of her country of residence.
   </p>
 </LegalLayout>
 

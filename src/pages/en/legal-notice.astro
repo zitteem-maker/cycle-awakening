@@ -2,25 +2,26 @@
 // Legal notice (English translation, for information; the French version prevails).
 import LegalLayout from '../../layouts/LegalLayout.astro';
 import Val from '../../components/legal/Val.astro';
-import { legal, salesReady } from '../../config/legal';
+import { legal, editorKnown, isTodo } from '../../config/legal';
 import { SITE_URL } from '../../config/site';
 const e = legal.editor;
 const h = legal.host;
 ---
 
 <LegalLayout title="Legal notice" description="Publisher, host and legal information for the Cycle Awakening website.">
-  {salesReady ? (
+  {editorKnown ? (
     <>
       <h2>Website publisher</h2>
       <p>
         The website <a href={SITE_URL}>{SITE_URL.replace(/^https?:\/\//, '')}</a> is published by:<br />
-        <Val v={e.name} />, <Val v={e.legalForm} /><br />
-        Address: <Val v={e.address} /><br />
-        Registration: <Val v={e.registration} /><br />
+        <Val v={e.name} />, <Val v={e.legalFormEn} /><br />
+        Address: <Val v={e.addressEn} /><br />
+        Registration: <Val v={e.registrationEn} /><br />
+        Date of incorporation: 22 June 2026<br />
         {e.capital && <>Share capital: {e.capital}<br /></>}
-        {e.vatNumber ? <>EU VAT number: {e.vatNumber}<br /></> : <><Val v={e.vatNote} /><br /></>}
-        Email: <a href={`mailto:${e.email}`}>{e.email}</a><br />
-        Phone: <Val v={e.phone} />
+        {e.vatNumber ? <>EU VAT number: {e.vatNumber}<br /></> : <><Val v={e.vatNoteEn} /><br /></>}
+        Email: <a href={`mailto:${e.email}`}>{e.email}</a>
+        {!isTodo(e.phone) && <><br />Phone: {e.phone}</>}
       </p>
       <p>Publication director: <Val v={e.publicationDirector} /></p>
     </>
@@ -39,7 +40,7 @@ const h = legal.host;
 
   <h2>Host</h2>
   <p>
-    {h.name.replace('service Cloudflare Pages', 'Cloudflare Pages service')}<br />
+    {h.name}<br />
     {h.address.replace('États-Unis', 'United States')}<br />
     Phone: <Val v={h.phone} /><br />
     <a href={h.website}>{h.website.replace('https://', '')}</a>
@@ -63,7 +64,7 @@ const h = legal.host;
   <p>
     Logo, illustrations and share image: Cycle Awakening.<br />
     Fonts: Cormorant Garamond and Inter (SIL Open Font License), hosted on this website.<br />
-    Photos and videos: <Val v="TODO_LEGAL_CREDITS (source et licence de chaque visuel, voir docs/ASSETS.md)" />
+    Photos: Unsplash (Unsplash licence), photographer credited on each page; Cycle Awakening.
   </p>
 
   <h2>Contact</h2>

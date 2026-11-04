@@ -22,7 +22,7 @@ const e = legal.editor;
 
   <h2>2. Vendeur</h2>
   <p>
-    <Val v={e.name} />, <Val v={e.legalForm} />, <Val v={e.address} />, <Val v={e.registration} />.
+    <Val v={e.name} />, <Val v={e.legalForm} />, <Val v={e.address} />, <Val v={e.registration} />, TVA {e.vatNumber}.
     Contact : <a href={`mailto:${e.email}`}>{e.email}</a>.
   </p>
 
@@ -61,12 +61,12 @@ const e = legal.editor;
 
   <h2>7. Droit de rétractation</h2>
   <p>
-    La cliente dispose en principe d’un délai de 14 jours pour se rétracter (article L221-18 du Code de la consommation).
+    La cliente dispose en principe d’un délai de 14 jours pour se rétracter (directive européenne 2011/83/UE ; en France, article L221-18 du Code de la consommation).
   </p>
   <p>
     Toutefois, pour un contenu numérique fourni sans support matériel, ce droit ne peut plus être exercé lorsque
     l’exécution a commencé avec l’<strong>accord préalable exprès</strong> de la cliente et sa <strong>renonciation
-    expresse</strong> à son droit de rétractation (article L221-28, 13° du Code de la consommation). Lors de la commande,
+    expresse</strong> à son droit de rétractation (directive 2011/83/UE, article 16 ; en France, article L221-28, 13° du Code de la consommation). Lors de la commande,
     la cliente est invitée à cocher une case par laquelle elle demande l’accès immédiat au Guide et reconnaît perdre son
     droit de rétractation. Cet accord et cette renonciation sont confirmés dans l’email de confirmation de commande.
   </p>
@@ -78,8 +78,8 @@ const e = legal.editor;
 
   <h2>8. Garantie légale de conformité</h2>
   <p>
-    Le Guide bénéficie de la garantie légale de conformité des contenus numériques (articles L224-25-1 et suivants du Code
-    de la consommation). En cas de fichier défectueux ou illisible, écrire à <a href={`mailto:${e.email}`}>{e.email}</a> :
+    Le Guide bénéficie de la garantie légale de conformité des contenus numériques (directive européenne 2019/770 ; en France, articles
+    L224-25-1 et suivants du Code de la consommation). En cas de fichier défectueux ou illisible, écrire à <a href={`mailto:${e.email}`}>{e.email}</a> :
     une version conforme est fournie ou, à défaut, la cliente est remboursée.
   </p>
 
@@ -102,14 +102,16 @@ const e = legal.editor;
   <h2>12. Réclamations et médiation</h2>
   <p>
     Toute réclamation peut être adressée à <a href={`mailto:${e.email}`}>{e.email}</a>. En cas de désaccord persistant,
-    la cliente peut recourir gratuitement au médiateur de la consommation : <Val v={legal.mediator.name} />,
-    <Val v={legal.mediator.website} />.
+    la cliente peut s’adresser gratuitement au <Val v={legal.mediator.name} />, qui aide les consommateurs dans les litiges
+    transfrontaliers au sein de l’Union européenne : <a href={legal.mediator.website}>{legal.mediator.website.replace('https://', '')}</a>
+    (en France : <a href="https://www.europe-consommateurs.eu">europe-consommateurs.eu</a>).
   </p>
 
   <h2>13. Droit applicable</h2>
   <p>
-    Les présentes conditions sont soumises au droit français. À défaut de résolution amiable, les tribunaux compétents
-    sont ceux prévus par la loi.
+    Les présentes conditions sont soumises au droit chypriote. Ce choix ne prive pas la cliente de la protection que lui
+    accordent les dispositions impératives de la loi de son pays de résidence (règlement européen « Rome I », article 6).
+    À défaut de résolution amiable, la cliente peut saisir les tribunaux de son pays de résidence.
   </p>
 </LegalLayout>
 

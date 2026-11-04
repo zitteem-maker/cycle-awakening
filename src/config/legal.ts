@@ -5,38 +5,45 @@
 export const legal = {
   /** Passe à true UNIQUEMENT après relecture par un·e juriste, sur décision de l'éditrice. */
   validated: false,
-  updatedAt: '2026-10-06',
+  updatedAt: '2026-11-04',
 
   /**
    * Prénom et nom de la personne responsable du site. Requis dès que le site collecte des emails
    * (newsletter), même avant toute vente : le RGPD impose d'indiquer qui traite les données.
    */
-  controllerName: 'TODO_LEGAL_PRENOM_NOM',
+  controllerName: 'POLYMA LTD',
 
   editor: {
-    name: 'TODO_LEGAL_NOM_OU_RAISON_SOCIALE',
-    legalForm: 'TODO_LEGAL_FORME (ex. entreprise individuelle / micro-entreprise, SASU…)',
-    address: 'TODO_LEGAL_ADRESSE (ou adresse de domiciliation)',
-    registration: 'TODO_LEGAL_SIREN',
+    name: 'POLYMA LTD',
+    legalForm: 'société à responsabilité limitée de droit chypriote (private company limited by shares)',
+    legalFormEn: 'private company limited by shares, incorporated in Cyprus',
+    address: 'Onisiforou Center, 2nd & 3rd Floor, Neofytou Nikolaidi & Theodorou Kolokotroni, 8011 Paphos, Chypre',
+    addressEn: 'Onisiforou Center, 2nd & 3rd Floor, Neofytou Nikolaidi & Theodorou Kolokotroni, 8011 Paphos, Cyprus',
+    registration: 'HE494557 (Registrar of Companies, Chypre)',
+    registrationEn: 'HE494557 (Registrar of Companies, Cyprus)',
     capital: null as string | null,
-    vatNumber: null as string | null,
-    /** Mention TVA si franchise en base (à confirmer avec l'expert-comptable). */
-    vatNote: 'TODO_LEGAL_TVA (ex. « TVA non applicable, art. 293 B du CGI »)',
+    vatNumber: 'CY60370263Y' as string | null,
+    /** Mention TVA des CGV : TVA du pays de résidence de la cliente (guichet OSS). À valider avec l'expert-comptable. */
+    vatNote: 'TVA applicable selon le pays de résidence de la cliente',
+    vatNoteEn: 'VAT charged at the rate of the customer’s country of residence',
     email: 'hello@cycleawakening.com',
+    /** Téléphone : obligatoire avant la première vente (droit européen de la consommation). Numéro professionnel conseillé. */
     phone: 'TODO_LEGAL_TELEPHONE',
     publicationDirector: 'TODO_LEGAL_DIRECTRICE_DE_PUBLICATION',
   },
 
   host: {
-    name: 'Cloudflare, Inc. (service Cloudflare Pages)',
+    name: 'Cloudflare, Inc. (Cloudflare Workers)',
     address: '101 Townsend St, San Francisco, CA 94107, États-Unis',
-    phone: 'TODO_LEGAL_VERIFIER_TELEPHONE_HEBERGEUR',
+    phone: '+1 888 993 5273',
     website: 'https://www.cloudflare.com',
   },
 
+  /** Règlement des litiges : réseau des Centres européens des consommateurs (choix de la fondatrice, à valider par un·e juriste). */
   mediator: {
-    name: 'TODO_LEGAL_MEDIATEUR_CONSOMMATION',
-    website: 'TODO_LEGAL_SITE_MEDIATEUR',
+    name: 'Réseau des Centres européens des consommateurs (ECC-Net)',
+    nameEn: 'European Consumer Centres Network (ECC-Net)',
+    website: 'https://www.eccnet.eu',
   },
 
   /** Sous-traitants : à tenir à jour AVANT toute mise en service. status : actif | prévu. */
@@ -76,3 +83,6 @@ export function missingForSales(): string[] {
 }
 
 export const salesReady = missingForSales().length === 0;
+
+/** La société éditrice est connue (nom, adresse, immatriculation) : mentions légales de professionnel. */
+export const editorKnown = !isTodo(legal.editor.name) && !isTodo(legal.editor.address) && !isTodo(legal.editor.registration);
