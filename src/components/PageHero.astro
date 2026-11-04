@@ -8,11 +8,27 @@ interface Props {
   lead?: string;
   /** Hauteur : « page » (plein écran, pages de message) ou « bandeau » (pages de contenu). */
   size?: 'page' | 'bandeau';
+  /** Photo (URL) posée à droite, qui se fond dans le dégradé vert vers le texte. */
+  photo?: string;
+  photoAlt?: string;
+  /** Crédit de la photo (affiché discrètement dans le coin). */
+  credit?: { nom: string; lien: string };
+  /** Brouillon sans photo : affiche un emplacement « Photo à venir ». */
+  photoAttendue?: boolean;
 }
-const { eyebrow, title, lead, size = 'bandeau' } = Astro.props;
+const { eyebrow, title, lead, size = 'bandeau', photo, photoAlt = '', credit, photoAttendue = false } = Astro.props;
+// Typographie française : espace insécable avant : ; ! ? (le signe ne se retrouve jamais seul en début de ligne).
+const typo = (t: string) => t.replace(/ ([:;!?»])/g, '\u00a0$1').replace(/« /g, '«\u00a0');
+const avecPhoto = Boolean(photo) || photoAttendue;
 ---
 
-<section class:list={['page-hero deep grain', `page-hero--${size}`]} data-spotlight data-hero-page>
+<section class:list={['page-hero deep grain', `page-hero--${size}`, { 'page-hero--photo': avecPhoto }]} data-spotlight data-hero-page>
+  {avecPhoto && (
+    <figure class="page-hero__photo" aria-hidden={photo ? undefined : 'true'}>
+      {photo ? <img src={photo} alt={photoAlt} loading="eager" decoding="async" fetchpriority="high" /> : <span class="page-hero__attente">Photo à venir</span>}
+      {credit && <figcaption>Photo : <a href={credit.lien} rel="noopener">{credit.nom}</a></figcaption>}
+    </figure>
+  )}
   <div class="aurora" aria-hidden="true">
     <span class="aurora__blob aurora__blob--1"></span>
     <span class="aurora__blob aurora__blob--2"></span>
@@ -20,8 +36,8 @@ const { eyebrow, title, lead, size = 'bandeau' } = Astro.props;
   </div>
   <div class="container page-hero__inner">
     {eyebrow && <p class="eyebrow" data-in>{eyebrow}</p>}
-    <h1 class="page-hero__title" data-in set:html={title} />
-    {lead && <p class="page-hero__lead" data-in>{lead}</p>}
+    <h1 class="page-hero__title" data-in set:html={typo(title)} />
+    {lead && <p class="page-hero__lead" data-in>{typo(lead)}</p>}
     <div data-in><slot /></div>
   </div>
 </section>
@@ -34,4 +50,29 @@ const { eyebrow, title, lead, size = 'bandeau' } = Astro.props;
   .page-hero__title { font-size: clamp(2.6rem, 1.6rem + 4.4vw, 5.6rem); line-height: 1; max-width: 16ch; letter-spacing: -0.015em; }
   .page-hero--bandeau .page-hero__title { font-size: clamp(2.3rem, 1.6rem + 3vw, 4.2rem); max-width: 22ch; }
   .page-hero__lead { font-size: var(--font-size-lg); color: var(--semantic-text-on-deep-muted); max-width: 40rem; }
+
+  /* Photo à droite, fondue dans le vert vers le texte (masque en dégradé). */
+  .page-hero__photo { position: absolute; inset: 0 0 0 auto; width: 62%; margin: 0; z-index: 0; }
+  .page-hero__photo img, .page-hero__attente {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.55) 30%, #000 62%), linear-gradient(0deg, transparent 0%, #000 22%);
+    -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.55) 30%, #000 62%), linear-gradient(0deg, transparent 0%, #000 22%);
+    mask-composite: intersect;
+  }
+  .page-hero__attente { display: grid; place-items: center; background: linear-gradient(160deg, var(--semantic-bg-deep-alt), var(--semantic-bg-deep-intense)); color: var(--semantic-text-on-deep-muted); font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-xl); }
+  .page-hero__photo figcaption { position: absolute; right: var(--space-4); bottom: var(--space-4); font-size: 0.7rem; color: var(--semantic-text-on-deep-muted); }
+  .page-hero__photo figcaption a { color: inherit; }
+  .page-hero--photo .page-hero__inner { text-shadow: 0 2px 18px rgb(18 34 25 / 0.6); }
+  .page-hero--photo .page-hero__title, .page-hero--photo .page-hero__lead { max-width: min(36rem, 56%); }
+  @media (max-width: 52rem) {
+    /* Téléphone : photo en haut, fondue vers le bas dans le texte. */
+    .page-hero--photo { padding-top: 15rem; }
+    .page-hero__photo { inset: 0 0 auto 0; width: 100%; height: 22rem; }
+    .page-hero__photo img, .page-hero__attente {
+      -webkit-mask-image: linear-gradient(180deg, #000 35%, transparent 100%); mask-image: linear-gradient(180deg, #000 35%, transparent 100%);
+      -webkit-mask-composite: source-over; mask-composite: add;
+    }
+    .page-hero--photo .page-hero__title, .page-hero--photo .page-hero__lead { max-width: none; }
+    .page-hero__photo figcaption { top: 5.5rem; bottom: auto; }
+  }
 </style>

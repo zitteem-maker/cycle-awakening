@@ -51,7 +51,15 @@ const jsonLd = [
 
 <PageLayout title={data.title} description={data.description} type="article" image={data.image} imageAlt={data.imageAlt} noindex={brouillon}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <PageHero eyebrow={piliers[data.pillar]} title={data.title} lead={data.description}>
+  <PageHero
+    eyebrow={piliers[data.pillar]}
+    title={data.title}
+    lead={data.description}
+    photo={data.photo ? `/images/blog/${data.photo}` : undefined}
+    photoAlt={data.photoAlt}
+    credit={data.photoCredit}
+    photoAttendue={brouillon && !data.photo}
+  >
     <p class="meta">
       Par <strong>{data.author}</strong>{data.reviewedBy && <> · relu par {data.reviewedBy}</>} ·
       <time datetime={iso(data.publishedAt)}>{date(data.publishedAt)}</time>
@@ -67,14 +75,6 @@ const jsonLd = [
       )}
       <nav class="fil" aria-label="Fil d’Ariane"><a href="/">Accueil</a> › <a href="/blog">Blog</a> › <span>{data.title}</span></nav>
 
-      {data.photo ? (
-        <figure class="photo" data-reveal>
-          <img src={`/images/blog/${data.photo}`} alt={data.photoAlt ?? ''} loading="eager" decoding="async" />
-          {data.photoCredit && <figcaption>Photo : <a href={data.photoCredit.lien} rel="noopener">{data.photoCredit.nom}</a></figcaption>}
-        </figure>
-      ) : (
-        brouillon && <figure class="photo photo--attente"><span>Photo à venir</span></figure>
-      )}
 
       <div class="prose glass">
         <Content />
@@ -126,11 +126,6 @@ const jsonLd = [
   .meta strong { color: var(--semantic-text-on-deep); font-weight: var(--font-weight-medium); }
   .article { max-width: calc(46rem + 2 * var(--space-gutter)); }
   .fil { font-size: var(--font-size-xs); color: var(--semantic-text-muted); margin-bottom: var(--space-6); }
-  .photo { margin: 0 0 var(--space-8); border-radius: 28px; overflow: hidden; box-shadow: 0 40px 70px -40px rgb(18 34 25 / 0.55); position: relative; }
-  .photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
-  .photo figcaption { position: absolute; right: var(--space-3); bottom: var(--space-3); font-size: 0.7rem; padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: rgb(26 48 40 / 0.7); color: var(--semantic-text-on-deep); }
-  .photo figcaption a { color: inherit; }
-  .photo--attente { aspect-ratio: 16 / 9; display: grid; place-items: center; background: linear-gradient(160deg, var(--semantic-bg-deep-alt), var(--semantic-bg-deep)); color: var(--semantic-text-on-deep-muted); font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-xl); }
   .prose { padding: clamp(1.5rem, 1rem + 3vw, 3.5rem); font-size: 1.0625rem; line-height: 1.75; color: var(--semantic-text-reading); }
   .prose :global(h2) { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem); margin-top: var(--space-12); color: var(--semantic-text); }
   .prose :global(h3) { font-size: var(--font-size-xl); margin-top: var(--space-8); }

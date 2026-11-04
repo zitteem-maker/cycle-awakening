@@ -15,18 +15,36 @@ Ce sont les sujets du segment d'entrée (SPM / phase lutéale), qui mènent natu
 
 **État (4 novembre 2026)** : les 4 articles sont rédigés en brouillon dans `src/content/blog/` (statut `brouillon`, sources à vérifier). Circuit : `brouillon` → `relu` (relecture de la fondatrice) → `publie` (sources vérifiées). Seuls les articles `publie` sont en production.
 
-## Ensuite : 2 articles par semaine
+## Rythme recommandé : 2 articles par semaine (mardi et vendredi)
 
-| Semaine | Article A | Article B |
-|---|---|---|
-| 1 | Ballonnements avant les règles : comprendre et soulager (4, 28, 49) | Seins douloureux avant les règles (5) |
-| 2 | Quel sport en phase lutéale ? (32, 40) | Sport pendant les règles : oui ou non ? (31, 33) |
-| 3 | Que manger pendant les règles (21) | Perte de motivation et cycle menstruel (8, 20) |
-| 4 | Comment calmer le SPM au quotidien, sans promesse miracle (10, 45) | Yoga et Pilates selon la phase du cycle (36, 37) |
-| 5 | **Pilier** : Alimentation et cycle menstruel (29, 30) | Que manger pendant l'ovulation (24) |
-| 6 | **Pilier** : Sport et cycle menstruel (14, 34, 35) | Comment suivre son cycle facilement (17) |
+Pourquoi pas un article par jour : contenus santé (« Your Money or Your Life ») = exigence de fiabilité maximale chez Google, qui pénalise la production en série (« scaled content abuse »), qu'elle soit humaine ou par IA. Chaque article doit être relu par la fondatrice : 2 par semaine (3 au maximum) est le rythme qui tient sur la durée. On peut monter à 3 quand les articles se classent et que la relecture suit.
+
+## Calendrier saisonnier (novembre 2026 → mars 2027)
+
+Principe : chaque mois croise une **saison** (ce que vivent les lectrices en ce moment) avec une **recherche réelle** (`docs/50-recherches.md`). Formats inspirés des bons blogs bien-être : guide « pourquoi + quoi faire », « ma semaine type », recette de saison, mythes et réalité, réponse à une question de lectrice, checklist imprimable.
+
+| Date | Article | Angle saison | Recherches (n°) | Statut |
+|---|---|---|---|---|
+| mar. 10 nov. | Ballonnements avant les règles : comprendre et soulager | plats d'automne plus riches | 4, 15, 28 | brouillon |
+| ven. 13 nov. | Fin de cycle en hiver : traverser la phase lutéale quand les jours raccourcissent | moins de lumière, plus de fatigue | 1, 11, 16 | brouillon |
+| mar. 17 nov. | Quel sport en phase lutéale ? Bouger juste quand l'énergie baisse | reprise après la Toussaint, sport en intérieur | 32, 35, 40 | brouillon |
+| ven. 20 nov. | Les fêtes de fin d'année en phase lutéale : traverser décembre sans s'épuiser | agenda chargé, repas de fête | 1, 6, 10 | brouillon |
+| mar. 24 nov. | Seins douloureux avant les règles : ce qui est fréquent, ce qui doit alerter | — | 5 | à écrire |
+| ven. 27 nov. | Soupes et plats mijotés de fin de cycle (recettes d'automne) | saison des soupes | 22, 30 | à écrire |
+| déc. (×8) | Sport pendant les règles · Que manger pendant les règles · Perte de motivation et cycle · Calmer le SPM sans promesse miracle · Ma semaine type de fin de cycle en décembre · Cadeaux qui font du bien en fin de cycle (avec Recommandations) · Repas de fête et digestion · Dormir mieux en fin de cycle | fêtes, froid, fatigue | 31, 21, 8, 10, 15 | à écrire |
+| janv. (×8) | **Pilier** Alimentation et cycle · Pourquoi les régimes de janvier ne marchent pas avec ton cycle · Reprendre le sport en suivant son cycle · Comment suivre son cycle facilement · Ovulation : que manger · Yoga et Pilates selon la phase · Musculation et cycle · Mythes et réalités sur le SPM | « nouvelle année », anti-régime | 29, 17, 24, 34, 36, 37 | à écrire |
+| févr. (×8) | **Pilier** Sport et cycle · Libido et cycle menstruel · Cycle et productivité au travail · Humeur et cycle · Courir pendant ses règles · Menu d'une semaine de fin de cycle · Digestion et cycle · Question de lectrice | Saint-Valentin, fin de l'hiver | 13, 20, 12, 33, 29, 15 | à écrire |
+| mars (×8) | Retour de l'énergie au printemps et phase folliculaire · piliers SOPK et endométriose (relecture pro conseillée) | printemps | 41+, 25, 26 | à écrire |
 
 Les piliers SOPK, endométriose et périménopause viennent ensuite, idéalement avec une relecture par une sage-femme ou un·e médecin (sujets plus médicaux).
+
+## Agent éditorial (à mettre en place)
+
+Une tâche planifiée (routine Claude) lancée **deux fois par semaine** :
+1. lit ce plan, choisit le prochain article « à écrire », vérifie qu'il n'en existe pas déjà un proche ;
+2. le rédige selon le skill `seo-blog` (réponse immédiate, intertitres-questions, actions concrètes, encadré « Quand consulter », maillage interne, sources marquées « à vérifier », aucune allégation santé) et propose une recherche photo ;
+3. l'ajoute en `brouillon` sur la branche `preview`, met la prévisualisation à jour et prévient la fondatrice ;
+4. **ne publie jamais seul** : la fondatrice relit, valide, et l'article passe en `publie` à la date prévue.
 
 ## Email « Quoi de neuf »
 
