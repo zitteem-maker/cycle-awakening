@@ -201,81 +201,105 @@ const legende = [
     [14, 14, 'Ovulation'],
     [15, 28, 'Lutéale'],
   ];
-  // La bille « aujourd'hui » roule de jour en jour dans la gorge de l'anneau (pas de saut) :
-  // vite pendant la vue éclatée (classe is-eclatee), puis à un rythme posé, plus lent dans J17–J28.
+  // La bille « aujourd'hui » roule dans la gorge de l'anneau :
+  //  1. pendant la vue éclatée (classe is-eclatee) : elle file vite, en continu ;
+  //  2. une fois la roue assemblée : elle fait un dernier tour complet en ralentissant, et se pose sur J17.
   // Sa marque tourne avec la distance parcourue : on la voit rouler.
+  // Performance : on ne lit les positions 3D (getBoundingClientRect) que pendant la vue éclatée ;
+  // roue assemblée, tout se calcule à plat. La boucle s'arrête quand la bille est posée.
   const R_POURCENT = 39.5; // rayon de la gorge, en % de la largeur du dessin (158 / 400)
-  const lisse = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const VITESSE_ECLATEE = 9; // jours par seconde
+  const DUREE_DERNIER_TOUR = 3600; // ms
+  const JOUR_FINAL = 17;
+  const adoucir = (t: number) => 1 - Math.pow(1 - t, 3); // départ vif, arrivée en douceur
   for (const wheel of document.querySelectorAll<HTMLElement>('[data-wheel]')) {
-    const bille = wheel.querySelector<HTMLElement>('[data-bille]')!;
+    const ancreBille = wheel.querySelector<HTMLElement>('[data-bille]')!;
     const scene = wheel.querySelector<HTMLElement>('.wheel__scene')!;
     const ancreSphere = wheel.querySelector<HTMLElement>('[data-ancre-sphere]')!;
     const ancreEchelle = wheel.querySelector<HTMLElement>('[data-ancre-echelle]')!;
     const sphere = wheel.querySelector<HTMLElement>('[data-sphere]')!;
     const billeVisuel = wheel.querySelector<HTMLElement>('[data-bille-visuel]')!;
-    // Recopie à chaque image la position projetée des ancres (qui suivent les plateaux 3D).
-    sphere.style.left = sphere.style.top = '0';
-    billeVisuel.style.display = 'block';
-    const suivre = () => {
-      const sc = scene.getBoundingClientRect();
-      const a = ancreSphere.getBoundingClientRect();
-      const e = ancreEchelle.getBoundingClientRect();
-      const b = bille.getBoundingClientRect();
-      const echelle = Math.hypot(e.x - a.x, e.y - a.y) / (sc.width * 0.1) || 1;
-      sphere.style.transform = `translate(${a.x - sc.x}px, ${a.y - sc.y}px) scale(${echelle})`;
-      billeVisuel.style.transform = `translate(${b.x - sc.x}px, ${b.y - sc.y}px) scale(${echelle})`;
-      requestAnimationFrame(suivre);
-    };
-    requestAnimationFrame(suivre);
     const ombre = wheel.querySelector<HTMLElement>('[data-bille-ombre]')!;
     const marque = wheel.querySelector<HTMLElement>('[data-bille-marque]')!;
     const day = wheel.querySelector<HTMLElement>('[data-day]')!;
     const phase = wheel.querySelector<HTMLElement>('[data-phase]')!;
-    const placer = (jourFlottant: number) => {
+    sphere.style.left = sphere.style.top = '0';
+    billeVisuel.style.display = 'block';
+
+    let jourAffiche = 0;
+    const position = (jourFlottant: number) => {
       const a = ((jourFlottant - 1 + 0.5) / 28) * 2 * Math.PI; // au milieu de la case du jour
-      const x = 50 + R_POURCENT * Math.sin(a);
-      const y = 50 - R_POURCENT * Math.cos(a);
-      bille.style.left = ombre.style.left = `${x}%`;
-      bille.style.top = ombre.style.top = `${y}%`;
-      // Rotation de la marque ∝ distance parcourue (périmètre / rayon de la bille ≈ 13 tours par cycle).
+      return [50 + R_POURCENT * Math.sin(a), 50 - R_POURCENT * Math.cos(a)];
+    };
+    const placer = (jourFlottant: number, eclatee: boolean) => {
+      const [x, y] = position(jourFlottant);
+      ancreBille.style.left = ombre.style.left = `${x}%`;
+      ancreBille.style.top = ombre.style.top = `${y}%`;
       marque.style.transform = `rotate(${jourFlottant * 168}deg)`;
+      if (eclatee) {
+        // Positions projetées des ancres (elles suivent les plateaux en 3D).
+        const sc = scene.getBoundingClientRect();
+        const a = ancreSphere.getBoundingClientRect();
+        const e = ancreEchelle.getBoundingClientRect();
+        const b = ancreBille.getBoundingClientRect();
+        const k = Math.hypot(e.x - a.x, e.y - a.y) / (sc.width * 0.1) || 1;
+        sphere.style.transform = `translate3d(${a.x - sc.x}px, ${a.y - sc.y}px, 0) scale(${k})`;
+        billeVisuel.style.transform = `translate3d(${b.x - sc.x}px, ${b.y - sc.y}px, 0) scale(${k})`;
+      } else {
+        const w = scene.offsetWidth;
+        sphere.style.transform = `translate3d(${w / 2}px, ${w / 2}px, 0)`;
+        billeVisuel.style.transform = `translate3d(${(x / 100) * w}px, ${(y / 100) * w}px, 0)`;
+      }
+      const j = ((Math.floor(jourFlottant - 1) % 28) + 28) % 28 + 1;
+      if (j !== jourAffiche) {
+        jourAffiche = j;
+        day.textContent = `J${j}`;
+        phase.textContent = phases.find(([d, f]) => j >= d && j <= f)![2];
+        wheel.classList.toggle('is-zone', j >= 17);
+      }
     };
-    const afficherJour = (j: number) => {
-      day.textContent = `J${j}`;
-      phase.textContent = phases.find(([a, b]) => j >= a && j <= b)![2];
-      wheel.classList.toggle('is-zone', j >= 17);
-    };
-    let jour = 17;
-    placer(jour);
-    afficherJour(jour);
+
+    let jour = JOUR_FINAL;
+    placer(jour, false);
+    addEventListener('resize', () => placer(jour, wheel.classList.contains('is-eclatee')));
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) continue;
 
-    const etape = () => {
+    let avant = performance.now();
+    let dernierTour: { depart: number; arrivee: number; t0: number } | null = null;
+    const boucle = (t: number) => {
+      const dt = Math.min(0.05, (t - avant) / 1000);
+      avant = t;
       const eclatee = wheel.classList.contains('is-eclatee');
-      const duree = eclatee ? 420 : 900; // temps pour rouler d'un jour au suivant
-      const pause = eclatee ? 60 : jour >= 17 ? 1100 : 650;
-      const depart = jour;
-      const t0 = performance.now();
-      const anim = (t: number) => {
-        const k = Math.min(1, (t - t0) / duree);
-        placer(depart + lisse(k));
-        if (k < 1) return requestAnimationFrame(anim);
-        jour = (depart % 28) + 1;
-        if (jour === 1) placer(1); // repart du début sans tour arrière
-        afficherJour(jour);
-        setTimeout(etape, pause);
-      };
-      requestAnimationFrame(anim);
+      if (eclatee) {
+        jour += VITESSE_ECLATEE * dt;
+        placer(jour, true);
+        return requestAnimationFrame(boucle);
+      }
+      if (!wheel.dataset.assemblee && document.documentElement.classList.contains('js-motion')) {
+        // Entrée pas encore jouée (roue hors écran) : on attend. Sans animations d'entrée, on fait le tour tout de suite.
+        placer(jour, false);
+        return requestAnimationFrame(boucle);
+      }
+      if (!dernierTour) {
+        // Dernier tour : au moins 28 jours de plus, jusqu'au prochain J17.
+        let arrivee = Math.ceil((jour - JOUR_FINAL) / 28) * 28 + JOUR_FINAL;
+        if (arrivee - jour < 28) arrivee += 28;
+        dernierTour = { depart: jour, arrivee, t0: t };
+      }
+      const k = Math.min(1, (t - dernierTour.t0) / DUREE_DERNIER_TOUR);
+      jour = dernierTour.depart + (dernierTour.arrivee - dernierTour.depart) * adoucir(k);
+      placer(jour, false);
+      if (k < 1) requestAnimationFrame(boucle); // posée : la boucle s'arrête
     };
-    setTimeout(etape, 900);
+    requestAnimationFrame(boucle);
   }
 </script>
 
 <style>
   .wheel { position: relative; width: min(100%, 30rem); margin-inline: auto; }
   .wheel__scene { position: relative; aspect-ratio: 1; perspective: 3200px; perspective-origin: 50% 40%; }
-  .wheel__stack { position: absolute; inset: 0; transform-style: preserve-3d; }
-  .wheel__layer { position: absolute; inset: 0; transform-style: preserve-3d; }
+  .wheel__stack { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+  .wheel__layer { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
   .wheel__piece { position: absolute; inset: 0; transform-style: preserve-3d; }
   .wheel__piece svg { width: 100%; height: 100%; overflow: visible; }
 
@@ -289,11 +313,11 @@ const legende = [
   .wheel__platine-tranche { fill: var(--semantic-bg-deep-intense); opacity: 0.85; }
   .wheel__platine { fill: url(#platine); }
   .wheel__biseau { fill: none; stroke: url(#biseau); stroke-width: 2.5; }
-  .wheel__perle-ombre { fill: rgb(0 0 0 / 0.45); filter: blur(1px); }
+  .wheel__perle-ombre { fill: rgb(0 0 0 / 0.32); }
   .wheel__num { fill: var(--semantic-text-on-deep-muted); font-family: var(--font-family-body); font-size: 9px; letter-spacing: 0.08em; text-anchor: middle; dominant-baseline: middle; }
 
   /* 02 phases : verre épais (ombre portée, tranche, face, reflet, arête) */
-  .wheel__ombre { fill: rgb(0 0 0 / 0.35); filter: blur(5px); }
+  .wheel__ombre { fill: rgb(0 0 0 / 0.22); }
   .wheel__tranche { fill: rgb(18 34 25 / 0.75); stroke: rgb(255 253 249 / 0.12); stroke-width: 0.8; }
   .wheel__verre { fill: url(#verre); }
   .wheel__reflet { fill: url(#reflet); }
@@ -309,7 +333,7 @@ const legende = [
 
   /* 03 zone */
   .wheel__zone-tranche { fill: var(--color-accent-fuchsia-profond); filter: brightness(0.55); }
-  .wheel__zone { fill: url(#verre-rose); filter: drop-shadow(0 0 6px rgb(224 37 122 / 0.55)); }
+  .wheel__zone { fill: url(#verre-rose); }
 
   .wheel__ancre { position: absolute; width: 0; height: 0; }
   .wheel__avant { position: absolute; inset: 0; pointer-events: none; }
@@ -317,7 +341,7 @@ const legende = [
   /* 04 sphère centrale : verre vert profond, reflet, texte gravé en relief */
   /* Sans JavaScript : sphère centrée, bille masquée. Avec JavaScript : placées sur leurs ancres. */
   .wheel__sphere { position: absolute; left: 50%; top: 50%; width: 34%; aspect-ratio: 1; margin: -17% 0 0 -17%; transform-origin: 50% 50%; }
-  .wheel__sphere-ombre { position: absolute; left: 50%; top: 50%; width: 34%; height: 34%; translate: -46% -40%; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / 0.55), transparent); filter: blur(10px); }
+  .wheel__sphere-ombre { position: absolute; left: 50%; top: 50%; width: 34%; height: 34%; translate: -46% -40%; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / 0.5), transparent); }
   .wheel__sphere-corps {
     position: absolute; inset: 0; border-radius: 50%; display: grid; place-content: center; text-align: center;
     background:
@@ -346,11 +370,11 @@ const legende = [
     box-shadow: inset -3px -4px 7px rgb(0 0 0 / 0.35), inset 2px 2px 4px rgb(255 255 255 / 0.6), 0 0 0 1px rgb(0 0 0 / 0.15);
   }
   .wheel.is-zone .wheel__bille { background: radial-gradient(circle at 34% 28%, var(--color-base-blanc-chaud) 0%, color-mix(in srgb, var(--color-accent-fuchsia) 45%, var(--color-base-blanc-chaud)) 20%, var(--color-accent-fuchsia) 55%, color-mix(in srgb, var(--color-accent-fuchsia-profond) 55%, var(--color-profondeur-vert-nuit)) 100%); }
-  .wheel__bille::after { content: ''; position: absolute; left: 22%; top: 16%; width: 30%; height: 22%; border-radius: 50%; background: rgb(255 255 255 / 0.85); filter: blur(1px); }
+  .wheel__bille::after { content: ''; position: absolute; left: 22%; top: 16%; width: 30%; height: 22%; border-radius: 50%; background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0)); }
   /* Marque qui tourne avec la distance : on voit la bille rouler */
   .wheel__bille-marque { position: absolute; inset: 0; border-radius: 50%; }
   .wheel__bille-marque::before { content: ''; position: absolute; left: 46%; top: -10%; width: 10%; height: 120%; border-radius: 50%; background: rgb(26 48 40 / 0.18); }
-  .wheel__bille-ombre { position: absolute; width: clamp(18px, 6.2vw, 30px); height: clamp(8px, 2.6vw, 12px); translate: -40% 30%; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / 0.6), transparent); filter: blur(2px); }
+  .wheel__bille-ombre { position: absolute; width: clamp(18px, 6.2vw, 30px); height: clamp(8px, 2.6vw, 12px); translate: -40% 30%; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / 0.55), transparent); }
   .wheel.is-eclatee .wheel__bille { box-shadow: inset -3px -4px 7px rgb(0 0 0 / 0.35), inset 2px 2px 4px rgb(255 255 255 / 0.6), 0 0 18px 2px rgb(255 253 249 / 0.55); }
   .wheel.is-eclatee.is-zone .wheel__bille { box-shadow: inset -3px -4px 7px rgb(0 0 0 / 0.35), inset 2px 2px 4px rgb(255 255 255 / 0.6), 0 0 20px 3px rgb(224 37 122 / 0.7); }
 

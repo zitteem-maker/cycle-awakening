@@ -76,7 +76,7 @@ const phases = [
       if (focus) tab.focus();
     };
     tabs.forEach((t, i) => {
-      t.addEventListener('click', () => select(t));
+      t.addEventListener('click', () => { root.classList.remove('is-scrubbing'); select(t); });
       t.addEventListener('keydown', (e) => {
         const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
         if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); }
@@ -84,7 +84,7 @@ const phases = [
     });
     root.dataset.active = 'luteale';
 
-    // Pilotage au défilement (section épinglée, voir src/scripts/motion.ts) : le jour courant
+    // Lecture automatique (voir src/scripts/motion.ts) : le jour courant
     // s'allume dans la barre et l'onglet de sa phase s'ouvre.
     const jours = [...root.querySelectorAll<HTMLElement>('.phases__jour')];
     let derniere = '';

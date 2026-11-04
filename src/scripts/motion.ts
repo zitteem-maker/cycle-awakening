@@ -35,7 +35,7 @@ if (!reduit) {
   if (heroEntree) {
     const q = (sel: string) => heroEntree.querySelectorAll<Element>(sel);
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    tl.fromTo(q('[data-in]'), { x: -110, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.4, stagger: 0.11 }, 0.1);
+    tl.fromTo(q('[data-in]'), { x: -110, opacity: 0 }, { x: 0, opacity: 1, duration: 1.4, stagger: 0.11 }, 0.1);
     // --- Roue en VUE ÉCLATÉE (façon dessin d'horloger) : quatre plateaux inclinés, séparés en hauteur. ------------
     const roueEl = heroEntree.querySelector<HTMLElement>('[data-wheel]');
     if (roueEl) {
@@ -75,7 +75,8 @@ if (!reduit) {
 
       // 2. Courte pause en vue éclatée, puis assemblage rapide et automatique (sans attendre le défilement).
       const debut = 3.6;
-      pose.call(() => roueEl.classList.remove('is-eclatee'), undefined, debut + 1);
+      // Fin de l'assemblage : la bille passe à son dernier tour (voir CycleWheel.astro).
+      pose.call(() => { roueEl.classList.remove('is-eclatee'); roueEl.dataset.assemblee = '1'; }, undefined, debut + 1.8);
       pose.to(pile, { rotationX: 0, rotationZ: 0, scale: 1, y: 0, duration: 1.8, ease: 'power3.inOut', onUpdate: majFace }, debut);
       plateaux.forEach((p, i) => pose.to(p, { z: i * 0.5, duration: 1.8, ease: 'power3.inOut' }, debut));
       pose.to(axes, { scaleY: 0.01, opacity: 0, duration: 1.2, ease: 'power3.in' }, debut);
@@ -84,7 +85,7 @@ if (!reduit) {
 
   // --- Haut des autres pages : texte qui arrive depuis la gauche ---------------------------------
   document.querySelectorAll<HTMLElement>('[data-hero-page]').forEach((h) => {
-    gsap.fromTo(h.querySelectorAll('[data-in]'), { x: -110, opacity: 0, filter: 'blur(10px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.4, stagger: 0.11, ease: 'expo.out', delay: 0.1 });
+    gsap.fromTo(h.querySelectorAll('[data-in]'), { x: -110, opacity: 0 }, { x: 0, opacity: 1, duration: 1.4, stagger: 0.11, ease: 'expo.out', delay: 0.1 });
   });
 
   // --- Frise « Ton cycle en quatre temps » : jours éclatés qui se rangent, onglets de 4 côtés ----
@@ -102,7 +103,7 @@ if (!reduit) {
     frise.querySelectorAll('[role="tab"]').forEach((tab, i) => {
       tl.fromTo(tab, { ...depuis[i], opacity: 0, rotation: i % 2 ? 4 : -4 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1.4, clearProps: 'transform' }, 0.45 + i * 0.1);
     });
-    tl.fromTo(frise.querySelectorAll('.phases__panel:not([hidden]), .phases__note'), { x: -90, opacity: 0, filter: 'blur(8px)' }, { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.3, stagger: 0.1 }, 0.9);
+    tl.fromTo(frise.querySelectorAll('.phases__panel:not([hidden]), .phases__note'), { x: -90, opacity: 0 }, { x: 0, opacity: 1, duration: 1.3, stagger: 0.1 }, 0.9);
   }
 
   // --- Titres : mots qui montent derrière un masque ------------------------------------------
@@ -164,19 +165,31 @@ if (!reduit) {
     );
   });
 
-  // --- Cycle épinglé : le défilement fait avancer les jours J1 → J28 ---------------------------
+  // --- Cycle : les jours J1 → J28 défilent tout seuls tant que la section est à l'écran ---------
+  // (sans dépendre du défilement). Un clic sur une phase met la lecture en pause quelques secondes.
   const cycle = document.querySelector<HTMLElement>('[data-pin-cycle]');
   if (cycle) {
+    let jour = 1;
+    let minuteur = 0;
+    let pauseJusqua = 0;
+    const tic = () => {
+      if (performance.now() >= pauseJusqua) {
+        window.dispatchEvent(new CustomEvent('ca:cycle-day', { detail: jour }));
+        jour = (jour % 28) + 1;
+      }
+      minuteur = window.setTimeout(tic, jour >= 17 ? 640 : 480);
+    };
     ScrollTrigger.create({
       trigger: cycle,
-      start: 'top top',
-      end: '+=160%',
-      pin: true,
-      scrub: true,
-      onUpdate: (st) => {
-        const jour = Math.min(28, 1 + Math.floor(st.progress * 28));
-        window.dispatchEvent(new CustomEvent('ca:cycle-day', { detail: jour }));
+      start: 'top 75%',
+      end: 'bottom 25%',
+      onToggle: (st) => {
+        clearTimeout(minuteur);
+        if (st.isActive) minuteur = window.setTimeout(tic, 1200); // après l'entrée de la frise
       },
+    });
+    cycle.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('[role="tab"]')) pauseJusqua = performance.now() + 8000;
     });
   }
 
@@ -188,12 +201,19 @@ if (!reduit) {
       scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
     });
   });
+  // Livre : entrée en pivotant, puis il flotte et tourne doucement en continu (sans défilement).
   const livre = document.querySelector<HTMLElement>('[data-book]');
   if (livre) {
     gsap.fromTo(
       livre,
-      { rotateY: -42, rotateX: 10, y: 60 },
-      { rotateY: -10, rotateX: 0, y: -20, ease: 'none', scrollTrigger: { trigger: livre, start: 'top bottom', end: 'bottom 35%', scrub: true } },
+      { rotateY: -48, rotateX: 12, y: 80, opacity: 0 },
+      {
+        rotateY: -22, rotateX: 4, y: 0, opacity: 1, duration: 1.8, ease: 'expo.out',
+        scrollTrigger: { trigger: livre, start: 'top 85%' },
+        onComplete: () => {
+          gsap.to(livre, { rotateY: -4, rotateX: -3, y: -16, duration: 3.4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+        },
+      },
     );
   }
 

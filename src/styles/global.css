@@ -208,14 +208,15 @@ svg { display: block; max-width: 100%; height: auto; }
 /* Fond du site : dégradé crème → beige avec halos flous qui dérivent lentement (SiteBackdrop.astro). */
 .fond-site { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
   background: linear-gradient(170deg, var(--semantic-bg) 0%, var(--color-base-beige) 55%, var(--semantic-bg) 100%); }
-.fond-site span { position: absolute; border-radius: 50%; filter: blur(80px); will-change: transform; }
+/* Pas de filtre de flou (coûteux à chaque image) : les dégradés radiaux suffisent à fondre les bords. */
+.fond-site span { position: absolute; border-radius: 50%; will-change: transform; }
 .fond-site span:nth-child(1) { width: 55vmax; height: 55vmax; left: -15vmax; top: -20vmax; background: radial-gradient(circle, rgb(159 192 176 / 0.55), transparent 65%); animation: derive-1 28s ease-in-out infinite alternate; }
 .fond-site span:nth-child(2) { width: 45vmax; height: 45vmax; right: -12vmax; top: 30vh; background: radial-gradient(circle, rgb(246 231 234 / 0.95), transparent 65%); animation: derive-2 34s ease-in-out infinite alternate; }
 .fond-site span:nth-child(3) { width: 50vmax; height: 50vmax; left: 20vw; bottom: -25vmax; background: radial-gradient(circle, rgb(227 221 212 / 0.9), transparent 65%); animation: derive-1 40s ease-in-out infinite alternate-reverse; }
 
 /* Halos des sections profondes */
 .aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.aurora__blob { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+.aurora__blob { position: absolute; border-radius: 50%; will-change: transform; }
 .aurora__blob--1 { width: 46vmax; height: 46vmax; right: -12vmax; top: -10vmax; background: radial-gradient(circle, var(--color-base-sauge) 0%, transparent 65%); opacity: 0.32; animation: derive-1 22s ease-in-out infinite alternate; }
 .aurora__blob--2 { width: 34vmax; height: 34vmax; right: 8vmax; bottom: -14vmax; background: radial-gradient(circle, var(--color-accent-fuchsia) 0%, transparent 62%); opacity: 0.16; animation: derive-2 26s ease-in-out infinite alternate; }
 .aurora__blob--3 { width: 40vmax; height: 40vmax; left: -16vmax; bottom: -18vmax; background: radial-gradient(circle, var(--color-profondeur-vert-mousse) 0%, transparent 70%); opacity: 0.9; animation: derive-1 30s ease-in-out infinite alternate-reverse; }
@@ -267,11 +268,16 @@ h1, h2 {
     0 3px 3px rgb(0 0 0 / 0.25),
     0 14px 34px rgb(0 0 0 / 0.4);
 }
+/* Italiques fuchsia : relief net, sans halo rose (le halo rendait le texte flou sur fond clair). */
 h1 .accent, h2 .accent, h1.accent, h2.accent {
   text-shadow:
-    0 1px 0 rgb(255 253 249 / 0.35),
-    0 2px 0 var(--color-accent-fuchsia-profond),
-    0 10px 26px rgb(224 37 122 / 0.28);
+    0 1px 0 rgb(196 32 106 / 0.55),
+    0 3px 6px rgb(26 48 40 / 0.12);
+}
+.deep h1 .accent, .deep h2 .accent, .deep-green h1 .accent, .deep-green h2 .accent {
+  text-shadow:
+    0 1px 0 rgb(196 32 106 / 0.6),
+    0 6px 16px rgb(0 0 0 / 0.35);
 }
 
 /* Boutons : reflet de verre sur les boutons pleins (le contraste d'achat reste intact). */
