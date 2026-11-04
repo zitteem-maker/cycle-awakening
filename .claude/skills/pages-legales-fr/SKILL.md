@@ -30,7 +30,7 @@ Vendre ou toucher des commissions d'affiliation est une activité professionnell
 - Hébergeur : nom, adresse, téléphone (Cloudflare, Inc. pour Cloudflare Pages ; vérifier l'adresse en vigueur sur cloudflare.com).
 - Propriété intellectuelle, crédits photos/vidéos (avec licence), mention « ne remplace pas un avis médical ».
 
-### CGV — contenu numérique (guide PDF) et abonnement (Premium)
+### CGV — contenu numérique (le guide, « livre digital » : ne jamais écrire « PDF » dans les textes visibles) et abonnement (Premium)
 - Identité du vendeur, caractéristiques essentielles, prix TTC en euros, modalités de paiement (Stripe), livraison (email + lien de téléchargement), durée de validité du lien.
 - **Droit de rétractation** (C. consom. L221-18 : 14 jours) et son **exception pour le contenu numérique** fourni sans support matériel (L221-28, 13°) : seulement si la cliente a donné son **accord préalable exprès** à l'exécution immédiate **et** **renoncé expressément** à son droit, avec **confirmation sur support durable** (email de confirmation, L221-13). Sans ces trois éléments, la rétractation reste ouverte 14 jours.
 - Abonnement : durée, reconduction, prix, période d'essai, résiliation **en ligne, simple et directe** (fonctionnalité de résiliation, L215-1-1), portail client Stripe, effet de la résiliation.

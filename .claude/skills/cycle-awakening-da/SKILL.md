@@ -86,6 +86,8 @@ Mobile d'abord, texte courant ≥ 15 px (l'ancien site descendait à 8 px), cont
 
 Direct, incarné, apaisant, sensoriel, intelligent, concret. Tutoiement. Jamais infantilisant, pseudo-médical, mystique ou girlboss. Pas de promesse de résultat (« Plus jamais » de l'ancien hero est à reformuler). Phrases signature : « Tu n'es pas instable. Tu es cyclique. » · « Ralentir est une stratégie hormonale. » · « Redevenir toi. Chaque mois. »
 
+**Vocabulaire du guide (décision du 4 novembre 2026)** : on ne dit jamais « PDF » dans un texte visible (site, emails, réseaux, CGV). On dit « livre digital » en français et « digital book » en anglais.
+
 ## Checklist avant de livrer un écran
 
 1. Tokens sémantiques uniquement ; `npm run check:contrast` vert.
