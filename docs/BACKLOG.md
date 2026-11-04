@@ -116,4 +116,5 @@ Mises de côté à la demande de la fondatrice. Chaque lien obtenu → fiche ave
 - **Vivobarefoot** : impact.com / Awin, pas de programme France trouvé à ce jour.
 - **Smoon** (lingerie menstruelle) : pas de programme trouvé, contact direct avec le modèle de premier message.
 - Sans programme trouvé : Kazidomi, Holidermie. Palais des Thés : États-Unis seulement.
+- **Goop** : candidature affiliée en cours (description rédigée le 4 nov.). Si acceptée, ne relayer que des produits neutres (soins du corps, maison, mode) : pas de compléments ni d’allégations hormonales.
 - **Shopify Collabs** : profil créé par la fondatrice (bio de 270 caractères rédigée le 4 nov.). Chercher d'autres marques via l'onglet Discover.
