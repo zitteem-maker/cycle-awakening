@@ -38,6 +38,15 @@ Principe : chaque mois croise une **saison** (ce que vivent les lectrices en ce 
 
 Les piliers SOPK, endométriose et périménopause viennent ensuite, idéalement avec une relecture par une sage-femme ou un·e médecin (sujets plus médicaux).
 
+## Idées d'articles à partir des produits de la fondatrice (4 novembre 2026)
+
+Vécu de la fondatrice, à transformer en articles (pas sur la fiche Goop de la page Recommandations). Règles habituelles : ressenti et rituel, aucune promesse de résultat, sources vérifiées pour toute affirmation physiologique, encadré « Quand consulter ».
+
+- **Le dry brushing, rituel avant le sauna ou la douche chaude** (Ultimate Dry Brush, Goop) : comment, quand, à quelle fréquence ; pas d'allégation (« drainage », « détox »).
+- **Récupérer après le sport en fin de cycle** (pistolet de massage Theragun, Therabody) : jambes et bras, courbatures, intensité douce ; renvoi vers l'article sport en phase lutéale.
+- **Le sauna en fin de cycle** (bonnet de sauna) : précautions (hydratation, malaise, grossesse : demander un avis), ressenti.
+- **Plaisir, sexualité et fin de cycle** (vibromasseur Lelo Tor, seule ou à deux, facile à emporter) : sujet délicat, à écrire avec soin. La fondatrice associe le plaisir à la détente les jours de ventre gonflé, de maux de ventre ou de tête. Toute mention d'effets (endorphines, ocytocine, douleur) exige une source vérifiée et une formulation prudente (« certaines femmes trouvent… »), sinon on reste sur le ressenti. Idéalement relu par une sage-femme ou une sexologue.
+
 ## Agent éditorial (à mettre en place)
 
 Une tâche planifiée (routine Claude) lancée **deux fois par semaine** :
