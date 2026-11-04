@@ -11,7 +11,13 @@
 - Cloudflare **Worker avec fichiers statiques** (pas Pages) : `wrangler.jsonc` + `worker/index.js` (route `/api/newsletter`), site statique dans `dist/` (`npm run build`). Node 22.12 (`.nvmrc`).
 - Production = `main`, prévisualisations = autres branches (« Previews » activées dans Cloudflare).
 - Accès prévu pour Claude : variables `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID` dans l'environnement, hôtes `api.cloudflare.com` et `*.workers.dev` autorisés. Vérifier : `npx wrangler whoami`, `npx wrangler deployments list`.
-- Première tâche de la nouvelle session : vérifier que le déploiement de `preview` réussit, puis envoyer le lien à la fondatrice (au lieu de vidéos).
+- Adresses (Account ID `0ae88d73507c203f6e39c21de527617c`, sous-domaine workers.dev `profile-agent`) :
+  - production (`main`, construite automatiquement par Cloudflare) : https://cycle-awakening.profile-agent.workers.dev
+  - prévisualisation (`preview`) : https://preview-cycle-awakening.profile-agent.workers.dev
+- Mettre à jour la prévisualisation après un push sur `preview` (tant qu'il n'y a pas de déclencheur automatique) :
+  `npm run build && CLOUDFLARE_ACCOUNT_ID=0ae88d73507c203f6e39c21de527617c CLOUDFLARE_API_TOKEN=x npx wrangler versions upload --preview-alias preview`
+  (la vraie clé est ajoutée par le proxy de l'environnement ; ne jamais la mettre dans le dépôt).
+- Ne jamais lancer `wrangler deploy` ni `versions deploy` à la main : la production ne change que par une fusion validée dans `main`.
 
 ## État des étapes
 1. Fondations : fait.
