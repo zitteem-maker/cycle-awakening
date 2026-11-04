@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
 statut: brouillon
+photo: fatigue-avant-regles.webp
+photoAlt: "Un lit aux draps blancs défaits, rayé par la lumière d'un store"
+photoCredit:
+  nom: "Liz Vo"
+  lien: "https://unsplash.com/fr/photos/un-lit-avec-des-draps-blancs-et-des-oreillers-blancs-pl3sj3DigxM"
 consulter:
   - une fatigue qui dure tout le mois, pas seulement en fin de cycle
   - une fatigue accompagnée de règles très abondantes, d'essoufflement ou de vertiges

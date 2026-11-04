@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
 statut: brouillon
+photo: envie-de-sucre-avant-regles.webp
+photoAlt: "Tablettes de chocolat noir et fèves de cacao sur une table claire"
+photoCredit:
+  nom: "Tetiana Bykovets"
+  lien: "https://unsplash.com/fr/photos/chocolate-bars-on-white-table-H22N-9s8AUw"
 consulter:
   - des envies de manger qui deviennent incontrôlables ou te font souffrir
   - un rapport à la nourriture qui t'inquiète (restriction, crises, culpabilité forte)

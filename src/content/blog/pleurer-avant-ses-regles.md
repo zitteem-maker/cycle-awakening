@@ -7,6 +7,11 @@ author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
 statut: brouillon
+photo: pleurer-avant-ses-regles.webp
+photoAlt: "Gouttes de pluie sur une vitre, verdure floue en arrière-plan"
+photoCredit:
+  nom: "Tīna Sāra"
+  lien: "https://unsplash.com/fr/photos/une-vue-dun-batiment-a-travers-une-fenetre-pluvieuse-oiFEo2D87iM"
 consulter:
   - une humeur si basse, une anxiété si forte ou une irritabilité si intense qu'elles abîment ta vie, ton travail ou tes relations
   - des symptômes émotionnels qui reviennent chaque cycle et te font peur
