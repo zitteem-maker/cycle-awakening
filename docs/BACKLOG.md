@@ -102,3 +102,18 @@ Légal et offres :
 - [ ] Ouverture de la newsletter : `controllerName` dans `src/config/legal.ts`.
 - [ ] Avant la première vente : immatriculation et informations légales complètes (`missingForSales()` vide).
 - [ ] Ouverture de l'abonnement : remplacer « je prépare l'accompagnement » / « Prochainement » (chapitre 5, notice, édito) par le vrai lien.
+
+## Affiliation : pistes à reprendre plus tard (4 novembre 2026)
+
+Mises de côté à la demande de la fondatrice. Chaque lien obtenu → fiche avec badge « Lien affilié » + `rel="sponsored nofollow"`. Immatriculation obligatoire avant toute commission.
+
+- **Cosmic Dealer** : candidature affiliée envoyée (réponses rédigées le 4 nov.). Si acceptée, remplacer le lien de la fiche.
+- **Typology** : Awin, en France Instagram ou YouTube exigé. Texte de motivation rédigé le 4 nov. Postuler une fois le compte Instagram actif.
+- **Wildling Shoes** (déjà recommandée) : Tapfiliate, https://wildling.tapfiliate.com/
+- **Circle Sportswear** (déjà recommandée) : programme ambassadeurs, https://circlesportswear.com/en/pages/ambassadeurs-program
+- **Oh My Cream** : Affilae, https://ohmycream.co.uk/pages/affiliation. Ne lier que des produits neutres (pas de compléments ni d'allégation hormonale). Vend aussi Sentara : garder le lien partenaire direct pour Sentara.
+- **Respire** : Affilae, https://affi.io/m/respire
+- **Vivobarefoot** : impact.com / Awin, pas de programme France trouvé à ce jour.
+- **Smoon** (lingerie menstruelle) : pas de programme trouvé, contact direct avec le modèle de premier message.
+- Sans programme trouvé : Kazidomi, Holidermie. Palais des Thés : États-Unis seulement.
+- **Shopify Collabs** : profil créé par la fondatrice (bio de 270 caractères rédigée le 4 nov.). Chercher d'autres marques via l'onglet Discover.
