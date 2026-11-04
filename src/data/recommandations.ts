@@ -1,7 +1,7 @@
 // Recommandations de la fondatrice (page /recommandations).
 //
 // RÈGLE D'AFFILIATION (décision du 6 octobre 2026) :
-//   - relation « affilie », « partenariat » ou « produit-offert » → étiquette visible sur la fiche
+//   - relation « affilie », « parrainage », « partenariat » ou « produit-offert » → étiquette visible sur la fiche
 //     + lien en rel="sponsored nofollow" (exigence Google). Un produit reçu gratuitement compte.
 //   - relation « aucune » → simple recommandation : lien normal, sans étiquette.
 //   - relation « a-confirmer » → fiche jamais visible en production.
@@ -9,10 +9,10 @@
 // Textes : ressenti personnel uniquement (« ce que j'aime, quand je l'utilise »), aucune allégation santé.
 //
 // Mise à jour du 4 novembre 2026 : liens vers les sites officiels. Aucune relation commerciale, sauf Sentara Holistic
-// (partenariat, code AWAKENING15). « Widding » était une erreur de saisie pour Wildling (déjà présente).
+// (partenariat, code AWAKENING15) et Susanne Kaufmann (lien de parrainage). « Widding » était une erreur de saisie pour Wildling (déjà présente).
 // Restent sans lien : B Yoga (b, halfmoon), Oko Living, Les Actives Paris.
 
-export type Relation = 'aucune' | 'affilie' | 'partenariat' | 'produit-offert' | 'a-confirmer';
+export type Relation = 'aucune' | 'affilie' | 'parrainage' | 'partenariat' | 'produit-offert' | 'a-confirmer';
 
 export type Recommandation = {
   marque: string;
@@ -71,7 +71,7 @@ export const recommandations: Recommandation[] = [
   // Maison & rituels
   { marque: 'Yoshien', produit: 'Thés et infusions japonais', categorie: 'rituels', coupDeCoeur: true, texte: 'Des thés d’une qualité rare, en direct du Japon. Préparer mon thé est devenu un vrai moment de pause.', moment: 'Matin', lien: 'https://www.yoshien.com/fr/', relation: 'aucune' },
   { marque: 'Sentara Holistic', produit: 'Gua sha et brosse pour le corps', categorie: 'rituels', texte: 'Le gua sha le soir, la brosse le matin : deux petits rituels qui m’obligent à prendre cinq minutes pour moi.', moment: 'Rituels J20–J28', lien: 'https://sentaraholistic.com/', relation: 'partenariat', code: 'AWAKENING15', remise: '-15 %' },
-  { marque: 'Susanne Kaufmann', produit: 'Huile de bain naturelle', categorie: 'rituels', texte: 'Mon luxe des soirs de fin de cycle : un bain chaud, quelques gouttes, et le téléphone dans une autre pièce.', moment: 'Bain du soir', lien: 'https://www.susannekaufmann.com/fr-fr', relation: 'aucune' },
+  { marque: 'Susanne Kaufmann', produit: 'Huile de bain naturelle', categorie: 'rituels', texte: 'Mon luxe des soirs de fin de cycle : un bain chaud, quelques gouttes, et le téléphone dans une autre pièce.', moment: 'Bain du soir', lien: 'https://prz.io/3pmm9Z2Hy', relation: 'parrainage' },
   { marque: 'Cosmic Dealer', produit: 'Encens, thés et infusions', categorie: 'rituels', coupDeCoeur: true, texte: 'L’après-midi, leur thé blanc au chaï. Le soir, l’infusion aux trois menthes et un bâton d’encens, Summer Pine ou le cérémonial à la cannelle : quand je l’allume, je sais que la journée est finie. Et de temps en temps, un petit coffret de chocolats panachés.', moment: 'Après-midi et soirée', lien: 'https://getcosmicdealer.com/', relation: 'aucune' },
   { marque: 'Fellow', produit: 'Bouilloire design', categorie: 'rituels', texte: 'Une bouilloire qui donne envie de se faire une infusion. Le rituel du soir commence là, et la version connectée le rend encore plus simple : l’eau est prête à la bonne température, sans y penser.', moment: 'Infusion du soir', lien: 'https://fellowproducts.com/', relation: 'aucune' },
 ];
@@ -86,6 +86,7 @@ export const enAttente: EnAttente[] = [
 
 export const libellesRelation: Record<Exclude<Relation, 'aucune' | 'a-confirmer'>, string> = {
   affilie: 'Lien affilié',
+  parrainage: 'Lien de parrainage',
   partenariat: 'Partenariat',
   'produit-offert': 'Produit offert',
 };
