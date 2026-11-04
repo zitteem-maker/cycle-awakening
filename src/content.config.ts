@@ -23,6 +23,11 @@ const blog = defineCollection({
     sources: z
       .array(z.object({ label: z.string(), url: z.string().url().optional(), verifie: z.boolean().default(false) }))
       .default([]),
+    /** Photo de l'article (fichier dans public/images/blog/), affichée sous l'introduction. */
+    photo: z.string().optional(),
+    photoAlt: z.string().optional(),
+    /** Crédit obligatoire : photographe et lien de la page Unsplash (ou autre banque d'images). */
+    photoCredit: z.object({ nom: z.string(), lien: z.string().url() }).optional(),
     /** Image de partage 1200×630 (dans /public). Par défaut l'image du site. */
     image: z.string().optional(),
     imageAlt: z.string().optional(),

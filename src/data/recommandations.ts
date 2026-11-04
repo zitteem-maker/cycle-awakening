@@ -71,12 +71,12 @@ export const recommandations: Recommandation[] = [
   { marque: 'Fellow', produit: 'Bouilloire design', categorie: 'rituels', texte: 'Une bouilloire qui donne envie de se faire une infusion. Le rituel du soir commence là.', moment: 'Infusion du soir', lien: null, relation: 'a-confirmer' },
 ];
 
-/** Mises de côté (jamais en production) : à trancher par la fondatrice. */
+/** Mises de côté (jamais en production) : à trancher par la fondatrice.
+ * Écartées (décision du 4 novembre 2026) : Dynveo (définitivement), Aurélie Pole (pas de partenariat pour le moment). */
 export const enAttente: EnAttente[] = [
-  { marque: 'Aime, Dynveo, Nutri&Co (compléments alimentaires)', raison: 'Règle de marque : aucun complément recommandé (comme dans le livre). À confirmer : les retirer, ou les garder sans aucune mention d’effet ni de dosage.' },
-  { marque: 'Les Jardins de Gaïa (plantes médicinales)', raison: 'Les plantes ont été retirées des recommandations (décision du 6 octobre). À confirmer : garder seulement comme marque d’infusions, sans effet annoncé.' },
+  { marque: 'Aime, Nutri&Co (compléments alimentaires)', raison: 'Règle de marque : aucun complément recommandé (comme dans le livre). La fondatrice vérifie sous quelle forme les présenter, sans conflit avec les marques partenaires ou affiliées.' },
+  { marque: 'Les Jardins de Gaïa (plantes médicinales)', raison: 'Les plantes ont été retirées des recommandations (décision du 6 octobre). La fondatrice vérifie la forme : marque d’infusions seulement, sans effet annoncé, sans conflit avec les marques partenaires.' },
   { marque: 'Bolster laine et graines, bouillotte graines de lin', raison: 'Référence exacte à retrouver.' },
-  { marque: 'Aurélie Pole (cours en ligne, code CYCLE)', raison: 'Partenariat publié seulement une fois signé.' },
 ];
 
 export const libellesRelation: Record<Exclude<Relation, 'aucune' | 'a-confirmer'>, string> = {
