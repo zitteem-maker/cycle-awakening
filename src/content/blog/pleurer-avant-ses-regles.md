@@ -6,7 +6,7 @@ keywords: [pourquoi je pleure avant mes règles, déprime avant règles normal, 
 author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
-statut: brouillon
+statut: publie
 photo: pleurer-avant-ses-regles.webp
 photoAlt: "Gouttes de pluie sur une vitre, verdure floue en arrière-plan"
 photoCredit:
@@ -17,8 +17,12 @@ consulter:
   - des symptômes émotionnels qui reviennent chaque cycle et te font peur
   - un moral très bas qui ne disparaît pas après les règles
 sources:
-  - label: "Ameli ou HAS — fiche « Syndrome prémenstruel » et trouble dysphorique prémenstruel (référence exacte à vérifier)"
-  - label: "Collège national des gynécologues et obstétriciens français (CNGOF) — information patientes (à vérifier)"
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
+  - label: "CHUV (Centre hospitalier universitaire vaudois) — « Syndrome prémenstruel »"
+    url: "https://www.chuv.ch/fr/fertilite/umr-home/consultations-specialisees/troubles-du-cycle/syndrome-premenstruel"
+    verifie: true
 ---
 
 **Pleurer plus facilement, se sentir irritable ou avoir envie d'être seule dans les jours qui précèdent les règles est fréquent.** Pendant la [phase lutéale](/blog/phase-luteale), puis quand les hormones redescendent juste avant les règles, beaucoup de femmes deviennent plus sensibles émotionnellement. Ce n'est pas un défaut de caractère, et tu n'es pas « instable ». Mais si ces émotions deviennent écrasantes, ça mérite d'être pris au sérieux.

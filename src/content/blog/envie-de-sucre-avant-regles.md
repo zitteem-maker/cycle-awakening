@@ -6,7 +6,7 @@ keywords: [envie de sucre avant règles, aliments spm, envie de chocolat avant l
 author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
-statut: brouillon
+statut: publie
 photo: envie-de-sucre-avant-regles.webp
 photoAlt: "Tablettes de chocolat noir et fèves de cacao sur une table claire"
 photoCredit:
@@ -17,8 +17,12 @@ consulter:
   - un rapport à la nourriture qui t'inquiète (restriction, crises, culpabilité forte)
   - des symptômes de fin de cycle qui s'aggravent d'un mois à l'autre
 sources:
-  - label: "Ameli — fiche « Syndrome prémenstruel » (envies alimentaires, à vérifier)"
-  - label: "Source institutionnelle sur l'alimentation équilibrée (Manger Bouger / Santé publique France, à vérifier)"
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
+  - label: "Anses — « Sucres dans l’alimentation »"
+    url: "https://www.anses.fr/fr/content/sucres-dans-lalimentation"
+    verifie: true
 ---
 
 **Avoir envie de sucre dans les jours qui précèdent les règles est très courant : c'est l'une des envies de fin de cycle les plus citées.** La fatigue de la [phase lutéale](/blog/phase-luteale), un appétit souvent plus présent et une humeur plus fragile poussent vers ce qui réconforte vite. Ce n'est pas un manque de volonté, et la solution n'est pas de te l'interdire.

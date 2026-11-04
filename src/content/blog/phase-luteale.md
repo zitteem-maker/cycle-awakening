@@ -7,7 +7,7 @@ keywords: [phase lutéale, alimentation phase lutéale, comprendre son cycle, ho
 author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
-statut: brouillon
+statut: publie
 photo: phase-luteale.webp
 photoAlt: "Une femme de dos devant une fenêtre ouverte, lumière douce de fin de journée"
 photoCredit:
@@ -18,8 +18,12 @@ consulter:
   - des saignements très abondants, ou des symptômes nouveaux qui s'aggravent d'un cycle à l'autre
   - une humeur si basse, une anxiété si forte ou une irritabilité si intense qu'elles abîment ta vie ou tes relations
 sources:
-  - label: "Haute Autorité de santé (HAS) ou Ameli — fiche « Syndrome prémenstruel » (référence exacte à choisir et vérifier)"
-  - label: "Collège national des gynécologues et obstétriciens français (CNGOF) — information patientes sur le cycle menstruel (à vérifier)"
+  - label: "Elsan — « Phase lutéale »"
+    url: "https://www.elsan.care/fr/pathologie-et-traitement/maladies-gynecologiques/phase-luteale"
+    verifie: true
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
 ---
 
 **La phase lutéale, c'est la seconde moitié de ton cycle : de l'ovulation jusqu'aux règles, soit environ J15 à J28 pour un cycle de 28 jours.** La progestérone y domine, puis toutes les hormones redescendent juste avant les règles. C'est ce mouvement qui explique la fatigue, les envies, le ventre gonflé et les émotions plus vives de fin de cycle. Bonne nouvelle : quand on comprend cette logique, on peut s'organiser avec elle au lieu de la subir.

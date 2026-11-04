@@ -6,7 +6,7 @@ keywords: [fatigue avant règles que faire, cycle menstruel fatigue, pourquoi mo
 author: Emeline
 publishedAt: 2026-11-04
 updatedAt: 2026-11-04
-statut: brouillon
+statut: publie
 photo: fatigue-avant-regles.webp
 photoAlt: "Un lit aux draps blancs défaits, rayé par la lumière d'un store"
 photoCredit:
@@ -17,8 +17,12 @@ consulter:
   - une fatigue accompagnée de règles très abondantes, d'essoufflement ou de vertiges
   - une fatigue qui t'empêche de travailler, de t'occuper de toi ou de tes proches
 sources:
-  - label: "Ameli — fiche « Syndrome prémenstruel » (référence exacte à vérifier)"
-  - label: "Source sur le lien entre règles abondantes et carence en fer (HAS ou Ameli, à choisir et vérifier)"
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
+  - label: "Santé.fr (ministère de la Santé) — « Que veut dire bien manger ? »"
+    url: "https://www.sante.fr/node/799501"
+    verifie: true
 ---
 
 **Être fatiguée dans les jours qui précèdent tes règles est fréquent : c'est l'un des signes les plus courants de la fin de cycle.** Les hormones redescendent, le sommeil devient souvent plus léger, et l'énergie suit. Ce n'est pas un manque de volonté. La bonne réponse n'est pas de forcer, mais d'ajuster ton rythme quelques jours.
