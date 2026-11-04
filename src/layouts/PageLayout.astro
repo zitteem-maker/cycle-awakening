@@ -15,6 +15,7 @@ const { headerCta = true, headerOverlay = true, ...base } = Astro.props;
 ---
 
 <BaseLayout {...base}>
+  <slot name="head" slot="head" />
   <SiteHeader cta={headerCta} overlay={headerOverlay} />
   <main id="contenu">
     <slot />

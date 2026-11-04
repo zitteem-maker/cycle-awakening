@@ -11,7 +11,9 @@ Méthode : skill `seo-blog`. Source des sujets : `docs/50-recherches.md`. Chaque
 | 3 | Satellite | Envie de sucre avant les règles : ce que ton corps demande vraiment | envie de sucre avant règles (3), aliments spm (23) |
 | 4 | Satellite | Pourquoi je pleure avant mes règles ? Comprendre l'humeur en fin de cycle, et quand consulter | pourquoi je pleure avant mes règles (2), déprime avant règles normal (9), je déteste tout le monde avant mes règles (7), irritabilité (6) |
 
-Ce sont les sujets du segment d'entrée (SPM / phase lutéale), qui mènent naturellement au guide. L'article 4 contient un encadré renforcé sur le trouble dysphorique prémenstruel et la détresse psychique (renvoi vers un·e professionnel·le et les lignes d'écoute).
+Ce sont les sujets du segment d'entrée (SPM / phase lutéale), qui mènent naturellement au guide. L'article 4 contient un encadré renforcé sur le trouble dysphorique prémenstruel (renvoi vers médecin, sage-femme, gynécologue, psychologue ; 15 en cas d'urgence). Décision de la fondatrice : pas de message de prévention du suicide dans les contenus, comme dans le livre.
+
+**État (4 novembre 2026)** : les 4 articles sont rédigés en brouillon dans `src/content/blog/` (statut `brouillon`, sources à vérifier). Circuit : `brouillon` → `relu` (relecture de la fondatrice) → `publie` (sources vérifiées). Seuls les articles `publie` sont en production.
 
 ## Ensuite : 2 articles par semaine
 

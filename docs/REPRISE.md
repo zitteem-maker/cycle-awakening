@@ -15,7 +15,8 @@
   - production (`main`, construite automatiquement par Cloudflare) : https://cycle-awakening.profile-agent.workers.dev
   - prévisualisation (`preview`) : https://preview-cycle-awakening.profile-agent.workers.dev
 - Mettre à jour la prévisualisation après un push sur `preview` (tant qu'il n'y a pas de déclencheur automatique) :
-  `npm run build && CLOUDFLARE_ACCOUNT_ID=0ae88d73507c203f6e39c21de527617c CLOUDFLARE_API_TOKEN=x npx wrangler versions upload --preview-alias preview`
+  `PUBLIC_AFFICHER_BROUILLONS=true npm run build && WRANGLER_SEND_METRICS=false CLOUDFLARE_ACCOUNT_ID=0ae88d73507c203f6e39c21de527617c CLOUDFLARE_API_TOKEN=x npx wrangler versions upload --preview-alias preview`
+  (`PUBLIC_AFFICHER_BROUILLONS=true` : la prévisualisation montre les articles de blog en brouillon, marqués et non indexés ; la production, construite par Cloudflare sans cette variable, ne montre que les articles `publie`. Deux requêtes secondaires de Wrangler échouent en fin d'envoi (`/workers/workers/…`, `/accounts`) : sans effet sur la mise à jour.)
   (la vraie clé est ajoutée par le proxy de l'environnement ; ne jamais la mettre dans le dépôt).
 - Ne jamais lancer `wrangler deploy` ni `versions deploy` à la main : la production ne change que par une fusion validée dans `main`.
 - Clé Cloudflare : secret « Bearer » de l'environnement pour `api.cloudflare.com`, **limité aux préfixes** `/client/v4/accounts/<ID>/workers/scripts/`, `/workers/services/`, `/workers/subdomain`, `/builds/`, `/client/v4/user`, `/client/v4/memberships`. Raison : le téléversement des fichiers (`/workers/assets/upload`) utilise sa propre autorisation temporaire, que le secret écrasait (erreur 401 « malformed response »). Vérifier que la limitation est active : `curl -s -o /dev/null -w '%{http_code}' https://api.cloudflare.com/client/v4/accounts/<ID>/workers/assets/upload` ne doit PAS recevoir la clé.

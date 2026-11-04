@@ -25,6 +25,8 @@
     "build:book:edito": "npm run tokens && node book/build.mjs --brouillon --apercu-edito"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource/cormorant-garamond": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
     "@fontsource/limelight": "^5.3.0",

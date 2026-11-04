@@ -1,6 +1,7 @@
 // Site statique déployé sur Cloudflare Pages (sortie dans dist/).
 // Les fonctions serveur (paiement, webhook Stripe, assistante IA) iront dans functions/ (Cloudflare Pages Functions).
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import { loadEnv } from 'vite';
 
 const { PUBLIC_SITE_URL } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
@@ -10,6 +11,12 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   build: { format: 'file' },
+  integrations: [
+    sitemap({
+      // Pages de service et non indexées hors du plan du site.
+      filter: (page) => !/\/(merci|styleguide|newsletter-[a-z]+|404)(\.html)?$/.test(page),
+    }),
+  ],
   i18n: {
     // Français par défaut, anglais prêt mais non traduit tant que ce n'est pas demandé.
     defaultLocale: 'fr',
