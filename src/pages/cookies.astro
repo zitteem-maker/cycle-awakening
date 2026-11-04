@@ -21,11 +21,11 @@ import LegalLayout from '../layouts/LegalLayout.astro';
         <td>Non requis (strictement nécessaire)</td>
       </tr>
       <tr>
-        <td>Mesure d’audience</td>
-        <td>À définir (outil sans cookie)</td>
-        <td>Compter les visites et les clics, de façon agrégée</td>
-        <td>Aucun cookie</td>
-        <td>Non requis si l’outil respecte les conditions de la CNIL ; sinon une bannière sera ajoutée</td>
+        <td>Mesure d’audience (aucun cookie, aucun identifiant)</td>
+        <td>Cycle Awakening, hébergée chez Cloudflare (Workers Analytics Engine)</td>
+        <td>Compter de façon agrégée les pages vues et les clics sur les boutons (ex. « Obtenir le guide », inscription à la newsletter). Seuls sont enregistrés : le nom de l’action, la page, l’emplacement du bouton, le pays (déduit par Cloudflare) et le site d’où tu viens. Ni adresse IP, ni email, ni identifiant.</td>
+        <td>Aucun cookie ; données agrégées conservées 3 mois par Cloudflare</td>
+        <td>Non requis (mesure strictement anonyme, sans traceur sur ton appareil). Si ton navigateur envoie « Do Not Track » ou « Global Privacy Control », rien n’est envoyé.</td>
       </tr>
     </tbody>
   </table>

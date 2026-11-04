@@ -21,6 +21,8 @@
 - Ne jamais lancer `wrangler deploy` ni `versions deploy` à la main : la production ne change que par une fusion validée dans `main`.
 - Clé Cloudflare : secret « Bearer » de l'environnement pour `api.cloudflare.com`, **limité aux préfixes** `/client/v4/accounts/<ID>/workers/scripts/`, `/workers/services/`, `/workers/subdomain`, `/builds/`, `/client/v4/user`, `/client/v4/memberships`. Raison : le téléversement des fichiers (`/workers/assets/upload`) utilise sa propre autorisation temporaire, que le secret écrasait (erreur 401 « malformed response »). Vérifier que la limitation est active : `curl -s -o /dev/null -w '%{http_code}' https://api.cloudflare.com/client/v4/accounts/<ID>/workers/assets/upload` ne doit PAS recevoir la clé.
 
+- Mesure d'audience : `docs/MESURE-AUDIENCE.md`. **Analytics Engine doit être activé dans Cloudflare avant de fusionner vers `main`** (sinon le déploiement de production échoue). En attendant, la prévisualisation est envoyée avec `-c .wrangler/preview-sans-mesure.jsonc` (copie locale de `wrangler.jsonc` sans la liaison `EVENEMENTS`, chemins en `../`).
+
 ## À faire en ouvrant la session suivante
 1. Mettre à jour la prévisualisation (commande ci-dessus) avec le dernier commit de `preview` (1943202 ou plus récent).
 2. Vérifier `https://preview-cycle-awakening.profile-agent.workers.dev` (accueil : bille rapide puis dernier tour et arrêt sur J17, frise et livre animés sans défilement, rose des titres net), puis envoyer le lien à la fondatrice.

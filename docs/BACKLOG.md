@@ -92,6 +92,11 @@ Livre :
 - [ ] Sources `TODO_SOURCE` vérifiées (liste à préparer, relecture professionnelle).
 - [ ] Version finale `npm run build:book` (écrit le nombre de pages pour le site).
 
+Site :
+- [ ] Activer Analytics Engine dans Cloudflare (mesure d'audience), avant la première fusion vers `main`.
+- [ ] Recommandations : renseigner `lien` et `relation` de chaque fiche (`src/data/recommandations.ts`) ; trancher les fiches mises de côté (compléments, plantes, références à retrouver, partenariat Aurélie).
+- [ ] Blog : relire les 4 articles, vérifier les sources, passer en `publie`.
+
 Légal et offres :
 - [ ] Avant la page Recommandations publique : règle d'affiliation (badge + `rel="sponsored"`).
 - [ ] Ouverture de la newsletter : `controllerName` dans `src/config/legal.ts`.
