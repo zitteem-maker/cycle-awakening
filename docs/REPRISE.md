@@ -18,6 +18,12 @@
   `npm run build && CLOUDFLARE_ACCOUNT_ID=0ae88d73507c203f6e39c21de527617c CLOUDFLARE_API_TOKEN=x npx wrangler versions upload --preview-alias preview`
   (la vraie clé est ajoutée par le proxy de l'environnement ; ne jamais la mettre dans le dépôt).
 - Ne jamais lancer `wrangler deploy` ni `versions deploy` à la main : la production ne change que par une fusion validée dans `main`.
+- Clé Cloudflare : secret « Bearer » de l'environnement pour `api.cloudflare.com`, **limité aux préfixes** `/client/v4/accounts/<ID>/workers/scripts/`, `/workers/services/`, `/workers/subdomain`, `/builds/`, `/client/v4/user`, `/client/v4/memberships`. Raison : le téléversement des fichiers (`/workers/assets/upload`) utilise sa propre autorisation temporaire, que le secret écrasait (erreur 401 « malformed response »). Vérifier que la limitation est active : `curl -s -o /dev/null -w '%{http_code}' https://api.cloudflare.com/client/v4/accounts/<ID>/workers/assets/upload` ne doit PAS recevoir la clé.
+
+## À faire en ouvrant la session suivante
+1. Mettre à jour la prévisualisation (commande ci-dessus) avec le dernier commit de `preview` (1943202 ou plus récent).
+2. Vérifier `https://preview-cycle-awakening.profile-agent.workers.dev` (accueil : bille rapide puis dernier tour et arrêt sur J17, frise et livre animés sans défilement, rose des titres net), puis envoyer le lien à la fondatrice.
+3. Ensuite : suite de l'étape 3 (blog, Recommandations avec rappel de la règle d'affiliation, mesure d'audience sans cookie).
 
 ## État des étapes
 1. Fondations : fait.
