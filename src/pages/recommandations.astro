@@ -61,6 +61,9 @@ const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(
                       </div>
                       <p class="fiche__texte">{r.texte}</p>
                       <p class="fiche__moment">{r.coupDeCoeur && <span class="fiche__coeur">Coup de cœur · </span>}{r.moment}</p>
+                      {r.code && (
+                        <p class="fiche__code">{r.remise ? `${r.remise} avec le code ` : 'Code '}<strong>{r.code}</strong></p>
+                      )}
                       <div class="fiche__pied">
                         {commercial && <span class="badge">{libellesRelation[r.relation as keyof typeof libellesRelation]}</span>}
                         {!complete(r) && <span class="badge badge--todo">À compléter : {r.lien === null ? 'lien' : ''}{r.lien === null && r.relation === 'a-confirmer' ? ' + ' : ''}{r.relation === 'a-confirmer' ? 'relation' : ''}</span>}
@@ -133,6 +136,8 @@ const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(
   .fiche__coeur { color: var(--semantic-accent-text); }
   .fiche__pied { margin-top: auto; padding-top: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; justify-content: space-between; border-top: 1px solid var(--semantic-line); }
   .badge { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--semantic-bg-accent-soft); color: var(--semantic-accent-text); }
+  .fiche__code { margin: 0; font-size: var(--font-size-sm); color: var(--semantic-text); }
+  .fiche__code strong { font-weight: var(--font-weight-semibold); letter-spacing: 0.06em; color: var(--semantic-accent-text); }
   .badge--todo { background: var(--semantic-bg-muted); color: var(--semantic-text); }
   .fiche__lien { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--semantic-text); text-decoration: none; min-height: var(--size-tap-target); display: inline-flex; align-items: center; }
   .fiche__lien:hover { color: var(--semantic-accent-text); }

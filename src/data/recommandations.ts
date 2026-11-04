@@ -8,9 +8,9 @@
 // Une fiche n'apparaît en production que si `lien` ET `relation` (≠ a-confirmer) sont renseignés.
 // Textes : ressenti personnel uniquement (« ce que j'aime, quand je l'utilise »), aucune allégation santé.
 //
-// Mise à jour du 4 novembre 2026 : aucune relation commerciale (confirmé par la fondatrice) → relation « aucune »,
-// liens vers les sites officiels. Restent sans lien (site officiel non trouvé) : Widding, B Yoga, Oko Living,
-// Les Actives Paris, Sentara Holistic, Cosmic Dealer.
+// Mise à jour du 4 novembre 2026 : liens vers les sites officiels. Aucune relation commerciale, sauf Sentara Holistic
+// (partenariat, code AWAKENING15). « Widding » était une erreur de saisie pour Wildling (déjà présente).
+// Restent sans lien : B Yoga (b, halfmoon), Oko Living, Les Actives Paris.
 
 export type Relation = 'aucune' | 'affilie' | 'partenariat' | 'produit-offert' | 'a-confirmer';
 
@@ -24,6 +24,10 @@ export type Recommandation = {
   coupDeCoeur?: boolean;
   lien: string | null;
   relation: Relation;
+  /** Code promo personnel (partenariat), affiché sur la fiche. */
+  code?: string;
+  /** Avantage associé au code, ex. « -15 % ». */
+  remise?: string;
 };
 
 /** Fiches mises de côté, jamais affichées en production tant que la fondatrice n'a pas tranché. */
@@ -46,16 +50,15 @@ export const recommandations: Recommandation[] = [
   // Vêtements & lingerie
   { marque: 'Ysé', produit: 'Lingerie, homewear et maillots', categorie: 'vetements', coupDeCoeur: true, texte: 'La lingerie que je porte en fin de cycle : rien ne serre, les matières sont douces. Leur homewear est devenu mon uniforme des soirées calmes.', moment: 'Surtout J20–J28', lien: 'https://yse-paris.com/', relation: 'aucune' },
   { marque: 'Nénés Paris', produit: 'Lingerie pour le corps réel', categorie: 'vetements', texte: 'Des pièces pensées pour le corps tel qu’il est, qui change d’une semaine à l’autre. Confortables et sans artifice.', moment: 'Toute l’année', lien: 'https://nenes-paris.com/', relation: 'aucune' },
-  { marque: 'Widding', produit: 'Laine mérinos et homewear', categorie: 'vetements', texte: 'Le mérinos, doux et chaud sans étouffer. Ce que j’enfile les soirs où j’ai besoin de me sentir enveloppée.', moment: 'Soirées J20–J28', lien: null, relation: 'aucune' },
   { marque: 'Sézane', produit: 'Basiques en matières naturelles', categorie: 'vetements', texte: 'Des basiques intemporels dans des matières agréables. Pour les jours où je veux de la douceur sans renoncer au style.', moment: 'Toute l’année', lien: 'https://www.sezane.com/fr', relation: 'aucune' },
-  { marque: 'Balzac Paris', produit: 'Mode éco-responsable', categorie: 'vetements', texte: 'Des basiques fabriqués en Europe, que je garde longtemps. Pour m’habiller tous les jours du cycle.', moment: 'Toute l’année', lien: 'https://www.balzac-paris.fr/', relation: 'aucune' },
+  { marque: 'Balzac Paris', produit: 'Mode éco-responsable', categorie: 'vetements', texte: 'Des basiques fabriqués en Europe, que je garde longtemps. Pour m’habiller tous les jours du cycle.', moment: 'Toute l’année', lien: 'https://www.balzac-paris.com/', relation: 'aucune' },
   { marque: 'Chlore', produit: 'Maillots de bain', categorie: 'vetements', texte: 'Pour la natation douce, une de mes pratiques préférées en fin de cycle. Des maillots qui tiennent et qui durent.', moment: 'Natation douce', lien: 'https://www.chlore-swimwear.fr/', relation: 'aucune' },
 
   // Barefoot
   { marque: 'Vivobarefoot', produit: 'Running et lifestyle barefoot', categorie: 'barefoot', coupDeCoeur: true, texte: 'La marque qui m’a fait découvrir le barefoot. Semelle très fine, pied libre : ce que je mets pour mes longues marches.', moment: 'Marche', lien: 'https://www.vivobarefoot.com/fr', relation: 'aucune' },
-  { marque: 'Lejean', produit: 'Barefoot du quotidien', categorie: 'barefoot', coupDeCoeur: true, texte: 'Ma paire de tous les jours : élégante, vraiment barefoot, fabriquée en Europe. Celle que je mets le plus souvent.', moment: 'Quotidien', lien: 'https://lejanbrand.com/', relation: 'aucune' },
+  { marque: 'Lejan', produit: 'Barefoot du quotidien', categorie: 'barefoot', coupDeCoeur: true, texte: 'Ma paire de tous les jours : élégante, vraiment barefoot, fabriquée en Europe. Celle que je mets le plus souvent.', moment: 'Quotidien', lien: 'https://lejanbrand.com/', relation: 'aucune' },
   { marque: 'Koops', produit: 'Barefoot casual élégant', categorie: 'barefoot', texte: 'Minimalistes et élégantes, pour les occasions où je veux du style sans enfermer mes pieds.', moment: 'Quotidien', lien: 'https://koopsbrand.com/', relation: 'aucune' },
-  { marque: 'Wildling Shoes', produit: 'Barefoot artisanal', categorie: 'barefoot', texte: 'Des matières naturelles et un esprit artisanal que j’adore. Pour mes sorties en nature.', moment: 'Marche nature', lien: 'https://www.wildling.shoes/', relation: 'aucune' },
+  { marque: 'Wildling Shoes', produit: 'Barefoot artisanal', categorie: 'barefoot', texte: 'Des matières naturelles et un esprit artisanal que j’adore. Pour mes sorties en nature.', moment: 'Marche nature', lien: 'https://www.wildling.shoes/en/collections/all', relation: 'aucune' },
   { marque: 'Muris Brand', produit: 'Barefoot au design contemporain', categorie: 'barefoot', texte: 'Une alternative plus urbaine, au design contemporain, pour celles qui veulent passer au barefoot en ville.', moment: 'Quotidien', lien: 'https://murisbrand.com/', relation: 'aucune' },
 
   // Sport & mouvement
@@ -67,9 +70,9 @@ export const recommandations: Recommandation[] = [
 
   // Maison & rituels
   { marque: 'Yoshien', produit: 'Thés et infusions japonais', categorie: 'rituels', coupDeCoeur: true, texte: 'Des thés d’une qualité rare, en direct du Japon. Préparer mon thé est devenu un vrai moment de pause.', moment: 'Matin', lien: 'https://www.yoshien.com/fr/', relation: 'aucune' },
-  { marque: 'Sentara Holistic', produit: 'Gua sha et brosse pour le corps', categorie: 'rituels', texte: 'Le gua sha le soir, la brosse le matin : deux petits rituels qui m’obligent à prendre cinq minutes pour moi.', moment: 'Rituels J20–J28', lien: null, relation: 'aucune' },
+  { marque: 'Sentara Holistic', produit: 'Gua sha et brosse pour le corps', categorie: 'rituels', texte: 'Le gua sha le soir, la brosse le matin : deux petits rituels qui m’obligent à prendre cinq minutes pour moi.', moment: 'Rituels J20–J28', lien: 'https://sentaraholistic.com/', relation: 'partenariat', code: 'AWAKENING15', remise: '-15 %' },
   { marque: 'Susanne Kaufmann', produit: 'Huile de bain naturelle', categorie: 'rituels', texte: 'Mon luxe des soirs de fin de cycle : un bain chaud, quelques gouttes, et le téléphone dans une autre pièce.', moment: 'Bain du soir', lien: 'https://www.susannekaufmann.com/fr-fr', relation: 'aucune' },
-  { marque: 'Cosmic Dealer', produit: 'Encens', categorie: 'rituels', texte: 'Une odeur que j’associe au repos : quand je l’allume, mon cerveau comprend que la journée est finie.', moment: 'Rituel du soir', lien: null, relation: 'aucune' },
+  { marque: 'Cosmic Dealer', produit: 'Encens, thés et infusions', categorie: 'rituels', texte: 'Surtout leur encens : une odeur que j’associe au repos, quand je l’allume, mon cerveau comprend que la journée est finie. J’y prends aussi leur thé blanc au chaï, l’infusion aux trois menthes et, de temps en temps, un petit coffret de chocolats panachés.', moment: 'Rituel du soir', lien: 'https://getcosmicdealer.com/', relation: 'aucune' },
   { marque: 'Fellow', produit: 'Bouilloire design', categorie: 'rituels', texte: 'Une bouilloire qui donne envie de se faire une infusion. Le rituel du soir commence là.', moment: 'Infusion du soir', lien: 'https://fellowproducts.com/', relation: 'aucune' },
 ];
 
