@@ -96,6 +96,19 @@ export const enAttente: EnAttente[] = [
   { marque: 'Bolster laine et graines, bouillotte graines de lin', raison: 'Référence exacte à retrouver.' },
 ];
 
+/** Identifiant court d'une marque pour son lien de redirection : « Sentara Holistic » → « sentara-holistic ». */
+export const slugMarque = (m: string) => m.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/&/g, 'et').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+/** Fiche commerciale (affiliation, parrainage, partenariat, produit offert) : lien affiché via /go/<marque>. */
+export const estCommerciale = (r: Recommandation) => r.relation !== 'aucune' && r.relation !== 'a-confirmer';
+
+/**
+ * Liens de redirection des fiches commerciales : https://cycleawakening.com/go/<marque> → lien d'affiliation.
+ * Écrits dans dist/_redirects au build (astro.config.mjs). Un seul endroit à changer si un lien d'affiliation change.
+ */
+export const redirections = () =>
+  recommandations.filter((r) => r.lien && estCommerciale(r)).map((r) => ({ de: `/go/${slugMarque(r.marque)}`, vers: r.lien as string }));
+
 export const libellesRelationEn: Record<Exclude<Relation, 'aucune' | 'a-confirmer'>, string> = {
   affilie: 'Affiliate link',
   parrainage: 'Referral link',

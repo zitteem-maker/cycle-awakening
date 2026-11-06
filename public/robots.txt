@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /go/
 Disallow: /styleguide
 
 Sitemap: https://cycleawakening.com/sitemap-index.xml

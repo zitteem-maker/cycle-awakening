@@ -4,7 +4,7 @@
 // Utilisée par /recommandations (français) et /en/recommendations (anglais).
 import PageLayout from '../layouts/PageLayout.astro';
 import PageHero from '../components/PageHero.astro';
-import { recommandations, enAttente, categories, categoriesEn, libellesRelation, libellesRelationEn, type Recommandation } from '../data/recommandations';
+import { recommandations, enAttente, categories, categoriesEn, libellesRelation, libellesRelationEn, slugMarque, estCommerciale, type Recommandation } from '../data/recommandations';
 import { afficherBrouillons } from '../data/blog';
 import { langOf } from '../i18n';
 
@@ -106,7 +106,7 @@ const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(
                         {commercial && <span class="badge">{libelles[r.relation as keyof typeof libelles]}</span>}
                         {!complete(r) && <span class="badge badge--todo">{tx.todo} {r.lien === null ? tx.lien : ''}{r.lien === null && r.relation === 'a-confirmer' ? ' + ' : ''}{r.relation === 'a-confirmer' ? tx.relation : ''}</span>}
                         {r.lien ? (
-                          <a class="fiche__lien" href={r.lien} target="_blank" rel={commercial ? 'sponsored nofollow noopener' : 'noopener'} data-event="reco_click" data-reco={r.marque}>
+                          <a class="fiche__lien" href={commercial ? `/go/${slugMarque(r.marque)}` : r.lien} target="_blank" rel={commercial ? 'sponsored nofollow noopener' : 'noopener'} data-event="reco_click" data-reco={r.marque}>
                             {tx.decouvrir} <span aria-hidden="true">→</span>
                           </a>
                         ) : (
