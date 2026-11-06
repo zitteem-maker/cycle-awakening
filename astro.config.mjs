@@ -3,16 +3,16 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { loadEnv } from 'vite';
-import { writeFileSync } from 'node:fs';
+import { renameSync, existsSync } from 'node:fs';
 
-// Liens de redirection des fiches commerciales (/go/<marque>), générés depuis src/data/recommandations.ts.
+// Liens de redirection des fiches commerciales (/go/<marque>) : la page src/pages/redirections-affiliation.txt.ts
+// les génère, ce crochet la renomme en dist/_redirects (fichier lu par Cloudflare).
 const redirectionsAffiliation = {
   name: 'redirections-affiliation',
   hooks: {
-    'astro:build:done': async ({ dir }) => {
-      const { redirections } = await import('./src/data/recommandations.ts');
-      const lignes = redirections().map((r) => `${r.de} ${r.vers} 302`);
-      writeFileSync(new URL('_redirects', dir), lignes.join('\n') + '\n');
+    'astro:build:done': ({ dir }) => {
+      const source = new URL('redirections-affiliation.txt', dir);
+      if (existsSync(source)) renameSync(source, new URL('_redirects', dir));
     },
   },
 };
@@ -28,7 +28,7 @@ export default defineConfig({
     redirectionsAffiliation,
     sitemap({
       // Pages de service et non indexées hors du plan du site.
-      filter: (page) => !/\/(merci|thank-you|styleguide|newsletter-[a-z]+|404)(\.html)?$/.test(page),
+      filter: (page) => !/\/(merci|thank-you|styleguide|newsletter-[a-z]+|404|redirections-affiliation\.txt)(\.html)?$/.test(page),
     }),
   ],
   i18n: {
