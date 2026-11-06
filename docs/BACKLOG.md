@@ -129,3 +129,10 @@ Mises de côté à la demande de la fondatrice. Chaque lien obtenu → fiche ave
 - [ ] Brevo : créer le modèle de confirmation double opt-in en anglais et renseigner `BREVO_DOI_TEMPLATE_ID_EN` (sinon le modèle français est envoyé). L'attribut Brevo `LANGUE` (fr | en) est à créer dans Brevo.
 - [ ] Livre en anglais : chantier séparé (chapitres, recettes, outils, notice, édito). Les titres anglais existent déjà dans les sources (`titre_en`, `nom_en`…). D'ici là, la version anglaise du site précise que le guide est en français.
 - [ ] Relecture des traductions anglaises par la fondatrice (ou un·e relecteur·rice anglophone) avant la mise en ligne.
+
+## Recommandations : décisions du 6 novembre 2026
+
+- 9 affiliations Affilae ajoutées (liens `/go/<marque>`, badge « Lien affilié »). Herbalgem : pas en production.
+- Compléments acceptés sur la page Recommandations quand la fondatrice les utilise (Valebio, MiYé), formulés en usage personnel, **sans effet annoncé** (pas de « pour la récupération », « pour l'hydratation »…).
+- Puissante : pas d'allégation (endorphines, maux de ventre, rééducation) ; la rééducation du périnée renvoie vers sage-femme ou kiné.
+- Elia (grossesse, post-partum) : mention produit seulement ; les modules grossesse restent sous `FEATURE_PREGNANCY_MODULES`.
