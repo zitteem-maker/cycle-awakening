@@ -29,7 +29,8 @@ export const legal = {
     email: 'hello@cycleawakening.com',
     /** Téléphone : obligatoire avant la première vente (droit européen de la consommation). Numéro professionnel conseillé. */
     phone: 'TODO_LEGAL_TELEPHONE',
-    publicationDirector: 'TODO_LEGAL_DIRECTRICE_DE_PUBLICATION',
+    /** Personne physique obligatoire (LCEN) : la représentante légale de POLYMA LTD. */
+    publicationDirector: 'Emeline Zitte',
   },
 
   host: {

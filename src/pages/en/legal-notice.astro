@@ -23,7 +23,7 @@ const h = legal.host;
         Email: <a href={`mailto:${e.email}`}>{e.email}</a>
         {!isTodo(e.phone) && <><br />Phone: {e.phone}</>}
       </p>
-      <p>Publication director: <Val v={e.publicationDirector} /></p>
+      <p>Publication director: <Val v={e.publicationDirector} />, legal representative of <Val v={e.name} /></p>
     </>
   ) : (
     <>
