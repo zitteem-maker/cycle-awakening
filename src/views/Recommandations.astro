@@ -49,7 +49,7 @@ const tx = en
       attente: 'Mises de côté (jamais en production)',
     };
 
-const complete = (r: Recommandation) => r.lien !== null && r.relation !== 'a-confirmer';
+const complete = (r: Recommandation) => r.lien !== null && r.relation !== 'a-confirmer' && !r.aValider;
 const visibles = recommandations.filter((r) => afficherBrouillons || complete(r));
 const commerciales = visibles.some((r) => complete(r) && r.relation !== 'aucune');
 const parCategorie = (Object.keys(cats) as Recommandation['categorie'][])
@@ -102,9 +102,10 @@ const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(
                       {r.code && (
                         <p class="fiche__code">{tx.code(r.remise)}<strong>{r.code}</strong></p>
                       )}
+                      {r.aValider && afficherBrouillons && <p class="fiche__avalider">{r.aValider}</p>}
                       <div class="fiche__pied">
                         {commercial && <span class="badge">{libelles[r.relation as keyof typeof libelles]}</span>}
-                        {!complete(r) && <span class="badge badge--todo">{tx.todo} {r.lien === null ? tx.lien : ''}{r.lien === null && r.relation === 'a-confirmer' ? ' + ' : ''}{r.relation === 'a-confirmer' ? tx.relation : ''}</span>}
+                        {!complete(r) && !r.aValider && <span class="badge badge--todo">{tx.todo} {r.lien === null ? tx.lien : ''}{r.lien === null && r.relation === 'a-confirmer' ? ' + ' : ''}{r.relation === 'a-confirmer' ? tx.relation : ''}</span>}
                         {r.lien ? (
                           <a class="fiche__lien" href={commercial ? `/go/${slugMarque(r.marque)}` : r.lien} target="_blank" rel={commercial ? 'sponsored nofollow noopener' : 'noopener'} data-event="reco_click" data-reco={r.marque}>
                             {tx.decouvrir} <span aria-hidden="true">→</span>
@@ -176,6 +177,7 @@ const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(
   .badge { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); background: var(--semantic-bg-accent-soft); color: var(--semantic-accent-text); }
   .fiche__code { margin: 0; font-size: var(--font-size-sm); color: var(--semantic-text); }
   .fiche__code strong { font-weight: var(--font-weight-semibold); letter-spacing: 0.06em; color: var(--semantic-accent-text); }
+  .fiche__avalider { margin: 0; font-size: var(--font-size-xs); line-height: 1.5; padding: var(--space-2) var(--space-3); border-radius: 12px; background: var(--semantic-bg-muted); border-left: 3px solid var(--semantic-accent-text); }
   .badge--todo { background: var(--semantic-bg-muted); color: var(--semantic-text); }
   .fiche__lien { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--semantic-text); text-decoration: none; min-height: var(--size-tap-target); display: inline-flex; align-items: center; }
   .fiche__lien:hover { color: var(--semantic-accent-text); }

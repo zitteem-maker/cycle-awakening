@@ -17,7 +17,7 @@ export type Relation = 'aucune' | 'affilie' | 'parrainage' | 'partenariat' | 'pr
 export type Recommandation = {
   marque: string;
   produit: string;
-  categorie: 'epicerie' | 'vetements' | 'barefoot' | 'mouvement' | 'rituels';
+  categorie: 'epicerie' | 'vetements' | 'barefoot' | 'mouvement' | 'rituels' | 'intime';
   texte: string;
   /** Quand je l'utilise (repère personnel, pas une indication). */
   moment: string;
@@ -26,6 +26,8 @@ export type Recommandation = {
   en?: { produit: string; texte: string; moment: string };
   lien: string | null;
   relation: Relation;
+  /** Fiche pas encore validée par la fondatrice : visible seulement en prévisualisation, avec la raison affichée. */
+  aValider?: string;
   /** Code promo personnel (partenariat), affiché sur la fiche. */
   code?: string;
   /** Avantage associé au code, ex. « -15 % ». */
@@ -40,6 +42,7 @@ export const categoriesEn: Record<Recommandation['categorie'], { titre: string; 
   vetements: { titre: 'Clothing & lingerie', intro: 'The pieces I wear when my body changes and nothing should squeeze.' },
   barefoot: { titre: 'Barefoot shoes', intro: 'For walking, my favourite activity on days when energy drops.' },
   mouvement: { titre: 'Sport & movement', intro: 'The gear for my practice: yoga, Pilates, walking.' },
+  intime: { titre: 'Periods & intimacy', intro: 'What I use during my period and for my intimate well-being.' },
   rituels: { titre: 'Body & rituals', intro: 'What takes care of my body and my quiet evenings, the things that make me want to slow down.' },
 };
 
@@ -48,6 +51,7 @@ export const categories: Record<Recommandation['categorie'], { titre: string; in
   vetements: { titre: 'Vêtements & lingerie', intro: 'Les pièces que je porte quand le corps change et que rien ne doit serrer.' },
   barefoot: { titre: 'Chaussures barefoot', intro: 'Pour la marche, ma pratique préférée des jours où l’énergie baisse.' },
   mouvement: { titre: 'Sport & mouvement', intro: 'Le matériel de ma pratique : yoga, Pilates, marche.' },
+  intime: { titre: 'Règles & intimité', intro: 'Ce que j’utilise pendant mes règles et pour mon bien-être intime.' },
   rituels: { titre: 'Corps & rituels', intro: 'Ce qui prend soin de mon corps et de mes soirées calmes, ce qui me donne envie de ralentir.' },
 };
 
@@ -86,6 +90,16 @@ export const recommandations: Recommandation[] = [
   // Goop : candidature affiliée en cours (4 nov.) ; simple recommandation en attendant (passer en « affilie » si acceptée).
   { marque: 'Goop', produit: 'Rituels du corps et récupération', categorie: 'rituels', texte: 'La brosse Ultimate Dry Brush avant le sauna, ou avant une douche bien chaude quand je suis pressée. Le Theragun de Therabody pour mes jambes et mes bras après le sport, et le bonnet de sauna. Des objets qui transforment dix minutes en vrai rituel.', moment: 'Sauna, douche, récupération', lien: 'https://goop.com/', relation: 'aucune', en: { produit: 'Body rituals and recovery', texte: 'The Ultimate Dry Brush before the sauna, or before a really hot shower when I’m in a hurry. The Therabody Theragun for my legs and arms after exercise, and the sauna hat. Objects that turn ten minutes into a real ritual.', moment: 'Sauna, shower, recovery' } },
   { marque: 'Fellow', produit: 'Bouilloire design', categorie: 'rituels', texte: 'Une bouilloire qui donne envie de se faire une infusion. Le rituel du soir commence là, et la version connectée le rend encore plus simple : l’eau est prête à la bonne température, sans y penser.', moment: 'Infusion du soir', lien: 'https://fellowproducts.com/', relation: 'aucune', en: { produit: 'Design kettle', texte: 'A kettle that makes you want to make an infusion. The evening ritual starts there, and the connected version makes it even simpler: the water is ready at the right temperature, without thinking about it.', moment: 'Evening infusion' } },
+  // Affiliations Affilae (liens reçus le 6 novembre 2026). Fiches à valider : visibles seulement en prévisualisation.
+  { marque: 'Elia Lingerie', produit: 'Lingerie élégante et confortable', categorie: 'vetements', texte: 'Une lingerie douce et élégante, pensée pour le confort au quotidien, y compris les jours où le corps change.', moment: 'Toute l’année', lien: 'https://c3po.link/QskswNc65r', relation: 'affilie', aValider: 'Texte provisoire (aucune description reçue) : à valider ou à réécrire avec tes mots.', en: { produit: 'Elegant, comfortable lingerie', texte: 'Soft, elegant lingerie designed for everyday comfort, including on days when the body changes.', moment: 'All year round' } },
+  { marque: 'The Bradery', produit: 'Ventes privées de marques', categorie: 'vetements', texte: 'Des ventes privées de marques de mode et de maison, pour trouver des pièces de qualité à prix doux.', moment: 'Toute l’année', lien: 'https://c3po.link/QwgYd7Ksc7', relation: 'affilie', aValider: 'Texte provisoire (aucune description reçue) : à valider ou à réécrire avec tes mots.', en: { produit: 'Private sales of brands', texte: 'Private sales of fashion and home brands, to find quality pieces at gentle prices.', moment: 'All year round' } },
+  { marque: 'Mypads', produit: 'Protections périodiques', categorie: 'intime', texte: 'Des protections périodiques pensées pour le confort pendant les règles.', moment: 'Règles', lien: 'https://c3po.link/QbZFzABHTw', relation: 'affilie', aValider: 'Texte provisoire (aucune description reçue) : à valider ou à réécrire avec tes mots.', en: { produit: 'Period protection', texte: 'Period protection designed for comfort during your period.', moment: 'Period' } },
+  { marque: 'Elsee Care', produit: 'Soins et bien-être (produits à préciser)', categorie: 'intime', texte: 'Texte à écrire : quels produits tu utilises, et à quel moment.', moment: 'À préciser', lien: 'https://c3po.link/QgRBEcKgzt', relation: 'affilie', aValider: 'Texte provisoire (aucune description reçue) : à valider ou à réécrire avec tes mots.', en: { produit: 'Care and well-being (products to specify)', texte: 'Text to write: which products you use, and when.', moment: 'To specify' } },
+  { marque: 'MiYé', produit: 'Soins pour chaque étape de la vie hormonale', categorie: 'intime', texte: 'Des soins pensés pour chaque étape de la vie hormonale des femmes, de la puberté à la ménopause.', moment: 'À préciser', lien: 'https://c3po.link/QhTvr6xVsS', relation: 'affilie', aValider: 'Texte provisoire (aucune description reçue) : à valider ou à réécrire avec tes mots. La marque vend aussi des compléments : ne relayer que ses soins.', en: { produit: 'Care for every stage of hormonal life', texte: 'Care designed for every stage of women’s hormonal life, from puberty to menopause.', moment: 'To specify' } },
+  { marque: 'Puissante', produit: 'Bien-être intime féminin', categorie: 'intime', texte: 'Texte à écrire : quels produits tu utilises, et à quel moment.', moment: 'À préciser', lien: 'https://c3po.link/QHvuQeY4kA', relation: 'affilie', aValider: 'Règle de marque à trancher : la marque vend des compléments alimentaires ou des produits à base de plantes (aucun complément recommandé, aucune allégation santé). (Puissante vend aussi des accessoires de bien-être intime.)', en: { produit: 'Women’s intimate well-being', texte: 'Text to write: which products you use, and when.', moment: 'To specify' } },
+  { marque: 'Valebio', produit: 'Superaliments et compléments bio', categorie: 'epicerie', texte: 'Texte à écrire : quels produits tu utilises, et à quel moment.', moment: 'À préciser', lien: 'https://c3po.link/nQ8EccWdcb', relation: 'affilie', aValider: 'Règle de marque à trancher : la marque vend des compléments alimentaires ou des produits à base de plantes (aucun complément recommandé, aucune allégation santé). (Valebio vend aussi des superaliments bio : graines, poudres.)', en: { produit: 'Organic superfoods and supplements', texte: 'Text to write: which products you use, and when.', moment: 'To specify' } },
+  { marque: 'Herbalgem', produit: 'Gemmothérapie (extraits de bourgeons)', categorie: 'rituels', texte: 'Texte à écrire : quels produits tu utilises, et à quel moment.', moment: 'À préciser', lien: 'https://c3po.link/nmbCzumjfk', relation: 'affilie', aValider: 'Règle de marque à trancher : la marque vend des compléments alimentaires ou des produits à base de plantes (aucun complément recommandé, aucune allégation santé).', en: { produit: 'Gemmotherapy (bud extracts)', texte: 'Text to write: which products you use, and when.', moment: 'To specify' } },
+  { marque: 'Pranarôm', produit: 'Huiles essentielles', categorie: 'rituels', texte: 'Texte à écrire : quels produits tu utilises, et à quel moment (par exemple en diffusion d’ambiance).', moment: 'À préciser', lien: 'https://c3po.link/QR2PzNEzFX', relation: 'affilie', aValider: 'Règle de marque à trancher : la marque vend des compléments alimentaires ou des produits à base de plantes (aucun complément recommandé, aucune allégation santé). Huiles essentielles : précautions fortes (grossesse, allaitement, enfants).', en: { produit: 'Essential oils', texte: 'Text to write: which products you use, and when (for example, room diffusion).', moment: 'To specify' } },
 ];
 
 /** Mises de côté (jamais en production) : à trancher par la fondatrice.
