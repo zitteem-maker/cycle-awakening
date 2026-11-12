@@ -84,10 +84,10 @@ Tant que `missingForSales()` n'est pas vide : mentions légales de site non prof
 ## À faire juste avant la mise en ligne (validé le 3 novembre 2026)
 
 Livre :
-- [ ] Photos des 5 recettes manquantes : bol orange-fromage blanc, dattes au beurre de noisette, poulet soja-avocat, purée haricots-carottes-tofu, dal coco.
+- [x] Photos des 5 recettes manquantes (12 nov.). Crédits : book/src/credits-photos.json (purée et dal à confirmer).
 - [ ] Portrait de la fondatrice pour l'édito (`edito.jpg`, dossier Drive « photos unsplash »).
 - [ ] Liens Unsplash de toutes les photos (crédits en fin de livre).
-- [ ] Prana Chai : relation avec la marque (aucune / affilié / partenariat / produit offert), mentionnée dans le livre s'il y en a une.
+- [x] Prana Chai : aucune relation commerciale (confirmé le 12 nov.).
 - [ ] Validation écrite des textes (chapitres 1 à 6, recettes, outils, notice) : statuts `valide`.
 - [ ] Sources `TODO_SOURCE` vérifiées (liste à préparer, relecture professionnelle).
 - [ ] Version finale `npm run build:book` (écrit le nombre de pages pour le site).

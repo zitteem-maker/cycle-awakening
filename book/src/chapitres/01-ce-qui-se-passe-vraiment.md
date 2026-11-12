@@ -118,5 +118,5 @@ Il ne pose **aucun diagnostic**, ne remplace **aucun traitement** et ne promet *
 
 <div class="sources">
 <p class="sources-titre">Pour aller plus loin</p>
-<p>TODO_SOURCE : sources à vérifier avant publication (fiche « Syndrome prémenstruel » de l'Assurance maladie / ameli.fr ; recommandations du Collège national des gynécologues et obstétriciens français ; références sur la sensibilité aux variations hormonales). Aucune source n'est citée tant qu'elle n'a pas été vérifiée.</p>
+<p class="sources">Sources : Manuel MSD, version grand public, « Syndrome prémenstruel (SPM) » (msdmanuals.com) ; Elsan, « Phase lutéale » (elsan.care). Ce chapitre décrit des tendances : chaque cycle est différent.</p>
 </div>
