@@ -1,10 +1,10 @@
 {
-  "_note": "Crédits des photos du livre (page Crédits en fin de livre, à ajouter). null = crédit à fournir par la fondatrice.",
+  "_note": "Crédits des photos du livre. null = photo Unsplash dont le crédit n'a pas été retrouvé : décision du 12 nov. 2026, pas de page de crédits (la licence Unsplash ne l'impose pas).",
   "recettes/bol-orange-fromage-blanc.jpg": { "auteur": "Emeline Zitte", "source": "photo personnelle" },
   "recettes/dattes-noisette.jpg": { "auteur": "Emeline Zitte", "source": "photo personnelle" },
   "recettes/poulet-soja-avocat.jpg": { "auteur": "Spencer Davis", "source": "Unsplash", "lien": "https://unsplash.com/fr/photos/viande-grillee-a-la-feuille-verte-sur-assiette-en-ceramique-blanche-no24lqNg9EE" },
-  "recettes/puree-haricots-carottes.jpg": null,
-  "recettes/dal-lentilles.jpg": null,
+  "recettes/puree-haricots-carottes.jpg": { "auteur": "Emeline Zitte", "source": "photo personnelle" },
+  "recettes/dal-lentilles.jpg": { "auteur": "Emeline Zitte", "source": "photo personnelle" },
   "recettes/banana-bread.jpg": null,
   "recettes/cookies-pois-chiches.jpg": null,
   "recettes/dorade-fenouil.jpg": null,

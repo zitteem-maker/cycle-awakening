@@ -118,5 +118,5 @@ Il ne pose **aucun diagnostic**, ne remplace **aucun traitement** et ne promet *
 
 <div class="sources">
 <p class="sources-titre">Pour aller plus loin</p>
-<p class="sources">Sources : Manuel MSD, version grand public, « Syndrome prémenstruel (SPM) » (msdmanuals.com) ; Elsan, « Phase lutéale » (elsan.care). Ce chapitre décrit des tendances : chaque cycle est différent.</p>
+<p class="sources">Manuel MSD, « Syndrome prémenstruel » (msdmanuals.com) ; Elsan, « Phase lutéale » (elsan.care).</p>
 </div>

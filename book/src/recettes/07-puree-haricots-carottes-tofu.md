@@ -19,7 +19,7 @@ statut: brouillon
 - 1 gousse d'ail, le jus d'½ citron
 - 3 c. à soupe d'huile d'olive
 - 4 carottes, 1 c. à café de cumin
-- 200 g de tofu ferme
+- 200 g de tofu ferme, ou 2 œufs (voir la variante)
 - 2 c. à soupe de sauce soja
 - 1 c. à café de sirop d'érable (ou de miel, si tu ne cherches pas une version végane)
 - 1 poignée de légumes verts (brocoli, haricots verts, épinards)
@@ -32,5 +32,5 @@ statut: brouillon
 4. Fais dorer le tofu à la poêle 5 à 6 minutes, puis fais sauter les légumes verts 3 à 4 minutes dans la même poêle.
 5. Dresse la purée, les carottes, le tofu et les légumes. Parsème de graines et d'herbes.
 
-## Mon astuce
-La purée se garde trois jours au frais : prépare-la en double entre J17 et J20.
+## Variante
+Tofu ou œuf : remplace le tofu par un œuf au plat ou mollet posé sur la purée (la recette n'est alors plus végane). La purée se garde trois jours au frais : prépare-la en double entre J17 et J20.
