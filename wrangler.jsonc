@@ -16,6 +16,8 @@
   },
   // Mesure d'audience sans cookie : jeu de données créé automatiquement à la première écriture.
   "analytics_engine_datasets": [{ "binding": "EVENEMENTS", "dataset": "cycle_awakening_evenements" }],
+  // Garde les variables réglées dans le tableau de bord Cloudflare (BREVO_LIST_ID…) à chaque déploiement.
+  "keep_vars": true,
   "preview_urls": true,
   "workers_dev": true,
   "observability": { "enabled": true }
