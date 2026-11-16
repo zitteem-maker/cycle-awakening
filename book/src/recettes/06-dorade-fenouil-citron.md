@@ -11,7 +11,7 @@ nom_en: Roast fish with fennel
 titre_en: Roast sea bream, sea bass or fish of the day, fennel, lemon and olives
 temps_en: 10 min + 30 min cooking
 intro: Tout cuit sur la même plaque pendant que tu fais autre chose. Le fenouil devient fondant, le citron caramélise. Dorade, bar (sea bass) ou tout autre poisson de taille moyenne : prends celui qui est le plus frais.
-statut: brouillon
+statut: valide
 ---
 
 ## Ingrédients

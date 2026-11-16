@@ -319,8 +319,8 @@ h2.recette-nom {
 .notice-quoi .cadre-titre, .notice-quoi strong { color: var(--semantic-text-on-deep); }
 .notice-quoi p:last-child { margin: 0; }
 .notice-etapes { list-style: none; counter-reset: n; padding: 0; margin: 0 0 3.5mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5mm 5mm; }
-.notice-etapes li { counter-increment: n; position: relative; display: grid; grid-template-columns: 15mm 1fr; gap: 2.5mm; align-items: start; font-size: 8.5pt; line-height: 1.35; margin: 0; }
-.notice-etapes li::before { content: counter(n); position: absolute; left: -1mm; top: -1.5mm; font-family: var(--font-family-display); font-weight: 700; font-size: 13pt; color: var(--semantic-accent-text); }
+.notice-etapes li { counter-increment: n; position: relative; display: grid; grid-template-columns: 15mm 1fr; gap: 2.5mm; align-items: start; font-size: 8.5pt; line-height: 1.35; margin: 0; padding-left: 2.5mm; }
+.notice-etapes li::before { content: counter(n); position: absolute; left: 0; top: -1.5mm; line-height: 1; font-family: var(--font-family-display); font-weight: 700; font-size: 13pt; color: var(--semantic-accent-text); }
 .notice-etapes svg { width: 15mm; height: 15mm; fill: none; stroke: var(--semantic-text); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .notice-etapes svg .trait-accent { stroke: var(--semantic-accent); }
 .notice-etapes svg .point { fill: var(--semantic-accent); stroke: none; }

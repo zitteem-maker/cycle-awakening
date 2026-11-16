@@ -4,7 +4,7 @@ titre: Ma cuisine de fin de cycle
 accroche: Des recettes simples, rapides, rassasiantes. Celles que je cuisine vraiment.
 titre_en: My end-of-cycle kitchen
 accroche_en: Simple, quick, filling recipes. The ones I actually cook.
-statut: brouillon
+statut: valide
 ---
 
 En fin de cycle, je n'ai ni l'énergie ni l'envie de passer une heure en cuisine. Alors je garde quelques recettes sous la main : des choses qui se préparent vite, qui se gardent, qui rassasient, et qui font du bien au moral.

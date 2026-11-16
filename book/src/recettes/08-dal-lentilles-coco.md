@@ -11,7 +11,7 @@ nom_en: Coconut dal
 titre_en: Red lentil dal with coconut milk and spinach
 temps_en: 10 min + 20 min cooking
 intro: Le plat réconfort par excellence. Tout cuit dans une seule casserole, et c'est encore meilleur le lendemain.
-statut: brouillon
+statut: valide
 ---
 
 ## Ingrédients

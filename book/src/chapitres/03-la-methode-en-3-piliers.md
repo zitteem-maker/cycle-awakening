@@ -4,7 +4,7 @@ titre: La méthode en trois piliers
 accroche: Nourrir, bouger, lire les signaux. Pas moins, différemment.
 titre_en: The method in three pillars
 accroche_en: Nourish, move, read the signals. Not less, differently.
-statut: brouillon
+statut: valide
 ---
 
 La méthode tient en trois piliers. Aucun n'est révolutionnaire pris seul. C'est leur combinaison, et le fait de les adapter à ta phase, qui fait la différence. Commence par celui qui te parle le plus. Tu n'as pas besoin de tout changer ce mois-ci.

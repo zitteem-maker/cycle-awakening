@@ -1,5 +1,5 @@
 {
-  "$comment": "Écrit automatiquement par `npm run build:book` (étape 2) à partir du PDF généré. Ne pas modifier à la main.",
-  "pages": null,
-  "builtAt": null
+  "$comment": "Écrit automatiquement par `npm run build:book` à partir du PDF généré. Ne pas modifier à la main.",
+  "pages": 50,
+  "builtAt": "2026-11-16T10:42:09.759Z"
 }

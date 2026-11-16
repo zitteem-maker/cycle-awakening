@@ -11,7 +11,7 @@ nom_en: Banana bread
 titre_en: Butter-free banana bread with chocolate chips
 temps_en: 15 min + 50 min baking
 intro: Moelleux sans beurre grâce aux bananes bien mûres et au psyllium. Il se garde quatre jours, et se congèle en tranches.
-statut: brouillon
+statut: valide
 ---
 
 ## Ingrédients

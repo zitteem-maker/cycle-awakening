@@ -4,7 +4,7 @@ titre: Ce qui se passe vraiment
 accroche: Avant de changer quoi que ce soit, comprendre. Ton corps ne te trahit pas. Il suit une logique.
 titre_en: What is really happening
 accroche_en: Before changing anything, understand. Your body is not betraying you. It follows a logic.
-statut: brouillon
+statut: valide
 ---
 
 Pendant une partie du mois, tu as l'impression de ne plus te reconnaître. La fatigue arrive sans prévenir. Une remarque anodine te fait monter les larmes. Ton ventre gonfle, tu as envie de sucre, tu n'as plus envie de voir personne. Puis les règles arrivent, et en quelques jours, tu redeviens toi.

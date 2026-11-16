@@ -4,7 +4,7 @@ titre: Pourquoi rien n'a marché
 accroche: Tu as déjà essayé beaucoup de choses. Le problème n'était pas toi.
 titre_en: Why nothing has worked
 accroche_en: You have already tried a lot of things. The problem was never you.
-statut: brouillon
+statut: valide
 ---
 
 Tu manges plutôt bien. Tu bouges. Tu as testé les tisanes, les applis, les conseils de ta meilleure amie et ceux d'Instagram. Et pourtant, chaque mois, la même chose revient.

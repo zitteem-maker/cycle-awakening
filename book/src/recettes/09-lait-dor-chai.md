@@ -11,7 +11,7 @@ nom_en: Golden milk & chai
 titre_en: Golden milk or chai latte
 temps_en: 5 to 10 min
 intro: Deux rituels du soir. Le lait d'or, doux et épicé. Le chai latte, plus gourmand, pour les soirs où j'ai besoin de réconfort.
-statut: brouillon
+statut: valide
 ---
 
 ## Ingrédients

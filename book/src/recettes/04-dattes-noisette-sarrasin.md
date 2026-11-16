@@ -11,7 +11,7 @@ nom_en: Stuffed dates
 titre_en: Dates stuffed with hazelnut butter and buckwheat
 temps_en: 5 min
 intro: Le réconfort en cinq minutes. Le fondant de la datte, le goût profond de la noisette, le croquant du sarrasin grillé.
-statut: brouillon
+statut: valide
 ---
 
 ## Ingrédients
