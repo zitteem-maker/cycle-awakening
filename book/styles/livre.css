@@ -59,6 +59,14 @@ h2 + *, h3 + *, .encadre-titre + * { break-before: avoid; }
 .couverture .signature { font-family: var(--font-family-display); font-size: 17pt; font-style: italic; color: var(--semantic-accent); }
 .couverture .filet { width: 18mm; height: 1.4pt; background: var(--semantic-accent); margin: 8mm 0; }
 
+/* Couverture avec photo : photo en haut, fondue dans le vert ; logo par-dessus, titre en bas. */
+.couverture--photo { position: relative; overflow: hidden; padding-top: 20mm; }
+.couverture--photo > * { position: relative; z-index: 1; }
+.couverture--photo .cv-photo { position: absolute; inset: 62mm 0 auto 0; height: 168mm; margin: 0; z-index: 0; }
+.mobile .couverture--photo .cv-photo { inset: 34mm 0 auto 0; height: 100mm; }
+.couverture--photo .cv-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.couverture--photo .cv-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--semantic-bg-deep) 0%, rgb(18 34 25 / 0) 22%, rgb(18 34 25 / 0) 55%, var(--semantic-bg-deep-intense) 100%); }
+
 /* --- Pages liminaires ---------------------------------------------------- */
 .liminaire { break-after: page; }
 .liminaire h2 { margin-top: 0; margin-bottom: 3mm; }

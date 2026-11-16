@@ -281,7 +281,7 @@ const tx = en ? enTx : fr;
       <h2 class="histoire__titre" data-split set:html={tx.histTitre} />
       <p class="histoire__texte" data-words set:html={tx.histTexte} />
       <div class="histoire__signature" data-reveal>
-        {portrait && <img class="histoire__portrait" src={portrait} alt={tx.portraitAlt} width="160" height="160" loading="lazy" />}
+        {portrait && <img class="histoire__portrait" src={portrait} alt={tx.portraitAlt} width="240" height="240" loading="lazy" />}
         <p><span class="histoire__nom">Emeline</span><span class="histoire__role">{tx.role}</span></p>
       </div>
     </div>
@@ -485,7 +485,8 @@ const tx = en ? enTx : fr;
   .histoire__texte em { color: var(--semantic-accent-text); }
   .histoire__signature { display: flex; align-items: center; gap: var(--space-6); justify-content: flex-end; }
   .histoire__signature p { margin: 0; display: grid; }
-  .histoire__portrait { width: 5rem; height: 5rem; border-radius: 50%; object-fit: cover; }
+  .histoire__portrait { width: clamp(9rem, 6rem + 9vw, 15rem); aspect-ratio: 1; height: auto; border-radius: 50%; object-fit: cover; box-shadow: 0 24px 48px -24px rgb(18 34 25 / 0.45); }
+  @media (max-width: 40rem) { .histoire__signature { justify-content: flex-start; } }
   .histoire__nom { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-2xl); color: var(--semantic-accent-text); line-height: 1; }
   .histoire__role { font-size: var(--font-size-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--semantic-text-muted); margin-top: var(--space-2); }
 

@@ -72,6 +72,9 @@ function imageUrl(nom, dossier = 'recettes') {
   const chemin = `${book}src/images/${dossier}/${nom}`;
   return existsSync(chemin) ? pathToFileURL(chemin).href : null;
 }
+// Photo de couverture (facultative) : book/src/images/couverture/couverture.jpg, ou celle passée par --couverture=<fichier>.
+const argCouverture = process.argv.find((a) => a.startsWith('--couverture='))?.split('=')[1];
+const couverturePhoto = argCouverture ? pathToFileURL(argCouverture).href : imageUrl('couverture.jpg', 'couverture');
 const themesRecettes = JSON.parse(readFileSync(`${book}src/recettes/themes.json`, 'utf8')).map((t) => ({ ...t, url: imageUrl(t.photo) }));
 const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8')).map((o) => ({
   ...o,
@@ -294,7 +297,8 @@ function document({ impression, mobile = false, seul = null }) {
   const corps = impression
     ? outils.filter((o) => !seul || o.id === seul).map(outilHtml).join('\n')
     : `
-<section class="couverture">
+<section class="couverture${couverturePhoto ? ' couverture--photo' : ''}">
+  ${couverturePhoto ? `<figure class="cv-photo"><img src="${couverturePhoto}" alt=""></figure>` : ''}
   <div class="logo">${logoClair}</div>
   <div>
     <h1>${livre.titre}</h1>
