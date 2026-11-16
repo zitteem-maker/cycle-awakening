@@ -1,5 +1,7 @@
 {
-  "$comment": "Écrit automatiquement par `npm run build:book` à partir du PDF généré. Ne pas modifier à la main.",
+  "$comment": "Écrit automatiquement par `npm run build:book` (et build:book:en) à partir du PDF généré. Ne pas modifier à la main.",
   "pages": 50,
-  "builtAt": "2026-11-16T11:05:52.431Z"
+  "builtAt": "2026-11-16T11:11:21.853Z",
+  "pagesEn": 50,
+  "builtAtEn": "2026-11-16T11:15:08.446Z"
 }

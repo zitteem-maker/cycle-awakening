@@ -22,6 +22,8 @@
     "build:book": "npm run tokens && node book/build.mjs",
     "build:book:brouillon": "npm run tokens && node book/build.mjs --brouillon",
     "build:book:relecture": "npm run tokens && node book/build.mjs --relecture",
+    "build:book:en": "npm run tokens && node book/build.mjs --lang=en",
+    "build:book:en:brouillon": "npm run tokens && node book/build.mjs --lang=en --brouillon",
     "build:book:edito": "npm run tokens && node book/build.mjs --brouillon --apercu-edito"
   },
   "dependencies": {

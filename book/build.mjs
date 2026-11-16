@@ -1,6 +1,8 @@
 // Fabrication du livre PDF Cycle Awakening.
 //   npm run build:book            → version finale (refuse tout chapitre non validé ou toute source non vérifiée)
 //   npm run build:book:brouillon  → version de travail, filigrane « brouillon », n'écrit pas book-meta.json
+//   --lang=en                     → version anglaise (textes dans book/en/, mêmes photos que book/src/images/),
+//                                   fichiers suffixés « -en » (npm run build:book:en)
 // Sorties : book/dist/cycle-awakening-guide.pdf (version écran, outils en annexe)
 //           book/dist/cycle-awakening-guide-telephone.pdf (format téléphone / liseuse, sans les outils)
 //           book/dist/cycle-awakening-outils-imprimables.pdf (outils seuls, pour l'impression)
@@ -17,8 +19,45 @@ const dist = `${book}dist/`;
 // de publication et sans toucher au nombre de pages du site. Pour relire le livre « comme imprimé ».
 const relecture = process.argv.includes('--relecture');
 const draft = process.argv.includes('--brouillon') || relecture;
+const lang = process.argv.find((a) => a.startsWith('--lang='))?.split('=')[1] ?? 'fr';
+const en = lang === 'en';
+// Textes : book/src (français) ou book/en (anglais). Les photos sont communes : book/src/images.
+const src = en ? `${book}en/` : `${book}src/`;
+const images = `${book}src/images/`;
+const suffixe = en ? '-en' : '';
 
-const livre = JSON.parse(readFileSync(`${book}livre.json`, 'utf8'));
+// Libellés du gabarit (le contenu, lui, vient des fichiers de chaque langue).
+const T = en
+  ? {
+      plan: 'Proposed outline · to write', brouillonCh: 'Draft · to review', brouillon: 'draft', photoAttente: 'Photo coming soon',
+      bonusOutil: 'Bonus · to print or pass on', outil: (i, n) => `Tool ${i} / ${n} · to print`,
+      avertTitre: 'This guide does not replace medical advice',
+      avert: 'It offers lifestyle markers. It makes no diagnosis, replaces no treatment and promises no results. If you have intense pain, very heavy bleeding, new or worsening symptoms, or if you are going through significant distress, see a health professional. If you are pregnant, breastfeeding or on treatment, ask for advice before making any change.',
+      avantTitre: 'Before you begin',
+      avantTexte: (mobile) => `This guide is built to be used, not just read. Start with the part that speaks to you most. ${mobile ? 'This version is laid out for phones and e-readers; the printable tools are in a separate file.' : 'The printable tools are at the end, and also in a separate file.'}`,
+      droits: 'Cycle Awakening. All rights reserved. This guide is for your personal use only: please do not share or resell it.',
+      sommaire: 'Contents', leGuide: 'The guide', recettes: 'Recipes', bonus: 'Bonus', outils: 'Printable tools', outilsImprimables: 'Printable tools',
+      finTitre: 'Before you close this guide',
+      finTexte: 'Your cycle is not a problem to solve. It is a rhythm to learn. Take what helps you, leave the rest, and come back to this guide whenever you need it.',
+      finContact: 'A question, some feedback? Write to me:',
+      telephone: 'phone and e-reader', notice: 'The guide for him', locale: 'en-GB', pdfLang: 'en-GB', htmlLang: 'en',
+    }
+  : {
+      plan: 'Plan proposé · à rédiger', brouillonCh: 'Brouillon · à valider', brouillon: 'brouillon', photoAttente: 'Photo à venir',
+      bonusOutil: 'Bonus · à imprimer ou à transmettre', outil: (i, n) => `Outil ${i} / ${n} · à imprimer`,
+      avertTitre: 'Ce guide ne remplace pas un avis médical',
+      avert: "Il propose des repères de mode de vie. Il ne pose aucun diagnostic, ne remplace aucun traitement et ne promet aucun résultat. En cas de douleur intense, de saignements très abondants, de symptômes nouveaux ou qui s'aggravent, ou si tu traverses une détresse importante, consulte un·e professionnel·le de santé. Si tu es enceinte, allaites ou suis un traitement, demande conseil avant tout changement.",
+      avantTitre: 'Avant de commencer',
+      avantTexte: (mobile) => `Ce guide est construit pour être utilisé, pas seulement lu. Commence par la partie qui te parle le plus. ${mobile ? 'Cette version est mise en page pour le téléphone et la liseuse ; les outils à imprimer sont dans un fichier séparé.' : 'Les outils à imprimer sont à la fin, et aussi dans un fichier séparé.'}`,
+      droits: 'Cycle Awakening. Tous droits réservés. Ce guide est réservé à ton usage personnel : merci de ne pas le partager ni le revendre.',
+      sommaire: 'Sommaire', leGuide: 'Le guide', recettes: 'Recettes', bonus: 'Bonus', outils: 'Outils à imprimer', outilsImprimables: 'Outils imprimables',
+      finTitre: 'Avant de refermer ce guide',
+      finTexte: "Ton cycle n'est pas un problème à résoudre. C'est un rythme à apprendre. Prends ce qui t'aide, laisse le reste, et reviens à ce guide quand tu en as besoin.",
+      finContact: 'Une question, un retour ? Écris-moi :',
+      telephone: 'téléphone et liseuse', notice: 'La notice pour lui', locale: 'fr-FR', pdfLang: 'fr-FR', htmlLang: 'fr',
+    };
+
+const livre = JSON.parse(readFileSync(en ? `${book}en/livre.json` : `${book}livre.json`, "utf8"));
 const tokens = JSON.parse(readFileSync(`${root}design-tokens/dist/tokens.json`, 'utf8'));
 const tokensCss = readFileSync(`${root}design-tokens/dist/tokens.css`, 'utf8');
 const css = readFileSync(`${book}styles/livre.css`, 'utf8');
@@ -30,7 +69,7 @@ const auteure = controller.startsWith('TODO') ? 'Cycle Awakening' : controller;
 
 // --- Contenu -------------------------------------------------------------------------------
 // Apostrophes typographiques dans le texte (les attributs HTML utilisent des guillemets doubles).
-const typo = (t) => t.replace(/(\p{L})'(\p{L})/gu, '$1’$2');
+const typo = (t) => (t ?? '').replace(/(\p{L})'(\p{L})/gu, '$1’$2');
 function frontmatter(src) {
   const m = src.match(/^---\n([\s\S]*?)\n---\n/);
   if (!m) throw new Error('Frontmatter manquant');
@@ -41,12 +80,12 @@ function frontmatter(src) {
   return { data, body: src.slice(m[0].length) };
 }
 
-const chapitres = readdirSync(`${book}src/chapitres`).filter((f) => f.endsWith('.md')).sort().map((f) => {
-  const { data, body } = frontmatter(readFileSync(`${book}src/chapitres/${f}`, 'utf8'));
+const chapitres = readdirSync(`${src}chapitres`).filter((f) => f.endsWith('.md')).sort().map((f) => {
+  const { data, body } = frontmatter(readFileSync(`${src}chapitres/${f}`, 'utf8'));
   return { fichier: f, ordre: Number(data.ordre), titre: typo(data.titre), accroche: typo(data.accroche), statut: data.statut, body: typo(body), photo: imageUrl(`ch${Number(data.ordre)}.jpg`, 'chapitres') };
 });
-const recettes = readdirSync(`${book}src/recettes`).filter((f) => f.endsWith('.md')).sort().map((f) => {
-  const { data, body } = frontmatter(readFileSync(`${book}src/recettes/${f}`, 'utf8'));
+const recettes = readdirSync(`${src}recettes`).filter((f) => f.endsWith('.md')).sort().map((f) => {
+  const { data, body } = frontmatter(readFileSync(`${src}recettes/${f}`, 'utf8'));
   // Sections « ## Ingrédients », « ## Préparation », puis une section libre (astuce, variante…).
   const sections = typo(body).split(/^## /m).filter((x) => x.trim()).map((bloc) => {
     const [titre, ...reste] = bloc.split('\n');
@@ -69,31 +108,31 @@ const recettes = readdirSync(`${book}src/recettes`).filter((f) => f.endsWith('.m
   };
 });
 function imageUrl(nom, dossier = 'recettes') {
-  const chemin = `${book}src/images/${dossier}/${nom}`;
+  const chemin = `${images}${dossier}/${nom}`;
   return existsSync(chemin) ? pathToFileURL(chemin).href : null;
 }
 // Photo de couverture (facultative) : book/src/images/couverture/couverture.jpg, ou celle passée par --couverture=<fichier>.
 const argCouverture = process.argv.find((a) => a.startsWith('--couverture='))?.split('=')[1];
 const couverturePhoto = argCouverture ? pathToFileURL(argCouverture).href : imageUrl('couverture.jpg', 'couverture');
-const themesRecettes = JSON.parse(readFileSync(`${book}src/recettes/themes.json`, 'utf8')).map((t) => ({ ...t, url: imageUrl(t.photo) }));
-const outils = JSON.parse(readFileSync(`${book}src/outils/outils.json`, 'utf8')).map((o) => ({
+const themesRecettes = JSON.parse(readFileSync(`${src}recettes/themes.json`, 'utf8')).map((t) => ({ ...t, url: imageUrl(t.photo) }));
+const outils = JSON.parse(readFileSync(`${src}outils/outils.json`, 'utf8')).map((o) => ({
   ...o,
   titre: typo(o.titre),
-  html: typo(readFileSync(`${book}src/outils/${o.fichier}`, 'utf8')),
+  html: typo(readFileSync(`${src}outils/${o.fichier}`, 'utf8')),
 }));
 
 // Édito « Un dernier mot, entre nous » (toute dernière page du guide). Deux mises en page : classique ou manuscrite.
-const editoSrc = frontmatter(readFileSync(`${book}src/edito.md`, 'utf8'));
+const editoSrc = frontmatter(readFileSync(`${src}edito.md`, 'utf8'));
 const edito = {
   ...Object.fromEntries(Object.entries(editoSrc.data).map(([k, v]) => [k, typo(v)])),
   // « <!-- colonne --> » sépare la colonne de gauche (sous le chapeau) de celle de droite (sous la photo).
   colonnes: typo(editoSrc.body).split('<!-- colonne -->').map((x) => marked.parse(x)),
 };
 function editoPhoto() {
-  const vraie = `${book}src/images/edito/${edito.photo}`;
+  const vraie = `${images}edito/${edito.photo}`;
   if (existsSync(vraie)) return { url: pathToFileURL(vraie).href, provisoire: false };
   // En attendant le portrait de la fondatrice : photo d'ambiance, sans mention.
-  return { url: pathToFileURL(`${book}src/images/${edito.photoAmbiance}`).href, provisoire: true };
+  return { url: pathToFileURL(`${images}${edito.photoAmbiance}`).href, provisoire: true };
 }
 
 // --- Contrôles de la version finale ---------------------------------------------------------
@@ -113,7 +152,7 @@ if (!draft && problemes.length) {
 
 // --- Gabarit HTML ----------------------------------------------------------------------------
 const num = (n) => String(n).padStart(2, '0');
-const date = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' }).format(new Date());
+const date = new Intl.DateTimeFormat(T.locale, { month: 'long', year: 'numeric' }).format(new Date());
 const fontFile = (p) => pathToFileURL(`${root}node_modules/@fontsource/${p}`).href;
 const fonts = [
   ['Cormorant Garamond', 500, 'normal', 'cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2'],
@@ -146,7 +185,7 @@ function pageRules({ impression, mobile }) {
   const parties = impression ? '' : chapitres.map((c) => `
 @page partie-${c.ordre} { ${entete(`Cycle Awakening · ${num(c.ordre)} · ${c.titre}`)} }
 #chapitre-${c.ordre}.chapitre:not(.chapitre--photo), #chapitre-${c.ordre} .ch-corps { page: partie-${c.ordre}; }`).join('') + (impression ? '' : `
-@page outils { ${entete('Cycle Awakening · Outils à imprimer')} }
+@page outils { ${entete(`Cycle Awakening · ${T.outils}`)} }
 .outil { page: outils; }`);
   return `
 @page {
@@ -154,7 +193,7 @@ function pageRules({ impression, mobile }) {
   margin: ${marge};
   ${impression ? '' : `background: ${t['semantic-bg']};`}
   @bottom-center { content: counter(page); ${pied} }
-  ${entete(`Cycle Awakening · ${impression ? 'Outils imprimables' : livre.titre}`)}
+  ${entete(`Cycle Awakening · ${impression ? T.outilsImprimables : livre.titre}`)}
 }
 ${parties}
 @page recette {
@@ -177,7 +216,7 @@ ${parties}
 // Page d'ouverture : photo pleine largeur (book/src/images/chapitres/chN.jpg) + titre.
 // Photo facultative : sans photo, la version finale garde l'en-tête simple ; le brouillon montre l'emplacement.
 function chapitreHtml(c) {
-  const statut = c.statut === 'valide' ? '' : `<p class="chapitre-statut">${c.statut === 'plan' ? 'Plan proposé · à rédiger' : 'Brouillon · à valider'}</p>`;
+  const statut = c.statut === 'valide' ? '' : `<p class="chapitre-statut">${c.statut === 'plan' ? T.plan : T.brouillonCh}</p>`;
   const entete = `<header class="chapitre-entete">
     <p class="chapitre-num">${num(c.ordre)}</p>
     <h1>${c.titre}</h1>
@@ -211,7 +250,7 @@ const soleil = `<svg class="t-soleil" viewBox="0 0 100 100" aria-hidden="true">$
 function photoHtml(url, nom, classe) {
   return url
     ? `<figure class="${classe}"><img src="${url}" alt=""></figure>`
-    : `<figure class="${classe} ${classe}--attente"><span>Photo à venir</span><small>${nom}</small></figure>`;
+    : `<figure class="${classe} ${classe}--attente"><span>${T.photoAttente}</span><small>${nom}</small></figure>`;
 }
 
 function themeHtml(t) {
@@ -231,7 +270,7 @@ function recetteHtml(r) {
   const astuces = (classe) => `<div class="${classe}">${autres.map((a) => `<div class="recette-astuce"><p class="recette-astuce-titre">${a.titre}</p>${a.html}</div>`).join('')}</div>`;
   return `<section class="recette" id="recette-${r.id}">
   <header class="r-entete">
-    <p class="r-meta">${r.categorie}<span>${r.temps}</span><span>${r.portions}</span>${r.statut === 'valide' ? '' : '<span class="statut">brouillon</span>'}</p>
+    <p class="r-meta">${r.categorie}<span>${r.temps}</span><span>${r.portions}</span>${r.statut === 'valide' ? '' : `<span class="statut">${T.brouillon}</span>`}</p>
     <h2 class="recette-nom">${r.nom}</h2>
   </header>
   <div class="r-gauche">
@@ -255,7 +294,7 @@ function recettesHtml() {
 
 function outilHtml(o, i) {
   return `<section class="outil" id="outil-${o.id}">
-  <p class="outil-etiquette">${o.bonus ? 'Bonus · à imprimer ou à transmettre' : `Outil ${i + 1} / ${outils.filter((x) => !x.bonus).length} · à imprimer`}${o.statut === 'valide' ? '' : ' · brouillon'}</p>
+  <p class="outil-etiquette">${o.bonus ? T.bonusOutil : T.outil(i + 1, outils.filter((x) => !x.bonus).length)}${o.statut === 'valide' ? '' : ` · ${T.brouillon}`}</p>
   <h1>${o.titre}</h1>
   ${o.html}
 </section>`;
@@ -288,8 +327,8 @@ function editoHtml(variante = livre.edito ?? 'classique') {
 }
 
 const avertissement = `<div class="encadre encadre-alerte">
-  <p class="encadre-titre">Ce guide ne remplace pas un avis médical</p>
-  <p>Il propose des repères de mode de vie. Il ne pose aucun diagnostic, ne remplace aucun traitement et ne promet aucun résultat. En cas de douleur intense, de saignements très abondants, de symptômes nouveaux ou qui s'aggravent, ou si tu traverses une détresse importante, consulte un·e professionnel·le de santé. Si tu es enceinte, allaites ou suis un traitement, demande conseil avant tout changement.</p>
+  <p class="encadre-titre">${T.avertTitre}</p>
+  <p>${typo(T.avert)}</p>
 </div>`;
 
 function document({ impression, mobile = false, seul = null }) {
@@ -302,30 +341,30 @@ function document({ impression, mobile = false, seul = null }) {
   <div class="logo">${logoClair}</div>
   <div>
     <h1>${livre.titre}</h1>
-    <p class="sous-titre">${livre.sousTitre.replace(/,\s*(J\d+\s*–\s*J\d+)$/, ',<br><span class="insecable">$1</span>')}</p>
+    <p class="sous-titre">${livre.sousTitre.replace(/,\s*([JD]\d+\s*–\s*[JD]\d+)$/, ',<br><span class="insecable">$1</span>')}</p>
     <div class="filet"></div>
     <p class="signature">${livre.signature}</p>
   </div>
 </section>
 
 <section class="liminaire">
-  <h2>Avant de commencer</h2>
+  <h2>${T.avantTitre}</h2>
   ${avertissement}
-  <p>Ce guide est construit pour être utilisé, pas seulement lu. Commence par la partie qui te parle le plus. ${mobile ? 'Cette version est mise en page pour le téléphone et la liseuse ; les outils à imprimer sont dans un fichier séparé.' : 'Les outils à imprimer sont à la fin, et aussi dans un fichier séparé.'}</p>
+  <p>${typo(T.avantTexte(mobile))}</p>
   <p class="petit">${livre.titre} · ${livre.edition} · ${date}<br>
-  © ${new Date().getFullYear()} Cycle Awakening. Tous droits réservés. Ce guide est réservé à ton usage personnel : merci de ne pas le partager ni le revendre.<br>
+  © ${new Date().getFullYear()} ${typo(T.droits)}<br>
   <a href="${livre.site}">${livre.site.replace('https://', '')}</a> · <a href="mailto:${livre.email}">${livre.email}</a></p>
 </section>
 
 <section class="liminaire">
-  <h2>Sommaire</h2>
-  <p class="bandeau">Le guide</p>
+  <h2>${T.sommaire}</h2>
+  <p class="bandeau">${T.leGuide}</p>
   <ol class="sommaire">
     ${chapitres.map((c) => `<li><a href="#chapitre-${c.ordre}"><span class="num">${num(c.ordre)}</span><span class="t">${c.titre}</span><span class="sous">${c.accroche}</span></a></li>`).join('\n    ')}
   </ol>
-  ${themes.map((th) => `<p class="bandeau">Recettes · <span class="accent-theme">${th}</span></p>
+  ${themes.map((th) => `<p class="bandeau">${T.recettes} · <span class="accent-theme">${th}</span></p>
   <ul class="sommaire-colonnes">${recettes.filter((r) => r.theme === th).map((r) => `<li><a href="#recette-${r.id}">${r.nom}</a></li>`).join('')}</ul>`).join('\n  ')}
-  <p class="bandeau">${mobile ? 'Bonus' : 'Outils à imprimer'}</p>
+  <p class="bandeau">${mobile ? T.bonus : T.outils}</p>
   <ul class="sommaire-colonnes">${(mobile ? outils.filter((o) => o.bonus) : outils).map((o) => `<li><a href="#outil-${o.id}">${o.titre}</a></li>`).join('')}</ul>
 </section>
 
@@ -335,18 +374,18 @@ ${(mobile ? outils.filter((o) => o.bonus) : outils).map(outilHtml).join('\n')}
 
 <section class="fin">
   <div class="logo">${logo}</div>
-  <h1 class="fin-titre">Avant de refermer ce guide</h1>
-  <p>Ton cycle n'est pas un problème à résoudre. C'est un rythme à apprendre. Prends ce qui t'aide, laisse le reste, et reviens à ce guide quand tu en as besoin.</p>
+  <h1 class="fin-titre">${T.finTitre}</h1>
+  <p>${typo(T.finTexte)}</p>
   ${avertissement}
-  <p>Une question, un retour ? Écris-moi : <a href="mailto:${livre.email}">${livre.email}</a><br>
+  <p>${typo(T.finContact)} <a href="mailto:${livre.email}">${livre.email}</a><br>
   <a href="${livre.site}">${livre.site.replace('https://', '')}</a> · ${livre.instagram}</p>
 </section>
 
 ${editoHtml()}`;
 
   return `<!doctype html>
-<html lang="fr"><head><meta charset="utf-8">
-<title>Cycle Awakening — ${impression ? 'Outils imprimables' : livre.titre}</title>
+<html lang="${T.htmlLang}"><head><meta charset="utf-8">
+<title>Cycle Awakening — ${impression ? T.outilsImprimables : livre.titre}</title>
 <style>
 ${fonts}
 ${tokensCss}
@@ -378,7 +417,7 @@ async function rendre(nom, html, meta) {
   pdf.setKeywords(livre.motsCles);
   pdf.setCreator('Cycle Awakening');
   pdf.setProducer('Cycle Awakening (book/build.mjs)');
-  pdf.setLanguage('fr-FR');
+  pdf.setLanguage(T.pdfLang);
   pdf.setCreationDate(new Date());
   pdf.setModificationDate(new Date());
   const out = `${dist}${nom}.pdf`;
@@ -401,20 +440,24 @@ if (process.argv.includes('--apercu-edito')) {
   process.exit(0);
 }
 
-const pagesGuide = await rendre('cycle-awakening-guide', document({ impression: false }), { titre: `Cycle Awakening — ${livre.titre}` });
-await rendre('cycle-awakening-guide-telephone', document({ impression: false, mobile: true }), { titre: `Cycle Awakening — ${livre.titre} (téléphone et liseuse)` });
-await rendre('cycle-awakening-notice-pour-lui', document({ impression: true, seul: 'notice-pour-lui' }), { titre: 'Cycle Awakening — La notice pour lui' });
-await rendre('cycle-awakening-outils-imprimables', document({ impression: true }), { titre: 'Cycle Awakening — Outils imprimables' });
+const pagesGuide = await rendre(`cycle-awakening-guide${suffixe}`, document({ impression: false }), { titre: `Cycle Awakening — ${livre.titre}` });
+await rendre(`cycle-awakening-guide-telephone${suffixe}`, document({ impression: false, mobile: true }), { titre: `Cycle Awakening — ${livre.titre} (${T.telephone})` });
+await rendre(`cycle-awakening-notice-pour-lui${suffixe}`, document({ impression: true, seul: 'notice-pour-lui' }), { titre: `Cycle Awakening — ${T.notice}` });
+await rendre(`cycle-awakening-outils-imprimables${suffixe}`, document({ impression: true }), { titre: `Cycle Awakening — ${T.outilsImprimables}` });
 await browser.close();
 
 // --- Nombre de pages : source unique pour le site --------------------------------------------
 if (draft) {
   console.log(`Brouillon : book-meta.json non modifié (${problemes.length} point(s) à valider).`);
 } else {
-  writeFileSync(`${root}src/config/book-meta.json`, JSON.stringify({
-    $comment: 'Écrit automatiquement par `npm run build:book` à partir du PDF généré. Ne pas modifier à la main.',
-    pages: pagesGuide,
-    builtAt: new Date().toISOString(),
+  // Français : « pages » ; anglais : « pagesEn ». Les autres valeurs du fichier sont conservées.
+  const metaPath = `${root}src/config/book-meta.json`;
+  const meta = existsSync(metaPath) ? JSON.parse(readFileSync(metaPath, 'utf8')) : {};
+  writeFileSync(metaPath, JSON.stringify({
+    ...meta,
+    $comment: 'Écrit automatiquement par `npm run build:book` (et build:book:en) à partir du PDF généré. Ne pas modifier à la main.',
+    [en ? 'pagesEn' : 'pages']: pagesGuide,
+    [en ? 'builtAtEn' : 'builtAt']: new Date().toISOString(),
   }, null, 2) + '\n');
-  console.log(`book-meta.json : ${pagesGuide} pages.`);
+  console.log(`book-meta.json : ${pagesGuide} pages (${lang}).`);
 }

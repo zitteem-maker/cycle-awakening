@@ -1,0 +1,33 @@
+[
+  {
+    "id": "journal",
+    "titre": "Cycle journal — 7 days",
+    "fichier": "journal-7-jours.html",
+    "statut": "valide"
+  },
+  {
+    "id": "planner",
+    "titre": "Weekly planner",
+    "fichier": "planner-hebdo.html",
+    "statut": "valide"
+  },
+  {
+    "id": "urgence",
+    "titre": "D24–D28 emergency plan",
+    "fichier": "protocole-j24-j28.html",
+    "statut": "valide"
+  },
+  {
+    "id": "courses",
+    "titre": "End-of-cycle shopping list",
+    "fichier": "liste-de-courses.html",
+    "statut": "valide"
+  },
+  {
+    "id": "notice-pour-lui",
+    "titre": "Bonus · The guide for him",
+    "fichier": "notice-pour-lui.html",
+    "statut": "valide",
+    "bonus": true
+  }
+]

@@ -1,0 +1,6 @@
+[
+  { "nom": "Breakfast & snacks", "script": "a good start", "photo": "theme-petit-dejeuner.jpg" },
+  { "nom": "Mains", "script": "weeknight dinners", "photo": "theme-plats.jpg" },
+  { "nom": "Plant-based mains", "script": "the plant side", "photo": "theme-vegetal.jpg" },
+  { "nom": "Hot drinks", "script": "the evening ritual", "photo": "theme-boissons.jpg" }
+]
