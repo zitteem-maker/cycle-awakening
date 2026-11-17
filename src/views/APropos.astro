@@ -18,7 +18,12 @@ const tx = en
       h1: 'Why Cycle Awakening',
       p1: 'Disappearing for a few days every month without understanding why. Exhausted for no apparent reason, a low mood that seems to come from nowhere, cravings, tears, a bloated and heavy body, a mind that wants to slow down while the world keeps speeding up. And the feeling that it’s all down to you, to your lack of discipline.',
       p1b: 'That is exactly what I lived through for years.',
-      p1c: 'So I trained: pranayama, yoga, nutrition and the female cycle (Harvard and Stanford online courses, Yoga Alliance). I searched, tested, and brought together nutrition, movement and an understanding of the cycle.',
+      p1c: 'So I trained, and I keep going: online courses from leading universities, a training in creating yoga flows, and plenty of reading and practice. I searched, tested, and brought together nutrition, movement and an understanding of the cycle.',
+      hf: 'My training',
+      fonline: 'Online courses from Harvard and Stanford (in progress):',
+      cours: ['Digital Health: AI and Emerging Technologies in Health Care','Building Personal Resilience: Managing Anxiety and Mental Health','Global Health Case Studies from a Biosocial Perspective','Musculoskeletal Primer for the Non-Orthopedist','Introduction to Population Health','Introduction to Food and Health','Your Body in the World: Adapting to Your Next Big Adventure'],
+      fmouv: 'Movement: a 30-hour training in creating yoga flows, and the CARs and PAIRs method, to prepare the body for movement and avoid injury.',
+      fyoga: 'Yoga and pranayama: reading (the Bhagavad Gita, Patanjali’s Yoga Sutras, Downward Dog, a book on pranayama), classes, workshops and personal research.',
       p2: 'Cycle Awakening is what I wish I had found back then: a guide that is simple, practical and guilt-free, to understand what happens in your body phase by phase, and know what to actually do: eat, move, slow down.',
       h2: 'How I work',
       li: [
@@ -40,7 +45,12 @@ const tx = en
       h1: 'Pourquoi Cycle Awakening',
       p1: 'Disparaître quelques jours par mois sans comprendre pourquoi. Une fatigue sans raison apparente, un moral en berne qui semble sortir de nulle part, des envies de sucre, des larmes, un corps gonflé et lourd, une tête qui voudrait ralentir quand le monde continue d’accélérer. Et l’impression que tout ça vient de toi, de ton manque de discipline.',
       p1b: 'C’est exactement ce que j’ai vécu pendant des années.',
-      p1c: 'Alors je me suis formée : pranayama, yoga, nutrition, cycle féminin (formations en ligne Harvard et Stanford, Yoga Alliance). J’ai cherché, testé, croisé nutrition, mouvement et compréhension du cycle.',
+      p1c: 'Alors je me suis formée, et je continue : des cours en ligne de grandes universités, une formation pour créer un flow de yoga, et beaucoup de lectures et de pratique. J’ai cherché, testé, croisé nutrition, mouvement et compréhension du cycle.',
+      hf: 'Mes formations',
+      fonline: 'Cours en ligne Harvard et Stanford (en cours d’obtention) :',
+      cours: ['Digital Health: AI and Emerging Technologies in Health Care','Building Personal Resilience: Managing Anxiety and Mental Health','Global Health Case Studies from a Biosocial Perspective','Musculoskeletal Primer for the Non-Orthopedist','Introduction to Population Health','Introduction to Food and Health','Your Body in the World: Adapting to Your Next Big Adventure'],
+      fmouv: 'Mouvement : formation de 30 heures pour créer un flow de yoga, et méthode des CARs et PAIRs, pour préparer le corps au mouvement et éviter les blessures.',
+      fyoga: 'Yoga et pranayama : lectures (la Bhagavad-Gita, les Yoga Sutras de Patanjali, Le chien tête en bas, un ouvrage sur le pranayama), cours, ateliers et recherches personnelles.',
       p2: 'Cycle Awakening, c’est ce que j’aurais voulu trouver à ce moment-là : un guide simple, concret et sans culpabilité, pour comprendre ce qui se passe dans ton corps, phase après phase, et savoir quoi faire : manger, bouger, ralentir.',
       h2: 'Ma façon de travailler',
       li: [
@@ -77,6 +87,11 @@ const portrait = '/images/site/emeline.webp';
         <p><strong>{tx.p1b}</strong></p>
         <p>{tx.p1c}</p>
         <p>{tx.p2}</p>
+        <h2>{tx.hf}</h2>
+        <p>{tx.fonline}</p>
+        <ul>{tx.cours.map((c) => <li lang="en">{c}</li>)}</ul>
+        <p>{tx.fmouv}</p>
+        <p>{tx.fyoga}</p>
         <h2>{tx.h2}</h2>
         <ul>{tx.li.map((l) => <li>{l}</li>)}</ul>
         <h2>{tx.h3}</h2>
