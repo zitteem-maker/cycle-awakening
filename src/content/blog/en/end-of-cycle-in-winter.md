@@ -7,9 +7,9 @@ description: "Less light, more tiredness, wanting to hibernate: when the end of 
 pillar: phase-luteale
 keywords: [tired before period what to do, menstrual cycle fatigue, why my energy changes during my cycle, winter tiredness women]
 author: Emeline
-publishedAt: 2026-11-13
-updatedAt: 2026-11-13
-statut: brouillon
+publishedAt: 2026-11-17
+updatedAt: 2026-11-17
+statut: publie
 photo: fin-de-cycle-en-hiver.webp
 photoAlt: "A lit candle on a bedside table, next to an unmade bed"
 photoCredit:
@@ -20,8 +20,12 @@ consulter:
   - losing interest in everything, very disturbed sleep or very dark thoughts
   - tiredness with very heavy periods, breathlessness or dizziness
 sources:
-  - label: "Institutional source on seasonal depression (Inserm or Ameli, to check)"
-  - label: "Ameli — “Syndrome prémenstruel” page (in French, to check)"
+  - label: "Vidal — “Fiat lux : la luminothérapie contre la dépression saisonnière” (in French)"
+    url: "https://www.vidal.fr/actualites/37411-fiat-lux-la-luminotherapie-contre-la-depression-saisonniere.html"
+    verifie: true
+  - label: "MSD Manual (consumer version) — “Premenstrual Syndrome (PMS)”"
+    url: "https://www.msdmanuals.com/home/women-s-health-issues/menstrual-disorders-and-abnormal-vaginal-bleeding/premenstrual-syndrome-pms"
+    verifie: true
 ---
 
 **When the end of your cycle falls in the middle of winter, two kinds of tiredness add up: that of the [luteal phase](/en/blog/luteal-phase), and that of the short days.** Many women feel slower, colder and more sensitive at this time of year. It's not a lack of willpower. It's the moment to adjust your pace to both your cycle and the season.

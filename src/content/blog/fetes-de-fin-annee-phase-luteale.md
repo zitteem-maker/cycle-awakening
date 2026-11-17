@@ -5,9 +5,9 @@ description: "Repas de famille, soirées, agenda débordé : quand les fêtes to
 pillar: phase-luteale
 keywords: [comment calmer spm naturellement, irritabilité avant règles solution, fatigue avant règles que faire, spm fêtes de fin d'année]
 author: Emeline
-publishedAt: 2026-11-20
-updatedAt: 2026-11-20
-statut: brouillon
+publishedAt: 2026-11-17
+updatedAt: 2026-11-17
+statut: publie
 photo: fetes-de-fin-annee-phase-luteale.webp
 photoAlt: "Table de fête dehors : gâteau, branches de sapin, bougies vertes et guirlande lumineuse"
 photoCredit:
@@ -18,8 +18,12 @@ consulter:
   - des symptômes de fin de cycle qui s'aggravent d'un mois à l'autre
   - un rapport à la nourriture ou à l'alcool qui t'inquiète pendant cette période
 sources:
-  - label: "Source institutionnelle sur l'alcool et le sommeil (Santé publique France ou Inserm, à vérifier)"
-  - label: "Ameli — fiche « Syndrome prémenstruel » (à vérifier)"
+  - label: "Santé.fr — « Alcool et fête : quels sont les risques ? »"
+    url: "https://www.sante.fr/alcool-et-fete-quels-sont-les-risques-0"
+    verifie: true
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
 ---
 
 **Quand les fêtes de fin d'année tombent pendant ta phase lutéale, tout est plus intense : la fatigue, les émotions, la digestion, la patience.** Ce n'est pas que tu « gâches » les fêtes : ton corps traverse une phase qui demande plus de calme, au moment de l'année qui en offre le moins. La solution n'est pas de tout annuler, mais d'anticiper.

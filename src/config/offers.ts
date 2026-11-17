@@ -22,9 +22,9 @@ const currencyLocale: Record<Currency, string> = { EUR: 'en-IE', USD: 'en-US', G
  * Une devise absente n'est pas proposée au public. Ajouter une devise : son montant ici, puis son lien de paiement
  * (PUBLIC_CHECKOUT_URL_USD, PUBLIC_CHECKOUT_URL_GBP) : voir .env.example.
  */
-export const guidePrices: Partial<Record<Currency, number>> = { EUR: 2700 };
-/** Montants PROPOSÉS, non confirmés : affichés uniquement sur la prévisualisation, avec la mention « à confirmer ». */
-export const guidePricesProposed: Partial<Record<Currency, number>> = { USD: 2900, GBP: 2400 };
+export const guidePrices: Partial<Record<Currency, number>> = { EUR: 2700, USD: 2900, GBP: 2400 }; // USD et GBP confirmés par la fondatrice le 17 novembre 2026
+/** Montants PROPOSÉS, non confirmés : affichés uniquement sur la prévisualisation, avec la mention « à confirmer ». Vide : tout est confirmé. */
+export const guidePricesProposed: Partial<Record<Currency, number>> = {};
 
 export const guide = {
   id: 'guide',

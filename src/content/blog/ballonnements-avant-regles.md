@@ -5,9 +5,9 @@ description: "Ventre gonflé, jean qui serre, digestion lente avant tes règles 
 pillar: phase-luteale
 keywords: [ballonnement phase lutéale, éviter ballonnement règles, cycle menstruel digestion, ventre gonflé avant les règles]
 author: Emeline
-publishedAt: 2026-11-10
-updatedAt: 2026-11-10
-statut: brouillon
+publishedAt: 2026-11-17
+updatedAt: 2026-11-17
+statut: publie
 photo: ballonnements-avant-regles.webp
 photoAlt: "Une personne qui enfile un grand pull en maille écru"
 photoCredit:
@@ -18,8 +18,15 @@ consulter:
   - des ballonnements présents tout le mois, ou qui s'aggravent avec le temps
   - une perte de poids inexpliquée, du sang dans les selles, ou des troubles digestifs nouveaux
 sources:
-  - label: "Ameli — fiche « Syndrome prémenstruel » (ballonnements, rétention d'eau, à vérifier)"
-  - label: "Source institutionnelle sur les troubles digestifs fonctionnels (à choisir et vérifier)"
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
+  - label: "CHUV (Centre hospitalier universitaire vaudois) — « Syndrome prémenstruel »"
+    url: "https://www.chuv.ch/fr/fertilite/umr-home/consultations-specialisees/troubles-du-cycle/syndrome-premenstruel"
+    verifie: true
+  - label: "Vidal — « Ballonnement, flatulence, aérophagie : le rôle de l'alimentation »"
+    url: "https://www.vidal.fr/maladies/estomac-intestins/ballonnement-flatulence-aerophagie/causes.html"
+    verifie: true
 ---
 
 **Avoir le ventre gonflé dans les jours qui précèdent les règles est l'un des signes les plus fréquents de la fin de cycle.** Pendant la [phase lutéale](/blog/phase-luteale), beaucoup de femmes ont la sensation de retenir l'eau, digèrent plus lentement et se sentent à l'étroit dans leurs vêtements. Ce n'est pas une prise de poids, et ça passe en général après le début des règles. Quelques habitudes simples peuvent rendre ces jours-là plus confortables.

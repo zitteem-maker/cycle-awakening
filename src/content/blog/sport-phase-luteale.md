@@ -7,7 +7,7 @@ keywords: [quel sport phase lutéale, fatigue sport cycle, comment adapter sport
 author: Emeline
 publishedAt: 2026-11-17
 updatedAt: 2026-11-17
-statut: brouillon
+statut: publie
 photo: sport-phase-luteale.webp
 photoAlt: "Une femme pieds nus pose ses accessoires sur un tapis de yoga"
 photoCredit:
@@ -18,8 +18,15 @@ consulter:
   - un essoufflement inhabituel, des palpitations ou des vertiges à l'effort
   - des règles qui disparaissent ou deviennent très irrégulières si tu t'entraînes beaucoup
 sources:
-  - label: "Source institutionnelle sur l'activité physique et la santé des femmes (Manger Bouger / Santé publique France ou OMS, à vérifier)"
-  - label: "Revue de littérature sur cycle menstruel et performance sportive (à choisir et vérifier)"
+  - label: "OMS Europe — « Lignes directrices de l'OMS sur l'activité physique et la sédentarité : en un coup d'œil »"
+    url: "https://www.who.int/europe/fr/publications/i/item/9789240014886"
+    verifie: true
+  - label: "Anses — « Plus d'activité physique et moins de sédentarité pour une meilleure santé »"
+    url: "https://www.anses.fr/fr/content/plus-activite-physique-et-moins-de-sedentarite-une-meilleure-sante"
+    verifie: true
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
 ---
 
 **En phase lutéale, il n'est pas nécessaire d'arrêter le sport : il s'agit surtout d'adapter l'intensité.** Beaucoup de femmes se sentent plus fatiguées, plus lourdes ou moins motivées avant leurs règles. La marche, le yoga, le Pilates, la natation douce ou un renforcement modéré conviennent souvent bien. Le meilleur repère reste le tien : comment tu te sens une heure après la séance.

@@ -5,9 +5,9 @@ description: "Moins de lumière, plus de fatigue, envie d'hiberner : quand la fi
 pillar: phase-luteale
 keywords: [fatigue avant règles que faire, cycle menstruel fatigue, pourquoi mon énergie change cycle, fatigue hiver femme]
 author: Emeline
-publishedAt: 2026-11-13
-updatedAt: 2026-11-13
-statut: brouillon
+publishedAt: 2026-11-17
+updatedAt: 2026-11-17
+statut: publie
 photo: fin-de-cycle-en-hiver.webp
 photoAlt: "Une bougie allumée sur une table de nuit, à côté d'un lit défait"
 photoCredit:
@@ -18,8 +18,12 @@ consulter:
   - une perte d'intérêt pour tout, un sommeil très perturbé ou des idées très sombres
   - une fatigue accompagnée de règles très abondantes, d'essoufflement ou de vertiges
 sources:
-  - label: "Source institutionnelle sur la dépression saisonnière (Inserm ou Ameli, à vérifier)"
-  - label: "Ameli — fiche « Syndrome prémenstruel » (à vérifier)"
+  - label: "Vidal — « Fiat lux : la luminothérapie contre la dépression saisonnière »"
+    url: "https://www.vidal.fr/actualites/37411-fiat-lux-la-luminotherapie-contre-la-depression-saisonniere.html"
+    verifie: true
+  - label: "Manuel MSD (version grand public) — « Syndrome prémenstruel (SPM) »"
+    url: "https://www.msdmanuals.com/fr/accueil/probl%C3%A8mes-de-sant%C3%A9-de-la-femme/troubles-menstruels-et-anomalies-du-saignement-vaginal/syndrome-pr%C3%A9menstruel-spm"
+    verifie: true
 ---
 
 **Quand la fin de ton cycle tombe en plein hiver, deux fatigues s'additionnent : celle de la [phase lutéale](/blog/phase-luteale), et celle des jours courts.** Beaucoup de femmes se sentent plus lentes, plus frileuses, plus sensibles en cette saison. Ce n'est pas un manque de volonté. C'est le moment d'ajuster ton rythme à la fois à ton cycle et à la saison.

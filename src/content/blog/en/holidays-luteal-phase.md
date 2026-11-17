@@ -7,9 +7,9 @@ description: "Family meals, parties, an overflowing diary: when the holidays fal
 pillar: phase-luteale
 keywords: [how to ease PMS naturally, irritability before period, tired before period what to do, PMS holidays]
 author: Emeline
-publishedAt: 2026-11-20
-updatedAt: 2026-11-20
-statut: brouillon
+publishedAt: 2026-11-17
+updatedAt: 2026-11-17
+statut: publie
 photo: fetes-de-fin-annee-phase-luteale.webp
 photoAlt: "An outdoor festive table: cake, fir branches, green candles and fairy lights"
 photoCredit:
@@ -20,8 +20,12 @@ consulter:
   - end-of-cycle symptoms that get worse from one month to the next
   - a relationship with food or alcohol that worries you during this period
 sources:
-  - label: "Institutional source on alcohol and sleep (Santé publique France or Inserm, to check)"
-  - label: "Ameli — “Syndrome prémenstruel” page (in French, to check)"
+  - label: "Santé.fr (French Ministry of Health) — “Alcool et fête : quels sont les risques ?” (in French)"
+    url: "https://www.sante.fr/alcool-et-fete-quels-sont-les-risques-0"
+    verifie: true
+  - label: "MSD Manual (consumer version) — “Premenstrual Syndrome (PMS)”"
+    url: "https://www.msdmanuals.com/home/women-s-health-issues/menstrual-disorders-and-abnormal-vaginal-bleeding/premenstrual-syndrome-pms"
+    verifie: true
 ---
 
 **When the end-of-year holidays fall during your luteal phase, everything is more intense: tiredness, emotions, digestion, patience.** It's not that you "ruin" the holidays: your body is going through a phase that needs more calm, at the time of year that offers the least. The answer isn't to cancel everything, but to plan ahead.

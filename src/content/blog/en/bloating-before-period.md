@@ -7,9 +7,9 @@ description: "Swollen belly, tight jeans, slow digestion before your period: why
 pillar: phase-luteale
 keywords: [luteal phase bloating, avoid bloating period, menstrual cycle digestion, bloated before period]
 author: Emeline
-publishedAt: 2026-11-10
-updatedAt: 2026-11-10
-statut: brouillon
+publishedAt: 2026-11-17
+updatedAt: 2026-11-17
+statut: publie
 photo: ballonnements-avant-regles.webp
 photoAlt: "Someone pulling on a big off-white knitted jumper"
 photoCredit:
@@ -20,8 +20,15 @@ consulter:
   - bloating all month long, or bloating that gets worse over time
   - unexplained weight loss, blood in your stools, or new digestive problems
 sources:
-  - label: "Ameli — “Syndrome prémenstruel” page (bloating, water retention; in French, to check)"
-  - label: "Institutional source on functional digestive disorders (to choose and check)"
+  - label: "MSD Manual (consumer version) — “Premenstrual Syndrome (PMS)”"
+    url: "https://www.msdmanuals.com/home/women-s-health-issues/menstrual-disorders-and-abnormal-vaginal-bleeding/premenstrual-syndrome-pms"
+    verifie: true
+  - label: "CHUV (Lausanne University Hospital) — “Syndrome prémenstruel” (in French)"
+    url: "https://www.chuv.ch/fr/fertilite/umr-home/consultations-specialisees/troubles-du-cycle/syndrome-premenstruel"
+    verifie: true
+  - label: "Vidal — “Ballonnement, flatulence, aérophagie : le rôle de l'alimentation” (in French)"
+    url: "https://www.vidal.fr/maladies/estomac-intestins/ballonnement-flatulence-aerophagie/causes.html"
+    verifie: true
 ---
 
 **A swollen belly in the days before your period is one of the most common signs of the end of the cycle.** During the [luteal phase](/en/blog/luteal-phase), many women feel like they're retaining water, digest more slowly and feel tight in their clothes. It isn't weight gain, and it usually passes after your period starts. A few simple habits can make those days more comfortable.

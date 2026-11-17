@@ -9,7 +9,7 @@ keywords: [exercise luteal phase, tiredness exercise cycle, how to adapt exercis
 author: Emeline
 publishedAt: 2026-11-17
 updatedAt: 2026-11-17
-statut: brouillon
+statut: publie
 photo: sport-phase-luteale.webp
 photoAlt: "A barefoot woman placing her weights on a yoga mat"
 photoCredit:
@@ -20,8 +20,15 @@ consulter:
   - unusual breathlessness, palpitations or dizziness during exercise
   - periods that disappear or become very irregular if you train a lot
 sources:
-  - label: "Institutional source on physical activity and women's health (Manger Bouger / Santé publique France or WHO, to check)"
-  - label: "Literature review on the menstrual cycle and sports performance (to choose and check)"
+  - label: "WHO Europe — “Lignes directrices de l'OMS sur l'activité physique et la sédentarité : en un coup d'œil” (in French)"
+    url: "https://www.who.int/europe/fr/publications/i/item/9789240014886"
+    verifie: true
+  - label: "Anses (French Agency for Food Safety) — “Plus d'activité physique et moins de sédentarité pour une meilleure santé” (in French)"
+    url: "https://www.anses.fr/fr/content/plus-activite-physique-et-moins-de-sedentarite-une-meilleure-sante"
+    verifie: true
+  - label: "MSD Manual (consumer version) — “Premenstrual Syndrome (PMS)”"
+    url: "https://www.msdmanuals.com/home/women-s-health-issues/menstrual-disorders-and-abnormal-vaginal-bleeding/premenstrual-syndrome-pms"
+    verifie: true
 ---
 
 **In the luteal phase, you don't need to stop exercising: it's mostly about adjusting the intensity.** Many women feel more tired, heavier or less motivated before their period. Walking, yoga, Pilates, gentle swimming or moderate strength work often suit well. The best marker is still your own: how you feel an hour after the session.
