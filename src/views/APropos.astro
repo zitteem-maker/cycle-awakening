@@ -29,7 +29,7 @@ const tx = en
       ],
       h3: 'Keep in touch',
       guide: 'Discover the guide', blog: 'Read the blog',
-      contact: 'Write to me: ',
+      contact: 'Write to me: ', insta: 'Follow @cycleawakening on Instagram',
       fil: 'About', accueil: 'Home',
     }
   : {
@@ -51,7 +51,7 @@ const tx = en
       ],
       h3: 'Garder le contact',
       guide: 'Découvrir le guide', blog: 'Lire le blog',
-      contact: 'Écris-moi : ',
+      contact: 'Écris-moi : ', insta: 'Suivre @cycleawakening sur Instagram',
       fil: 'À propos', accueil: 'Accueil',
     };
 const url = path('apropos', lang);
@@ -81,6 +81,7 @@ const portrait = '/images/site/emeline.webp';
         <ul>{tx.li.map((l) => <li>{l}</li>)}</ul>
         <h2>{tx.h3}</h2>
         <p>{tx.contact}<a href="mailto:hello@cycleawakening.com">hello@cycleawakening.com</a></p>
+        <p><a href="https://www.instagram.com/cycleawakening/" rel="me noopener" target="_blank">{tx.insta}</a></p>
         <p class="apropos__liens">
           <a href={ancre('guide', lang)}>{tx.guide}</a> · <a href={path('blog', lang)}>{tx.blog}</a>
         </p>
