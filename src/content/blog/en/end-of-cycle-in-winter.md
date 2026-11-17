@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: fin-de-cycle-en-hiver
+seoTitle: "End of cycle in winter: tiredness and luteal phase"
 title: "End of cycle in winter: the luteal phase when the days get shorter"
 description: "Less light, more tiredness, wanting to hibernate: when the end of your cycle falls in winter, it all adds up. How to work with the season and with your cycle."
 pillar: phase-luteale

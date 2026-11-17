@@ -1,4 +1,5 @@
 ---
+seoTitle: "Ballonnements avant les règles : comprendre, soulager"
 title: "Ballonnements avant les règles : comprendre et soulager"
 description: "Ventre gonflé, jean qui serre, digestion lente avant tes règles : pourquoi c'est fréquent en fin de cycle, et ce qui aide vraiment au quotidien."
 pillar: phase-luteale

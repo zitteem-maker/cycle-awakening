@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: fetes-de-fin-annee-phase-luteale
+seoTitle: "The holidays in your luteal phase: don't burn out"
 title: "The holidays in your luteal phase: getting through December without burning out"
 description: "Family meals, parties, an overflowing diary: when the holidays fall at the end of your cycle, everything intensifies. How to plan ahead and protect yourself."
 pillar: phase-luteale

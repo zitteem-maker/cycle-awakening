@@ -1,4 +1,5 @@
 ---
+seoTitle: "Fatigue avant les règles : pourquoi et que faire"
 title: "Fatigue avant les règles : pourquoi, et quoi faire concrètement"
 description: "Épuisée quelques jours avant tes règles ? Pourquoi l'énergie baisse en fin de cycle, et 5 gestes simples pour traverser ces jours-là sans culpabiliser."
 pillar: phase-luteale

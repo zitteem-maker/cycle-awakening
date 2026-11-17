@@ -1,6 +1,7 @@
 ---
+seoTitle: "Pourquoi je pleure avant mes règles ?"
 title: "Pourquoi je pleure avant mes règles ? Comprendre l'humeur en fin de cycle"
-description: "Larmes, irritabilité, envie de fuir tout le monde avant tes règles : pourquoi l'humeur change en fin de cycle, ce qui aide, et quand en parler à un·e professionnel·le."
+description: "Larmes, irritabilité, envie de fuir tout le monde avant tes règles : pourquoi l'humeur change en fin de cycle, ce qui aide, et quand en parler."
 pillar: phase-luteale
 keywords: [pourquoi je pleure avant mes règles, déprime avant règles normal, je déteste tout le monde avant mes règles, irritabilité avant les règles]
 author: Emeline

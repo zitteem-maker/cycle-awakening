@@ -6,7 +6,8 @@ import PageLayout from '../layouts/PageLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { recommandations, enAttente, categories, categoriesEn, libellesRelation, libellesRelationEn, slugMarque, estCommerciale, type Recommandation } from '../data/recommandations';
 import { afficherBrouillons } from '../data/blog';
-import { langOf } from '../i18n';
+import { langOf, path } from '../i18n';
+import { collection, fil } from '../config/seo';
 
 const en = langOf(Astro.url) === 'en';
 const cats = en ? categoriesEn : categories;
@@ -15,7 +16,7 @@ const libelles = en ? libellesRelationEn : libellesRelation;
 const L = (r: Recommandation) => (en && r.en ? r.en : { produit: r.produit, texte: r.texte, moment: r.moment });
 const tx = en
   ? {
-      title: 'My recommendations',
+      title: 'My recommendations: what I really use',
       description: 'What I really use to cook simply, move the right amount and slow down at the end of my cycle. A personal selection, with commercial links clearly marked.',
       eyebrow: 'My recommendations', hero: 'What I <em class="accent">really</em> use',
       lead: 'Not a catalogue: the objects, clothes and products that are part of my daily life, and when I use them.',
@@ -32,7 +33,7 @@ const tx = en
       attente: 'Set aside (never in production)',
     }
   : {
-      title: 'Mes recommandations',
+      title: 'Mes recommandations : ce que j’utilise vraiment',
       description: 'Ce que j’utilise vraiment, pour cuisiner simple, bouger juste et ralentir en fin de cycle. Une sélection personnelle, liens commerciaux signalés.',
       eyebrow: 'Mes recommandations', hero: 'Ce que j’utilise <em class="accent">vraiment</em>',
       lead: 'Pas un catalogue : les objets, vêtements et produits qui font partie de mon quotidien, et le moment où je les utilise.',
@@ -58,7 +59,14 @@ const parCategorie = (Object.keys(cats) as Recommandation['categorie'][])
 const initiales = (m: string) => m.split(/\s+/).map((x) => x[0]).join('').slice(0, 2).toUpperCase();
 ---
 
-<PageLayout title={tx.title} description={tx.description}>
+<PageLayout
+  title={tx.title}
+  description={tx.description}
+  jsonLd={[
+    collection({ nom: tx.eyebrow, description: tx.description, url: path('recommandations', en ? 'en' : 'fr'), lang: en ? 'en' : 'fr' }),
+    fil([{ nom: en ? 'Home' : 'Accueil', url: path('accueil', en ? 'en' : 'fr') }, { nom: tx.eyebrow, url: path('recommandations', en ? 'en' : 'fr') }]),
+  ]}
+>
   <PageHero eyebrow={tx.eyebrow} title={tx.hero} lead={tx.lead} />
 
   <section class="section">

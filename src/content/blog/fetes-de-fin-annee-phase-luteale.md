@@ -1,6 +1,7 @@
 ---
+seoTitle: "Fêtes et phase lutéale : tenir sans s'épuiser"
 title: "Les fêtes en phase lutéale : traverser décembre sans s'épuiser"
-description: "Repas de famille, soirées, agenda débordé : quand les fêtes tombent en fin de cycle, tout s'intensifie. Comment anticiper et te préserver, sans renoncer à la fête."
+description: "Repas de famille, soirées, agenda débordé : quand les fêtes tombent en fin de cycle, tout s'intensifie. Comment anticiper et te préserver, sans renoncer."
 pillar: phase-luteale
 keywords: [comment calmer spm naturellement, irritabilité avant règles solution, fatigue avant règles que faire, spm fêtes de fin d'année]
 author: Emeline

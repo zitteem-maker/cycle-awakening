@@ -1,4 +1,5 @@
 ---
+seoTitle: "Envie de sucre avant les règles : que faire ?"
 title: "Envie de sucre avant les règles : ce que ton corps demande vraiment"
 description: "Envie irrésistible de chocolat avant tes règles ? Pourquoi c'est fréquent en fin de cycle, et comment y répondre sans culpabilité ni régime."
 pillar: phase-luteale

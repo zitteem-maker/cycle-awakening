@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: sport-phase-luteale
+seoTitle: "Which exercise in the luteal phase? Adjust intensity"
 title: "Which exercise in the luteal phase? Moving right when energy drops"
 description: "Tiredness, heavy legs, low motivation before your period: which exercise to choose in the luteal phase, how to adjust intensity, and the marker that never lies."
 pillar: sport

@@ -1,4 +1,5 @@
 ---
+seoTitle: "Phase lutéale : J17–J28, comprendre et traverser"
 title: "Phase lutéale : ce qui se passe entre J17 et J28, et comment la traverser"
 description: "Fatigue, ventre gonflé, émotions à fleur de peau : la phase lutéale a une logique. Ce qui se passe dans ton corps, et quoi faire, concrètement."
 pillar: phase-luteale

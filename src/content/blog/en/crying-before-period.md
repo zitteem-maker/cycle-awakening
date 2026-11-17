@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: pleurer-avant-ses-regles
+seoTitle: "Why do I cry before my period?"
 title: "Why do I cry before my period? Understanding mood at the end of the cycle"
 description: "Tears, irritability, wanting to escape everyone before your period: why mood changes at the end of the cycle, what helps, and when to talk to a professional."
 pillar: phase-luteale

@@ -5,6 +5,8 @@ description: Référencement naturel (SEO) et blog de Cycle Awakening — choix 
 
 # SEO et blog — Cycle Awakening
 
+> Le SEO **technique** (balises, JSON-LD, sitemap, hreflang, images de partage, audit `npm run seo`, Search Console) est dans le skill `seo-site`. Ici : sujets, rédaction, E-E-A-T, rythme.
+
 ## 1. Ce que Google attend d'un site comme celui-ci
 
 Les contenus sur la santé sont classés par Google parmi les sujets « Your Money or Your Life » : il y applique ses exigences les plus fortes de fiabilité (E-E-A-T : expérience, expertise, autorité, confiance). Conséquences concrètes :
@@ -36,8 +38,9 @@ Les contenus sur la santé sont classés par Google parmi les sujets « Your Mon
 Frontmatter (collection `src/content/blog/`) :
 
 ```yaml
-title: "Fatigue avant les règles : pourquoi, et quoi faire concrètement"   # ≤ 60 caractères si possible
-description: "…"            # 140–155 caractères, donne envie, contient la requête
+title: "Fatigue avant les règles : pourquoi, et quoi faire concrètement"   # H1 (≤ 80)
+seoTitle: "Fatigue avant les règles : pourquoi et que faire"   # balise <title> pour Google : ≤ 60, sans la marque
+description: "…"            # 110–160 caractères (le schéma refuse le reste), donne envie, contient la requête
 slug: fatigue-avant-regles  # court, sans date, sans mots vides
 pillar: phase-luteale
 keywords: [fatigue avant règles que faire, cycle menstruel fatigue]
@@ -93,3 +96,4 @@ Longueur : celle qu'il faut pour répondre complètement (souvent 900 à 1 600 m
 5. 3 à 5 liens internes, ancres descriptives ; lien depuis la page pilier vers le nouvel article.
 6. Image de partage et texte alternatif.
 7. Relu et validé par la fondatrice (statut `relu` puis `publié`, cf. section 10 du brief).
+8. Version anglaise créée dans `src/content/blog/en/` (`traductionDe`) avant publication, puis `npm run images`, `npm run build` et `npm run seo` (voir `seo-site` §5).

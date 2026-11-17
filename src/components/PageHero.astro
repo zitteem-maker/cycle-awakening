@@ -11,13 +11,15 @@ interface Props {
   /** Photo (URL) posée à droite, qui se fond dans le dégradé vert vers le texte. */
   photo?: string;
   photoAlt?: string;
+  /** Variantes de largeur de la photo (srcset) : l'image servie est adaptée à l'écran. */
+  photoSrcset?: string;
   /** Crédit de la photo (affiché discrètement dans le coin). */
   credit?: { nom: string; lien: string };
   /** Brouillon sans photo : affiche un emplacement « Photo à venir ». */
   photoAttendue?: boolean;
 }
 import { langOf, t as ui } from '../i18n';
-const { eyebrow, title, lead, size = 'bandeau', photo, photoAlt = '', credit, photoAttendue = false } = Astro.props;
+const { eyebrow, title, lead, size = 'bandeau', photo, photoAlt = '', photoSrcset, credit, photoAttendue = false } = Astro.props;
 const lang = langOf(Astro.url);
 const tx = ui(lang).hero;
 // Typographie française : espace insécable avant : ; ! ? (le signe ne se retrouve jamais seul en début de ligne). Pas en anglais.
@@ -28,7 +30,7 @@ const avecPhoto = Boolean(photo) || photoAttendue;
 <section class:list={['page-hero deep grain', `page-hero--${size}`, { 'page-hero--photo': avecPhoto }]} data-spotlight data-hero-page>
   {avecPhoto && (
     <figure class="page-hero__photo" aria-hidden={photo ? undefined : 'true'}>
-      {photo ? <img src={photo} alt={photoAlt} loading="eager" decoding="async" fetchpriority="high" /> : <span class="page-hero__attente">{tx.photoAttente}</span>}
+      {photo ? <img src={photo} srcset={photoSrcset} sizes={photoSrcset ? '(max-width: 52rem) 100vw, 62vw' : undefined} alt={photoAlt} width="1066" height="1600" loading="eager" decoding="async" fetchpriority="high" /> : <span class="page-hero__attente">{tx.photoAttente}</span>}
       {credit && <figcaption>{tx.photo} <a href={credit.lien} rel="noopener">{credit.nom}</a>{credit.lien.includes('unsplash.com') && tx.surUnsplash}</figcaption>}
     </figure>
   )}

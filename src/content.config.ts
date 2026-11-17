@@ -9,8 +9,12 @@ const blog = defineCollection({
     lang: z.enum(['fr', 'en']).default('fr'),
     /** Article anglais : identifiant de l'article français dont il est la traduction (ex. « phase-luteale »). */
     traductionDe: z.string().optional(),
+    /** Titre de la page (H1). */
     title: z.string().max(80),
-    description: z.string().min(80).max(170),
+    /** Titre pour Google (balise <title>) : 60 caractères maximum, sans le nom du site. Par défaut, le titre. */
+    seoTitle: z.string().max(60).optional(),
+    /** Description pour Google : 110 à 160 caractères, avec la requête principale et une raison de cliquer. */
+    description: z.string().min(110).max(160),
     pillar: z.enum(['phase-luteale', 'alimentation', 'sport', 'sopk', 'endometriose', 'perimenopause']),
     /** Article pilier (page longue) ou satellite. */
     type: z.enum(['pilier', 'satellite']).default('satellite'),

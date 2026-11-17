@@ -4,14 +4,15 @@ import PageLayout from '../layouts/PageLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 import { articles, piliers, tempsDeLecture, afficherBrouillons, urlOf } from '../data/blog';
-import { langOf, formatDate } from '../i18n';
+import { langOf, formatDate, path } from '../i18n';
+import { collection, fil } from '../config/seo';
 
 const lang = langOf(Astro.url);
 const liste = await articles(lang);
 const date = (d: Date) => formatDate(d, lang);
 const tx = lang === 'en'
   ? {
-      title: 'The blog',
+      title: 'Blog: understand your cycle, phase by phase',
       description: 'Understand your cycle, phase by phase: practical markers for eating, moving and slowing down, with no diet and no miracle promises.',
       rss: 'Cycle Awakening — the blog', rssHref: '/en/blog/rss.xml',
       eyebrow: 'The blog', hero: 'Understand your cycle, <em class="accent">phase by phase</em>',
@@ -22,7 +23,7 @@ const tx = lang === 'en'
       statut: { brouillon: 'draft', relu: 'reviewed', publie: 'published' },
     }
   : {
-      title: 'Le blog',
+      title: 'Blog : comprendre son cycle, phase par phase',
       description: 'Comprendre ton cycle, phase après phase : des repères concrets pour manger, bouger et ralentir, sans régime ni promesse miracle.',
       rss: 'Cycle Awakening — le blog', rssHref: '/blog/rss.xml',
       eyebrow: 'Le blog', hero: 'Comprendre ton cycle, <em class="accent">phase après phase</em>',
@@ -34,8 +35,14 @@ const tx = lang === 'en'
     };
 ---
 
-<PageLayout title={tx.title} description={tx.description}>
-  <link slot="head" rel="alternate" type="application/rss+xml" title={tx.rss} href={tx.rssHref} />
+<PageLayout
+  title={tx.title}
+  description={tx.description}
+  jsonLd={[
+    collection({ nom: tx.eyebrow, description: tx.description, url: path('blog', lang), lang, elements: liste.map((a) => ({ nom: a.data.title, url: urlOf(a) })) }),
+    fil([{ nom: lang === 'en' ? 'Home' : 'Accueil', url: path('accueil', lang) }, { nom: tx.eyebrow, url: path('blog', lang) }]),
+  ]}
+>
   <PageHero eyebrow={tx.eyebrow} title={tx.hero} lead={tx.lead} />
 
   <section class="section">

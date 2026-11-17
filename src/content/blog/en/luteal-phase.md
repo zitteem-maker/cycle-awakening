@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: phase-luteale
+seoTitle: "Luteal phase: D17–D28, understand and get through it"
 title: "Luteal phase: what happens between day 17 and day 28, and how to get through it"
 description: "Fatigue, bloating, emotions close to the surface: the luteal phase has a logic. What happens in your body, and what to actually do about it."
 pillar: phase-luteale

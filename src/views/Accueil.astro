@@ -10,10 +10,15 @@ import CyclePhases from '../components/home/CyclePhases.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 import { guide, formatPrice } from '../config/offers';
 import { chapitres, recettes, outils } from '../data/livre';
-import { langOf, intlLocale } from '../i18n';
+import { langOf, intlLocale, path } from '../i18n';
+import { articles, urlOf, piliers, tempsDeLecture } from '../data/blog';
+import { graphe, organisation, auteure, siteWeb } from '../config/seo';
 
 const lang = langOf(Astro.url);
 const en = lang === 'en';
+
+// Derniers articles (pilier d'abord, puis les plus récents) : liens internes vers le blog depuis l'accueil.
+const derniers = (await articles(lang)).slice(0, 3);
 
 // Portrait de la fondatrice : affiché dès que le fichier existe (public/images/site/emeline.webp).
 // (recherche faite au build par Vite, compatible avec tous les environnements de rendu)
@@ -37,7 +42,9 @@ const chap = chapitres.map((c) => ({ ordre: c.ordre, titre: en ? c.titre_en : c.
 const nomsOutils = outils.map((o) => (en ? o.titre_en : o.titre).replace(/ — .*/, '').replace(/^./, (c) => c.toLowerCase()));
 
 const fr = {
-  description: undefined as string | undefined,
+  titre: 'Cycle Awakening · Guide de la phase lutéale et du SPM',
+  description: 'Fatigue, ballonnements, humeur avant les règles : comprends ta phase lutéale (J17–J28) et sache quoi faire. Un livre digital concret, des recettes, des outils.',
+  blogEyebrow: 'Le blog', blogTitre: 'Pour aller <em class="accent">plus loin</em>', blogTous: 'Tous les articles', blogLecture: 'min de lecture',
   heroEyebrow: 'Le guide de ta fin de cycle · J17–J28',
   heroL1: 'Tu n’es pas', heroL2: 'instable.', heroL3: 'Tu es cyclique.',
   heroLead: 'Fatigue, irritabilité, ventre gonflé, envie de disparaître quelques jours par mois : ta phase lutéale a une logique. Comprends-la, et organise-toi avec elle, pas contre elle.',
@@ -119,7 +126,9 @@ const fr = {
 };
 
 const enTx: typeof fr = {
-  description: 'Understand your luteal phase (day 17 to day 28) and organise your life around it: eating, moving, slowing down. A practical guide, without guilt.',
+  titre: 'Cycle Awakening · Luteal phase & PMS guide, D17–D28',
+  description: 'Tired, bloated, emotional before your period? Understand your luteal phase (D17–D28) and know what to do. A practical digital book, recipes and tools.',
+  blogEyebrow: 'The blog', blogTitre: 'Go <em class="accent">further</em>', blogTous: 'All articles', blogLecture: 'min read',
   heroEyebrow: 'The guide to the end of your cycle · D17–D28',
   heroL1: 'You are not', heroL2: 'unstable.', heroL3: 'You are cyclical.',
   heroLead: 'Fatigue, irritability, bloating, wanting to disappear for a few days every month: your luteal phase has a logic. Understand it, and work with it, not against it.',
@@ -203,7 +212,7 @@ const enTx: typeof fr = {
 const tx = en ? enTx : fr;
 ---
 
-<PageLayout headerOverlay description={tx.description}>
+<PageLayout headerOverlay title={tx.titre} description={tx.description} jsonLd={[graphe(organisation(), auteure(lang), siteWeb())]}>
   <!-- HERO -->
   <section class="hero deep grain" data-hero data-spotlight>
     <div class="aurora" aria-hidden="true">
@@ -275,7 +284,7 @@ const tx = en ? enTx : fr;
   </section>
 
   <!-- HISTOIRE : typographique, le texte s'allume mot à mot au défilement -->
-  <section class="section histoire">
+  <section class="section histoire" id="histoire">
     <div class="container">
       <p class="eyebrow">{tx.histEyebrow}</p>
       <h2 class="histoire__titre" data-split set:html={tx.histTitre} />
@@ -394,6 +403,27 @@ const tx = en ? enTx : fr;
     </div>
   </section>
 
+  <!-- DERNIERS ARTICLES -->
+  {derniers.length > 0 && (
+    <section class="section blog-apercu" id="blog" aria-labelledby="blog-apercu-titre">
+      <div class="container">
+        <p class="eyebrow">{tx.blogEyebrow}</p>
+        <h2 id="blog-apercu-titre" data-split set:html={tx.blogTitre} />
+        <ul class="blog-apercu__liste">
+          {derniers.map((a) => (
+            <li class="glass" data-reveal>
+              <a href={urlOf(a)}>
+                <span class="blog-apercu__meta">{piliers[lang][a.data.pillar]} · {tempsDeLecture(a.body ?? '')} {tx.blogLecture}</span>
+                <span class="blog-apercu__titre">{a.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="blog-apercu__tous"><a href={path('blog', lang)}>{tx.blogTous} <span aria-hidden="true">→</span></a></p>
+      </div>
+    </section>
+  )}
+
   <!-- NEWSLETTER -->
   <section class="section sage newsletter" id="newsletter">
     <div class="container newsletter__grid">
@@ -413,6 +443,17 @@ const tx = en ? enTx : fr;
 </PageLayout>
 
 <style>
+  /* ---------- Derniers articles ---------- */
+  .blog-apercu__liste { list-style: none; margin: var(--space-8) 0 0; padding: 0; display: grid; gap: var(--space-4); }
+  @media (min-width: 52rem) { .blog-apercu__liste { grid-template-columns: repeat(3, 1fr); } }
+  .blog-apercu__liste a { display: grid; gap: var(--space-3); height: 100%; padding: var(--space-6); color: inherit; text-decoration: none; }
+  .blog-apercu__meta { font-size: var(--font-size-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--semantic-text-muted); }
+  .blog-apercu__titre { font-family: var(--font-family-display); font-size: var(--font-size-xl); line-height: 1.15; }
+  .blog-apercu__liste li { transition: transform var(--motion-duration-base) var(--motion-ease); }
+  .blog-apercu__liste li:hover { transform: translateY(-3px); }
+  .blog-apercu__tous { margin-top: var(--space-6); }
+  .blog-apercu__tous a { font-weight: var(--font-weight-semibold); color: var(--semantic-text); text-underline-offset: 0.3em; }
+
   .guide__langue { font-size: var(--font-size-sm); color: var(--semantic-text-muted); max-width: 34rem; margin-top: calc(-1 * var(--space-2)); }
   /* ---------- Hero ---------- */
   .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; align-items: center; padding-block: calc(var(--space-16) + 4rem) calc(var(--space-16) + 11rem); }

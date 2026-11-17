@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: envie-de-sucre-avant-regles
+seoTitle: "Sugar cravings before your period: what to do"
 title: "Sugar cravings before your period: what your body is really asking for"
 description: "An irresistible urge for chocolate before your period? Why it's common at the end of the cycle, and how to respond without guilt or dieting."
 pillar: phase-luteale

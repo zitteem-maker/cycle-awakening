@@ -1,6 +1,7 @@
 ---
+seoTitle: "Quel sport en phase lutéale ? Adapter l'intensité"
 title: "Quel sport en phase lutéale ? Bouger juste quand l'énergie baisse"
-description: "Fatigue, jambes lourdes, motivation en berne avant tes règles : quel sport choisir en phase lutéale, comment adapter l'intensité, et le repère qui ne trompe pas."
+description: "Fatigue, jambes lourdes, motivation en berne avant tes règles : quel sport choisir en phase lutéale, comment adapter l'intensité, et le repère fiable."
 pillar: sport
 keywords: [quel sport phase lutéale, fatigue sport cycle, comment adapter sport cycle, cycle menstruel sport]
 author: Emeline

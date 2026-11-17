@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: ballonnements-avant-regles
+seoTitle: "Bloating before your period: understand and ease it"
 title: "Bloating before your period: understand it and ease it"
 description: "Swollen belly, tight jeans, slow digestion before your period: why it's so common at the end of the cycle, and what really helps day to day."
 pillar: phase-luteale

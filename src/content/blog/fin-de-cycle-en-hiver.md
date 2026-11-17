@@ -1,6 +1,7 @@
 ---
+seoTitle: "Fin de cycle en hiver : fatigue et phase lutéale"
 title: "Fin de cycle en hiver : la phase lutéale quand les jours raccourcissent"
-description: "Moins de lumière, plus de fatigue, envie d'hiberner : quand la fin de cycle tombe en hiver, tout s'additionne. Comment s'organiser avec la saison et avec son cycle."
+description: "Moins de lumière, plus de fatigue, envie d'hiberner : quand la fin de cycle tombe en hiver, tout s'additionne. Comment t'organiser avec la saison et ton cycle."
 pillar: phase-luteale
 keywords: [fatigue avant règles que faire, cycle menstruel fatigue, pourquoi mon énergie change cycle, fatigue hiver femme]
 author: Emeline

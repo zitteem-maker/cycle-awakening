@@ -1,6 +1,7 @@
 ---
 lang: en
 traductionDe: fatigue-avant-regles
+seoTitle: "Tired before your period: why, and what to do"
 title: "Tiredness before your period: why it happens, and what to actually do"
 description: "Exhausted a few days before your period? Why energy drops at the end of the cycle, and 5 simple steps to get through those days without guilt."
 pillar: phase-luteale

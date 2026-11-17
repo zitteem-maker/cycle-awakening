@@ -8,6 +8,8 @@ import PageHero from '../components/PageHero.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
 import Cta from '../components/Cta.astro';
 import { SITE_URL } from '../config/site';
+import { article as articleLd, fil } from '../config/seo';
+import sharp from 'sharp';
 import { piliers, tempsDeLecture, slugOf, urlOf, equivalents, type Article } from '../data/blog';
 import { langOf, formatDate, path, ancre, intlLocale } from '../i18n';
 
@@ -49,40 +51,58 @@ const tx = en
       suiteGuide: 'Tu veux tout le chemin, de J17 à J28 ?', decouvrir: 'Découvrir le guide',
     };
 
+// SEO : titre Google (≤ 60), image de partage dédiée, données structurées, variantes de la photo d'en-tête (LCP).
+const ogId = `${lang === 'en' ? 'en-' : ''}${slugOf(article)}`;
+const imageDePartage = data.image ?? (data.photo ? `/images/share/blog/${ogId}.jpg` : '/images/share/og-default.png');
+const base = data.photo?.replace(/\.webp$/, '');
+let srcset: string | undefined;
+if (base) {
+  const { width } = await sharp(`public/images/blog/${data.photo}`).metadata();
+  srcset = `/images/blog/${base}-640.webp 640w, /images/blog/${base}-960.webp 960w, /images/blog/${data.photo} ${width}w`;
+}
+const dansLangue = (u: string) => new URL(u, SITE_URL).toString();
 const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: data.title,
+  articleLd({
+    url,
+    titre: data.title,
     description: data.description,
-    author: { '@type': 'Person', name: data.author },
-    datePublished: iso(data.publishedAt),
-    dateModified: iso(data.updatedAt),
-    inLanguage: intlLocale[lang],
-    mainEntityOfPage: url,
-    image: new URL(data.image ?? '/images/share/og-default.png', SITE_URL).toString(),
-    publisher: { '@type': 'Organization', name: 'Cycle Awakening', url: SITE_URL },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: tx.accueil, item: `${SITE_URL}${path('accueil', lang)}`.replace(/\/$/, '') },
-      { '@type': 'ListItem', position: 2, name: tx.blog, item: `${SITE_URL}${path('blog', lang)}` },
-      { '@type': 'ListItem', position: 3, name: data.title, item: url },
-    ],
-  },
+    images: [dansLangue(imageDePartage), ...(data.photo ? [dansLangue(`/images/blog/${data.photo}`)] : [])],
+    publie: iso(data.publishedAt),
+    modifie: iso(data.updatedAt),
+    lang,
+    motsCles: data.keywords,
+    rubrique: piliers[lang][data.pillar],
+    mots: (article.body ?? '').split(/\s+/).filter(Boolean).length,
+    relu: data.reviewedBy,
+    sources: data.sources.map((s) => ({ nom: s.label, url: s.url })),
+  }),
+  fil([
+    { nom: tx.accueil, url: path('accueil', lang) },
+    { nom: tx.blog, url: path('blog', lang) },
+    { nom: data.title, url },
+  ]),
 ];
 ---
 
-<PageLayout title={data.title} description={data.description} type="article" image={data.image} imageAlt={data.imageAlt} noindex={brouillon} alternate={alternate}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<PageLayout
+  title={data.seoTitle ?? data.title}
+  description={data.description}
+  type="article"
+  image={imageDePartage}
+  imageAlt={data.imageAlt ?? data.photoAlt ?? data.title}
+  noindex={brouillon}
+  alternate={alternate}
+  jsonLd={jsonLd}
+  preload={data.photo ? { href: `/images/blog/${data.photo}`, srcset, sizes: '(max-width: 52rem) 100vw, 62vw' } : undefined}
+  article={{ publie: iso(data.publishedAt), modifie: iso(data.updatedAt), auteur: data.author, rubrique: piliers[lang][data.pillar], tags: data.keywords }}
+>
   <PageHero
     eyebrow={piliers[lang][data.pillar]}
     title={data.title}
     lead={data.description}
     photo={data.photo ? `/images/blog/${data.photo}` : undefined}
     photoAlt={data.photoAlt}
+    photoSrcset={srcset}
     credit={data.photoCredit}
     photoAttendue={brouillon && !data.photo}
   >

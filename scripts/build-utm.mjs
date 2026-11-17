@@ -26,7 +26,7 @@ const link = (source, medium, content, path = '/') => {
   return url.toString();
 };
 
-// Liens courts (bios) : gardés synchronisés avec public/_redirects.
+// Liens courts (bios) : gardés synchronisés avec public/liens-courts.txt.
 const shortLinks = [
   ['/ig', 'instagram', 'social', 'bio'],
   ['/tt', 'tiktok', 'social', 'bio'],
@@ -34,7 +34,7 @@ const shortLinks = [
   ['/in', 'linkedin', 'social', 'profil'],
 ];
 writeFileSync(
-  fileURLToPath(new URL('../public/_redirects', import.meta.url)),
+  fileURLToPath(new URL('../public/liens-courts.txt', import.meta.url)),
   '# Généré par `npm run utm` — liens courts pour les bios des réseaux.\n' +
     shortLinks.map(([path, s, m, c]) => { const u = new URL(link(s, m, c)); return `${path}  /${u.search}  302`; }).join('\n') + '\n',
 );
@@ -68,7 +68,7 @@ ${rows.join('\n')}
 
 ## Liens courts pour les bios
 
-Les liens UTM sont longs. Des redirections courtes, indépendantes du domaine, sont déclarées dans \`public/_redirects\` :
+Les liens UTM sont longs. Des redirections courtes, indépendantes du domaine, sont déclarées dans \`public/liens-courts.txt\` :
 
 | Lien court | Redirige vers |
 |---|---|

@@ -3,6 +3,7 @@
 import '../styles/global.css';
 import { SITE_URL, site } from '../config/site';
 import { langOf, alternates, cleanPath, htmlLang, ogLocale, t, type Lang } from '../i18n';
+import { limites } from '../config/seo';
 import interRegular from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
 import cormorantMedium from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2?url';
 
@@ -17,6 +18,12 @@ interface Props {
   noindex?: boolean;
   /** Équivalent de la page dans l'autre langue, pour les pages hors table de routes (articles). */
   alternate?: Partial<Record<Lang, string | null>>;
+  /** Données structurées (JSON-LD) propres à la page. */
+  jsonLd?: object[];
+  /** Image principale à précharger (LCP), avec ses variantes de largeur. */
+  preload?: { href: string; srcset?: string; sizes?: string };
+  /** Métadonnées d'article (Open Graph « article »). */
+  article?: { publie: string; modifie: string; auteur: string; rubrique: string; tags: string[] };
 }
 
 const lang = langOf(Astro.url);
@@ -29,9 +36,15 @@ const {
   type = 'website',
   noindex = false,
   alternate,
+  jsonLd = [],
+  preload,
+  article,
 } = Astro.props;
 
-const fullTitle = title ? `${title} · ${site.name}` : `${site.name} — ${tx.tagline}`;
+// Titre : « Titre · Cycle Awakening » tant que ça tient en 60 caractères (au-delà, Google le coupe) ; sinon le titre seul.
+const avecMarque = title ? (title.includes(site.name) ? title : `${title} · ${site.name}`) : '';
+const fullTitle = title ? (avecMarque.length <= limites.titre ? avecMarque : title) : `${site.name} — ${tx.tagline}`;
+const rss = lang === 'en' ? { href: '/en/blog/rss.xml', titre: 'Cycle Awakening — the blog' } : { href: '/blog/rss.xml', titre: 'Cycle Awakening — le blog' };
 // L'URL canonique n'a ni « .html » ni « index ».
 const canonical = new URL(cleanPath(Astro.url), SITE_URL).toString();
 const alt = alternates(Astro.url, alternate);
@@ -47,10 +60,14 @@ const imageUrl = new URL(image, SITE_URL).toString();
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+    <link rel="alternate" type="application/rss+xml" title={rss.titre} href={rss.href} />
     {hreflang.map(([l, u]) => <link rel="alternate" hreflang={htmlLang[l]} href={new URL(u, SITE_URL).toString()} />)}
     {hreflang.length > 1 && alt.fr && <link rel="alternate" hreflang="x-default" href={new URL(alt.fr, SITE_URL).toString()} />}
 
+    {preload && <link rel="preload" as="image" href={preload.href} imagesrcset={preload.srcset} imagesizes={preload.sizes} fetchpriority="high" />}
     <link rel="preload" href={interRegular} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={cormorantMedium} as="font" type="font/woff2" crossorigin />
 
@@ -62,7 +79,13 @@ const imageUrl = new URL(image, SITE_URL).toString();
 
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content={ogLocale[lang]} />
+    <meta property="og:locale:alternate" content={ogLocale[lang === 'fr' ? 'en' : 'fr']} />
     <meta property="og:type" content={type} />
+    {article && <meta property="article:published_time" content={article.publie} />}
+    {article && <meta property="article:modified_time" content={article.modifie} />}
+    {article && <meta property="article:author" content={article.auteur} />}
+    {article && <meta property="article:section" content={article.rubrique} />}
+    {article && article.tags.map((tag) => <meta property="article:tag" content={tag} />)}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -84,6 +107,7 @@ const imageUrl = new URL(image, SITE_URL).toString();
         setTimeout(function () { if (!h.classList.contains('motion')) h.classList.remove('js-motion'); }, 3000);
       }
     </script>
+    {jsonLd.map((bloc) => <script type="application/ld+json" set:html={JSON.stringify(bloc)} />)}
     <slot name="head" />
   </head>
   <body>

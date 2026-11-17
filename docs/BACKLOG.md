@@ -136,3 +136,12 @@ Mises de côté à la demande de la fondatrice. Chaque lien obtenu → fiche ave
 - Compléments acceptés sur la page Recommandations quand la fondatrice les utilise (Valebio, MiYé), formulés en usage personnel, **sans effet annoncé** (pas de « pour la récupération », « pour l'hydratation »…).
 - Puissante : pas d'allégation (endorphines, maux de ventre, rééducation) ; la rééducation du périnée renvoie vers sage-femme ou kiné.
 - Elia (grossesse, post-partum) : mention produit seulement ; les modules grossesse restent sous `FEATURE_PREGNANCY_MODULES`.
+
+## SEO (17 novembre 2026)
+
+- Fait : titres ≤ 60 (`seoTitle`), descriptions 110–160, JSON-LD (organisation, auteure, site, article, fil, collections), hreflang FR/EN, sitemap sur mesure avec dates réelles, images de partage 1200×630 par article, photos d'en-tête allégées + préchargées, cache des images, audit `npm run seo`, skill `seo-site`.
+- [ ] **À faire par la fondatrice** : Google Search Console (propriété Domaine + sitemap + demandes d'indexation), Bing (import), Crawler Hints Cloudflare. Guide : `docs/SEO-GOOGLE.md`.
+- [ ] Page « À propos » (parcours, expériences réelles) : signal E-E-A-T fort. Éléments à fournir.
+- [ ] Faire relire un article par une sage-femme / gynécologue (`reviewedBy`).
+- [ ] À l'ouverture des ventes : `Product` + `Offer` sur l'accueil (voir skill `seo-site` §3).
+- [ ] Demander des liens (backlinks) aux marques partenaires sur les articles qui les concernent.
