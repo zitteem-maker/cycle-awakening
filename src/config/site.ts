@@ -15,6 +15,12 @@ export const SITE_URL: string = (env.PUBLIC_SITE_URL || 'https://cycleawakening.
  * au lieu d'un lien mort vers « # ».
  */
 export const CHECKOUT_URL: string | null = validCheckoutUrl(env.PUBLIC_CHECKOUT_URL);
+/** Liens de paiement par devise (site anglais). EUR = PUBLIC_CHECKOUT_URL ; USD et GBP sont facultatifs. */
+export const CHECKOUT_URLS: Partial<Record<'EUR' | 'USD' | 'GBP', string>> = {
+  ...(CHECKOUT_URL ? { EUR: CHECKOUT_URL } : {}),
+  ...(validCheckoutUrl(env.PUBLIC_CHECKOUT_URL_USD) ? { USD: validCheckoutUrl(env.PUBLIC_CHECKOUT_URL_USD)! } : {}),
+  ...(validCheckoutUrl(env.PUBLIC_CHECKOUT_URL_GBP) ? { GBP: validCheckoutUrl(env.PUBLIC_CHECKOUT_URL_GBP)! } : {}),
+};
 
 export const site = {
   name: 'Cycle Awakening',

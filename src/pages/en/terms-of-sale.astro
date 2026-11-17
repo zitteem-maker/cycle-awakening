@@ -3,7 +3,7 @@
 import LegalLayout from '../../layouts/LegalLayout.astro';
 import Val from '../../components/legal/Val.astro';
 import { legal, salesReady } from '../../config/legal';
-import { guide, formatPrice } from '../../config/offers';
+import { guide, formatPrice, pricesFor } from '../../config/offers';
 const e = legal.editor;
 ---
 
@@ -30,9 +30,9 @@ const e = legal.editor;
   <h2>3. Products</h2>
   <h3>3.1 The Guide (digital content)</h3>
   <p>
-    “{guide.name}” is a digital book{guide.pages ? ` of ${guide.pages} pages` : ''}, with printable tools.
+    “Cycle Awakening — The Guide” is a digital book{guide.pagesEn ? ` of ${guide.pagesEn} pages` : ''}, with printable tools.
     It is provided without a physical medium, by download. It is educational lifestyle content: it does not replace
-    medical advice and guarantees no results. The Guide is currently written in French.
+    medical advice and guarantees no results. The Guide is available in English and in French.
   </p>
   <h3>3.2 Premium subscription</h3>
   <p>
@@ -41,7 +41,7 @@ const e = legal.editor;
 
   <h2>4. Prices</h2>
   <p>
-    Prices are shown in euros, including all taxes. The Guide is sold at {formatPrice(guide.priceCents, 'en-GB')}.
+    Prices are shown including all taxes, in the currency you choose on the website (euro, US dollar or pound sterling, depending on availability). The Guide is sold at {Object.values(pricesFor('en-GB')).map((p) => p!.texte).join(' / ')}.
     <Val v={e.vatNoteEn} />. The applicable price is the one displayed when the order is placed.
   </p>
 

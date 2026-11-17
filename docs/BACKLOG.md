@@ -145,3 +145,11 @@ Mises de côté à la demande de la fondatrice. Chaque lien obtenu → fiche ave
 - [ ] Faire relire un article par une sage-femme / gynécologue (`reviewedBy`).
 - [ ] À l'ouverture des ventes : `Product` + `Offer` sur l'accueil (voir skill `seo-site` §3).
 - [ ] Demander des liens (backlinks) aux marques partenaires sur les articles qui les concernent.
+
+## Site anglais : devises et extrait (17 novembre 2026)
+
+- Extrait du chapitre 1 (« What it looks like, in practice » / « À quoi ça ressemble, concrètement ») sur l'accueil FR et EN, lu directement dans les sources du livre (`extrait()` dans `src/data/livre.ts`), avec bouton d'achat.
+- Numéro d'urgence anglais : « 911 (or your local emergency number) » dans le livre, les outils, la notice et les articles.
+- Choix de devise sur le site anglais (EUR, USD, GBP) : mécanisme prêt (`src/scripts/devise.ts`, `src/config/offers.ts`).
+  - [ ] **À confirmer par la fondatrice : les prix en USD et en GBP.** Proposés : 29 $ et 24 £ (pour 27 €), visibles uniquement sur la prévisualisation. Tant que non confirmés (`guidePrices`), seule la devise euro est proposée au public.
+  - [ ] Étape paiement : un lien Stripe par devise (`PUBLIC_CHECKOUT_URL_USD`, `PUBLIC_CHECKOUT_URL_GBP`) ou « Adaptive Pricing » de Stripe. TVA à calculer par pays (guichet OSS, comptable).

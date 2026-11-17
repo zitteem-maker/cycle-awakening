@@ -111,7 +111,7 @@ It makes **no diagnosis**, replaces **no treatment** and promises **no results**
 <li>new symptoms, or symptoms that get worse from one cycle to the next;</li>
 <li>mood so low, anxiety so strong or irritability so intense that it damages your life or your relationships. There is a severe form, <strong>premenstrual dysphoric disorder</strong>, which can be treated.</li>
 </ul>
-<p>Who to talk to: your midwife, your gynaecologist, your doctor or a psychologist. You don't have to go through this alone. In an emergency: call <strong>15</strong> in France, or your local emergency number.</p>
+<p>Who to talk to: your midwife, your gynaecologist, your doctor or a psychologist. You don't have to go through this alone. In an emergency: call <strong>911</strong> (or your local emergency number).</p>
 </aside>
 
 <div class="sources">

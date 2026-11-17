@@ -2,8 +2,9 @@
 // Composant d'appel à l'action UNIQUE pour l'achat du guide.
 // Toutes les pages l'utilisent : le lien de paiement vient de PUBLIC_CHECKOUT_URL, le prix de src/config/offers.ts.
 // Si le paiement n'est pas branché, il n'affiche jamais de lien mort : il renvoie vers la liste d'attente.
-import { CHECKOUT_URL } from '../config/site';
-import { guide, formatPrice } from '../config/offers';
+import { CHECKOUT_URL, CHECKOUT_URLS } from '../config/site';
+import { guide, formatPrice, pricesFor, currencies } from '../config/offers';
+import { afficherBrouillons } from '../data/blog';
 import { langOf, ancre, intlLocale, t } from '../i18n';
 
 interface Props {
@@ -24,6 +25,14 @@ const { location, label, variant = 'primary', fallbackHref = ancre('newsletter',
 const price = formatPrice(guide.priceCents, intlLocale[lang]);
 const available = CHECKOUT_URL !== null;
 const text = available ? (label ?? tx.obtenir(price)) : court ? tx.attenteCourt : tx.attente;
+// Site anglais : un lien et un libellé par devise disponible (prix confirmé ET lien de paiement présents).
+// Le script src/scripts/devise.ts les échange quand la visiteuse change de devise.
+const prixDevises = pricesFor('en-GB', afficherBrouillons);
+const parDevise = lang === 'en' && available
+  ? currencies.filter((c) => CHECKOUT_URLS[c] && prixDevises[c] && !prixDevises[c]!.propose)
+  : [];
+const urlsDevise = parDevise.length > 1 ? Object.fromEntries(parDevise.map((c) => [c, CHECKOUT_URLS[c]])) : null;
+const labelsDevise = urlsDevise ? Object.fromEntries(parDevise.map((c) => [c, label ?? tx.obtenir(prixDevises[c]!.texte)])) : null;
 ---
 
 {available ? (
@@ -33,6 +42,8 @@ const text = available ? (label ?? tx.obtenir(price)) : court ? tx.attenteCourt 
     data-event="cta_click"
     data-cta-location={location}
     data-offer={guide.id}
+    data-devise-urls={urlsDevise ? JSON.stringify(urlsDevise) : undefined}
+    data-devise-labels={labelsDevise ? JSON.stringify(labelsDevise) : undefined}
   >
     {text}
   </a>

@@ -21,6 +21,7 @@ const lire = (fichiers: Record<string, string>) =>
     .map(([, src]) => frontmatter(src));
 
 const chapitresSrc = import.meta.glob('../../book/src/chapitres/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const chapitresEnSrc = import.meta.glob('../../book/en/chapitres/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const recettesSrc = import.meta.glob('../../book/src/recettes/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 
 export const chapitres = lire(chapitresSrc).map((c) => ({
@@ -47,3 +48,25 @@ export const outils = (outilsJson as { titre: string; titre_en?: string; bonus?:
   titre_en: (o.titre_en ?? o.titre).replace(/^Bonus · /, ''),
   bonus: Boolean(o.bonus),
 }));
+
+/**
+ * Extrait du chapitre 1, lu directement dans les sources du livre (même texte que le PDF, jamais recopié à la main).
+ * Utilisé sur l'accueil pour donner envie d'acheter le livre digital.
+ */
+export function extrait(lang: 'fr' | 'en') {
+  const sources = lang === 'en' ? chapitresEnSrc : chapitresSrc;
+  const chapitre1 = Object.entries(sources).sort(([a], [b]) => a.localeCompare(b))[0][1];
+  const corps = chapitre1.replace(/^---\n[\s\S]*?\n---\n/, '');
+  const titreSection = lang === 'en' ? 'What it looks like, in practice' : 'À quoi ça ressemble, concrètement';
+  const debut = corps.indexOf(`## ${titreSection}`);
+  if (debut < 0) throw new Error(`Extrait introuvable dans le chapitre 1 : « ${titreSection} »`);
+  const reste = corps.slice(debut + `## ${titreSection}`.length);
+  const fin = reste.search(/\n## /);
+  const texte = (fin < 0 ? reste : reste.slice(0, fin)).trim();
+  const apostrophes = (t: string) => t.replace(/(\p{L})'(\p{L})/gu, '$1’$2');
+  const html = apostrophes(texte)
+    .split(/\n\s*\n/)
+    .map((p) => `<p>${p.trim().replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`)
+    .join('');
+  return { titre: titreSection, html };
+}

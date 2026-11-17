@@ -8,8 +8,9 @@ import CycleWheel from '../components/home/CycleWheel.astro';
 import Marquee from '../components/home/Marquee.astro';
 import CyclePhases from '../components/home/CyclePhases.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
-import { guide, formatPrice } from '../config/offers';
-import { chapitres, recettes, outils } from '../data/livre';
+import { guide, formatPrice, pricesFor, currencies, currencyNames } from '../config/offers';
+import { afficherBrouillons } from '../data/blog';
+import { chapitres, recettes, outils, extrait } from '../data/livre';
 import { langOf, intlLocale, path } from '../i18n';
 import { articles, urlOf, piliers, tempsDeLecture } from '../data/blog';
 import { graphe, organisation, auteure, siteWeb } from '../config/seo';
@@ -18,6 +19,7 @@ const lang = langOf(Astro.url);
 const en = lang === 'en';
 
 // Derniers articles (pilier d'abord, puis les plus récents) : liens internes vers le blog depuis l'accueil.
+const ex = extrait(lang);
 const derniers = (await articles(lang)).slice(0, 3);
 
 // Portrait de la fondatrice : affiché dès que le fichier existe (public/images/site/emeline.webp).
@@ -25,7 +27,13 @@ const derniers = (await articles(lang)).slice(0, 3);
 const portrait = Object.keys(import.meta.glob('../../public/images/site/emeline.webp')).length ? '/images/site/emeline.webp' : null;
 
 const prix = formatPrice(guide.priceCents, intlLocale[lang]);
-const pages = guide.pages;
+// Site anglais : choix de la devise (euro, dollar, livre). Seuls les prix confirmés sont publics ; les propositions
+// n'apparaissent que sur la prévisualisation, avec la mention « à confirmer ».
+const prixDevises = pricesFor(intlLocale[lang], en && afficherBrouillons);
+const devises = en ? currencies.filter((c) => prixDevises[c]) : [];
+const prixJson = JSON.stringify(Object.fromEntries(devises.map((c) => [c, prixDevises[c]!.texte])));
+const prixAConfirmer = devises.some((c) => prixDevises[c]!.propose);
+const pages = en ? guide.pagesEn : guide.pages;
 const photosRecettes: Record<string, string> = {
   'banana-bread.jpg': '/images/site/banana-bread.webp',
   'cookies-pois-chiches.jpg': '/images/site/cookies.webp',
@@ -44,6 +52,8 @@ const nomsOutils = outils.map((o) => (en ? o.titre_en : o.titre).replace(/ — .
 const fr = {
   titre: 'Cycle Awakening · Guide de la phase lutéale et du SPM',
   description: 'Fatigue, ballonnements, humeur avant les règles : comprends ta phase lutéale (J17–J28) et sache quoi faire. Un livre digital concret, des recettes, des outils.',
+  deviseAria: 'Devise',
+  exEyebrow: 'Lis un extrait', exLegende: 'Extrait du chapitre 1 · Ce qui se passe vraiment', exSuite: 'La suite est dans le livre digital.',
   blogEyebrow: 'Le blog', blogTitre: 'Pour aller <em class="accent">plus loin</em>', blogTous: 'Tous les articles', blogLecture: 'min de lecture',
   heroEyebrow: 'Le guide de ta fin de cycle · J17–J28',
   heroL1: 'Tu n’es pas', heroL2: 'instable.', heroL3: 'Tu es cyclique.',
@@ -128,6 +138,8 @@ const fr = {
 const enTx: typeof fr = {
   titre: 'Cycle Awakening · Luteal phase & PMS guide, D17–D28',
   description: 'Tired, bloated, emotional before your period? Understand your luteal phase (D17–D28) and know what to do. A practical digital book, recipes and tools.',
+  deviseAria: 'Choose your currency',
+  exEyebrow: 'Read an excerpt', exLegende: 'Excerpt from chapter 1 · What is really happening', exSuite: 'The rest is in the digital book.',
   blogEyebrow: 'The blog', blogTitre: 'Go <em class="accent">further</em>', blogTous: 'All articles', blogLecture: 'min read',
   heroEyebrow: 'The guide to the end of your cycle · D17–D28',
   heroL1: 'You are not', heroL2: 'unstable.', heroL3: 'You are cyclical.',
@@ -163,7 +175,7 @@ const enTx: typeof fr = {
   livreSous: 'Understanding and getting through your luteal phase,<br />D17–D28',
   guideEyebrow: 'The guide',
   guideTitre: 'Everything you need for the <em class="accent">end of your cycle</em>',
-  guideLangue: 'The guide is written in French. The English edition is in preparation: subscribe to the newsletter to be the first to know.',
+  guideLangue: '',
   recTitre: 'And an end-of-cycle kitchen, <em class="signature">truly simple</em>',
   recTexte: `${recettes.length} quick, filling recipes, from banana bread to golden milk.`,
   pqEyebrow: 'Who it’s for',
@@ -197,7 +209,7 @@ const enTx: typeof fr = {
   faqTitre: 'Your <em class="accent">questions</em>',
   faq: [
     { q: 'What exactly is this guide?', r: `A digital book${pages ? ` of ${pages} pages` : ''} to understand your luteal phase (day 17 to day 28) and organise your life around it: practical markers for eating, moving and slowing down, a typical week, ${recettes.length} recipes and printable tools.` },
-    { q: 'Is the guide available in English?', r: 'The guide is currently written in French. An English edition is in preparation: newsletter subscribers will be told first.' },
+    { q: 'Is the guide available in French too?', r: 'Yes. The digital book exists in English and in French, with the same chapters, recipes and tools. The French edition is on the French version of this website.' },
     { q: 'I don’t have a PMS diagnosis. Is it for me?', r: 'If you notice physical or emotional changes at the end of your cycle, yes. No diagnosis needed: the guide talks about tendencies and lifestyle markers.' },
     { q: 'How do I receive the guide?', r: 'After payment, you receive an email with your download link. The digital book is yours: you keep it and come back to it at the end of every cycle.' },
     { q: 'Does it replace medical care?', r: 'No. Cycle Awakening offers lifestyle support. Intense pain, very heavy bleeding, new or worsening symptoms, very low mood: talk to your midwife, your gynaecologist, your doctor or a psychologist.' },
@@ -347,6 +359,22 @@ const tx = en ? enTx : fr;
     </div>
   </section>
 
+  <!-- EXTRAIT DU LIVRE : un vrai passage du chapitre 1, pour donner envie de lire la suite -->
+  <section class="section extrait" aria-labelledby="extrait-titre">
+    <div class="container extrait__grille">
+      <div>
+        <p class="eyebrow">{tx.exEyebrow}</p>
+        <p class="extrait__legende">{tx.exLegende}</p>
+      </div>
+      <article class="extrait__carte glass" data-reveal lang={lang}>
+        <h2 id="extrait-titre" class="extrait__titre">{ex.titre}</h2>
+        <div class="extrait__texte" set:html={ex.html} />
+        <p class="extrait__suite">{tx.exSuite}</p>
+        <Cta location="extrait" variant="primary" />
+      </article>
+    </div>
+  </section>
+
   <!-- POUR QUI -->
   <section class="section pourqui">
     <div class="container">
@@ -375,7 +403,15 @@ const tx = en ? enTx : fr;
         <p class="offre__intro">{tx.offreIntro}</p>
       </div>
       <div class="offre__carte" data-reveal data-magnetic>
-        <p class="offre__prix">{prix}</p>
+        <p class="offre__prix" data-prix={devises.length > 1 ? prixJson : undefined}>{prix}</p>
+        {devises.length > 1 && (
+          <div class="devise" role="radiogroup" aria-label={tx.deviseAria} data-devise-choix>
+            {devises.map((c) => (
+              <button type="button" role="radio" class="devise__bouton" data-devise={c} aria-checked={c === 'EUR' ? 'true' : 'false'} tabindex={c === 'EUR' ? 0 : -1} title={currencyNames[c]}>{c}</button>
+            ))}
+          </div>
+        )}
+        {prixAConfirmer && <p class="todo devise__note">Prévisualisation : les prix en USD et GBP sont des propositions, à confirmer.</p>}
         <p class="offre__modalite">{tx.modalite}</p>
         <ul class="offre__liste">
           {tx.contenu.map((c) => <li>{c}</li>)}
@@ -443,6 +479,28 @@ const tx = en ? enTx : fr;
 </PageLayout>
 
 <style>
+  /* ---------- Choix de la devise (site anglais) ---------- */
+  .devise { display: inline-flex; gap: 2px; padding: 3px; margin: var(--space-2) 0 var(--space-4); border-radius: var(--radius-pill); border: 1px solid rgb(247 244 239 / 0.35); }
+  .devise__bouton {
+    min-width: 3.4rem; min-height: 2.25rem; padding: 0 var(--space-3); border: 0; border-radius: var(--radius-pill); cursor: pointer;
+    background: transparent; color: inherit; font: inherit; font-size: var(--font-size-xs); letter-spacing: 0.12em;
+    transition: background-color var(--motion-duration-fast) var(--motion-ease);
+  }
+  .devise__bouton:hover { background: rgb(247 244 239 / 0.14); }
+  .devise__bouton[aria-checked='true'] { background: rgb(247 244 239 / 0.92); color: var(--semantic-text); font-weight: var(--font-weight-semibold); }
+  .devise__note { font-size: var(--font-size-xs); margin: 0 0 var(--space-4); }
+
+  /* ---------- Extrait du livre ---------- */
+  .extrait__grille { display: grid; gap: var(--space-8); align-items: start; }
+  @media (min-width: 60rem) { .extrait__grille { grid-template-columns: 1fr 2fr; gap: var(--space-12); } .extrait__grille > div { position: sticky; top: 7rem; } }
+  .extrait__legende { font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-xl); color: var(--semantic-text-muted); max-width: 18ch; }
+  .extrait__carte { padding: clamp(1.5rem, 1rem + 3vw, 3.5rem); }
+  .extrait__titre { font-size: clamp(1.9rem, 1.4rem + 2vw, 3rem); margin-bottom: var(--space-6); }
+  .extrait__texte { font-size: 1.125rem; line-height: 1.75; color: var(--semantic-text-reading); max-width: 62ch; }
+  .extrait__texte :global(p) { margin: 0 0 var(--space-4); }
+  .extrait__texte :global(strong) { color: var(--semantic-text); }
+  .extrait__suite { margin: var(--space-6) 0 var(--space-4); font-family: var(--font-family-display); font-style: italic; font-size: var(--font-size-xl); }
+
   /* ---------- Derniers articles ---------- */
   .blog-apercu__liste { list-style: none; margin: var(--space-8) 0 0; padding: 0; display: grid; gap: var(--space-4); }
   @media (min-width: 52rem) { .blog-apercu__liste { grid-template-columns: repeat(3, 1fr); } }
