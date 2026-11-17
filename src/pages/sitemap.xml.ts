@@ -19,6 +19,7 @@ export async function GET() {
 
   const pages: Entree[] = [
     { ...routes.accueil },
+    { ...routes.apropos },
     { ...routes.blog, lastmod: dernierArticle },
     { ...routes.recommandations },
     { ...routes.mentions, lastmod: legal.updatedAt },

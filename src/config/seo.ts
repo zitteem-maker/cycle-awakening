@@ -17,7 +17,8 @@ export const reseaux = ['https://www.instagram.com/cycleawakening/'];
 /** Longueurs recommandées (Google tronque au-delà). Utilisées par l'audit `npm run seo`. */
 export const limites = { titre: 60, descriptionMin: 70, descriptionMax: 160 };
 
-const nomAuteure = () => (legal.editor.publicationDirector.startsWith('TODO') ? 'Emeline' : legal.editor.publicationDirector);
+// Nom affiché publiquement : prénom seul (choix de la fondatrice). Le nom complet reste dans les mentions légales.
+const nomAuteure = () => 'Emeline';
 
 export const organisation = () => ({
   '@type': 'Organization',
@@ -38,7 +39,7 @@ export const auteure = (lang: Lang = 'fr') => ({
   jobTitle: lang === 'en' ? 'Founder of Cycle Awakening' : 'Fondatrice de Cycle Awakening',
   image: `${SITE_URL}/images/site/emeline.webp`,
   worksFor: { '@type': 'Organization', name: 'Cycle Awakening', url: SITE_URL },
-  url: `${SITE_URL}/#histoire`,
+  url: `${SITE_URL}${lang === 'en' ? '/en/about' : '/a-propos'}`,
 });
 
 export const siteWeb = () => ({

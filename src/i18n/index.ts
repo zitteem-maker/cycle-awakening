@@ -11,6 +11,7 @@ export const langOf = (url: URL): Lang => (/^\/en(\/|$|\.html$)/.test(url.pathna
 
 export const routes = {
   accueil: { fr: '/', en: '/en' },
+  apropos: { fr: '/a-propos', en: '/en/about' },
   blog: { fr: '/blog', en: '/en/blog' },
   recommandations: { fr: '/recommandations', en: '/en/recommendations' },
   mentions: { fr: '/mentions-legales', en: '/en/legal-notice' },
@@ -64,6 +65,7 @@ export const ui = {
     footer: {
       signature: 'Tu n’es pas instable. Tu es cyclique.',
       aria: 'Informations légales',
+      apropos: 'À propos',
       blog: 'Blog',
       recommandations: 'Recommandations',
       mentions: 'Mentions légales',
@@ -115,6 +117,7 @@ export const ui = {
     footer: {
       signature: 'You are not unstable. You are cyclical.',
       aria: 'Legal information',
+      apropos: 'About',
       blog: 'Blog',
       recommandations: 'Recommendations',
       mentions: 'Legal notice',

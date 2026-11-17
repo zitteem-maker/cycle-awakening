@@ -1,0 +1,94 @@
+---
+// À propos : courte, factuelle, construite uniquement à partir de ce que la fondatrice a validé (texte « Mon histoire » de l'accueil).
+// Utilisée par /a-propos (français) et /en/about (anglais).
+import PageLayout from '../layouts/PageLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { langOf, path, ancre } from '../i18n';
+import { SITE_URL } from '../config/site';
+import { ids, auteure, fil, graphe } from '../config/seo';
+
+const lang = langOf(Astro.url);
+const en = lang === 'en';
+const tx = en
+  ? {
+      title: 'About Emeline, founder of Cycle Awakening',
+      description: 'Emeline founded Cycle Awakening to explain the menstrual cycle simply, phase by phase, with practical lifestyle guidance and no guilt.',
+      eyebrow: 'About', hero: 'Hi, I’m <em class="accent">Emeline.</em>', lead: 'Founder of Cycle Awakening.',
+      alt: 'Emeline, founder of Cycle Awakening',
+      h1: 'Why Cycle Awakening',
+      p1: 'For years, I lived exactly this: disappearing for a few days every month without understanding why. I searched, tested, and brought together nutrition, movement and an understanding of the cycle.',
+      p2: 'Cycle Awakening is what I wish I had found back then: a guide that is simple, practical and guilt-free, to understand what happens in your body phase by phase, and know what to actually do: eat, move, slow down.',
+      h2: 'How I work',
+      li: [
+        'Lifestyle support only: nutrition, movement, rest. No diagnosis, no treatment, no promise of results.',
+        'Every article states its sources at the end, with a link, and the date it was last updated.',
+        'My recommendations are personal; every commercial link is clearly marked.',
+        'This content does not replace medical advice. With intense pain, very heavy bleeding or unusual symptoms, see a health professional.',
+      ],
+      h3: 'Keep in touch',
+      guide: 'Discover the guide', blog: 'Read the blog',
+      contact: 'Write to me: ',
+      fil: 'About', accueil: 'Home',
+    }
+  : {
+      title: 'À propos d’Emeline, fondatrice de Cycle Awakening',
+      description: 'Emeline a fondé Cycle Awakening pour expliquer le cycle menstruel simplement, phase par phase, avec des conseils de mode de vie concrets et sans culpabilité.',
+      eyebrow: 'À propos', hero: 'Moi, c’est <em class="accent">Emeline.</em>', lead: 'Fondatrice de Cycle Awakening.',
+      alt: 'Emeline, fondatrice de Cycle Awakening',
+      h1: 'Pourquoi Cycle Awakening',
+      p1: 'Pendant des années, j’ai vécu exactement ça : disparaître quelques jours par mois sans comprendre pourquoi. J’ai cherché, testé, croisé nutrition, mouvement et compréhension du cycle.',
+      p2: 'Cycle Awakening, c’est ce que j’aurais voulu trouver à ce moment-là : un guide simple, concret et sans culpabilité, pour comprendre ce qui se passe dans ton corps, phase après phase, et savoir quoi faire : manger, bouger, ralentir.',
+      h2: 'Ma façon de travailler',
+      li: [
+        'De l’accompagnement de mode de vie uniquement : alimentation, mouvement, repos. Pas de diagnostic, pas de traitement, aucune promesse de résultat.',
+        'Chaque article cite ses sources en fin de page, avec un lien, et indique sa date de mise à jour.',
+        'Mes recommandations sont personnelles ; chaque lien commercial est clairement signalé.',
+        'Ces contenus ne remplacent pas un avis médical. En cas de douleur intense, de saignements très abondants ou de symptômes inhabituels, consulte un·e professionnel·le de santé.',
+      ],
+      h3: 'Garder le contact',
+      guide: 'Découvrir le guide', blog: 'Lire le blog',
+      contact: 'Écris-moi : ',
+      fil: 'À propos', accueil: 'Accueil',
+    };
+const url = path('apropos', lang);
+const portrait = '/images/site/emeline.webp';
+---
+
+<PageLayout
+  title={tx.title}
+  description={tx.description}
+  jsonLd={[
+    graphe({ '@type': 'AboutPage', '@id': `${SITE_URL}${url}#page`, url: `${SITE_URL}${url}`, name: tx.title, description: tx.description, inLanguage: en ? 'en-GB' : 'fr-FR', isPartOf: { '@id': ids.site }, mainEntity: auteure(lang) }),
+    fil([{ nom: tx.accueil, url: path('accueil', lang) }, { nom: tx.fil, url }]),
+  ]}
+>
+  <PageHero eyebrow={tx.eyebrow} title={tx.hero} lead={tx.lead} />
+
+  <section class="section">
+    <div class="container apropos">
+      <img class="apropos__portrait" src={portrait} alt={tx.alt} width="320" height="320" loading="lazy" />
+      <div class="apropos__texte prose">
+        <h2>{tx.h1}</h2>
+        <p>{tx.p1}</p>
+        <p>{tx.p2}</p>
+        <h2>{tx.h2}</h2>
+        <ul>{tx.li.map((l) => <li>{l}</li>)}</ul>
+        <h2>{tx.h3}</h2>
+        <p>{tx.contact}<a href="mailto:hello@cycleawakening.com">hello@cycleawakening.com</a></p>
+        <p class="apropos__liens">
+          <a href={ancre('guide', lang)}>{tx.guide}</a> · <a href={path('blog', lang)}>{tx.blog}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .apropos { display: grid; gap: var(--space-12); grid-template-columns: minmax(0, 18rem) minmax(0, 1fr); align-items: start; }
+  .apropos__portrait { width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; box-shadow: 0 24px 48px -24px rgb(18 34 25 / 0.45); }
+  .apropos__texte { max-width: 44rem; }
+  .apropos__texte h2 { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.4rem); margin: var(--space-8) 0 var(--space-3); }
+  .apropos__texte h2:first-child { margin-top: 0; }
+  .apropos__texte ul { padding-left: 1.2em; display: grid; gap: var(--space-2); }
+  @media (max-width: 48rem) { .apropos { grid-template-columns: 1fr; } .apropos__portrait { max-width: 12rem; } }
+</style>

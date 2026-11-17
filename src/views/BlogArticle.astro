@@ -107,7 +107,7 @@ const jsonLd = [
     photoAttendue={brouillon && !data.photo}
   >
     <p class="meta">
-      {tx.par} <strong>{data.author}</strong>{data.reviewedBy && <> · {tx.relu} {data.reviewedBy}</>} ·
+      {tx.par} <a href={path('apropos', lang)}><strong>{data.author}</strong></a>{data.reviewedBy && <> · {tx.relu} {data.reviewedBy}</>} ·
       <time datetime={iso(data.publishedAt)}>{date(data.publishedAt)}</time>
       {iso(data.updatedAt) !== iso(data.publishedAt) && <> · {tx.maj} <time datetime={iso(data.updatedAt)}>{date(data.updatedAt)}</time></>}
       · {tempsDeLecture(article.body ?? '')} {tx.lecture}
